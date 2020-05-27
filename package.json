@@ -1,0 +1,20 @@
+{
+  "name": "devents",
+  "version": "1.0.0",
+  "description": "final project DCI",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEVents-project/devents.git"
+  },
+  "author": "devents",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DEVents-project/devents/issues"
+  },
+  "homepage": "https://github.com/DEVents-project/devents#readme"
+}
