@@ -4,6 +4,9 @@ const createError = require("http-errors")
 const mongoose = require("mongoose")
 const logger = require("morgan")
 
+const indexRoute = require("./routes/indexRoute");
+const eventRoute = require("./routes/eventRoute");
+
 const port = process.env.PORT || 4000;
 
 mongoose.connect("mongodb://127.0.0.1:27017/devents", { useNewUrlParser: true, useUnifiedTopology: true });
@@ -12,6 +15,9 @@ mongoose.connection.on("open", () => console.log("database connected"));
 
 server.use(express.json());
 server.use(logger("dev"));
+
+server.use("/", indexRoute);
+server.use("/events", eventRoute);
 
 server.use((req, res, next) => {
     next(createError(404))
