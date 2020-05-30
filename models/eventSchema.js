@@ -6,8 +6,6 @@ const EventSchema = new Schema({
 
     hostedBy: { type: String, required: true },
 
-    createdAt: { type: Date, default: Date.now },
-
     city: { type: String, required: true },
 
     address: { type: String, required: true },
@@ -18,7 +16,11 @@ const EventSchema = new Schema({
 
     year: { type: Number, required: true },
 
-    description: { type: String, required: true }
+    description: { type: String, required: true },
+
+    link: { type: String },
+
+    createdAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model("Event", EventSchema);
