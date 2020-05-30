@@ -37,12 +37,12 @@ const NavBarSignedOut = () => {
                 <FontAwesomeIcon className="menu-bars" icon={faBars} onClick={toggleNav} />
                 <nav style={{ display: isNavVisible || !isSmallScreen ? 'flex' : 'none' }}>
                     <ul className="nav-group">
-                        <Link to="/events"><li>Find events</li></Link>
-                        <Link to="/register"><li>Add event</li></Link>
+                        <li><Link to="/events" className="underline">Find events</Link></li>
+                        <li><Link to="/register" className="underline">Add event</Link></li>
                     </ul>
                     <ul className="nav-group">
-                        <Link to="/login"><li>LOG IN</li></Link>
-                        <Link to="/signup"><li>SIGN UP</li></Link>
+                        <li><Link to="/login" className="underline">LOG IN</Link></li>
+                        <li><Link to="/signup" className="underline">SIGN UP</Link></li>
                     </ul>
                 </nav>
             </header>
