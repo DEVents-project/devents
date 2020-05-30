@@ -42,9 +42,8 @@ const Login = () => {
         <main>
 
             <div className="container">
-
-                <form className="login-form"
-                    onSubmit={handleLogin}>
+                <div className="middle-layer"></div>
+                <form className="login-form" onSubmit={handleLogin}>
                     <h2>LOG IN</h2>
                     <label>
                         <FontAwesomeIcon className="icon" icon={faPaperPlane} size={"2x"} />
