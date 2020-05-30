@@ -1,6 +1,62 @@
+/* ------------------------- FONT FAMILIES ------------------------- */
+
+// font family 'Bebas Neue'
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+// font family 'Hallo Sans'
+@font-face {
+    font-family: "HalloSans";
+    src: local("HalloSans"), url("../assets/fonts/Hallosans.otf") format("opentype"),
+        url("../assets/fonts/Hallosansblack.otf") format("opentype"),
+        url("../assets/fonts/Hallosanslight.otf") format("opentype");
+}
+
+// font family 'Code Pro Light'
+@font-face {
+    font-family: "CodeProLight";
+    src: local("CodePro"), url("../assets/fonts/Codelight.otf") format("opentype");
+}
+
+// font family 'Code Pro Bold'
+@font-face {
+    font-family: "CodeProBold";
+    src: local("CodePro"), url("../assets/fonts/Codebold.otf") format("opentype");
+}
+
+// font family 'Lincoln'
+@font-face {
+    font-family: "Lincoln";
+    src: local("Lincoln"), url("../assets/fonts/Lincolnnormal.otf") format("opentype");
+}
+
+// font family 'Lincoln Stencil'
+@font-face {
+    font-family: "LincolnStencil";
+    src: local("Lincoln"), url("../assets/fonts/Lincolnstencil.otf") format("opentype");
+}
+
+// font family 'Lincoln More Dots'
+@font-face {
+    font-family: "LincolnMoreDots";
+    src: local("Lincoln"), url("../assets/fonts/Lincolnmoredots.otf") format("opentype");
+}
+
+// font family 'Lincoln Less Dots'
+@font-face {
+    font-family: "LincolnLessDots";
+    src: local("Lincoln"), url("../assets/fonts/Lincolnlessdots.otf") format("opentype");
+}
+
+/* ------------------------- RESET RuLES ------------------------- */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    list-style: none;
+}
+
+body {
+    font-family: "CodeProBold", cursive;
 }
