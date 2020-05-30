@@ -46,6 +46,7 @@ header {
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
+            padding: 1rem 0;
 
             &:nth-child(1) {
                 background-color: #650404;
@@ -58,7 +59,7 @@ header {
             li {
                 width: 100%;
                 text-align: center;
-                padding: 2rem 0;
+                padding: 1rem 0;
                 color: #fff;
                 line-height: 2;
 
