@@ -1,39 +1,44 @@
 // variables 
 $light-color:#840404;
+$middle-color:#650404;
 $dark-color:#460505;
 $font-color: #ffffff;
 $border: .5rem;
+$font-family: "CodePro";
 
 main {
     width: 100vw;
-    margin-top: 20vh;
+    margin-top: 25vh;
     display: flex;
     justify-content: center;
+    
  
 
     .container {
-        height: 45vh;
+        height: 55vh;
         width: 30%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         // border: .3rem solid $dark-color;
-        box-shadow: 3.8rem -1rem $dark-color;
+        box-shadow: 3.5rem -1rem $middle-color;
         border-radius: $border;
+        font-family: $font-family;
+       
             
         .login-form {
-            height: 95%;
-            width: 95%;
+            padding-top: .5rem;
+            height: 100%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
             color: $font-color;
             background-color: $light-color;
-            // box-shadow: 3.4rem -1.2rem #650404;
             border-radius: $border; 
-
+           
             h2 {
                 letter-spacing: .1rem;
             }
@@ -61,12 +66,13 @@ main {
             input[type="submit"] {
                 height: 2.8rem;
                 width: 18rem;
-                padding-left:.5rem;
+                // padding-left:.5rem;
                 margin-left: 3.7rem;
                 cursor: pointer;
                 border: none;
                 border-radius: .2rem;
                 font-size: 1.1rem;
+                letter-spacing: .1rem;
                 color:$font-color;
                 background-color: $dark-color;
                 
