@@ -18,7 +18,7 @@ header {
         font-size: 2.5rem;
         cursor: pointer;
         color: #fff;
-        padding-left: 1rem;
+        padding-left: 2rem;
         background-color: #460505;
         display: flex;
         align-items: center;
@@ -29,9 +29,9 @@ header {
         font-size: 2.5rem;
         cursor: pointer;
         color: #fff;
-        margin-right: 1rem;
-        // position: relative;
-        // top: -3px;
+        margin-right: 2rem;
+        position: relative;
+        top: -3px;
     }
 
     nav {
@@ -88,9 +88,12 @@ header {
         overflow-y: hidden;
 
         #logo {
-            font-size: 3rem;
             grid-column: 1;
             clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+
+            @media screen and (min-width: 800px) {
+                font-size: 3rem;
+            }
         }
 
         .menu-bars {
