@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style/index.scss';
 import App from './components/App';
+import './assets/fonts/Hallosans.otf'
 
 ReactDOM.render(
   <React.StrictMode>
