@@ -4,7 +4,7 @@ import '../style/NavBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-const NavBarSignedIn = () => {
+const NavBarSignedOut = () => {
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -41,8 +41,8 @@ const NavBarSignedIn = () => {
                         <Link to="/register"><li>Add event</li></Link>
                     </ul>
                     <ul className="nav-group">
-                        <Link to="/login"><li>ACCOUNT</li></Link>
-                        <Link to="/signup"><li>SIGN OUT</li></Link>
+                        <Link to="/login"><li>LOG IN</li></Link>
+                        <Link to="/signup"><li>SIGN UP</li></Link>
                     </ul>
                 </nav>
             </header>
@@ -50,4 +50,4 @@ const NavBarSignedIn = () => {
     );
 }
 
-export default NavBarSignedIn;
+export default NavBarSignedOut;
