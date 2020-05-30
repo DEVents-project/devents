@@ -1,8 +1,8 @@
-const express = require("express")
-const server = express()
-const createError = require("http-errors")
-const mongoose = require("mongoose")
-const logger = require("morgan")
+const express = require("express");
+const server = express();
+const createError = require("http-errors");
+const mongoose = require("mongoose");
+const logger = require("morgan");
 
 const indexRoute = require("./routes/indexRoute");
 const eventRoute = require("./routes/eventRoute");
