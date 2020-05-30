@@ -1,36 +1,79 @@
-$primary-border-color: #DB2206;
-$primary-bg-color: #fa4b3b;
-$primary-btn-color: #DB2206;
+// variables 
+$light-color:#840404;
+$dark-color:#460505;
 $font-color: #ffffff;
+$border: .5rem;
 
+main {
+    width: 100vw;
+    margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+ 
 
-.container {
-    width: 40rem;
-    height: 50vh;
-    margin: 10rem auto;
-    background-color: $primary-bg-color;
-    color: $font-color;
-
-    .login-form{
-        height: 100%;
+    .container {
+        height: 45vh;
+        width: 30%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        // border: .3rem solid $dark-color;
+        box-shadow: 3.8rem -1rem $dark-color;
+        border-radius: $border;
+            
+        .login-form {
+            height: 95%;
+            width: 95%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            color: $font-color;
+            background-color: $light-color;
+            // box-shadow: 3rem -1rem #650404;
+            border-radius: $border; 
 
+            h2 {
+                letter-spacing: .1rem;
+            }
 
-        input {
-            box-sizing: border-box;
-            width: 25rem;
-            height: 3.5rem;
-            padding: 1.2rem 0;
-            border: none;
-            font-size: 1rem;
+            label {
+                margin: .2rem;
+                padding-left: .5rem;
 
-        }
-        label {
-            margin: 1rem;
-        
+                .icon {
+                    margin-right: 1.3rem;
+                    color: $dark-color;
+                }
+                
+                input { 
+                    height: 2.8rem;
+                    width: 18rem;
+                    padding: 1ch;
+                    border: none;
+                    border-radius: .2rem;
+                    font-size: 1.1rem;
+                    color: $dark-color;
+                }
+            }
+
+            input[type="submit"] {
+                height: 2.8rem;
+                width: 18rem;
+                padding-left:.5rem;
+                margin-left: 3.7rem;
+                cursor: pointer;
+                border: none;
+                border-radius: .2rem;
+                font-size: 1.1rem;
+                color:$font-color;
+                background-color: $dark-color;
+                
+                &:hover {
+                    transform: scaleX(1.1) scaleY(1.1);
+                }
+            }
         }
     }
 }
