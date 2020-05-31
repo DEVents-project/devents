@@ -7,7 +7,7 @@ import Typical from 'react-typical';
 
 const Landing = () => {
     return (
-        <div className="landing">
+        <div className="landing space-navbar">
             <main className="main">
                 <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
                 <h2><span className="underscore">Never miss</span> <br /><span className="keyword"><strong>events for developers</strong></span><br /> <span className="underscore again">again</span></h2>
