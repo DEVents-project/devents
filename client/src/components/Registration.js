@@ -7,16 +7,46 @@ const Registration = () => {
     
     return (
         <div className="space-wrap space-navbar">
-            <h1 className="question">Want to add you event?</h1>
+            
+            <h1 className="question">Want to add your event?</h1>
+            
             <div className="container">
-            <div className="square-1">
-                <h1>Registrate</h1>
+            
+                <div className="square">
+                    <h1 className="registrate">Registrate</h1>
+                   
+                </div>
+            
+                <div className="square">
+                    <h2>Add an event</h2>
+                </div>
 
-            </div>
+                <div className="square">
+                    <h2>Publish it</h2>
+                </div>
 
             </div>
             
+            <div className="container-2">
+                <div className="step-letters">
+                <h2 className="step-1">Step 1</h2> 
+                </div>
+
+                <div className="step-letters">
+                <h2 className="step-1">Step 2</h2>
+                </div>
+
+                <div className="step-letters">
+                    <h2 className="step-1">Step 3</h2>  
+                </div>
             
+            
+      
+
+
+            
+            </div>
+           
             
         </div>
     )
