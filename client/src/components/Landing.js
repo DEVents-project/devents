@@ -3,6 +3,7 @@ import '../style/Landing.scss';
 import Developers from '../assets/img/devs-sitting-2.png';
 import ParticlesBg from 'particles-bg';
 import Typical from 'react-typical';
+import CarouselLanding from './CarouselLanding';
 
 
 const Landing = () => {
@@ -25,7 +26,7 @@ const Landing = () => {
                 <img src={Developers} alt="Developers" className="developers" />
             </main>
             <section className="carousel">
-                <p>here comes the carousel</p>
+                <CarouselLanding />
             </section>
         </div>
     );
