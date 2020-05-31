@@ -6,6 +6,7 @@ import NavBarSignedOut from "./NavBarSignedOut";
 import Landing from "./Landing";
 import Login from "./Login";
 import Registration from './Registration'
+import Events from "./Events";
 
 const App = () => {
   const [test, setTest] = useState(0);
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/registration" component={Registration} />
           {/* <Route path="/signup" component={Signup} /> */}
           <Route path="/login" component={Login} />
+          <Route path="/events" component={Events} />
         </Switch>
       </BrowserRouter>
     </div>
