@@ -33,7 +33,7 @@ const CarouselLanding = () => {
     return (
         <Carousel
             showArrows={true}
-            showIndicators={true}
+            showIndicators={false}
             showStatus={false}
             autoPlay={true}
             infiniteLoop={true}
