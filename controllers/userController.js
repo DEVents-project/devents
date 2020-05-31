@@ -28,7 +28,7 @@ exports.postUser = async (req, res, next) => {
         const token = user.generateAuthToken()
         await user.save()
         const data = user.getPublicFields()
-        res.cookie("x-auth", token).json({ success: true, user: data })
+        res.header("x-auth", token).json({ success: true, user: data })
     } catch (err) {
         next(err)
     }
@@ -68,7 +68,7 @@ exports.login = async (req, res, next) => {
         let token = user.generateAuthToken()
         const data = user.getPublicFields()
 
-        res.cookie("x-auth", token).json({ success: true, user: data })
+        res.header("x-auth", token).json({ success: true, user: data })
     } catch (err) {
         next(err)
     }
