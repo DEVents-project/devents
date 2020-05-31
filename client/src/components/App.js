@@ -5,6 +5,7 @@ import NavBarSignedIn from "./NavBarSignedIn";
 import NavBarSignedOut from "./NavBarSignedOut";
 import Landing from "./Landing";
 import Login from "./Login";
+import Registration from './Registration'
 
 const App = () => {
   const [test, setTest] = useState(0);
