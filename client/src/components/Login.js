@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Switch, Redirect } from 'react-router-dom';
 
 import '../style/Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faLock } from '@fortawesome/free-solid-svg-icons';
+
 
 const Login = () => {
 
@@ -20,32 +21,30 @@ const Login = () => {
             password
         };
 
-        //     const logged = {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(loginData)
-        //     };
-        //     const resp = await fetch('http://localhost:3000', logged)
-        //     const data = await resp.json()
+        const logged = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        };
+        const resp = await fetch('http://localhost:3000', logged)
+        const data = await resp.json()
 
-        //     console.log(data);
+        console.log(data);
 
-        //     if (data.success) {
-        //         setStatusLogin(true)
-        //     } else {
-        //         setStatusLogin(false)
-        //     }
+        if (data.success) {
+            setStatusLogin(true)
+        }
     }
 
 
     return (
         <main>
-
             <div className="container">
                 {statusLogin ? <Redirect to='/events' /> : null}
                 {/* What I'm missing ere is to show a message in case user put wrong email or password */}
+
                 <form className="login-form" onSubmit={handleLogin}>
                     <h2>LOG IN</h2>
                     <label>
