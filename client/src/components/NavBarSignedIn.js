@@ -38,7 +38,7 @@ const NavBarSignedIn = () => {
                 <nav style={{ display: isNavVisible || !isSmallScreen ? 'flex' : 'none' }}>
                     <ul className="nav-group">
                         <Link to="/events" className="underline"><li>Find events</li></Link>
-                        <Link to="/register"><li>Add event</li></Link>
+                        <Link to="/addevent"><li>Add event</li></Link>
                     </ul>
                     <ul className="nav-group">
                         <Link to="/login"><li>ACCOUNT</li></Link>
