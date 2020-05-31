@@ -38,7 +38,7 @@ const NavBarSignedOut = () => {
                 <nav style={{ display: isNavVisible || !isSmallScreen ? 'flex' : 'none' }}>
                     <ul className="nav-group">
                         <li><Link to="/events" className="underline">Find events</Link></li>
-                        <li><Link to="/register" className="underline">Add event</Link></li>
+                        <li><Link to="/registration" className="underline">Add event</Link></li>
                     </ul>
                     <ul className="nav-group">
                         <li><Link to="/login" className="underline">LOG IN</Link></li>
