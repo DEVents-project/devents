@@ -1,7 +1,9 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+
+import '../style/Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faLock } from '@fortawesome/free-solid-svg-icons';
-import '../style/Login.scss';
 
 const Login = () => {
 
@@ -42,7 +44,8 @@ const Login = () => {
         <main>
 
             <div className="container">
-                <div className="middle-layer"></div>
+                {statusLogin ? <Redirect to='/events' /> : null}
+                {/* What I'm missing ere is to show a message in case user put wrong email or password */}
                 <form className="login-form" onSubmit={handleLogin}>
                     <h2>LOG IN</h2>
                     <label>
@@ -65,9 +68,8 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             required />
                     </label>
-                    <input type="submit" value="LOG IN " className="login-btn" type="submit" />
+                    <button className="login-btn" type="submit">LOG IN</button>
                 </form>
-
             </div>
 
         </main>
