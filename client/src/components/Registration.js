@@ -27,7 +27,7 @@ const Registration = () => {
 
             </div>
             
-            <div className="container-2">
+            <div className="step-container">
                 <div className="step-letters">
                 <h2 className="step-1">Step 1</h2> 
                 </div>
@@ -39,14 +39,17 @@ const Registration = () => {
                 <div className="step-letters">
                     <h2 className="step-1">Step 3</h2>  
                 </div>
-            
-            
-      
-
-
-            
             </div>
-           
+            
+        
+
+            
+               
+        <div className="buttons-container">
+            <button className="button">Registrer</button>
+            <button className="button">Login</button>
+        </div>
+
             
         </div>
     )

@@ -12,34 +12,50 @@ $font-color: #ffffff;
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
+    
+    .square {
+        background-color: $middle-color;
+        width: 25vw;
+        height: 50vh;
+    
+    }
 }
 
-.container-2 {
+.step-container {
     display: flex;
     justify-content: space-around;
+    position: relative;
+    
+    .step-1{
+        position: absolute;
+       bottom: -25px;
+       color: blue;
+       display:inline;
+    
+    }
+}
+
+.buttons-container{
+    display: flex;
+    
+    .button {
+        margin-top: 80px;
+        margin-left: 2em;
+    }
+
+  
 }
 .question {
     text-align: center;
     background-color: rgb(86, 86, 184);
     
 }
-.square {
-    background-color: $middle-color;
-    width: 25vw;
-    height: 50vh;
 
-    color: white;
-
-}
 
 // fonts
-.step-1{
-    position: absolute;
-   bottom: -25px;
-   color: blue;
-   display:inline;
 
-}
 .step-letters{
     background-color: blue;
 }
+
+// buttons
