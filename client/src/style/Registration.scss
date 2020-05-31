@@ -1,0 +1,25 @@
+// Variables
+
+$light-color:#840404;
+$middle-color:#650404;
+$dark-color:#460505;
+$font-color: #ffffff;
+
+// -----------------------------------------------------------
+
+
+.container {
+
+}
+.question {
+    text-align: center;
+    
+}
+.square-1 {
+    background-color: $middle-color;
+    width: 25vw;
+    height: 50vh;
+
+    color: white;
+
+}

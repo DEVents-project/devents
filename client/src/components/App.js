@@ -5,6 +5,7 @@ import NavBarSignedIn from "./NavBarSignedIn";
 import NavBarSignedOut from "./NavBarSignedOut";
 import Landing from "./Landing";
 import Login from "./Login";
+import Registration from './Registration'
 
 const App = () => {
   const [test, setTest] = useState(0);
@@ -21,11 +22,12 @@ const App = () => {
         }
         <Switch>
           <Route path="/" exact component={Landing} />
-          {/* <Route path="/registration" component={Registration} /> */}
+           <Route path="/registration" component={Registration} /> 
           {/* <Route path="/signup" component={Signup} /> */}
           <Route path="/login" component={Login} />
         </Switch>
       </BrowserRouter>
+     
     </div>
   );
 };
