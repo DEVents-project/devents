@@ -1,0 +1,45 @@
+// Variables
+
+$light-color:#840404;
+$middle-color:#650404;
+$dark-color:#460505;
+$font-color: #ffffff;
+
+// containers
+
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.container-2 {
+    display: flex;
+    justify-content: space-around;
+}
+.question {
+    text-align: center;
+    background-color: rgb(86, 86, 184);
+    
+}
+.square {
+    background-color: $middle-color;
+    width: 25vw;
+    height: 50vh;
+
+    color: white;
+
+}
+
+// fonts
+.step-1{
+    position: absolute;
+   bottom: -25px;
+   color: blue;
+   display:inline;
+
+}
+.step-letters{
+    background-color: blue;
+}
