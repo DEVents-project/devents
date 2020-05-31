@@ -67,7 +67,12 @@ body {
     font-family: "CodeProBold", cursive;
 }
 
-/* ------------------------- Keyframes & Elements ------------------------- */
+/* ------------------------- Keyframes & Patterns ------------------------- */
+
+.space-navbar {
+    position: relative;
+    top: 15vh;
+}
 
 .button {
     text-transform: uppercase;
