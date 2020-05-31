@@ -13,7 +13,7 @@ const Login = () => {
     // set a status for what happens after login 
     const [statusLogin, setStatusLogin] = useState(false)
 
-    function handleLogin(e) {
+    const handleLogin = async (e) => {
         e.preventDefault()
 
         const loginData = {
