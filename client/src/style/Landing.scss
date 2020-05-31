@@ -104,6 +104,16 @@
 }
 
 @media screen and (min-width: 425px) {
+    .main {
+        .container-description {
+            margin: 1rem 0;
+
+            h4 {
+                font-size: 1.3rem;
+            }
+        }
+    }
+
     .call-buttons {
         padding: 0.8rem 1rem 0.8rem 3.5rem;
         justify-content: flex-start;
@@ -120,6 +130,14 @@
         h2 {
             .again {
                 left: 26rem;
+            }
+        }
+    }
+
+    .main {
+        .container-description {
+            h4 {
+                font-size: 1.8rem;
             }
         }
     }
