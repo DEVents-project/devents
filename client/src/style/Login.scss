@@ -1,0 +1,89 @@
+// variables 
+$light-color:#840404;
+$middle-color:#650404;
+$dark-color:#460505;
+$font-color: #ffffff;
+$border: .2rem;
+
+
+.main-container {
+    width: 100vw;
+    margin-top: 25vh;
+    display: flex;
+    justify-content: center;
+    
+    .container {
+        height: 55vh;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 3.5rem -1rem $middle-color;
+        border-radius: $border;
+
+        // transform: skewX(-5deg)
+        
+       
+        .login-form {
+            padding-top: .5rem;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            color: $font-color;
+            background-color: $light-color;
+            border-radius: $border; 
+
+            // transform: skewX(-5deg);
+           
+            h2 {
+                letter-spacing: .1rem;
+            }
+
+            label {
+                margin: .2rem;
+                padding-left: .5rem;
+
+                .icon {
+                    margin-right: 1.3rem;
+                    color: $dark-color;
+                }
+                
+                input { 
+                    height: 2.8rem;
+                    width: 18rem;
+                    padding: 1ch;
+                    border: none;
+                    border-radius: .2rem;
+                    font-size: 1.1rem;
+                    color: $dark-color;
+                }
+            }
+
+            button {
+                height: 2.8rem;
+                width: 18rem;
+                // padding-left:.5rem;
+                margin-left: 3.7rem;
+                cursor: pointer;
+                border: none;
+                border-radius: .2rem;
+                font-size: 1.1rem;
+                letter-spacing: .1rem;
+                color:$font-color;
+                background-color: $dark-color;
+                
+                &:hover {
+                    transform: scaleX(1.1) scaleY(1.1);
+                    transition: .6s ease-in-out;
+                }
+            }
+        }
+    }
+}
+
+
+
