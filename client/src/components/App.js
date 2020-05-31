@@ -22,12 +22,11 @@ const App = () => {
         }
         <Switch>
           <Route path="/" exact component={Landing} />
-           <Route path="/registration" component={Registration} /> 
+          <Route path="/registration" component={Registration} />
           {/* <Route path="/signup" component={Signup} /> */}
           <Route path="/login" component={Login} />
         </Switch>
       </BrowserRouter>
-     
     </div>
   );
 };
