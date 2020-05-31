@@ -5,6 +5,7 @@ import '../style/Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import ParticlesBg from 'particles-bg';
+// import DevCoding from '../assets/img/dev-coding2.png';
 
 
 
@@ -43,6 +44,7 @@ const Login = () => {
 
     return (
         <main className="main-container">
+            {/* <img src={DevCoding} alt="Developer coding" className="devCoding" /> */}
             <div className="container">
                 {statusLogin ? <Redirect to='/events' /> : null}
                 {/* What I'm missing ere is to show a message in case user put wrong email or password */}
