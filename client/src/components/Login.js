@@ -40,7 +40,7 @@ const Login = () => {
 
 
     return (
-        <main>
+        <main className="main-container">
             <div className="container">
                 {statusLogin ? <Redirect to='/events' /> : null}
                 {/* What I'm missing ere is to show a message in case user put wrong email or password */}
