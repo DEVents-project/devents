@@ -46,8 +46,8 @@ const Login = () => {
                 {/* What I'm missing ere is to show a message in case user put wrong email or password */}
 
                 <form className="login-form" onSubmit={handleLogin}>
-                    <h2>LOG IN</h2>
-                    <label>
+                    <h2 className="h2">LOG IN</h2>
+                    <label className="field">
                         <FontAwesomeIcon className="icon" icon={faPaperPlane} size={"2x"} />
                         <input
                             type="email"
@@ -57,7 +57,7 @@ const Login = () => {
                             onChange={(e) => setEmail(e.target.value)}
                             required />
                     </label>
-                    <label>
+                    <label className="field">
                         <FontAwesomeIcon className="icon" icon={faLock} size={"2x"} />
                         <input
                             type="password"
