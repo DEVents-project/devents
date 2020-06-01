@@ -73,11 +73,12 @@ const SignUp = () => {
                             required
                             onChange={(e) => setLastName(e.target.value)} />
                     </label>
-                    <label className="field">Company Name
+                    <label className="field">Organization Name
                         <input
                             type="text"
                             value={companyName}
                             id="companyName"
+                            placeholder="the organization name"
                             onChange={(e) => setCompanyName(e.target.value)} />
                     </label>
                     <label className="field">Email
