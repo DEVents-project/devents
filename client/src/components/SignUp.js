@@ -54,8 +54,8 @@ const SignUp = () => {
 
                 {statusSignUp ? <Redirect to="/account" /> : null}
                 <form className="sign-form" onSubmit={handleSignUp}>
-                    <h2>SIGN UP</h2>
-                    <label>First Name
+                    <h2 className="h2">SIGN UP</h2>
+                    <label className="field">First Name
                         <input
                             type="text"
                             value={firstName}
@@ -64,7 +64,7 @@ const SignUp = () => {
                             required
                             onChange={(e) => setFirstName(e.target.value)} />
                     </label>
-                    <label>Last Name
+                    <label className="field">Last Name
                         <input
                             type="text"
                             value={lastName}
@@ -73,14 +73,14 @@ const SignUp = () => {
                             required
                             onChange={(e) => setLastName(e.target.value)} />
                     </label>
-                    <label>Company Name
+                    <label className="field">Company Name
                         <input
                             type="text"
                             value={companyName}
                             id="companyName"
                             onChange={(e) => setCompanyName(e.target.value)} />
                     </label>
-                    <label>Email
+                    <label className="field">Email
                         <input
                             type="email"
                             value={email}
@@ -89,7 +89,7 @@ const SignUp = () => {
                             required
                             onChange={(e) => setEmail(e.target.value)} />
                     </label>
-                    <label>Password
+                    <label className="field">Password
                         <input
                             type="password"
                             id="password"
@@ -100,7 +100,7 @@ const SignUp = () => {
                     </label>
                     <button
                         type="submit"
-                        className="btn-sign">CREATE ACCOUNT</button>
+                        className="sign-btn">CREATE ACCOUNT</button>
                 </form>
             </main>
         </div>
