@@ -5,7 +5,8 @@ import NavBarSignedIn from "./NavBarSignedIn";
 import NavBarSignedOut from "./NavBarSignedOut";
 import Landing from "./Landing";
 import Login from "./Login";
-import Registration from './Registration'
+import Registration from './Registration';
+import SignUp from './SignUp'
 
 const App = () => {
   const [test, setTest] = useState(0);
@@ -23,7 +24,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Landing} />
           <Route path="/registration" component={Registration} />
-          {/* <Route path="/signup" component={Signup} /> */}
+          <Route path="/signup" component={SignUp} />
           <Route path="/login" component={Login} />
         </Switch>
       </BrowserRouter>
