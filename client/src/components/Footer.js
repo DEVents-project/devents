@@ -6,10 +6,10 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default function Footer() {
     return (
-        <div>
-            <footer>
-                <p>Need help?</p>
-                <FontAwesomeIcon className="icon-help" icon={faBars} />
+        <div className="container">
+            <footer className="footer">
+                <FontAwesomeIcon className="icon-help" icon={faQuestionCircle} />
+                <div></div>
             </footer>
         </div>
     )

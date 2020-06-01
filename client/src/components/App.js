@@ -5,7 +5,9 @@ import NavBarSignedIn from "./NavBarSignedIn";
 import NavBarSignedOut from "./NavBarSignedOut";
 import Landing from "./Landing";
 import Login from "./Login";
-import Registration from './Registration'
+import Registration from './Registration';
+import Footer from './Footer';
+
 
 const App = () => {
   const [test, setTest] = useState(0);
@@ -27,6 +29,7 @@ const App = () => {
           <Route path="/login" component={Login} />
         </Switch>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 };
