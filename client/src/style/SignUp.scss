@@ -5,6 +5,8 @@ $dark-color:#460505;
 $font-color: #ffffff;
 $border: .2rem;
 
+
+
 .main-container {
     width: 100vw;
     height: 80vh;
@@ -14,48 +16,64 @@ $border: .2rem;
 
     .sign-form {
         width: 50%;
-        height: 80%;
+        height: 85%;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-self: center;
-        justify-content: space-evenly;
+        justify-content: center;
         background-color: $light-color;
         box-shadow: -2rem 1rem $middle-color;
         border-radius: $border;
 
         .h2 {
+            margin-bottom: 1rem;
             letter-spacing: .1rem;
             text-align: center;
             color: $font-color;
         }
 
-        .field {
-            display: flex;
-            flex-direction: row;
-            align-self: center;
-
-            input {
-                height: 1.8rem;
-                width: 18rem;
-                border: none;
-                border-radius: .2rem;
-                font-size: 1.1rem;
-                color: $dark-color;
-            }
+    .field {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        justify-content: center;
+        padding: .5rem 4rem;
+        
+        label {
+            text-align: left;
         }
-        .sign-btn {
-            width: 18rem;
-            height: 2.8rem;
-            cursor: pointer;
+        input {
+            height: 2rem;
+            width: 15rem;
+            padding: 1ch;
+            margin-left: .5rem;
+            margin-top: .5rem;
             border: none;
-            border-radius: .2rem;
+            border-radius: $border;
             font-size: 1.1rem;
-            letter-spacing: .1rem;
-            color: $font-color;
-            background-color: $dark-color;
-
+            color: $dark-color;
         }
     }
+
+    .sign-btn {
+        align-self: center;
+        margin: 1rem 0;
+        width: 18rem;
+        height: 2.8rem;
+        cursor: pointer;
+        border: none;
+        border-radius: $border;
+        font-size: 1.1rem;
+        letter-spacing: .1rem;
+        color: $font-color;
+        background-color: $dark-color;
+
+        &:hover {
+            transform: scaleX(1.1) scaleY(1.1);
+            transition: .6s ease-in-out;
+        }
+    }
+}
 }
 
