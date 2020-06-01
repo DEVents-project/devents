@@ -21,70 +21,92 @@ const SignUp = () => {
         e.target.reset;
     }
 
-    const handleSignUp = () => {
+    const handleSignUp = async () => {
 
+        // Check if this works with the optional fields ex. companyName, etc.
+        const userData = {
+            firstName,
+            lastName,
+            email,
+            password,
+            companyName
+        }
 
+        const signed = {
+
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
+
+        }
+        const resp = await fetch("http://localhost:3000/signup", signed);
+        const data = await resp.json();
+        console.log("res:", data);
+        if (data.success) {
+            setStatusSignUp(true)
+        }
     }
-
-
-
-    return (
-        <div>
-            <main className="main-container">
-                {statusSignUp ? <Redirect to="/events" /> : null}
-                <form className="sign-form" onSubmit={handleRefresh}>
-                    <h2>SIGN UP</h2>
-                    <label>First Name
-                        <input
-                            type="text"
-                            value={firstName}
-                            id="firstName"
-                            placeholder="your first name"
-                            required
-                            onChange={e => setFirstName(e.target.value)} />
-                    </label>
-                    <label>Last Name
-                        <input
-                            type="text"
-                            value={lastName}
-                            id="lastName"
-                            placeholder="your last name"
-                            required
-                            onChange={e => setLastName(e.target.value)} />
-                    </label>
-                    <label>Company Name
-                        <input
-                            type="text"
-                            value={companyName}
-                            id="companyName"
-                            onChange={e => setCompanyName(e.target.value)} />
-                    </label>
-                    <label>Email
-                        <input
-                            type="email"
-                            value={email}
-                            id="email"
-                            placeholder="your email"
-                            required
-                            onChange={e => setEmail(e.target.value)} />
-                    </label>
-                    <label>Password
-                        <input
-                            type="password"
-                            id="password"
-                            value={password}
-                            placeholder="your password"
-                            required
-                            onChange={e => setPassword(e.target.value)} />
-                    </label>
-                    <button
-                        type="submit"
-                        className="btn-sign"
-                        onClick={() => { handleSignUp() }}>SIGN UP</button>
-                </form>
-
-            </main>
-        </div>
-
-    )
 }
+
+return (
+    <div>
+        <main className="main-container">
+            {statusSignUp ? <Redirect to="/events" /> : null}
+            <form className="sign-form" onSubmit={handleRefresh}>
+                <h2>SIGN UP</h2>
+                <label>First Name
+                        <input
+                        type="text"
+                        value={firstName}
+                        id="firstName"
+                        placeholder="your first name"
+                        required
+                        onChange={e => setFirstName(e.target.value)} />
+                </label>
+                <label>Last Name
+                        <input
+                        type="text"
+                        value={lastName}
+                        id="lastName"
+                        placeholder="your last name"
+                        required
+                        onChange={e => setLastName(e.target.value)} />
+                </label>
+                <label>Company Name
+                        <input
+                        type="text"
+                        value={companyName}
+                        id="companyName"
+                        onChange={e => setCompanyName(e.target.value)} />
+                </label>
+                <label>Email
+                        <input
+                        type="email"
+                        value={email}
+                        id="email"
+                        placeholder="your email"
+                        required
+                        onChange={e => setEmail(e.target.value)} />
+                </label>
+                <label>Password
+                        <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        placeholder="your password"
+                        required
+                        onChange={e => setPassword(e.target.value)} />
+                </label>
+                <button
+                    type="submit"
+                    className="btn-sign"
+                    onClick={() => { handleSignUp() }}>CREATE ACCOUNT</button>
+            </form>
+
+        </main>
+    </div>
+)
+
+export default SignUp;
