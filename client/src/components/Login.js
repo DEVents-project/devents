@@ -3,7 +3,10 @@ import { Switch, Redirect } from 'react-router-dom';
 
 import '../style/Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import ParticlesBg from 'particles-bg';
+// import DevCoding from '../assets/img/dev-coding2.png';
+
 
 
 const Login = () => {
@@ -41,14 +44,16 @@ const Login = () => {
 
     return (
         <main className="main-container">
+            {/* <img src={DevCoding} alt="Developer coding" className="devCoding" /> */}
             <div className="container">
                 {statusLogin ? <Redirect to='/events' /> : null}
                 {/* What I'm missing ere is to show a message in case user put wrong email or password */}
 
+                <ParticlesBg color="#8d8d8d" num={55} type="cobweb" bg={true} />
                 <form className="login-form" onSubmit={handleLogin}>
                     <h2>LOG IN</h2>
                     <label>
-                        <FontAwesomeIcon className="icon" icon={faPaperPlane} size={"2x"} />
+                        <FontAwesomeIcon className="icon" icon={faEnvelope} />
                         <input
                             type="email"
                             placeholder="your email"
@@ -58,7 +63,7 @@ const Login = () => {
                             required />
                     </label>
                     <label>
-                        <FontAwesomeIcon className="icon" icon={faLock} size={"2x"} />
+                        <FontAwesomeIcon className="icon" icon={faLock} />
                         <input
                             type="password"
                             placeholder="your password"
