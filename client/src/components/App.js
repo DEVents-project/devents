@@ -10,9 +10,10 @@ import Events from "./Events";
 import SignUp from './SignUp';
 import Footer from './Footer';
 import Account from "./Account";
+import EventInformation from "./EventInformation";
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   return (
     <div className="App">
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/login" component={Login} />
           <Route path="/events" component={Events} />
           <Route path="/account" component={Account} />
+          <Route path="/event" component={EventInformation} />
         </Switch>
       </BrowserRouter>
       <Footer />

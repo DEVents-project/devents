@@ -9,6 +9,7 @@ $border: .2rem;
     width: 100%;
     height: auto;
     padding: 2rem 0;
+    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
     
@@ -31,6 +32,7 @@ $border: .2rem;
         }
 
         .field {
+        width: 15rem;
         display: flex;
         flex-direction: column;
         align-self: center;
@@ -43,11 +45,9 @@ $border: .2rem;
 
             input {
                 height: 2rem;
-                width: 15rem;
+                width: 100%;
                 padding: 1ch;
-                margin-left: .5rem;
-                margin-top: .5rem;
-                border: none;
+                margin: .5rem .5rem 0 0;
                 border-radius: $border;
                 font-size: 1rem;
                 color: $dark-color;
@@ -55,7 +55,10 @@ $border: .2rem;
         }
 
         .sign-btn {
-            margin: 1rem;
+            margin: 2rem 1rem;
+            width: 15rem;
+            align-self: center;
+
         }
         
     }
