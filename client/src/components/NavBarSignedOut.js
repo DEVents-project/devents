@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../style/NavBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -33,16 +33,16 @@ const NavBarSignedOut = () => {
     return (
         <div>
             <header>
-                <Link to="/"><h1 id="logo">DEVents</h1></Link>
+                <NavLink to="/"><h1 id="logo">DEVents</h1></NavLink>
                 <FontAwesomeIcon className="menu-bars" icon={faBars} onClick={toggleNav} />
                 <nav style={{ display: isNavVisible || !isSmallScreen ? 'flex' : 'none' }}>
                     <ul className="nav-group">
-                        <li><Link to="/events" className="underline">Find events</Link></li>
-                        <li><Link to="/registration" className="underline">Add event</Link></li>
+                        <li><NavLink activeClassName="selected-section" to="/events" className="underline">Find events</NavLink></li>
+                        <li><NavLink activeClassName="selected-section" to="/registration" className="underline">Add event</NavLink></li>
                     </ul>
                     <ul className="nav-group">
-                        <li><Link to="/login" className="underline">LOG IN</Link></li>
-                        <li><Link to="/signup" className="underline">SIGN UP</Link></li>
+                        <li><NavLink activeClassName="selected-section" to="/login" className="underline">LOG IN</NavLink></li>
+                        <li><NavLink activeClassName="selected-section" to="/signup" className="underline">SIGN UP</NavLink></li>
                     </ul>
                 </nav>
             </header>
