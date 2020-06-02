@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../style/NavBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -33,16 +33,16 @@ const NavBarSignedIn = () => {
     return (
         <div>
             <header>
-                <Link to="/"><h1 id="logo">DEVents</h1></Link>
+                <NavLink to="/"><h1 id="logo">DEVents</h1></NavLink>
                 <FontAwesomeIcon className="menu-bars" icon={faBars} onClick={toggleNav} />
                 <nav style={{ display: isNavVisible || !isSmallScreen ? 'flex' : 'none' }}>
                     <ul className="nav-group">
-                        <Link to="/events" className="underline"><li>Find events</li></Link>
-                        <Link to="/addevent"><li>Add event</li></Link>
+                        <NavLink activeClassName="selected-section" to="/events" className="underline"><li>Find events</li></NavLink>
+                        <NavLink activeClassName="selected-section" to="/addevent"><li>Add event</li></NavLink>
                     </ul>
                     <ul className="nav-group">
-                        <Link to="/account"><li>ACCOUNT</li></Link>
-                        <Link to="/signup"><li>SIGN OUT</li></Link>
+                        <NavLink activeClassName="selected-section" to="/account"><li>ACCOUNT</li></NavLink>
+                        <NavLink activeClassName="selected-section" to="/"><li>SIGN OUT</li></NavLink>
                     </ul>
                 </nav>
             </header>
