@@ -5,24 +5,22 @@ $dark-color:#460505;
 $font-color: #ffffff;
 $border: .2rem;
 
-
-
 .main-container {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: auto;
+    padding: 2rem 0;
     display: flex;
     justify-content: center;
     
     .sign-form {
-        width: 50%;
-        height: 90%;
+        width: 60%;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-self: center;
         justify-content: center;
         background-color: $light-color;
-        box-shadow: -1.5rem 1rem $middle-color;
+        box-shadow: -1.5rem .7rem $middle-color;
         border-radius: $border;
 
         .h2 {
@@ -37,7 +35,7 @@ $border: .2rem;
         flex-direction: column;
         align-self: center;
         justify-content: center;
-        padding: .5rem 4rem;
+        padding: .5rem 2rem;
 
             label {
                 text-align: left;
@@ -57,23 +55,9 @@ $border: .2rem;
         }
 
         .sign-btn {
-        align-self: center;
-        margin: 1rem 0;
-        width: 18rem;
-        height: 2.8rem;
-        cursor: pointer;
-        border: none;
-        border-radius: $border;
-        font-size: 1.1rem;
-        letter-spacing: .1rem;
-        color: $font-color;
-        background-color: $dark-color;
-
-            &:hover {
-                transform: scaleX(1.1) scaleY(1.1);
-                transition: .6s ease-in-out;
-            }
+            margin: 1rem;
         }
+        
     }
 }
 
