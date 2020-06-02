@@ -1,9 +1,11 @@
 import React from 'react';
 import '../style/EventInformation.scss';
+import ParticlesBg from 'particles-bg';
 
 const EventInformation = () => {
     return (
         <div className="space-navbar">
+            <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
             <div className="event-information-container">
                 <p className="event-information-date">Date</p>
                 <h2 className="event-information-title">Event title</h2>
