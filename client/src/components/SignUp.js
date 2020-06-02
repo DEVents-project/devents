@@ -53,7 +53,7 @@ const SignUp = () => {
 
     return (
         <div>
-            <main className="main-container">
+            <main className="main-container space-navbar">
                 <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
 
                 {statusSignUp ? <Redirect to="/account" /> : null}

@@ -10,10 +10,9 @@ $border: .2rem;
 .main-container {
     width: 100vw;
     height: 100vh;
-    margin-top: 20vh;
     display: flex;
     justify-content: center;
-
+    
     .sign-form {
         width: 50%;
         height: 90%;
@@ -23,7 +22,7 @@ $border: .2rem;
         align-self: center;
         justify-content: center;
         background-color: $light-color;
-        box-shadow: -2rem 1rem $middle-color;
+        box-shadow: -1.5rem 1rem $middle-color;
         border-radius: $border;
 
         .h2 {
