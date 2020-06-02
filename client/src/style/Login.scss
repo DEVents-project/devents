@@ -33,6 +33,7 @@ $border: .2rem;
         }
         
         .field {
+            width: 14rem;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -47,7 +48,7 @@ $border: .2rem;
             
             input { 
                 height: 2.8rem;
-                width: 10rem;
+                width: 100%;
                 padding: 1ch;
                 margin-left: .5rem ;
                 border: none;
@@ -58,8 +59,8 @@ $border: .2rem;
         }
 
         .login-btn {
-            height: 2.8rem;
-            width: 12rem;
+            height: 3rem;
+            width: 14rem;
             margin: 1rem 1rem;
             font-size: 1.1rem;
             letter-spacing: .1rem;  
