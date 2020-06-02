@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter, Redirect } from 'react-router-dom';
 import '../style/Events.scss';
 import Select from 'react-select';
 import EventCard from './EventCard';
@@ -17,6 +17,11 @@ const Events = () => {
 
     const events = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
 
+    const [isEventClicked, setIsEventClicked] = useState(false)
+
+    if (isEventClicked) {
+        return <Redirect to='/event' />
+    }
     // TO DO: with UseState -> fetch from the cities that have events and useState with the cities instead of options at the top
 
     return (
@@ -31,7 +36,7 @@ const Events = () => {
                 </div>
                 <div className="pool-event">
                     {
-                        events.map(el => <EventCard />)
+                        events.map(el => <EventCard setIsEventClicked={setIsEventClicked} />)
                     }
                 </div>
             </BrowserRouter>
