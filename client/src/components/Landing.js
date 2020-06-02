@@ -9,7 +9,7 @@ import CarouselLanding from './CarouselLanding';
 const Landing = () => {
     return (
         <div className="landing space-navbar">
-            <main className="main">
+            <main className="landing-main">
                 <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
                 <h2><span className="underscore">Never miss</span> <br /><span className="keyword"><strong>events for developers</strong></span><br /> <span className="underscore again">again</span></h2>
                 <div className="container-description">
