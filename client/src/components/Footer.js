@@ -6,12 +6,14 @@ import { faQuestionCircle, faPaperPlane, faSearch } from '@fortawesome/free-soli
 
 export default function Footer() {
     return (
-        <div className="footer-container">
-            <footer className="footer">
+        <footer className="footer-container space-navbar">
+            <div className="footer">&copy;Devents2020</div>
+            <div className="footer"></div>
+            <div className="footer">
                 <FontAwesomeIcon className="icon" icon={faQuestionCircle} />
                 <FontAwesomeIcon className="icon" icon={faPaperPlane} />
                 <FontAwesomeIcon className="icon section" icon={faSearch} />
-            </footer>
-        </div>
+            </div>
+        </footer>
     )
 }
