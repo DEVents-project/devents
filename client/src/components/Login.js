@@ -3,7 +3,7 @@ import { Switch, Redirect } from 'react-router-dom';
 
 import '../style/Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import ParticlesBg from 'particles-bg';
 // import DevCoding from '../assets/img/dev-coding2.png';
 
@@ -53,7 +53,7 @@ const Login = () => {
                 <form className="login-form" onSubmit={handleLogin}>
                     <h2 className="h2">LOG IN</h2>
                     <label className="field">
-                        <FontAwesomeIcon className="icon" icon={faPaperPlane} size={"2x"} />
+                        <FontAwesomeIcon className="icon" icon={faEnvelope} />
                         <input
                             type="email"
                             placeholder="your email"
@@ -63,7 +63,7 @@ const Login = () => {
                             required />
                     </label>
                     <label className="field">
-                        <FontAwesomeIcon className="icon" icon={faLock} size={"2x"} />
+                        <FontAwesomeIcon className="icon" icon={faLock} />
                         <label>
                             <input
                                 type="password"
