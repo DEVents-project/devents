@@ -9,9 +9,11 @@ const SignUp = () => {
     // User schema needs a website url for the companies and city/country
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
+    const [city, setCity] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [companyName, setCompanyName] = useState(null);
+    const [website, setWebsite] = useState(null);
 
     // set a status for what happens after sign up 
     const [statusSignUp, setStatusSignUp] = useState(false)
@@ -24,9 +26,11 @@ const SignUp = () => {
         const signUpData = {
             firstName,
             lastName,
+            city,
             email,
             password,
-            companyName
+            companyName,
+            website
         }
 
         const userData = {
@@ -81,6 +85,14 @@ const SignUp = () => {
                             placeholder="the organization name"
                             onChange={(e) => setCompanyName(e.target.value)} />
                     </label>
+                    <label className="field">City
+                        <input
+                            type="text"
+                            value={city}
+                            id="companyName"
+                            placeholder="your city"
+                            onChange={(e) => setCity(e.target.value)} />
+                    </label>
                     <label className="field">Email
                         <input
                             type="email"
@@ -89,6 +101,14 @@ const SignUp = () => {
                             placeholder="your email"
                             required
                             onChange={(e) => setEmail(e.target.value)} />
+                    </label>
+                    <label className="field">Website
+                        <input
+                            type="url"
+                            value={website}
+                            id="companyName"
+                            placeholder="the url of the website "
+                            onChange={(e) => setWebsite(e.target.value)} />
                     </label>
                     <label className="field">Password
                         <input
