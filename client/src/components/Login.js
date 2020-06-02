@@ -43,7 +43,7 @@ const Login = () => {
 
 
     return (
-        <main className="main-container space-navbar">
+        <main className="login-container space-navbar">
             {/* <img src={DevCoding} alt="Developer coding" className="devCoding" /> */}
 
             {statusLogin ? <Redirect to='/events' /> : null}
