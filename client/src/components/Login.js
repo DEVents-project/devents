@@ -51,9 +51,9 @@ const Login = () => {
 
                 <ParticlesBg color="#8d8d8d" num={55} type="cobweb" bg={true} />
                 <form className="login-form" onSubmit={handleLogin}>
-                    <h2>LOG IN</h2>
-                    <label>
-                        <FontAwesomeIcon className="icon" icon={faEnvelope} />
+                    <h2 className="h2">LOG IN</h2>
+                    <label className="field">
+                        <FontAwesomeIcon className="icon" icon={faPaperPlane} size={"2x"} />
                         <input
                             type="email"
                             placeholder="your email"
@@ -62,8 +62,9 @@ const Login = () => {
                             onChange={(e) => setEmail(e.target.value)}
                             required />
                     </label>
+                    <label className="field">
+                        <FontAwesomeIcon className="icon" icon={faLock} size={"2x"} />
                     <label>
-                        <FontAwesomeIcon className="icon" icon={faLock} />
                         <input
                             type="password"
                             placeholder="your password"
