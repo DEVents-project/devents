@@ -53,11 +53,11 @@ const SignUp = () => {
 
     return (
         <div>
-            <main className="main-container space-navbar">
+            <main className="signup-container space-navbar">
                 <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
 
                 {statusSignUp ? <Redirect to="/account" /> : null}
-                <form className="sign-form" onSubmit={handleSignUp}>
+                <form className="signup-form" onSubmit={handleSignUp}>
                     <h2 className="h2">SIGN UP</h2>
                     <label className="field">First Name
                         <input
