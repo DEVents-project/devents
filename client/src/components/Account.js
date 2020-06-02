@@ -5,7 +5,7 @@ import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 
 const Account = () => {
-    const events = ['one', 'two', 'three', 'four'];
+    const events = ['one', 'two', 'three'];
 
     return (
         <div className="space-navbar account-container">
@@ -27,7 +27,10 @@ const Account = () => {
                 <h4>My events</h4>
                 <div className="events-container">
                     {
-                        events.map(el => <EventCard />)
+                        events.length ?
+                            events.map(el => <EventCard />)
+                            :
+                            <p className="no-events">You didn't create any event yet</p>
                     }
                 </div>
             </div>
