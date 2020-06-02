@@ -53,7 +53,7 @@ const Login = () => {
             <form className="login-form" onSubmit={handleLogin}>
                 <h2 className="h2">LOG IN</h2>
                 <label className="field">
-                    <FontAwesomeIcon className="icon" icon={faEnvelope} />
+                    <FontAwesomeIcon className="log-icons" icon={faEnvelope} />
                     <input
                         type="email"
                         placeholder="your email"
@@ -63,7 +63,7 @@ const Login = () => {
                         required />
                 </label>
                 <label className="field">
-                    <FontAwesomeIcon className="icon" icon={faLock} />
+                    <FontAwesomeIcon className="log-icons" icon={faLock} />
                     <input
                         type="password"
                         placeholder="your password"
