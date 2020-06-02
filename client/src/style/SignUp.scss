@@ -1,0 +1,66 @@
+// variables 
+$light-color:#840404;
+$middle-color:#650404;
+$dark-color:#460505;
+$font-color: #ffffff;
+$border: .2rem;
+
+.main-container {
+    width: 100%;
+    height: auto;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    
+    .sign-form {
+        width: 60%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        justify-content: center;
+        background-color: $light-color;
+        box-shadow: -1.5rem .7rem $middle-color;
+        border-radius: $border;
+
+        .h2 {
+            margin: 1rem 0;
+            letter-spacing: .1rem;
+            text-align: center;
+            color: $font-color;
+        }
+
+        .field {
+        width: 15rem;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        justify-content: center;
+        padding: .5rem 2rem;
+
+            label {
+                text-align: left;
+            }
+
+            input {
+                height: 2rem;
+                width: 100%;
+                padding: 1ch;
+                margin: .5rem .5rem 0 0;
+                border-radius: $border;
+                font-size: 1rem;
+                color: $dark-color;
+            }
+        }
+
+        .sign-btn {
+            margin: 2rem 1rem;
+            width: 15rem;
+            align-self: center;
+
+        }
+        
+    }
+}
+
