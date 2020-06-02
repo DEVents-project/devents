@@ -64,17 +64,15 @@ const Login = () => {
                 </label>
                 <label className="field">
                     <FontAwesomeIcon className="icon" icon={faLock} />
-                    <label>
-                        <input
-                            type="password"
-                            placeholder="your password"
-                            name="password"
-                            id="login-password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            required />
-                    </label>
+                    <input
+                        type="password"
+                        placeholder="your password"
+                        name="password"
+                        id="login-password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        required />
                 </label>
-                <button className="login-btn" type="submit">LOG IN</button>
+                <button className="button login-btn" type="submit">LOG IN</button>
             </form>
 
 
