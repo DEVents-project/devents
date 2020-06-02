@@ -41,7 +41,7 @@ const NavBarSignedIn = () => {
                         <Link to="/addevent"><li>Add event</li></Link>
                     </ul>
                     <ul className="nav-group">
-                        <Link to="/login"><li>ACCOUNT</li></Link>
+                        <Link to="/account"><li>ACCOUNT</li></Link>
                         <Link to="/signup"><li>SIGN OUT</li></Link>
                     </ul>
                 </nav>
