@@ -31,26 +31,46 @@ const CreateEvent = () => {
 
 
     return (
-        <div className="event-container">
+        <div className="create-event-container">
             <form className="event-form">
+
                 <h2>CREATE EVENT</h2>
                 <label className="field-event">Title
-                    <input type="text" />
+                    <input
+                        type="text"
+                        value={name}
+                        name="name" />
                 </label>
                 <label className="field-event">Host by
-                    <input type="text" />
+                    <input
+                        type="text"
+                        value={hostBy}
+                        name="hostBy" />
                 </label>
                 <label className="field-event">Date
-                    <input type="date" />
+                    <input
+                        type="date"
+                        value={date}
+                        name="date" />
                 </label>
                 <label className="field-event">Address
-                    <input type="text" />
+                    <input
+                        type="text"
+                        value={address}
+                        name="address" />
                 </label>
                 <label className="field-event">City
-                    <input type="text" />
+                    <input
+                        type="text"
+                        value={city}
+                        name="city" />
                 </label>
                 <label className="field-event">Website
-                    <input type="url" />
+                    <input
+                        type="url"
+                        value={website}
+                        name="website"
+                    />
                 </label>
                 <label className="field-event">Description
                     <textarea row="10" cols="50" />
