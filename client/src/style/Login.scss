@@ -8,7 +8,7 @@ $border: .2rem;
 
 .main-container {
     width: 100vw;
-    margin-top: 25vh;
+    margin-top: 20vh;
     display: flex;
     justify-content: center;
     
@@ -19,10 +19,10 @@ $border: .2rem;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        box-shadow: 3.5rem -1rem $middle-color;
+        // box-shadow: -1.5rem -.7rem $middle-color;
         border-radius: $border;
 
-        // transform: skewX(-5deg)
+        // transform: skewX(-3deg);
         
        
         .login-form {
@@ -36,20 +36,24 @@ $border: .2rem;
             color: $font-color;
             background-color: $light-color;
             border-radius: $border; 
+            box-shadow: -1.5rem .7rem $middle-color;
 
-            // transform: skewX(-5deg);
+            // transform: skewX(-2deg);
            
             h2 {
                 letter-spacing: .1rem;
             }
 
             label {
-                margin: .2rem;
-                padding-left: .5rem;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                
 
                 .icon {
-                    margin-right: 1.3rem;
+                    font-size: 2rem;
                     color: $dark-color;
+                    margin: 1rem;
                 }
                 
                 input { 
@@ -57,7 +61,7 @@ $border: .2rem;
                     width: 18rem;
                     padding: 1ch;
                     border: none;
-                    border-radius: .2rem;
+                    border-radius: $border;
                     font-size: 1.1rem;
                     color: $dark-color;
                 }
@@ -70,7 +74,7 @@ $border: .2rem;
                 margin-left: 3.7rem;
                 cursor: pointer;
                 border: none;
-                border-radius: .2rem;
+                border-radius: $border;
                 font-size: 1.1rem;
                 letter-spacing: .1rem;
                 color:$font-color;
@@ -83,6 +87,18 @@ $border: .2rem;
             }
         }
     }
+}
+
+.devCoding {
+    display: block;
+    width: 20%;
+    height: 40%;
+    align-self: flex-end;
+    position: absolute;
+    bottom: 10rem;
+    right: 3rem ;
+
+
 }
 
 
