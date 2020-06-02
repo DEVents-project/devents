@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../style/Events.scss';
 import Select from 'react-select';
+import EventCard from './EventCard';
 
 const Events = () => {
 
@@ -24,6 +25,9 @@ const Events = () => {
                     <h2>Workshops</h2>
                     <h2>Conventions</h2>
                     <Select options={options} placeholder='Choose a city' className="checkout" />
+                </div>
+                <div className="pool-event">
+                    <EventCard />
                 </div>
             </BrowserRouter>
         </div>
