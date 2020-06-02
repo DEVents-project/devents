@@ -7,7 +7,8 @@ import Landing from "./Landing";
 import Login from "./Login";
 import Registration from './Registration'
 import Events from "./Events";
-import SignUp from './SignUp'
+import SignUp from './SignUp';
+import Footer from './Footer';
 import Account from "./Account";
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/account" component={Account} />
         </Switch>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 };

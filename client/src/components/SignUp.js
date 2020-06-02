@@ -121,7 +121,7 @@ const SignUp = () => {
                     </label>
                     <button
                         type="submit"
-                        className="sign-btn">CREATE ACCOUNT</button>
+                        className="button sign-btn">CREATE ACCOUNT</button>
                 </form>
             </main>
         </div>
