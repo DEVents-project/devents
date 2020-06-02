@@ -51,7 +51,6 @@ $border: .2rem;
                 
 
                 .icon {
-
                     font-size: 2rem;
                     color: $dark-color;
                     margin: 1rem;
@@ -62,7 +61,7 @@ $border: .2rem;
                     width: 18rem;
                     padding: 1ch;
                     border: none;
-                    border-radius: .2rem;
+                    border-radius: $border;
                     font-size: 1.1rem;
                     color: $dark-color;
                 }
@@ -75,7 +74,7 @@ $border: .2rem;
                 margin-left: 3.7rem;
                 cursor: pointer;
                 border: none;
-                border-radius: .2rem;
+                border-radius: $border;
                 font-size: 1.1rem;
                 letter-spacing: .1rem;
                 color:$font-color;
