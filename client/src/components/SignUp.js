@@ -12,7 +12,7 @@ const SignUp = () => {
     const [city, setCity] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
-    const [companyName, setCompanyName] = useState(null);
+    const [organizationName, setOrganizationName] = useState(null);
     const [website, setWebsite] = useState(null);
 
     // set a status for what happens after sign up 
@@ -29,7 +29,7 @@ const SignUp = () => {
             city,
             email,
             password,
-            companyName,
+            organizationName,
             website
         }
 
@@ -80,17 +80,17 @@ const SignUp = () => {
                     <label className="field">Organization Name
                         <input
                             type="text"
-                            value={companyName}
-                            id="companyName"
+                            value={organizationName}
+                            id="organizationName"
                             placeholder="the organization name"
-                            onChange={(e) => setCompanyName(e.target.value)} />
+                            onChange={(e) => setOrganizationName(e.target.value)} />
                     </label>
                     <label className="field">City
                         <input
                             type="text"
                             value={city}
-                            id="companyName"
-                            placeholder="your city"
+                            id="city"
+                            placeholder="the city where you live"
                             onChange={(e) => setCity(e.target.value)} />
                     </label>
                     <label className="field">Email
