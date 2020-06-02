@@ -9,13 +9,13 @@ $border: .2rem;
 .main-container {
     width: 100%;
     height: auto;
-    paddind-top: 2rem;
+    padding: 2rem 0;
     display: flex;
     justify-content: center;
            
     .login-form {
-        width: 60%;
-        height: 50%;
+        width: 55%;
+        height: 60%;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -30,8 +30,8 @@ $border: .2rem;
             letter-spacing: .1rem;
             color: $font-color;
         }
-
-        label {
+        
+        .field {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -45,7 +45,7 @@ $border: .2rem;
             
             input { 
                 height: 2.8rem;
-                width: 18rem;
+                width: 10rem;
                 padding: 1ch;
                 border: none;
                 border-radius: $border;
@@ -54,23 +54,13 @@ $border: .2rem;
             }
         }
 
-        button {
+        .login-btn {
             height: 2.8rem;
-            width: 18rem;
-            // padding-left:.5rem;
+            width: 10rem;
             margin-left: 3.7rem;
-            cursor: pointer;
-            border: none;
             border-radius: $border;
             font-size: 1.1rem;
-            letter-spacing: .1rem;
-            color:$font-color;
-            background-color: $dark-color;
-            
-            &:hover {
-                transform: scaleX(1.1) scaleY(1.1);
-                transition: .6s ease-in-out;
-            }
+            letter-spacing: .1rem;  
         }
     }
     
