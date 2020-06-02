@@ -8,6 +8,13 @@
         flex-direction: column;
         align-items: center;
     }
+
+    .pool-event {
+        padding: 1rem 0;
+        display: grid;
+        grid-gap: 2rem 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
 }
 
 .checkout {
@@ -23,6 +30,15 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-evenly;
+        }
+    }
+}
+
+@media screen and (min-width: 920px) {
+    .events-container {
+        .pool-event {
+            grid-gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         }
     }
 }
