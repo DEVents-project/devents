@@ -3,7 +3,7 @@ import { Switch, Redirect } from 'react-router-dom';
 
 import '../style/Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import ParticlesBg from 'particles-bg';
 // import DevCoding from '../assets/img/dev-coding2.png';
 
@@ -64,14 +64,15 @@ const Login = () => {
                     </label>
                     <label className="field">
                         <FontAwesomeIcon className="icon" icon={faLock} size={"2x"} />
-                    <label>
-                        <input
-                            type="password"
-                            placeholder="your password"
-                            name="password"
-                            id="login-password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            required />
+                        <label>
+                            <input
+                                type="password"
+                                placeholder="your password"
+                                name="password"
+                                id="login-password"
+                                onChange={(e) => setPassword(e.target.value)}
+                                required />
+                        </label>
                     </label>
                     <button className="login-btn" type="submit">LOG IN</button>
                 </form>
