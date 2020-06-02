@@ -7,15 +7,15 @@ $border: .2rem;
 
 
 .main-container {
-    width: 100vw;
-    height: 80vh;
-    // margin-top: 20vh;
+    width: 100%;
+    height: auto;
+    paddind-top: 2rem;
     display: flex;
     justify-content: center;
            
     .login-form {
         width: 60%;
-        height: 70%;
+        height: 50%;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -28,7 +28,6 @@ $border: .2rem;
         h2 {
             margin: 1rem 0;
             letter-spacing: .1rem;
-            text-align: center;
             color: $font-color;
         }
 
