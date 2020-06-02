@@ -7,9 +7,9 @@ import Landing from "./Landing";
 import Login from "./Login";
 import Registration from './Registration'
 import Events from "./Events";
+import SignUp from './SignUp'
 
 const App = () => {
-  const [test, setTest] = useState(0);
   const [loggedIn, setLoggedIn] = useState(false);
 
   return (
@@ -24,7 +24,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Landing} />
           <Route path="/registration" component={Registration} />
-          {/* <Route path="/signup" component={Signup} /> */}
+          <Route path="/signup" component={SignUp} />
           <Route path="/login" component={Login} />
           <Route path="/events" component={Events} />
         </Switch>
