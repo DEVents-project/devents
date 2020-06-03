@@ -51,6 +51,8 @@ const CreateEvent = () => {
 
     return (
         <div className="create-event-container">
+            <ParticlesBg color="#8d8d8d" num={55} type="cobweb" bg={true} />
+
             <form className="event-form space-navbar" onSubmit={handleCreateEvent}>
                 {statusAdded ? <Redirect to="/events" /> : null}
                 <h2>CREATE EVENT</h2>
