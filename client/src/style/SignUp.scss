@@ -5,17 +5,18 @@ $dark-color:#460505;
 $font-color: #ffffff;
 $border: .2rem;
 
-.main-container {
+.signup-container {
     width: 100%;
     height: auto;
     padding: 2rem 0;
-    margin-bottom: 2rem;
+    // margin-bottom: 2rem;
     display: flex;
     justify-content: center;
     
-    .sign-form {
-        width: 60%;
-        margin: 0 auto;
+    .signup-form {
+        width: 80%;
+        height: 100%;
+        // margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-self: center;
@@ -31,23 +32,19 @@ $border: .2rem;
             color: $font-color;
         }
 
-        .field {
-        width: 15rem;
-        display: flex;
-        flex-direction: column;
-        align-self: center;
-        justify-content: center;
-        padding: .5rem 2rem;
+        .signup-field {
+            width: 15rem;
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            justify-content: center;
+            padding: .3rem .5rem;
 
-            label {
-                text-align: left;
-            }
-
-            input {
+            .signup-input {
                 height: 2rem;
                 width: 100%;
                 padding: 1ch;
-                margin: .5rem .5rem 0 0;
+                margin: .3rem 0;
                 border-radius: $border;
                 font-size: 1rem;
                 color: $dark-color;
@@ -55,7 +52,7 @@ $border: .2rem;
         }
 
         .sign-btn {
-            margin: 2rem 1rem;
+            margin: 1rem;
             width: 15rem;
             align-self: center;
 
