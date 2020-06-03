@@ -17,7 +17,12 @@ const Events = () => {
 
     const events = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
 
-    const [isEventClicked, setIsEventClicked] = useState(false)
+    const [isVisible, setIsVisible] = useState(3);
+    const [isEventClicked, setIsEventClicked] = useState(false);
+
+    const loadMore = () => {
+        setIsVisible(isVisible + 3);
+    };
 
     if (isEventClicked) {
         return <Redirect to='/event' />
@@ -36,9 +41,14 @@ const Events = () => {
                 </div>
                 <div className="pool-event">
                     {
-                        events.map(el => <EventCard setIsEventClicked={setIsEventClicked} />)
+                        events.slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} />)
                     }
                 </div>
+                {
+                    isVisible >= events.length ?
+                        null :
+                        <button className="button load-more" onClick={loadMore}>Load more</button>
+                }
             </BrowserRouter>
         </div>
     );
