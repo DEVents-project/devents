@@ -55,9 +55,10 @@ const CreateEvent = () => {
 
             <form className="event-form space-navbar" onSubmit={handleCreateEvent}>
                 {statusAdded ? <Redirect to="/events" /> : null}
-                <h2>CREATE EVENT</h2>
+                <h2 className="h2">CREATE EVENT</h2>
                 <label className="field-event">Title
                     <input
+                        className="event-input"
                         type="text"
                         value={name}
                         id="name"
@@ -69,6 +70,7 @@ const CreateEvent = () => {
                 </label>
                 <label className="field-event">Host by
                     <input
+                        className="event-input"
                         type="text"
                         value={hostBy}
                         id="hostBy"
@@ -80,6 +82,7 @@ const CreateEvent = () => {
                 </label>
                 <label className="field-event">Date
                     <input
+                        className="event-input"
                         type="date"
                         value={date}
                         id="date"
@@ -91,6 +94,7 @@ const CreateEvent = () => {
                 </label>
                 <label className="field-event">Location
                     <input
+                        className="event-input"
                         type="text"
                         value={address}
                         id="address"
@@ -102,6 +106,7 @@ const CreateEvent = () => {
                 </label>
                 <label className="field-event">City
                     <input
+                        className="event-input"
                         type="text"
                         value={city}
                         id="city"
@@ -113,17 +118,19 @@ const CreateEvent = () => {
                 </label>
                 <label className="field-event">Website
                     <input
+                        className="event-input"
                         type="url"
                         value={link}
                         id="link"
-                        placeholder="do you have a website to share"
+                        placeholder="event website "
                         required
                         onChange={(e) => setLink(e.target.value)}
 
                     />
                 </label>
                 <label className="field-event">Description
-                    <textarea row="10" cols="50"
+                    <textarea row="20" cols="40"
+                        className="event-input"
                         id="description"
                         placeholder="the event details"
                         required

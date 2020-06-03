@@ -12,15 +12,43 @@ $border: .2rem;
     display: flex;
     justify-content: center;
 
-    .event-container {
-        width: 60%;
-        height: 90%;
+    .event-form {
+        width: 80%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: $light-color;
+        box-shadow: -1.5rem .7rem $middle-color;
+        border-radius: $border;
+
+        .h2 {
+            margin: 1rem 0;
+            letter-spacing: .1rem;
+            color: $font-color;
+        }
+
+        .field-event {
+            width: 15rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: .3rem .5rem;
+
+            .event-input {
+                width: 100%;
+                height: 2rem;
+                padding: 1ch;
+                margin: .3rem 0;
+                border-radius: $border;
+                font-size: 1rem;
+                color: $dark-color;
+            }
+        }
+        .btn-add-event {
+            width: 15rem;
+            margin: 1rem 0;
+        }
     }
-
-
-
 }
