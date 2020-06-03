@@ -11,6 +11,7 @@ import SignUp from './SignUp';
 import Footer from './Footer';
 import Account from "./Account";
 import EventInformation from "./EventInformation";
+import CreateEvent from "./CreateEvent";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/events" component={Events} />
           <Route path="/account" component={Account} />
           <Route path="/event" component={EventInformation} />
+          <Route path="/addevent" component={CreateEvent} />
         </Switch>
       </BrowserRouter>
       <Footer />
