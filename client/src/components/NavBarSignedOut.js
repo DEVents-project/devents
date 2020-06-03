@@ -3,10 +3,25 @@ import { NavLink } from 'react-router-dom';
 import '../style/NavBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import TextTransition, { presets } from "react-text-transition";
+
 
 const NavBarSignedOut = () => {
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    const [titleIndex, setTitleIndex] = useState(0);
+    const title = [
+        "vents"
+    ];
+
+    useEffect(() => {
+        setTimeout(() => {
+            setTitleIndex(index => index + 1);
+        }, 1000);
+    }, []);
+
+
 
     useEffect(() => {
         const mediaQuery = window.matchMedia('(max-width: 670px)');
@@ -33,7 +48,15 @@ const NavBarSignedOut = () => {
     return (
         <div>
             <header>
-                <NavLink to="/" onClick={() => setIsNavVisible(false)}><h1 id="logo">DEVents</h1></NavLink>
+                <NavLink to="/" onClick={() => setIsNavVisible(false)}>
+                    <h1 id="logo">DEV
+                        <TextTransition
+                            direction={'down'}
+                            text={'ents'}
+                            springConfig={presets.molasses}
+                        />
+                    </h1>
+                </NavLink>
                 <FontAwesomeIcon className="menu-bars" icon={faBars} onClick={toggleNav} />
                 <nav style={{ left: isNavVisible || !isSmallScreen ? '0' : '100%' }}>
                     <ul className="nav-group">
@@ -46,7 +69,7 @@ const NavBarSignedOut = () => {
                     </ul>
                 </nav>
             </header>
-        </div >
+        </div>
     );
 }
 
