@@ -38,7 +38,7 @@ const CreateEvent = () => {
             body: JSON.stringify(eventInfo)
 
         }
-        // double que the route - addevent?
+        // double check the route - addevent?
 
         const resp = await fetch("http://localhost:3000/addevent", eventData);
         const data = await resp.json();
