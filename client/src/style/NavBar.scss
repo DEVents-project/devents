@@ -16,6 +16,8 @@ header {
         height: 100%;
     }
 
+    /* logo with h1 element text */
+
     #logo {
         height: 100%;
         font-size: 2.5rem;
@@ -27,6 +29,22 @@ header {
         align-items: center;
         text-align: center;
     }
+
+    /* logo image */
+
+    // #logo {
+    //     height: 100%;
+    //     cursor: pointer;
+    //     padding-left: 1rem;
+    //     display: flex;
+    //     align-items: center;
+    //     text-align: center;
+
+    //     #logo-img {
+    //         width: 12rem;
+    //         height: auto;
+    //     }
+    // }
 
     .menu-bars {
         font-size: 2.5rem;
@@ -87,6 +105,8 @@ header {
         background-color: #650404;
         overflow-y: hidden;
 
+        /* logo with h1 element text */
+
         #logo {
             grid-column: 1;
             clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
@@ -95,6 +115,19 @@ header {
                 font-size: 3rem;
             }
         }
+
+        /* logo image */
+
+        // #logo {
+        //     grid-column: 1;
+        //     clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+        //     background-color: #460505;
+
+        //     #logo-img {
+        //         width: 15rem;
+        //         height: auto;
+        //     }
+        // }
 
         .menu-bars {
             display: none;
