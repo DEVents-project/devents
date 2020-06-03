@@ -51,7 +51,7 @@ const CreateEvent = () => {
 
     return (
         <div className="create-event-container">
-            <form className="event-form" onSubmit={handleCreateEvent}>
+            <form className="event-form space-navbar" onSubmit={handleCreateEvent}>
                 {statusAdded ? <Redirect to="/events" /> : null}
                 <h2>CREATE EVENT</h2>
                 <label className="field-event">Title
@@ -112,23 +112,23 @@ const CreateEvent = () => {
                 <label className="field-event">Website
                     <input
                         type="url"
-                        value={website}
-                        id="website"
+                        value={link}
+                        id="link"
                         placeholder="do you have a website to share"
                         required
-                        onChange={(e) => setWebsite(e.target.value)}
+                        onChange={(e) => setLink(e.target.value)}
 
                     />
                 </label>
                 <label className="field-event">Description
                     <textarea row="10" cols="50"
-                        placehoder="the event details"
                         id="description"
+                        placeholder="the event details"
                         required
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </label>
-                <button type="submit">PUBLISH EVENT</button>
+                <button className="button btn-add-event" type="submit">PUBLISH EVENT</button>
 
             </form>
 
