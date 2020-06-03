@@ -40,11 +40,12 @@ header {
     nav {
         position: absolute;
         top: 15vh;
-        left: 0;
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        transition-duration: 0.8s;
+        transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
         .nav-group {
             width: 100%;
@@ -109,6 +110,8 @@ header {
             position: relative;
             top: 0;
             height: 100%;
+            transition-duration: 0s;
+            left: 0;
 
             .nav-group {
                 width: 50%;
