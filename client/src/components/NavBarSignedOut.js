@@ -4,7 +4,7 @@ import '../style/NavBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import TextTransition, { presets } from "react-text-transition";
-
+import Logo from '../assets/img/devents-logo2.png';
 
 const NavBarSignedOut = () => {
     const [isNavVisible, setIsNavVisible] = useState(false);
@@ -12,13 +12,27 @@ const NavBarSignedOut = () => {
 
     const [titleIndex, setTitleIndex] = useState(0);
     const title = [
-        "vents"
+        "Devents",
+        "Events",
+        "for",
+        "developers"
     ];
 
     useEffect(() => {
-        setTimeout(() => {
-            setTitleIndex(index => index + 1);
-        }, 1000);
+        setInterval(() => {
+            setTimeout(() => {
+                setTitleIndex(index => index + 1);
+                setTimeout(() => {
+                    setTitleIndex(index => index + 1);
+                    setTimeout(() => {
+                        setTitleIndex(index => index + 1);
+                        setTimeout(() => {
+                            setTitleIndex(index => index + 1);
+                        }, 800);
+                    }, 800);
+                }, 800);
+            }, 800);
+        }, 12000);
     }, []);
 
 
@@ -49,13 +63,16 @@ const NavBarSignedOut = () => {
         <div>
             <header>
                 <NavLink to="/" onClick={() => setIsNavVisible(false)}>
-                    <h1 id="logo">DEV
+                    <h1 id="logo">
                         <TextTransition
                             direction={'down'}
-                            text={'ents'}
+                            text={title[titleIndex % title.length]}
                             springConfig={presets.molasses}
                         />
                     </h1>
+                    {/* <h1 id="logo">
+                        <img src={Logo} id="logo-img" alt="" />
+                    </h1> */}
                 </NavLink>
                 <FontAwesomeIcon className="menu-bars" icon={faBars} onClick={toggleNav} />
                 <nav style={{ left: isNavVisible || !isSmallScreen ? '0' : '100%' }}>
