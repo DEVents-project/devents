@@ -16,7 +16,7 @@ const CreateEvent = () => {
 
     const [statusAdded, setStatusAdded] = useState(null)
 
-    const handleCreateEvent = (e) => {
+    const handleCreateEvent = async (e) => {
         e.preventDefault()
 
         const eventInfo = {
