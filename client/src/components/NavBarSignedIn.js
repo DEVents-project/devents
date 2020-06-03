@@ -38,12 +38,12 @@ const NavBarSignedIn = () => {
                 <FontAwesomeIcon className="menu-bars" icon={faBars} onClick={toggleNav} />
                 <nav style={{ display: isNavVisible || !isSmallScreen ? 'flex' : 'none' }}>
                     <ul className="nav-group">
-                        <NavLink activeClassName="selected-section" to="/events" className="underline"><li>Find events</li></NavLink>
-                        <NavLink activeClassName="selected-section" to="/addevent"><li>Add event</li></NavLink>
+                        <NavLink onClick={() => setIsNavVisible(false)} activeClassName="selected-section" to="/events" className="underline"><li>Find events</li></NavLink>
+                        <NavLink onClick={() => setIsNavVisible(false)} activeClassName="selected-section" to="/addevent"><li>Add event</li></NavLink>
                     </ul>
                     <ul className="nav-group">
-                        <NavLink activeClassName="selected-section" to="/account"><li>ACCOUNT</li></NavLink>
-                        <NavLink activeClassName="selected-section" to="/"><li>SIGN OUT</li></NavLink>
+                        <NavLink onClick={() => setIsNavVisible(false)} activeClassName="selected-section" to="/account"><li>ACCOUNT</li></NavLink>
+                        <NavLink onClick={() => setIsNavVisible(false)} activeClassName="selected-section" to="/"><li>SIGN OUT</li></NavLink>
                     </ul>
                 </nav>
             </header>
