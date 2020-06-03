@@ -20,11 +20,11 @@ server.use("/", indexRoute);
 server.use("/events", eventRoute);
 
 server.use((req, res, next) => {
-    next(createError(404))
+    next(createError(404));
 });
 
 server.use((err, req, res, next) => {
-    res.json({ status: err.status, err: err.message })
+    res.json({ status: err.status, err: err.message });
 });
 
 server.listen(port, () => console.log("server is running"));

@@ -10,11 +10,7 @@ const EventSchema = new Schema({
 
     address: { type: String, required: true },
 
-    day: { type: Number, required: true },
-
-    month: { type: Number, required: true },
-
-    year: { type: Number, required: true },
+    date: { type: String, required: true },
 
     description: { type: String, required: true },
 
