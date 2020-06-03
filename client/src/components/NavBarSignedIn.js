@@ -4,6 +4,7 @@ import '../style/NavBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
+
 const NavBarSignedIn = () => {
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
