@@ -34,16 +34,16 @@ const NavBarSignedIn = () => {
     return (
         <div>
             <header>
-                <NavLink to="/"><h1 id="logo">DEVents</h1></NavLink>
+                <NavLink to="/" onClick={() => setIsNavVisible(false)}><h1 id="logo">DEVents</h1></NavLink>
                 <FontAwesomeIcon className="menu-bars" icon={faBars} onClick={toggleNav} />
                 <nav style={{ display: isNavVisible || !isSmallScreen ? 'flex' : 'none' }}>
                     <ul className="nav-group">
-                        <NavLink activeClassName="selected-section" to="/events" className="underline"><li>Find events</li></NavLink>
-                        <NavLink activeClassName="selected-section" to="/addevent"><li>Add event</li></NavLink>
+                        <NavLink to="/events" onClick={() => setIsNavVisible(false)} activeClassName="selected-section" className="underline"><li>Find events</li></NavLink>
+                        <NavLink to="/addevent" onClick={() => setIsNavVisible(false)} activeClassName="selected-section"><li>Add event</li></NavLink>
                     </ul>
                     <ul className="nav-group">
-                        <NavLink activeClassName="selected-section" to="/account"><li>ACCOUNT</li></NavLink>
-                        <NavLink activeClassName="selected-section" to="/"><li>SIGN OUT</li></NavLink>
+                        <NavLink to="/account" onClick={() => setIsNavVisible(false)} activeClassName="selected-section"><li>ACCOUNT</li></NavLink>
+                        <NavLink to="/" onClick={() => setIsNavVisible(false)} activeClassName="selected-section"><li>SIGN OUT</li></NavLink>
                     </ul>
                 </nav>
             </header>
