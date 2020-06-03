@@ -10,13 +10,13 @@ $border: .2rem;
     width: 100%;
     height: auto;
     padding: 2rem 0;
-    margin-bottom: 2rem;
+    margin: 2.5rem 0;
     display: flex;
     justify-content: center;
            
     .login-form {
-        width: 60%;
-        height: 70%;
+        width: 80%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -26,28 +26,28 @@ $border: .2rem;
         box-shadow: -1.5rem .7rem $middle-color;
         // transform: skewX(-2deg);
         
-        h2 {
-            margin: 2rem 0;
+        .h2 {
+            margin: 1rem 0;
             letter-spacing: .1rem;
             color: $font-color;
         }
         
-        .field {
+        .login-field {
             width: 14rem;
             display: flex;
             flex-direction: row;
             align-items: center;
-            padding: 1rem 0;
+            justify-content: center;
+            padding: .5rem 0;
             
 
             .log-icons {
-                font-size: 2rem;
+                font-size: 1.8rem;
                 color: $dark-color;
-                
             }
             
             input { 
-                height: 2.8rem;
+                height: 2.5rem;
                 width: 100%;
                 padding: 1ch;
                 margin-left: .5rem ;
@@ -59,9 +59,9 @@ $border: .2rem;
         }
 
         .login-btn {
-            height: 3rem;
+            height: 2.5rem;
             width: 14rem;
-            margin: 2rem 1rem;
+            margin: 2rem 0;
             font-size: 1.1rem;
             letter-spacing: .1rem;  
         }
