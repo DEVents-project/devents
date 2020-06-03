@@ -75,10 +75,6 @@ header {
                     color: #fff;
                     cursor: pointer;
                 }
-
-                &:hover {
-                    color: #ec7e61;
-                }
             }
         }
     }
@@ -146,8 +142,7 @@ header {
         transition: width 0.3s ease;
         -webkit-transition: width 0.2s ease;
     }
-    &:hover:after,
-    &:focus:after {
+    &:hover:after {
         width: 100%;
         left: 0;
         background: #fff;
