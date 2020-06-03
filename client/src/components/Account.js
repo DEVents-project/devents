@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import '../style/Account.scss';
 import ProfileImage from '../assets/img/profile-random.jpg';
 import EventCard from './EventCard';
@@ -6,6 +7,11 @@ import ParticlesBg from 'particles-bg';
 
 const Account = () => {
     const events = ['one', 'two', 'three'];
+    const [isEventClicked, setIsEventClicked] = useState(false);
+
+    if (isEventClicked) {
+        return <Redirect to='/event' />
+    }
 
     return (
         <div className="space-navbar account-container">
@@ -28,7 +34,7 @@ const Account = () => {
                 <div className="events-container">
                     {
                         events.length ?
-                            events.map(el => <EventCard />)
+                            events.map(el => <EventCard setIsEventClicked={setIsEventClicked} />)
                             :
                             <p className="no-events">You didn't create any event yet</p>
                     }
