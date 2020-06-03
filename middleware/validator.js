@@ -22,7 +22,7 @@ exports.validateInputs = () => {
 
         body("date")
             .isLength({ min: 10, max: 10 })
-            .withMessage("Please provide a two-digits day"),
+            .withMessage("Please provide a full date"),
 
         (req, res, next) => {
 
