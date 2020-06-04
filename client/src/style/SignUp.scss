@@ -32,12 +32,13 @@ $border: .2rem;
             text-align: center;
         }
         .h5-signup {
-            width: 20%;
+            width: 90%;
             margin: 0 auto;
-            padding: .3rem 0;
+            margin: .3rem 2rem;
             color: black;
         }
         .signup-select {
+            width: 90%;
             height: 2rem;
             border: none;
             border-radius: $border;
@@ -53,16 +54,16 @@ $border: .2rem;
         
 
         .signup-field {
-            width: 15rem;
+            width: 90%;
             display: flex;
             flex-direction: column;
             align-self: center;
             justify-content: center;
-            padding: .3rem .5rem;
+            padding: .5rem 1rem;
 
             .signup-input {
                 height: 2rem;
-                width: 100%;
+                width: 90%;
                 padding: 1ch;
                 margin: .3rem 0;
                 border-radius: $border;
@@ -72,10 +73,20 @@ $border: .2rem;
         }
 
         .sign-btn {
-            margin: 1rem;
-            width: 15rem;
-            align-self: center;
+            width: 80%;
+            margin: 1rem 2rem 2rem;
+            align-self: flex-start;
+        }
+        
+    }
+}
 
+@media screen and (min-width: 650px){
+    .signup-form {
+        max-width:40%;
+
+        .sign-btn {
+            padding: .8rem 0;
         }
         
     }
