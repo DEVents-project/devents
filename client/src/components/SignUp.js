@@ -11,6 +11,7 @@ const SignUp = () => {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [website, setWebsite] = useState(null);
+    const [typeOfUser, setTypeOfUser] = useState('developer');
 
     // set a status for what happens after sign up 
     const [statusSignUp, setStatusSignUp] = useState(false)
@@ -54,18 +55,34 @@ const SignUp = () => {
                 <h2 className="h2-signup">SIGN UP</h2>
                 <h5 className="h5-signup"> * Required fields </h5>
                 <label className="signup-field"> Are you:
-                    <select id={name} className="signup-select">
-                        <option className="signup-opt" value={name}>Developer</option>
-                        <option className="signup-opt" value={name}>Organization</option>
+                    <select id={name} className="signup-select" onChange={(e) => setTypeOfUser(e.currentTarget.value)} >
+                        <option className="signup-opt" value="developer" selected>Developer</option>
+                        <option className="signup-opt" value="organization">Organization</option>
                     </select>
                 </label>
-                <label className="signup-field">Name *
-                    <input className="signup-input"
-                        type="text"
-                        placeholder="your name or the organization name"
-                        required
-                        onChange={(e) => setName(e.target.value)} />
+                <label className="signup-field">
+                    {
+                        typeOfUser === 'developer' ?
+                            'Name'
+                            :
+                            'Organization\'s name'
+                    }
+                    {
+                        typeOfUser === 'developer' ?
+                            <input className="signup-input"
+                                type="text"
+                                placeholder="name"
+                                required
+                                onChange={(e) => setName(e.target.value)} />
+                            :
+                            <input className="signup-input"
+                                type="text"
+                                placeholder="organization's name"
+                                required
+                                onChange={(e) => setName(e.target.value)} />
+                    }
                 </label>
+
                 <label className="signup-field">Email *
                         <input
                         className="signup-input"
@@ -75,14 +92,21 @@ const SignUp = () => {
                         required
                         onChange={(e) => setEmail(e.target.value)} />
                 </label>
-                <label className="signup-field">Website
+                {
+                    typeOfUser === 'developer' ?
+                        null
+                        :
+
+                        <label className="signup-field">Website
                         <input
-                        className="signup-input"
-                        type="url"
-                        value={website}
-                        placeholder="the url of the website "
-                        onChange={(e) => setWebsite(e.target.value)} />
-                </label>
+                                className="signup-input"
+                                type="url"
+                                value={website}
+                                placeholder="the url of the website "
+                                onChange={(e) => setWebsite(e.target.value)} />
+                        </label>
+                }
+
                 <label className="signup-field">Password *
                         <input
                         className="signup-input"
