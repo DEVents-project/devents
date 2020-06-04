@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
-Geocode.setApiKey('AIzaSyBSFp8WySWve1Q7Pccs474vzfAlnflDmpk');
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 Geocode.enableDebug();
 
 class Map extends Component {
@@ -136,7 +136,6 @@ class Map extends Component {
     onInfoWindowClose = (event) => {
 
     };
-
 	/**
 	 * When the marker is dragged you get the lat and long using the functions available from event object.
 	 * Use geocode to get the address, city, area and state from the lat and lng positions.
@@ -254,7 +253,7 @@ class Map extends Component {
         if (this.props.center.lat !== undefined) {
             map = <div>
                 <AsyncMap
-                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${'AIzaSyBSFp8WySWve1Q7Pccs474vzfAlnflDmpk'}&libraries=places`}
+                    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`}
                     loadingElement={
                         <div style={{ height: `100%` }} />
                     }
