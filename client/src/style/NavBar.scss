@@ -16,6 +16,8 @@ header {
         height: 100%;
     }
 
+    /* logo with h1 element text */
+
     #logo {
         height: 100%;
         font-size: 2.5rem;
@@ -27,6 +29,22 @@ header {
         align-items: center;
         text-align: center;
     }
+
+    /* logo image */
+
+    // #logo {
+    //     height: 100%;
+    //     cursor: pointer;
+    //     padding-left: 1rem;
+    //     display: flex;
+    //     align-items: center;
+    //     text-align: center;
+
+    //     #logo-img {
+    //         width: 12rem;
+    //         height: auto;
+    //     }
+    // }
 
     .menu-bars {
         font-size: 2.5rem;
@@ -40,11 +58,12 @@ header {
     nav {
         position: absolute;
         top: 15vh;
-        left: 0;
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        transition-duration: 0.8s;
+        transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
         .nav-group {
             width: 100%;
@@ -74,10 +93,6 @@ header {
                     color: #fff;
                     cursor: pointer;
                 }
-
-                &:hover {
-                    color: #ec7e61;
-                }
             }
         }
     }
@@ -90,6 +105,8 @@ header {
         background-color: #650404;
         overflow-y: hidden;
 
+        /* logo with h1 element text */
+
         #logo {
             grid-column: 1;
             clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
@@ -98,6 +115,19 @@ header {
                 font-size: 3rem;
             }
         }
+
+        /* logo image */
+
+        // #logo {
+        //     grid-column: 1;
+        //     clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+        //     background-color: #460505;
+
+        //     #logo-img {
+        //         width: 15rem;
+        //         height: auto;
+        //     }
+        // }
 
         .menu-bars {
             display: none;
@@ -109,6 +139,8 @@ header {
             position: relative;
             top: 0;
             height: 100%;
+            transition-duration: 0s;
+            left: 0;
 
             .nav-group {
                 width: 50%;
@@ -143,8 +175,7 @@ header {
         transition: width 0.3s ease;
         -webkit-transition: width 0.2s ease;
     }
-    &:hover:after,
-    &:focus:after {
+    &:hover:after {
         width: 100%;
         left: 0;
         background: #fff;
