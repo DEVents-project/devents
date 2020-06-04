@@ -71,7 +71,6 @@ const SignUp = () => {
                         className="signup-input"
                         type="email"
                         value={email}
-                        id="email"
                         placeholder="your email"
                         required
                         onChange={(e) => setEmail(e.target.value)} />
@@ -81,7 +80,6 @@ const SignUp = () => {
                         className="signup-input"
                         type="url"
                         value={website}
-                        id="companyName"
                         placeholder="the url of the website "
                         onChange={(e) => setWebsite(e.target.value)} />
                 </label>
@@ -89,7 +87,6 @@ const SignUp = () => {
                         <input
                         className="signup-input"
                         type="password"
-                        id="password"
                         value={password}
                         placeholder="your password"
                         required
@@ -98,8 +95,8 @@ const SignUp = () => {
                 <button
                     type="submit"
                     className="button sign-btn">CREATE ACCOUNT</button>
-            </form >
-        </div >
+            </form>
+        </div>
     )
 }
 export default SignUp;
