@@ -30,11 +30,12 @@ $border: .2rem;
             margin: 1rem 0;
             letter-spacing: .1rem;
             text-align: center;
-            color: $font-color;
         }
         .h5-signup {
-            padding-bottom: 0 0 1rem 1rem;
-            text-align: center;
+            width: 20%;
+            margin: 0 auto;
+            padding: .3rem 0;
+            color: black;
         }
         .signup-select {
             height: 2rem;
