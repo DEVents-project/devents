@@ -215,6 +215,20 @@ class Map extends Component {
                         defaultZoom={this.props.zoom}
                         defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
                     >
+                        {/* For Auto complete Search Box */}
+                        <Autocomplete
+                            style={{
+                                width: '100%',
+                                height: '40px',
+                                paddingLeft: '16px',
+                                marginTop: '2px',
+                                marginBottom: '500px',
+                                position: 'relative',
+                                bottom: '345px'
+                            }}
+                            onPlaceSelected={this.onPlaceSelected}
+                            types={['address']}
+                        />
                         {/* InfoWindow on top of marker */}
                         <InfoWindow
                             onClose={this.onInfoWindowClose}
@@ -232,18 +246,6 @@ class Map extends Component {
                             position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
                         />
                         <Marker />
-                        {/* For Auto complete Search Box */}
-                        <Autocomplete
-                            style={{
-                                width: '100%',
-                                height: '40px',
-                                paddingLeft: '16px',
-                                marginTop: '2px',
-                                marginBottom: '500px'
-                            }}
-                            onPlaceSelected={this.onPlaceSelected}
-                            types={['address']}
-                        />
                     </GoogleMap>
                 )
             )
@@ -251,25 +253,6 @@ class Map extends Component {
         let map;
         if (this.props.center.lat !== undefined) {
             map = <div>
-                <div>
-                    <div className="form-group">
-                        <label htmlFor="">City</label>
-                        <input type="text" name="city" className="form-control" onChange={this.onChange} value={this.state.city} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="">Area</label>
-                        <input type="text" name="area" className="form-control" onChange={this.onChange} value={this.state.area} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="">State</label>
-                        <input type="text" name="state" className="form-control" onChange={this.onChange} value={this.state.state} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="">Address</label>
-                        <input type="text" name="address" className="form-control" onChange={this.onChange} value={this.state.address} />
-                    </div>
-                </div>
-
                 <AsyncMap
                     googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${'AIzaSyBSFp8WySWve1Q7Pccs474vzfAlnflDmpk'}&libraries=places`}
                     loadingElement={
@@ -282,6 +265,13 @@ class Map extends Component {
                         <div style={{ height: `100%` }} />
                     }
                 />
+                <div>
+
+                    <div className="form-group">
+                        <input type="text" name="address" className="form-control" onChange={this.onChange} value={this.state.address} />
+                    </div>
+                </div>
+
             </div>
         } else {
             map = <div style={{ height: this.props.height }} />
