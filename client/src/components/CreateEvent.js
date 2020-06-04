@@ -76,26 +76,26 @@ const CreateEvent = (props) => {
                         onChange={(e) => setHostBy(e.target.value)}
                     />
                 </label>
-                <label className="field-event">Date *
-                    <input
-                        className="event-input"
-                        type="date"
-                        value={date}
-                        placeholder="the event date"
-                        required
-                        onChange={(e) => setDate(e.target.value)}
-                    />
-                </label>
-                <label className="field-event">Time *
-                    <input
-                        className="event-input"
-                        type="time"
-                        value={time}
-                        placeholder="the event time"
-                        required
-                        onChange={(e) => setTime(e.target.value)}
-                    />
-                </label>
+                <div className="inline">
+                    <label className="inline-label">Date *
+                        <input
+                            className="inline-input"
+                            type="date"
+                            value={date}
+                            required
+                            onChange={(e) => setDate(e.target.value)}
+                        />
+                    </label>
+                    <label className="inline-label space-left">Time *
+                        <input
+                            className="inline-input space-right"
+                            type="time"
+                            value={time}
+                            required
+                            onChange={(e) => setTime(e.target.value)}
+                        />
+                    </label>
+                </div>
                 <label className="field-event location-container"><span>Location *</span>
                     <Map google={props.google}
                         center={{ lat: 52.5200, lng: 13.4050 }}
