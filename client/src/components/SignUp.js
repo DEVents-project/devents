@@ -53,7 +53,6 @@ const SignUp = () => {
             {statusSignUp ? <Redirect to="/account" /> : null}
             <form className="signup-form" onSubmit={handleSignUp}>
                 <h2 className="h2-signup">SIGN UP</h2>
-                <h5 className="h5-signup"> * Required fields </h5>
                 <label className="signup-field"> Are you:
                     <select id={name} className="signup-select" onChange={(e) => setTypeOfUser(e.currentTarget.value)} >
                         <option className="signup-opt" value="developer" selected>Developer</option>
@@ -63,28 +62,28 @@ const SignUp = () => {
                 <label className="signup-field">
                     {
                         typeOfUser === 'developer' ?
-                            'Name'
+                            'Name *'
                             :
-                            'Organization\'s name'
+                            'Organization\'s name *'
                     }
                     {
                         typeOfUser === 'developer' ?
                             <input className="signup-input"
                                 type="text"
-                                placeholder="name"
+                                placeholder="your name"
                                 required
                                 onChange={(e) => setName(e.target.value)} />
                             :
                             <input className="signup-input"
                                 type="text"
-                                placeholder="organization's name"
+                                placeholder="the organization's name"
                                 required
                                 onChange={(e) => setName(e.target.value)} />
                     }
                 </label>
 
                 <label className="signup-field">Email *
-                        <input
+                    <input
                         className="signup-input"
                         type="email"
                         value={email}
@@ -116,6 +115,7 @@ const SignUp = () => {
                         required
                         onChange={(e) => setPassword(e.target.value)} />
                 </label>
+                <h5 className="h5-signup"> * Required fields </h5>
                 <button
                     type="submit"
                     className="button sign-btn">CREATE ACCOUNT</button>
