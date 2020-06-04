@@ -7,13 +7,11 @@ import ParticlesBg from 'particles-bg';
 
 const SignUp = () => {
     // User schema needs a website url for the companies and city/country
-    const [firstName, setFirstName] = useState(null);
-    const [lastName, setLastName] = useState(null);
-    const [city, setCity] = useState(null);
+    const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
-    const [organizationName, setOrganizationName] = useState(null);
     const [website, setWebsite] = useState(null);
+    const [typeOfUser, setTypeOfUser] = useState('developer');
 
     // set a status for what happens after sign up 
     const [statusSignUp, setStatusSignUp] = useState(false)
@@ -24,12 +22,9 @@ const SignUp = () => {
 
         // Check if this works with the optional fields ex. companyName, etc.
         const signUpData = {
-            firstName,
-            lastName,
-            city,
+            name,
             email,
             password,
-            organizationName,
             website
         }
 
@@ -57,69 +52,65 @@ const SignUp = () => {
 
             {statusSignUp ? <Redirect to="/account" /> : null}
             <form className="signup-form" onSubmit={handleSignUp}>
-                <h2 className="h2">SIGN UP</h2>
-                <label className="signup-field">First Name
-                        <input
-                        className="signup-input"
-                        type="text"
-                        value={firstName}
-                        id="firstName"
-                        placeholder="your first name"
-                        required
-                        onChange={(e) => setFirstName(e.target.value)} />
+                <h2 className="h2-signup">SIGN UP</h2>
+                <h5 className="h5-signup"> * Required fields </h5>
+                <label className="signup-field"> Are you:
+                    <select id={name} className="signup-select" onChange={(e) => setTypeOfUser(e.currentTarget.value)} >
+                        <option className="signup-opt" value="developer" selected>Developer</option>
+                        <option className="signup-opt" value="organization">Organization</option>
+                    </select>
                 </label>
-                <label className="signup-field">Last Name
-                        <input
-                        className="signup-input"
-                        type="text"
-                        value={lastName}
-                        id="lastName"
-                        placeholder="your last name"
-                        required
-                        onChange={(e) => setLastName(e.target.value)} />
+                <label className="signup-field">
+                    {
+                        typeOfUser === 'developer' ?
+                            'Name'
+                            :
+                            'Organization\'s name'
+                    }
+                    {
+                        typeOfUser === 'developer' ?
+                            <input className="signup-input"
+                                type="text"
+                                placeholder="name"
+                                required
+                                onChange={(e) => setName(e.target.value)} />
+                            :
+                            <input className="signup-input"
+                                type="text"
+                                placeholder="organization's name"
+                                required
+                                onChange={(e) => setName(e.target.value)} />
+                    }
                 </label>
-                <label className="signup-field">Organization Name
-                        <input
-                        className="signup-input"
-                        type="text"
-                        value={organizationName}
-                        id="organizationName"
-                        placeholder="the organization name"
-                        onChange={(e) => setOrganizationName(e.target.value)} />
-                </label>
-                <label className="signup-field">City
-                        <input
-                        className="signup-input"
-                        type="text"
-                        value={city}
-                        id="city"
-                        placeholder="the city where you live"
-                        onChange={(e) => setCity(e.target.value)} />
-                </label>
-                <label className="signup-field">Email
+
+                <label className="signup-field">Email *
                         <input
                         className="signup-input"
                         type="email"
                         value={email}
-                        id="email"
                         placeholder="your email"
                         required
                         onChange={(e) => setEmail(e.target.value)} />
                 </label>
-                <label className="signup-field">Website
+                {
+                    typeOfUser === 'developer' ?
+                        null
+                        :
+
+                        <label className="signup-field">Website
                         <input
-                        className="signup-input"
-                        type="url"
-                        value={website}
-                        id="companyName"
-                        placeholder="the url of the website "
-                        onChange={(e) => setWebsite(e.target.value)} />
-                </label>
-                <label className="signup-field">Password
+                                className="signup-input"
+                                type="url"
+                                value={website}
+                                placeholder="the url of the website "
+                                onChange={(e) => setWebsite(e.target.value)} />
+                        </label>
+                }
+
+                <label className="signup-field">Password *
                         <input
                         className="signup-input"
                         type="password"
-                        id="password"
                         value={password}
                         placeholder="your password"
                         required
