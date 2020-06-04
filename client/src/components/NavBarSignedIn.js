@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../style/NavBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import TextTransition, { presets } from "react-text-transition";
+
 
 const NavBarSignedIn = () => {
     const [isNavVisible, setIsNavVisible] = useState(false);
@@ -33,16 +35,24 @@ const NavBarSignedIn = () => {
     return (
         <div>
             <header>
-                <Link to="/"><h1 id="logo">DEVents</h1></Link>
+                <NavLink to="/" onClick={() => setIsNavVisible(false)}>
+                    <h1 id="logo">DEV
+                        <TextTransition
+                            direction={'down'}
+                            text={'ents'}
+                            springConfig={presets.molasses}
+                        />
+                    </h1>
+                </NavLink>
                 <FontAwesomeIcon className="menu-bars" icon={faBars} onClick={toggleNav} />
-                <nav style={{ display: isNavVisible || !isSmallScreen ? 'flex' : 'none' }}>
+                <nav style={{ left: isNavVisible || !isSmallScreen ? '0' : '100%' }}>
                     <ul className="nav-group">
-                        <Link to="/events" className="underline"><li>Find events</li></Link>
-                        <Link to="/addevent"><li>Add event</li></Link>
+                        <li><NavLink to="/events" onClick={() => setIsNavVisible(false)} activeClassName="selected-section" className="underline">Find events</NavLink></li>
+                        <li><NavLink to="/addevent" onClick={() => setIsNavVisible(false)} activeClassName="selected-section" className="underline">Add event</NavLink></li>
                     </ul>
                     <ul className="nav-group">
-                        <Link to="/login"><li>ACCOUNT</li></Link>
-                        <Link to="/signup"><li>SIGN OUT</li></Link>
+                        <li><NavLink to="/account" onClick={() => setIsNavVisible(false)} activeClassName="selected-section" className="underline">ACCOUNT</NavLink></li>
+                        <li><NavLink to="/" onClick={() => setIsNavVisible(false)} className="underline">SIGN OUT</NavLink></li>
                     </ul>
                 </nav>
             </header>

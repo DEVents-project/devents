@@ -9,9 +9,11 @@ const SignUp = () => {
     // User schema needs a website url for the companies and city/country
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
+    const [city, setCity] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
-    const [companyName, setCompanyName] = useState(null);
+    const [organizationName, setOrganizationName] = useState(null);
+    const [website, setWebsite] = useState(null);
 
     // set a status for what happens after sign up 
     const [statusSignUp, setStatusSignUp] = useState(false)
@@ -24,9 +26,11 @@ const SignUp = () => {
         const signUpData = {
             firstName,
             lastName,
+            city,
             email,
             password,
-            companyName
+            organizationName,
+            website
         }
 
         const userData = {
@@ -48,62 +52,83 @@ const SignUp = () => {
 
 
     return (
-        <div>
-            <main className="main-container">
-                <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
+        <div className="signup-container space-navbar">
+            <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
 
-                {statusSignUp ? <Redirect to="/account" /> : null}
-                <form className="sign-form" onSubmit={handleSignUp}>
-                    <h2 className="h2">SIGN UP</h2>
-                    <label className="field">First Name
+            {statusSignUp ? <Redirect to="/account" /> : null}
+            <form className="signup-form" onSubmit={handleSignUp}>
+                <h2 className="h2">SIGN UP</h2>
+                <label className="signup-field">First Name
                         <input
-                            type="text"
-                            value={firstName}
-                            id="firstName"
-                            placeholder="your first name"
-                            required
-                            onChange={(e) => setFirstName(e.target.value)} />
-                    </label>
-                    <label className="field">Last Name
+                        className="signup-input"
+                        type="text"
+                        value={firstName}
+                        id="firstName"
+                        placeholder="your first name"
+                        required
+                        onChange={(e) => setFirstName(e.target.value)} />
+                </label>
+                <label className="signup-field">Last Name
                         <input
-                            type="text"
-                            value={lastName}
-                            id="lastName"
-                            placeholder="your last name"
-                            required
-                            onChange={(e) => setLastName(e.target.value)} />
-                    </label>
-                    <label className="field">Organization Name
+                        className="signup-input"
+                        type="text"
+                        value={lastName}
+                        id="lastName"
+                        placeholder="your last name"
+                        required
+                        onChange={(e) => setLastName(e.target.value)} />
+                </label>
+                <label className="signup-field">Organization Name
                         <input
-                            type="text"
-                            value={companyName}
-                            id="companyName"
-                            placeholder="the organization name"
-                            onChange={(e) => setCompanyName(e.target.value)} />
-                    </label>
-                    <label className="field">Email
+                        className="signup-input"
+                        type="text"
+                        value={organizationName}
+                        id="organizationName"
+                        placeholder="the organization name"
+                        onChange={(e) => setOrganizationName(e.target.value)} />
+                </label>
+                <label className="signup-field">City
                         <input
-                            type="email"
-                            value={email}
-                            id="email"
-                            placeholder="your email"
-                            required
-                            onChange={(e) => setEmail(e.target.value)} />
-                    </label>
-                    <label className="field">Password
+                        className="signup-input"
+                        type="text"
+                        value={city}
+                        id="city"
+                        placeholder="the city where you live"
+                        onChange={(e) => setCity(e.target.value)} />
+                </label>
+                <label className="signup-field">Email
                         <input
-                            type="password"
-                            id="password"
-                            value={password}
-                            placeholder="your password"
-                            required
-                            onChange={(e) => setPassword(e.target.value)} />
-                    </label>
-                    <button
-                        type="submit"
-                        className="sign-btn">CREATE ACCOUNT</button>
-                </form>
-            </main>
+                        className="signup-input"
+                        type="email"
+                        value={email}
+                        id="email"
+                        placeholder="your email"
+                        required
+                        onChange={(e) => setEmail(e.target.value)} />
+                </label>
+                <label className="signup-field">Website
+                        <input
+                        className="signup-input"
+                        type="url"
+                        value={website}
+                        id="companyName"
+                        placeholder="the url of the website "
+                        onChange={(e) => setWebsite(e.target.value)} />
+                </label>
+                <label className="signup-field">Password
+                        <input
+                        className="signup-input"
+                        type="password"
+                        id="password"
+                        value={password}
+                        placeholder="your password"
+                        required
+                        onChange={(e) => setPassword(e.target.value)} />
+                </label>
+                <button
+                    type="submit"
+                    className="button sign-btn">CREATE ACCOUNT</button>
+            </form>
         </div>
     )
 }
