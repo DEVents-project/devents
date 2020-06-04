@@ -20,13 +20,13 @@ $border: 0.2rem;
         justify-content: center;
         align-items: center;
         background-color: $light-color;
+        color: $font-color;
         box-shadow: -1.5rem 0.7rem $middle-color;
         border-radius: $border;
 
-        .h2 {
+        .h2-event {
             margin: 1rem 0;
             letter-spacing: 0.1rem;
-            color: $font-color;
         }
 
         .field-event {
@@ -46,7 +46,7 @@ $border: 0.2rem;
                 color: $dark-color;
             }
         }
-        .btn-add-event {
+        .event-btn {
             width: 15rem;
             margin: 1rem 0;
         }
