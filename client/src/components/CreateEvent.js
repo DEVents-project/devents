@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
+import Map from './Map';
 
-
-const CreateEvent = () => {
+const CreateEvent = (props) => {
     // img missing and hour ? 
     const [name, setName] = useState(null);
     const [hostBy, setHostBy] = useState(null);
@@ -92,15 +92,11 @@ const CreateEvent = () => {
                     />
 
                 </label>
-                <label className="field-event">Location
-                    <input
-                        className="event-input"
-                        type="text"
-                        value={address}
-                        id="address"
-                        placeholder="the event location"
-                        required
-                        onChange={(e) => setAddress(e.target.value)}
+                <label className="field-event location-container"><span>Location</span>
+                    <Map google={props.google}
+                        center={{ lat: 52.5200, lng: 13.4050 }}
+                        height='300px'
+                        zoom={15}
                     />
 
                 </label>
