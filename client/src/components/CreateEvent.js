@@ -105,7 +105,7 @@ const CreateEvent = (props) => {
                     />
                 </label>
                 <label className="field-event">Image *
-                    <UploadFile />
+                    {/* <UploadFile /> */}
                 </label>
                 <label className="field-event">Website
                     <input
