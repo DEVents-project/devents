@@ -6,7 +6,7 @@ import ParticlesBg from 'particles-bg';
 
 
 const SignUp = () => {
-    // User schema needs a website url for the companies and city/country
+    // Does not match the USER Schema --- schema needs to be update
     const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
@@ -82,22 +82,23 @@ const SignUp = () => {
                 </label>
 
                 <label className="signup-field">Email *
-                {typeOfUser === 'developer' ?
-                        <input
-                            className="signup-input"
-                            type="email"
-                            value={email}
-                            placeholder="your email"
-                            required
-                            onChange={(e) => setEmail(e.target.value)} />
-                        :
-                        <input
-                            className="signup-input"
-                            type="email"
-                            value={email}
-                            placeholder="the organization email"
-                            required
-                            onChange={(e) => setEmail(e.target.value)} />
+                    {
+                        typeOfUser === 'developer' ?
+                            <input
+                                className="signup-input"
+                                type="email"
+                                value={email}
+                                placeholder="your email"
+                                required
+                                onChange={(e) => setEmail(e.target.value)} />
+                            :
+                            <input
+                                className="signup-input"
+                                type="email"
+                                value={email}
+                                placeholder="the organization email"
+                                required
+                                onChange={(e) => setEmail(e.target.value)} />
                     }
                 </label>
                 {
