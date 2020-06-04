@@ -14,7 +14,7 @@ import EventInformation from "./EventInformation";
 import CreateEvent from "./CreateEvent";
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   return (
     <div className="App">
