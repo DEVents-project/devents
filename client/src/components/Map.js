@@ -136,7 +136,6 @@ class Map extends Component {
     onInfoWindowClose = (event) => {
 
     };
-
 	/**
 	 * When the marker is dragged you get the lat and long using the functions available from event object.
 	 * Use geocode to get the address, city, area and state from the lat and lng positions.
