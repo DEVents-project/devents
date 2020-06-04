@@ -12,50 +12,136 @@ $font-color: #ffffff;
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
+  
     
-    .square {
-        background-color: $middle-color;
+    .squares {
+    
         width: 25vw;
         height: 50vh;
-    
+        
     }
+    .one{
+        font-size: 10em;
+      
+        position: relative;
+        bottom: 1.5em;
+
+       
+    }
+    .two {
+        font-size: 10em;
+      
+        position: relative;
+        bottom: 1.5em;
+    }
+
+    .three {
+        font-size: 10em;
+      
+        position: relative;
+        bottom: 1.5em;
+    }
+    .square-1{
+        border-right: 8px solid rgba(0, 0, 0, 0.52);
+     
+        width: 30%;
+    }
+    .square-2{
+        border-right: 8px solid rgba(0, 0, 0, 0.52);
+        width: 30%;
+        
+    }
+    .square-3{
+    
+        width: 30%;
+    }
+    img {
+        width: 80%;
+       margin-left: 8em;
+        margin-top: 6em;
+        opacity: 0.7;
+
+
+    }
+
 }
+
+
+aside {
+    width: 50%;
+    float: right;           
+    position: relative;
+    // bottom: 15em;
+    right: 2em;;
+    z-index: 999;
+  
+  }
+  .aside {
+     margin-top: -23em;
+     background-color:rgba(0, 0, 0, 0.575);
+     padding: 1em;
+     border-radius: 10px;
+     width: 15em;
+     margin-right: 3em;
+     color: white;
+  }
+  p{
+      margin-top: 1em;
+     opacity: 0.7;
+  }
+      
+  .box{
+    position: relative;
+    display: inline-block;
+  }
+   
 
 .step-container {
     display: flex;
     justify-content: space-around;
     position: relative;
     
-    .step-1{
+    .step{
         position: absolute;
+        padding: 0.5em;
        bottom: -25px;
-       color: blue;
+       color: rgb(0, 0, 255);
        display:inline;
+       border-bottom: black dotted 5px;
+    
+       
     
     }
 }
 
 .buttons-container{
     display: flex;
+    justify-content: center;
     
     .button {
         margin-top: 80px;
-        margin-left: 2em;
+        width: 10em;
+        height: 2.5em;
+      
+    }
+    .login-button {
+
+        margin-left:1.5em;
+    
     }
 
   
 }
 .question {
     text-align: center;
-    background-color: rgb(86, 86, 184);
+    background-color: rgba(41, 94, 241, 0.164);
+    padding: 0.7em;
     
 }
 
 
 // fonts
 
-.step-letters{
-    background-color: blue;
-}
+
 
 // buttons
