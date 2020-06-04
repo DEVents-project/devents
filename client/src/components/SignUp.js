@@ -7,12 +7,9 @@ import ParticlesBg from 'particles-bg';
 
 const SignUp = () => {
     // User schema needs a website url for the companies and city/country
-    const [firstName, setFirstName] = useState(null);
-    const [lastName, setLastName] = useState(null);
-    const [city, setCity] = useState(null);
+    const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
-    const [organizationName, setOrganizationName] = useState(null);
     const [website, setWebsite] = useState(null);
 
     // set a status for what happens after sign up 
@@ -24,12 +21,9 @@ const SignUp = () => {
 
         // Check if this works with the optional fields ex. companyName, etc.
         const signUpData = {
-            firstName,
-            lastName,
-            city,
+            name,
             email,
             password,
-            organizationName,
             website
         }
 
@@ -57,46 +51,22 @@ const SignUp = () => {
 
             {statusSignUp ? <Redirect to="/account" /> : null}
             <form className="signup-form" onSubmit={handleSignUp}>
-                <h2 className="h2">SIGN UP</h2>
-                <label className="signup-field">First Name
-                        <input
-                        className="signup-input"
+                <h2 className="h2-signup">SIGN UP</h2>
+                <h5 className="h5-signup"> * Required fields </h5>
+                <label className="signup-field"> Are you:
+                    <select id={name} className="signup-select">
+                        <option className="signup-opt" value={name}>Developer</option>
+                        <option className="signup-opt" value={name}>Organization</option>
+                    </select>
+                </label>
+                <label className="signup-field">Name *
+                    <input className="signup-input"
                         type="text"
-                        value={firstName}
-                        id="firstName"
-                        placeholder="your first name"
+                        placeholder="your name or the organization name"
                         required
-                        onChange={(e) => setFirstName(e.target.value)} />
+                        onChange={(e) => setName(e.target.value)} />
                 </label>
-                <label className="signup-field">Last Name
-                        <input
-                        className="signup-input"
-                        type="text"
-                        value={lastName}
-                        id="lastName"
-                        placeholder="your last name"
-                        required
-                        onChange={(e) => setLastName(e.target.value)} />
-                </label>
-                <label className="signup-field">Organization Name
-                        <input
-                        className="signup-input"
-                        type="text"
-                        value={organizationName}
-                        id="organizationName"
-                        placeholder="the organization name"
-                        onChange={(e) => setOrganizationName(e.target.value)} />
-                </label>
-                <label className="signup-field">City
-                        <input
-                        className="signup-input"
-                        type="text"
-                        value={city}
-                        id="city"
-                        placeholder="the city where you live"
-                        onChange={(e) => setCity(e.target.value)} />
-                </label>
-                <label className="signup-field">Email
+                <label className="signup-field">Email *
                         <input
                         className="signup-input"
                         type="email"
@@ -115,7 +85,7 @@ const SignUp = () => {
                         placeholder="the url of the website "
                         onChange={(e) => setWebsite(e.target.value)} />
                 </label>
-                <label className="signup-field">Password
+                <label className="signup-field">Password *
                         <input
                         className="signup-input"
                         type="password"
@@ -128,8 +98,8 @@ const SignUp = () => {
                 <button
                     type="submit"
                     className="button sign-btn">CREATE ACCOUNT</button>
-            </form>
-        </div>
+            </form >
+        </div >
     )
 }
 export default SignUp;
