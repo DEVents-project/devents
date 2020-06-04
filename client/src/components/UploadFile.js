@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from "axios";
 
+// WIP ---- Not sure if this will work properly buuut 
 export const UploadFile = () => {
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState("choose image");
     const [uploadedFile, setUploadedFile] = useState({})
 
-    const handleUpload = async (e) => {
+    const handleUpload = (e) => {
         setFile(e.target.files[0]);
         setFileName(e.target.files[0].name);
     }
@@ -35,6 +36,7 @@ export const UploadFile = () => {
 
         }
     }
+
 
     return (
         <div>
