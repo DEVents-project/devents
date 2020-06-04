@@ -54,7 +54,7 @@ const Login = () => {
                 <h2 className="h2">LOG IN</h2>
                 <label className="login-field">
                     <FontAwesomeIcon className="log-icons" icon={faEnvelope} />
-                    <input className="login-field"
+                    <input className="login-input"
                         type="email"
                         placeholder="your email"
                         name="email"
@@ -65,7 +65,7 @@ const Login = () => {
                 <label className="login-field">
                     <FontAwesomeIcon className="log-icons" icon={faLock} />
                     <input
-                        className="login-field"
+                        className="login-input"
                         type="password"
                         placeholder="your password"
                         name="password"
