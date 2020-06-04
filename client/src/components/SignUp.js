@@ -20,7 +20,6 @@ const SignUp = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
 
-        // Check if this works with the optional fields ex. companyName, etc.
         const signUpData = {
             name,
             email,
