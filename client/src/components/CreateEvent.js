@@ -40,7 +40,7 @@ const CreateEvent = (props) => {
 
         }
 
-        const resp = await fetch("http://localhost:3000/addevent", eventData);
+        const resp = await fetch("/addevent", eventData);
         const data = await resp.json();
         console.log("res:", data);
         if (data.success) {
