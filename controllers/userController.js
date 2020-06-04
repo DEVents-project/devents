@@ -1,5 +1,7 @@
 const createError = require("http-errors");
 const User = require("../models/usersSchema");
+const { encrypt } = require("../lib/encryption");
+
 
 exports.getUsers = async (req, res, next) => {
     try {
@@ -28,7 +30,7 @@ exports.postUser = async (req, res, next) => {
         const token = user.generateAuthToken()
         await user.save()
         const data = user.getPublicFields()
-        res.header("x-auth", token).json({ success: true, user: data })
+        res.header("x-auth", token).json({ success: true, user: data, token: token })
     } catch (err) {
         next(err)
     }
@@ -39,6 +41,10 @@ exports.putUser = async (req, res, next) => {
     const { id } = req.params;
     const user = req.body
     try {
+        if (Object.keys(req.body).includes("password")) {
+            const hashedPassword = await encrypt(client.password)
+            user.password = hashedPassword
+        }
         const updatedUser = await User.findByIdAndUpdate(id, user, { new: true })
         if (!updatedUser) throw createError(500)
         res.json({ success: true, user: updatedUser })
