@@ -52,78 +52,83 @@ const SignUp = () => {
 
 
     return (
-        <div>
-            <main className="signup-container space-navbar">
-                <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
+        <div className="signup-container space-navbar">
+            <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
 
-                {statusSignUp ? <Redirect to="/account" /> : null}
-                <form className="signup-form" onSubmit={handleSignUp}>
-                    <h2 className="h2">SIGN UP</h2>
-                    <label className="field">First Name
+            {statusSignUp ? <Redirect to="/account" /> : null}
+            <form className="signup-form" onSubmit={handleSignUp}>
+                <h2 className="h2">SIGN UP</h2>
+                <label className="signup-field">First Name
                         <input
-                            type="text"
-                            value={firstName}
-                            id="firstName"
-                            placeholder="your first name"
-                            required
-                            onChange={(e) => setFirstName(e.target.value)} />
-                    </label>
-                    <label className="field">Last Name
+                        className="signup-input"
+                        type="text"
+                        value={firstName}
+                        id="firstName"
+                        placeholder="your first name"
+                        required
+                        onChange={(e) => setFirstName(e.target.value)} />
+                </label>
+                <label className="signup-field">Last Name
                         <input
-                            type="text"
-                            value={lastName}
-                            id="lastName"
-                            placeholder="your last name"
-                            required
-                            onChange={(e) => setLastName(e.target.value)} />
-                    </label>
-                    <label className="field">Organization Name
+                        className="signup-input"
+                        type="text"
+                        value={lastName}
+                        id="lastName"
+                        placeholder="your last name"
+                        required
+                        onChange={(e) => setLastName(e.target.value)} />
+                </label>
+                <label className="signup-field">Organization Name
                         <input
-                            type="text"
-                            value={organizationName}
-                            id="organizationName"
-                            placeholder="the organization name"
-                            onChange={(e) => setOrganizationName(e.target.value)} />
-                    </label>
-                    <label className="field">City
+                        className="signup-input"
+                        type="text"
+                        value={organizationName}
+                        id="organizationName"
+                        placeholder="the organization name"
+                        onChange={(e) => setOrganizationName(e.target.value)} />
+                </label>
+                <label className="signup-field">City
                         <input
-                            type="text"
-                            value={city}
-                            id="city"
-                            placeholder="the city where you live"
-                            onChange={(e) => setCity(e.target.value)} />
-                    </label>
-                    <label className="field">Email
+                        className="signup-input"
+                        type="text"
+                        value={city}
+                        id="city"
+                        placeholder="the city where you live"
+                        onChange={(e) => setCity(e.target.value)} />
+                </label>
+                <label className="signup-field">Email
                         <input
-                            type="email"
-                            value={email}
-                            id="email"
-                            placeholder="your email"
-                            required
-                            onChange={(e) => setEmail(e.target.value)} />
-                    </label>
-                    <label className="field">Website
+                        className="signup-input"
+                        type="email"
+                        value={email}
+                        id="email"
+                        placeholder="your email"
+                        required
+                        onChange={(e) => setEmail(e.target.value)} />
+                </label>
+                <label className="signup-field">Website
                         <input
-                            type="url"
-                            value={website}
-                            id="companyName"
-                            placeholder="the url of the website "
-                            onChange={(e) => setWebsite(e.target.value)} />
-                    </label>
-                    <label className="field">Password
+                        className="signup-input"
+                        type="url"
+                        value={website}
+                        id="companyName"
+                        placeholder="the url of the website "
+                        onChange={(e) => setWebsite(e.target.value)} />
+                </label>
+                <label className="signup-field">Password
                         <input
-                            type="password"
-                            id="password"
-                            value={password}
-                            placeholder="your password"
-                            required
-                            onChange={(e) => setPassword(e.target.value)} />
-                    </label>
-                    <button
-                        type="submit"
-                        className="button sign-btn">CREATE ACCOUNT</button>
-                </form>
-            </main>
+                        className="signup-input"
+                        type="password"
+                        id="password"
+                        value={password}
+                        placeholder="your password"
+                        required
+                        onChange={(e) => setPassword(e.target.value)} />
+                </label>
+                <button
+                    type="submit"
+                    className="button sign-btn">CREATE ACCOUNT</button>
+            </form>
         </div>
     )
 }
