@@ -57,7 +57,6 @@ const CreateEvent = (props) => {
             <form className="event-form space-navbar" onSubmit={handleCreateEvent}>
 
                 <h2 className="h2-event">CREATE EVENT</h2>
-                <h5 className="h5-event">* Required Fields</h5>
                 <label className="field-event">Title *
                     <input
                         className="event-input"
@@ -117,13 +116,14 @@ const CreateEvent = (props) => {
                     />
                 </label>
                 <label className="field-event">Description
-                    <textarea row="20" cols="40"
+                    <textarea cols="40" rows="20"
                         className="event-input event-textarea"
                         placeholder="the event details"
                         required
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </label>
+                <h5 className="h5-event">* Required Fields</h5>
                 <button className="button event-btn" type="submit">PUBLISH EVENT</button>
 
             </form>

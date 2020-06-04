@@ -29,8 +29,15 @@ $border: 0.2rem;
             letter-spacing: 0.1rem;
         }
 
+        .h5-event {
+            width: 90%;
+            margin: 0 auto;
+            color: black;
+            align-self: flex-start;
+        }
+
         .field-event {
-            width: 25rem;
+            width: 90%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -45,10 +52,14 @@ $border: 0.2rem;
                 font-size: 1rem;
                 color: $dark-color;
             }
+            .event-textarea {
+                width: 100%;
+                height: auto;
+            }
         }
         .event-btn {
-            width: 15rem;
-            margin: 1rem 0;
+            width: 90%;
+            margin: 1rem 1rem;
         }
 
         .location-container {
@@ -79,5 +90,11 @@ $border: 0.2rem;
                 width: 14rem;
             }
         }
+    }
+}
+
+@media screen and (min-width: 725px){
+    .event-form {
+        max-width: 40%;
     }
 }
