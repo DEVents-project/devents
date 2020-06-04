@@ -82,13 +82,23 @@ const SignUp = () => {
                 </label>
 
                 <label className="signup-field">Email *
-                    <input
-                        className="signup-input"
-                        type="email"
-                        value={email}
-                        placeholder="your email"
-                        required
-                        onChange={(e) => setEmail(e.target.value)} />
+                {typeOfUser === 'developer' ?
+                        <input
+                            className="signup-input"
+                            type="email"
+                            value={email}
+                            placeholder="your email"
+                            required
+                            onChange={(e) => setEmail(e.target.value)} />
+                        :
+                        <input
+                            className="signup-input"
+                            type="email"
+                            value={email}
+                            placeholder="the organization email"
+                            required
+                            onChange={(e) => setEmail(e.target.value)} />
+                    }
                 </label>
                 {
                     typeOfUser === 'developer' ?
