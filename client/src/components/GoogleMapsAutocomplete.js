@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
-
+import 'react-google-places-autocomplete/dist/index.min.css';
 
 const GoogleMapsAutocomplete = ({ location, setLocation }) => {
 
@@ -8,9 +8,9 @@ const GoogleMapsAutocomplete = ({ location, setLocation }) => {
         geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
             .then(({ lat, lng }) =>
-                console.log('Successfully got latitude and longitude', { lat, lng })
+                setLocation({ lat, lng })
             );
-    }
+    };
 
     return (
         <div>
