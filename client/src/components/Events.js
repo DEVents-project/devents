@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Redirect } from 'react-router-dom';
 import '../style/Events.scss';
 import Select from 'react-select';
@@ -10,24 +10,45 @@ const Events = () => {
     const options = [
         { value: 'berlin', label: 'Berlin' },
         { value: 'hamburg', label: 'Hamburg' },
-        { value: 'cologne', label: 'Cologne' },
-        { value: 'bremen', label: 'Bremen' },
-        { value: 'frankfurt', label: 'Frankfurt' },
+        { value: 'munich', label: 'Munich' },
+        { value: 'frankfurt', label: 'Frankfurt' }
     ];
 
-    const events = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
-
-    const [isVisible, setIsVisible] = useState(3);
+    // number of events that will show after clicking on 'SEE MORE':
+    const [isVisible, setIsVisible] = useState(9);
     const [isEventClicked, setIsEventClicked] = useState(false);
+    const [events, setEvents] = useState('');
 
     const loadMore = () => {
-        setIsVisible(isVisible + 3);
+        setIsVisible(isVisible + 9);
     };
 
+    useEffect(() => {
+        const fetchEvents = async () => {
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            };
+
+            const response = await fetch('http://localhost:4000/workshops', options);
+            const data = await response.json();
+            console.log('ALL EVENTS - Response: ', data);
+            console.log('before fetching');
+            setEvents(data.events);
+        };
+
+        fetchEvents();
+    }, []);
+
+    console.log('EVENTS', events);
+
+    // by clicking on 'SEE MORE' it will be redirected to the event's info
     if (isEventClicked) {
         return <Redirect to='/event' />
     }
-    // TO DO: with UseState -> fetch from the cities that have events and useState with the cities instead of options at the top
 
     return (
         <div className="events-container space-navbar">
@@ -41,11 +62,13 @@ const Events = () => {
                 </div>
                 <div className="pool-event">
                     {
-                        events.slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} />)
+                        events &&
+                        events.slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} title={el.title} img={el.img} date={el.date} location={el.location} />)
                     }
                 </div>
                 {
-                    isVisible >= events.length ?
+                    events &&
+                        isVisible >= events.length ?
                         null :
                         <button className="button load-more" onClick={loadMore}>Load more</button>
                 }
