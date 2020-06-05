@@ -30,7 +30,7 @@ exports.postUser = async (req, res, next) => {
         const token = user.generateAuthToken()
         await user.save()
         const data = user.getPublicFields()
-        res.header("x-auth", token).json({ success: true, user: data, token: token })
+        res.header("x-auth", token).json({ success: true, user: data })
     } catch (err) {
         next(err)
     }
