@@ -33,7 +33,6 @@ $border: .2rem;
         }
         .h5-signup {
             width: 90%;
-            margin: 0 auto;
             margin: .3rem 2rem;
             color: black;
         }
@@ -67,6 +66,7 @@ $border: .2rem;
                 padding: 1ch;
                 margin: .3rem 0;
                 border-radius: $border;
+                border: none;
                 font-size: 1rem;
                 color: $dark-color;
             }
