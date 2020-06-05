@@ -8,7 +8,8 @@ const GoogleMapsAutocomplete = ({ setLocation }) => {
     return (
         <div>
             <GooglePlacesAutocomplete
-                onSelect={(e) => setLocation(e.description)}
+                inputClassName={'location-container event-input'}
+                onSelect={(e) => { console.log(e); setLocation(e.description) }}
                 placeholder={'the event\'s location'}
             />
         </div>
