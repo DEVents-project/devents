@@ -6,6 +6,10 @@ const logger = require("morgan");
 
 const indexRoute = require("./routes/indexRoute");
 const eventRoute = require("./routes/eventRoute");
+const userRoute = require("./routes/userRoute");
+const workshopRoute = require("./routes/workshopRoute")
+const conventionRoute = require("./routes/conventionRoute")
+const { cors } = require("./middleware/security")
 
 const port = process.env.PORT || 4000;
 
@@ -15,9 +19,13 @@ mongoose.connection.on("open", () => console.log("database connected"));
 
 server.use(express.json());
 server.use(logger("dev"));
+server.use(cors)
 
 server.use("/", indexRoute);
+server.use("/users", userRoute)
 server.use("/events", eventRoute);
+server.use("/workshops", workshopRoute)
+server.use("/conventions", conventionRoute)
 
 server.use((req, res, next) => {
     next(createError(404));
