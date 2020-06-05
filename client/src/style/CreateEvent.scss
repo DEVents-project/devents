@@ -20,21 +20,52 @@ $border: 0.2rem;
         justify-content: center;
         align-items: center;
         background-color: $light-color;
+        color: $font-color;
         box-shadow: -1.5rem 0.7rem $middle-color;
         border-radius: $border;
 
-        .h2 {
+        .h2-event {
             margin: 1rem 0;
             letter-spacing: 0.1rem;
-            color: $font-color;
+        }
+
+        .h5-event {
+            width: 90%;
+            margin: 0 auto;
+            color: black;
+            align-self: flex-start;
+        }
+        .inline {
+            width: 90%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: .3rem .3rem;
+            
+            
+            .inline-label {
+                width: 50%; 
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            
+                .inline-input { 
+                    height: 2rem;
+                    border: none;
+                    border-radius: $border;
+                    padding: 1ch;
+                    margin: .3rem .2rem;
+                }
+              
+            }
         }
 
         .field-event {
-            width: 25rem;
+            width: 90%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0.3rem 0.5rem;
+            padding: 0.3rem 0.3rem;
 
             .event-input {
                 width: 100%;
@@ -42,13 +73,18 @@ $border: 0.2rem;
                 padding: 1ch;
                 margin: 0.3rem 0;
                 border-radius: $border;
+                border: none;
                 font-size: 1rem;
                 color: $dark-color;
             }
+            .event-textarea {
+                width: 100%;
+                height: auto;
+            }
         }
-        .btn-add-event {
-            width: 15rem;
-            margin: 1rem 0;
+        .event-btn {
+            width: 90%;
+            margin: 1rem 1rem;
         }
 
         .location-container {
@@ -79,5 +115,11 @@ $border: 0.2rem;
                 width: 14rem;
             }
         }
+    }
+}
+
+@media screen and (min-width: 725px){
+    .event-form {
+        max-width: 40%;
     }
 }
