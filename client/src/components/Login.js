@@ -74,6 +74,7 @@ const Login = () => {
                         required />
                 </label>
                 <button className="button login-btn" type="submit">LOG IN</button>
+                {!statusLogin ? <p>Email or password incorrect</p> : null}
             </form>
 
 
