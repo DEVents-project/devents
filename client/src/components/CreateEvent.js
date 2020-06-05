@@ -11,7 +11,7 @@ const CreateEvent = (props) => {
     const [hostBy, setHostBy] = useState(null);
     const [date, setDate] = useState(null);
     const [time, setTime] = useState(null);
-    const [location, setLocation] = useState('Pepe');
+    const [location, setLocation] = useState('');
     const [description, setDescription] = useState(null);
     const [link, setLink] = useState(null);
 
@@ -20,6 +20,7 @@ const CreateEvent = (props) => {
     const handleCreateEvent = async (e) => {
         e.preventDefault()
 
+        // IMPORTANT: location is going to be an object: {lat: Number, lng: Number}
         const eventInfo = {
             title,
             hostBy,
@@ -37,7 +38,6 @@ const CreateEvent = (props) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(eventInfo)
-
         }
 
         const resp = await fetch("/addevent", eventData);
@@ -61,6 +61,7 @@ const CreateEvent = (props) => {
         }
     }, []);
 
+    // console.log('The current location is: ', location);
 
     return (
         <div className="create-event-container">
