@@ -10,6 +10,14 @@ const NavBarSignedIn = () => {
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
 
+    const [titleIndex, setTitleIndex] = useState(0);
+    const title = [
+        "Devents",
+        "Events",
+        "for",
+        "developers"
+    ];
+
     useEffect(() => {
         const mediaQuery = window.matchMedia('(max-width: 670px)');
         mediaQuery.addListener(handleMediaQueryChange);
@@ -36,10 +44,10 @@ const NavBarSignedIn = () => {
         <div>
             <header>
                 <NavLink to="/" onClick={() => setIsNavVisible(false)}>
-                    <h1 id="logo">DEV
+                    <h1 id="logo">
                         <TextTransition
                             direction={'down'}
-                            text={'ents'}
+                            text={title[titleIndex % title.length]}
                             springConfig={presets.molasses}
                         />
                     </h1>
