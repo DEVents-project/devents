@@ -3,30 +3,31 @@ import { Redirect } from 'react-router-dom';
 import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
 import Map from './Map';
+import { UploadFile } from './UploadFile';
 
 const CreateEvent = (props) => {
-    // img missing and hour ? 
-    const [name, setName] = useState(null);
+    // The followings are NOT base on the schema - Schema needs to be modified! 
+    const [title, setTitle] = useState(null);
     const [hostBy, setHostBy] = useState(null);
-    const [city, setCity] = useState(null);
-    const [address, setAddress] = useState(null);
     const [date, setDate] = useState(null);
+    const [time, setTime] = useState(null);
+    const [location, setLocation] = useState(null);
     const [description, setDescription] = useState(null);
     const [link, setLink] = useState(null);
 
-    const [statusAdded, setStatusAdded] = useState(null)
+    const [statusAdded, setStatusAdded] = useState(false)
 
     const handleCreateEvent = async (e) => {
         e.preventDefault()
 
         const eventInfo = {
-            name,
+            title,
             hostBy,
             date,
-            city,
-            address,
-            description,
-            link
+            time,
+            location,
+            link,
+            description
         }
 
         const eventData = {
@@ -38,9 +39,8 @@ const CreateEvent = (props) => {
             body: JSON.stringify(eventInfo)
 
         }
-        // double check the route - addevent?
 
-        const resp = await fetch("http://localhost:3000/addevent", eventData);
+        const resp = await fetch("/addevent", eventData);
         const data = await resp.json();
         console.log("res:", data);
         if (data.success) {
@@ -52,20 +52,19 @@ const CreateEvent = (props) => {
     return (
         <div className="create-event-container">
             <ParticlesBg color="#8d8d8d" num={55} type="cobweb" bg={true} />
+            {statusAdded ? <Redirect to="/events" /> : null}
 
             <form className="event-form space-navbar" onSubmit={handleCreateEvent}>
-                {statusAdded ? <Redirect to="/events" /> : null}
-                <h2 className="h2">CREATE EVENT</h2>
-                <label className="field-event">Title
+
+                <h2 className="h2-event">CREATE EVENT</h2>
+                <label className="field-event">Title *
                     <input
                         className="event-input"
                         type="text"
-                        value={name}
-                        id="name"
+                        value={title}
                         placeholder="the event title"
                         required
-                        onChange={(e) => setName(e.target.value)}
-
+                        onChange={(e) => setTitle(e.target.value)}
                     />
                 </label>
                 <label className="field-event">Host by
@@ -73,67 +72,59 @@ const CreateEvent = (props) => {
                         className="event-input"
                         type="text"
                         value={hostBy}
-                        id="hostBy"
                         placeholder="the host name"
-                        required
                         onChange={(e) => setHostBy(e.target.value)}
                     />
-
                 </label>
-                <label className="field-event">Date
-                    <input
-                        className="event-input"
-                        type="date"
-                        value={date}
-                        id="date"
-                        placeholder="the event date"
-                        required
-                        onChange={(e) => setDate(e.target.value)}
-                    />
-
-                </label>
-                <label className="field-event location-container"><span>Location</span>
+                <div className="inline">
+                    <label className="inline-label">Date *
+                        <input
+                            className="inline-input"
+                            type="date"
+                            value={date}
+                            required
+                            onChange={(e) => setDate(e.target.value)}
+                        />
+                    </label>
+                    <label className="inline-label space-left">Time *
+                        <input
+                            className="inline-input space-right"
+                            type="time"
+                            value={time}
+                            required
+                            onChange={(e) => setTime(e.target.value)}
+                        />
+                    </label>
+                </div>
+                <label className="field-event location-container"><span>Location *</span>
                     <Map google={props.google}
                         center={{ lat: 52.5200, lng: 13.4050 }}
                         height='300px'
                         zoom={15}
                     />
-
                 </label>
-                <label className="field-event">City
-                    <input
-                        className="event-input"
-                        type="text"
-                        value={city}
-                        id="city"
-                        placeholder="in which city"
-                        required
-                        onChange={(e) => setCity(e.target.value)}
-                    />
-
+                <label className="field-event">Image *
+                    {/* <UploadFile /> */}
                 </label>
                 <label className="field-event">Website
                     <input
-                        className="event-input"
+                        className="the event-input"
                         type="url"
                         value={link}
-                        id="link"
-                        placeholder="event website "
-                        required
+                        placeholder="event website"
                         onChange={(e) => setLink(e.target.value)}
-
                     />
                 </label>
                 <label className="field-event">Description
-                    <textarea row="20" cols="40"
-                        className="event-input"
-                        id="description"
+                    <textarea cols="40" rows="20"
+                        className="event-input event-textarea"
                         placeholder="the event details"
                         required
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </label>
-                <button className="button btn-add-event" type="submit">PUBLISH EVENT</button>
+                <h5 className="h5-event">* Required Fields</h5>
+                <button className="button event-btn" type="submit">PUBLISH EVENT</button>
 
             </form>
 
