@@ -4,7 +4,7 @@ const { validateInputs } = require("../middleware/validator");
 
 Route.get("/", getEvents);
 Route.get("/:id", getEvent);
-Route.post("/", validateInputs(), postEvent);
+Route.post("/", postEvent);
 Route.put("/:id", putEvent);
 Route.delete("/:id", deleteEvent);
 
