@@ -13,10 +13,12 @@ $border: .2rem;
     margin: 2.5rem 0;
     display: flex;
     justify-content: center;
+
            
     .login-form {
         width: 80%;
         height: 100%;
+        padding: 2rem 1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -27,13 +29,13 @@ $border: .2rem;
         // transform: skewX(-2deg);
         
         .h2 {
-            margin: 1rem 0;
+            padding: 1rem 0;
             letter-spacing: .1rem;
             color: $font-color;
         }
         
         .login-field {
-            width: 14rem;
+            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -44,29 +46,38 @@ $border: .2rem;
             .log-icons {
                 font-size: 1.8rem;
                 color: $dark-color;
+            
             }
             
-            input { 
+            .login-input { 
                 height: 2.5rem;
-                width: 100%;
+                width: 80%;
                 padding: 1ch;
-                margin-left: .5rem ;
+                margin-left: 1rem ;
                 border: none;
                 border-radius: $border;
-                font-size: 1.1rem;
+                font-size: 1.1rem;      
                 color: $dark-color;
             }
         }
 
         .login-btn {
-            height: 2.5rem;
-            width: 14rem;
+            height: 2.6rem;
+            width: 80%;
             margin: 2rem 0;
             font-size: 1.1rem;
             letter-spacing: .1rem;  
         }
     }
 }
+
+@media screen and(min-width: 650px){
+    .login-form {
+        max-width: 40%;
+        max-height: 70%;
+    }
+}
+
 
 .devCoding {
     display: block;
@@ -78,6 +89,7 @@ $border: .2rem;
     right: 3rem ;
 
 }
+
 
 
 
