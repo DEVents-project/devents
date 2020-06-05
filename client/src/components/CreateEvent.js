@@ -109,7 +109,7 @@ const CreateEvent = (props) => {
                         />
                     </label>
                 </div>
-                <label className="field-event location-container"><span>Location *</span>
+                <label className="field-event"><span>Location *</span>
                     <GoogleMapsAutocomplete setLocation={setLocation} location={location} />
                 </label>
                 <label className="field-event">Image *
