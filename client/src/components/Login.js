@@ -38,6 +38,8 @@ const Login = () => {
 
         if (data.success) {
             setStatusLogin(true)
+        } else {
+            setStatusLogin(false)
         }
     }
 
@@ -73,6 +75,7 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required />
                 </label>
+                {!statusLogin ? null : <p>Email or password incorrect</p>}
                 <button className="button login-btn" type="submit">LOG IN</button>
             </form>
 
