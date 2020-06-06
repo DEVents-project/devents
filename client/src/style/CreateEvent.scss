@@ -43,9 +43,9 @@ $border: 0.2rem;
             justify-content: center;
             padding: 0.3rem;
 
-            // .space-top {
-            //     margin-top: 0.3rem;
-            // }
+            .space-top {
+                margin-top: 0.3rem;
+            }
             .event-input,
             textarea {
                 width: 100%;
@@ -76,6 +76,12 @@ $border: 0.2rem;
 @media screen and (min-width: 550px) {
     .create-event-container {
         .event-form {
+            .event-label {
+                .space-top {
+                    margin-top: 0;
+                }
+            }
+
             .inline {
                 width: 90%;
                 display: flex;
@@ -85,7 +91,7 @@ $border: 0.2rem;
 
                 .inline-label {
                     width: 48%;
-                    // margin: 0 0.2rem;
+            
                 }
             }
         }
