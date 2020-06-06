@@ -9,10 +9,15 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
     "node-sass": "^4.14.1",
     "particles-bg": "^2.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-geocode": "^0.2.1",
+    "react-google-autocomplete": "^1.2.6",
+    "react-google-maps": "^9.4.5",
+    "react-google-places-autocomplete": "^2.0.6",
     "react-responsive-carousel": "^3.2.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
@@ -35,6 +40,7 @@
       "not dead",
       "not op_mini all"
     ],
+    "proxy": "http://localhost:4000",
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

@@ -1,9 +1,9 @@
-// variables 
-$light-color:#840404;
-$middle-color:#650404;
-$dark-color:#460505;
+// variables
+$light-color: #840404;
+$middle-color: #650404;
+$dark-color: #460505;
 $font-color: #ffffff;
-$border: .2rem;
+$border: 0.2rem;
 
 .create-event-container {
     width: 100%;
@@ -20,27 +20,28 @@ $border: .2rem;
         justify-content: center;
         align-items: center;
         background-color: $light-color;
-        box-shadow: -1.5rem .7rem $middle-color;
+        box-shadow: -1.5rem 0.7rem $middle-color;
         border-radius: $border;
+        padding: 2rem 0;
 
         .h2 {
             margin: 1rem 0;
-            letter-spacing: .1rem;
+            letter-spacing: 0.1rem;
             color: $font-color;
         }
 
         .field-event {
-            width: 15rem;
+            width: 25rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: .3rem .5rem;
+            padding: 0.3rem 0.5rem;
 
             .event-input {
                 width: 100%;
                 height: 2rem;
                 padding: 1ch;
-                margin: .3rem 0;
+                margin: 0.3rem 0;
                 border-radius: $border;
                 font-size: 1rem;
                 color: $dark-color;
@@ -49,6 +50,39 @@ $border: .2rem;
         .btn-add-event {
             width: 15rem;
             margin: 1rem 0;
+        }
+
+        .location-container {
+            width: 27.5rem;
+            padding-left: 2rem;
+            margin: 0.5rem 0;
+
+            span {
+                padding: 0.2rem 0;
+            }
+        }
+
+        .h5-event {
+            margin: 1rem 0;
+        }
+    }
+}
+
+.form-control {
+    width: 100%;
+    opacity: 0;
+}
+
+@media screen and (max-width: 550px) {
+    .create-event-container {
+        .event-form {
+            .field-event {
+                width: 15rem;
+            }
+            .location-container {
+                padding-left: 1.5rem;
+                width: 17rem;
+            }
         }
     }
 }
