@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
-import Map from './Map';
 import { UploadFile } from './UploadFile';
+import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 
 const CreateEvent = (props) => {
     // The followings are NOT base on the schema - Schema needs to be modified! 
@@ -11,7 +11,7 @@ const CreateEvent = (props) => {
     const [hostBy, setHostBy] = useState(null);
     const [date, setDate] = useState(null);
     const [time, setTime] = useState(null);
-    const [location, setLocation] = useState(null);
+    const [location, setLocation] = useState('Pepe');
     const [description, setDescription] = useState(null);
     const [link, setLink] = useState(null);
 
@@ -47,6 +47,19 @@ const CreateEvent = (props) => {
             setStatusAdded(true)
         }
     }
+
+    useEffect(() => {
+        const script = document.createElement('script');
+
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
+        script.async = true;
+
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        }
+    }, []);
 
 
     return (
@@ -97,27 +110,23 @@ const CreateEvent = (props) => {
                     </label>
                 </div>
                 <label className="field-event location-container"><span>Location *</span>
-                    <Map google={props.google}
-                        center={{ lat: 52.5200, lng: 13.4050 }}
-                        height='300px'
-                        zoom={15}
-                    />
+                    <GoogleMapsAutocomplete setLocation={setLocation} location={location} />
                 </label>
                 <label className="field-event">Image *
                     {/* <UploadFile /> */}
                 </label>
                 <label className="field-event">Website
                     <input
-                        className="the event-input"
+                        className="event-input"
                         type="url"
                         value={link}
-                        placeholder="event website"
+                        placeholder="the event website"
                         onChange={(e) => setLink(e.target.value)}
                     />
                 </label>
-                <label className="field-event">Description
+                <label className="field-event">Description *
                     <textarea cols="40" rows="20"
-                        className="event-input event-textarea"
+                        className="event-textarea"
                         placeholder="the event details"
                         required
                         onChange={(e) => setDescription(e.target.value)}
