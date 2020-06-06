@@ -73,18 +73,25 @@ $border: 0.2rem;
     opacity: 0;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (min-width: 550px) {
     .create-event-container {
         .event-form {
+            .event-label {
+                .space-top {
+                    margin-top: 0;
+                }
+            }
+
             .inline {
+                width: 90%;
                 display: flex;
                 flex-direction: row;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
 
                 .inline-label {
-                    width: 50%;
-                    margin: 0 0.2rem;
+                    width: 48%;
+            
                 }
             }
         }
@@ -93,6 +100,6 @@ $border: 0.2rem;
 
 @media screen and (min-width: 725px) {
     .event-form {
-        max-width: 40%;
+        max-width: 60%;
     }
 }
