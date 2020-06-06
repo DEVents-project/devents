@@ -6,7 +6,7 @@ import 'react-google-places-autocomplete/dist/index.min.css';
 const GoogleMapsAutocomplete = ({ setLocation }) => {
 
     return (
-        <div className="event-input">
+        <div>
             <GooglePlacesAutocomplete
                 onSelect={(e) => setLocation(e.description)}
                 placeholder={'the event\'s location'}
