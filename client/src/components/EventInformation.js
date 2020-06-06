@@ -15,12 +15,12 @@ const EventInformation = (props) => {
                 <div className="event-information-box">
                     <p className="event-information-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio cumque nesciunt totam nostrum dolores animi. Ullam vero accusantium temporibus hic! Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, temporibus.</p>
                     <p className="event-information-location">Location</p>
-                    <Map
+                    {/* <Map
                         google={props.google}
                         center={{ lat: 52.5200, lng: 13.4050 }}
                         height='300px'
                         zoom={8}
-                    />
+                    /> */}
                 </div>
             </div>
         </div>
