@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Redirect } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import Context from './Context';
+import { BrowserRouter, useHistory } from 'react-router-dom';
 import '../style/Events.scss';
 import Select from 'react-select';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 
 const Events = () => {
+    const history = useHistory();
+
+    const { eventInfo, setEventInfo } = useContext(Context);
 
     const options = [
         { value: 'berlin', label: 'Berlin' },
@@ -43,9 +47,9 @@ const Events = () => {
     }, []);
 
     // by clicking on 'SEE MORE' it will be redirected to the event's info
-    if (isEventClicked) {
-        return <Redirect to='/event' />
-    }
+    useEffect(() => {
+        isEventClicked && history.push('/event');
+    });
 
     return (
         <div className="events-container space-navbar">
@@ -60,7 +64,7 @@ const Events = () => {
                 <div className="pool-event">
                     {
                         events &&
-                        events.slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} title={el.title} img={el.img} date={el.date} location={el.location} />)
+                        events.slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} description={el.description} />)
                     }
                 </div>
                 {
