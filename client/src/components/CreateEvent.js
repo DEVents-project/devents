@@ -70,7 +70,7 @@ const CreateEvent = (props) => {
             <form className="event-form space-navbar" onSubmit={handleCreateEvent}>
 
                 <h2 className="h2-event">CREATE EVENT</h2>
-                <label className="field-event">Title *
+                <label className="event-label">Title *
                     <input
                         className="event-input"
                         type="text"
@@ -80,7 +80,7 @@ const CreateEvent = (props) => {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </label>
-                <label className="field-event">Host by
+                <label className="event-label">Host by
                     <input
                         className="event-input"
                         type="text"
@@ -89,19 +89,19 @@ const CreateEvent = (props) => {
                         onChange={(e) => setHostBy(e.target.value)}
                     />
                 </label>
-                <div className="inline">
+                <div className="event-label inline">
                     <label className="inline-label">Date *
                         <input
-                            className="inline-input"
+                            className="event-input"
                             type="date"
                             value={date}
                             required
                             onChange={(e) => setDate(e.target.value)}
                         />
                     </label>
-                    <label className="inline-label space-left">Time *
+                    <label className="space-top inline-label">Time *
                         <input
-                            className="inline-input space-right"
+                            className="event-input"
                             type="time"
                             value={time}
                             required
@@ -109,13 +109,13 @@ const CreateEvent = (props) => {
                         />
                     </label>
                 </div>
-                <label className="field-event location-container"><span>Location *</span>
+                <label className="event-label">Location *
                     <GoogleMapsAutocomplete setLocation={setLocation} location={location} />
                 </label>
-                <label className="field-event">Image *
+                <label className="event-label">Image *
                     {/* <UploadFile /> */}
                 </label>
-                <label className="field-event">Website
+                <label className="event-label">Website
                     <input
                         className="event-input"
                         type="url"
@@ -124,7 +124,7 @@ const CreateEvent = (props) => {
                         onChange={(e) => setLink(e.target.value)}
                     />
                 </label>
-                <label className="field-event">Description *
+                <label className="event-label">Description *
                     <textarea cols="40" rows="20"
                         className="event-textarea"
                         placeholder="the event details"
