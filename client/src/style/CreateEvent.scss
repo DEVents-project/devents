@@ -43,9 +43,15 @@ $border: 0.2rem;
             justify-content: center;
             padding: 0.3rem;
 
+<<<<<<< HEAD
             .space-top {
                 margin-top: 0.3rem;
             }
+=======
+            // .space-top {
+            //     margin-top: 0.3rem;
+            // }
+>>>>>>> CreateEvent
             .event-input,
             textarea {
                 width: 100%;
@@ -73,18 +79,24 @@ $border: 0.2rem;
     opacity: 0;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (min-width: 550px) {
     .create-event-container {
         .event-form {
             .inline {
+                width: 90%;
                 display: flex;
                 flex-direction: row;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
 
                 .inline-label {
+<<<<<<< HEAD
                     width: 50%;
                     margin: 0 0.2rem;
+=======
+                    width: 48%;
+                    // margin: 0 0.2rem;
+>>>>>>> CreateEvent
                 }
             }
         }
@@ -93,6 +105,6 @@ $border: 0.2rem;
 
 @media screen and (min-width: 725px) {
     .event-form {
-        max-width: 40%;
+        max-width: 60%;
     }
 }
