@@ -1,8 +1,10 @@
 import React from 'react';
 import '../style/EventInformation.scss';
 import ParticlesBg from 'particles-bg';
+import Map from './Map';
 
-const EventInformation = () => {
+const EventInformation = (props) => {
+
     return (
         <div className="space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
@@ -13,6 +15,12 @@ const EventInformation = () => {
                 <div className="event-information-box">
                     <p className="event-information-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio cumque nesciunt totam nostrum dolores animi. Ullam vero accusantium temporibus hic! Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, temporibus.</p>
                     <p className="event-information-location">Location</p>
+                    <Map
+                        google={props.google}
+                        center={{ lat: 52.5200, lng: 13.4050 }}
+                        height='300px'
+                        zoom={8}
+                    />
                 </div>
             </div>
         </div>
