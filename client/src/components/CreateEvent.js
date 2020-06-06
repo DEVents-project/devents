@@ -11,9 +11,12 @@ const CreateEvent = (props) => {
     const [hostBy, setHostBy] = useState(null);
     const [date, setDate] = useState(null);
     const [time, setTime] = useState(null);
-    const [location, setLocation] = useState('');
     const [description, setDescription] = useState(null);
     const [link, setLink] = useState(null);
+    // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
+    const [location, setLocation] = useState('');
+    // this will be the complete address of the event as a STRING
+    const [address, setAddress] = useState('');
 
     const [statusAdded, setStatusAdded] = useState(false)
 
@@ -110,9 +113,15 @@ const CreateEvent = (props) => {
                         />
                     </label>
                 </div>
+<<<<<<< HEAD
                 {/* <label className="event-label">Location *
                     <GoogleMapsAutocomplete setLocation={setLocation} location={location} />
                 </label> */}
+=======
+                <label className="event-label">Location *
+                    <GoogleMapsAutocomplete setLocation={setLocation} setAddress={setAddress} />
+                </label>
+>>>>>>> d41396af322a2c12d99c5a550c26dec6a7b00464
                 <label className="event-label">Image *
                     {/* <UploadFile /> */}
                 </label>
