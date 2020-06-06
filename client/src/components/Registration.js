@@ -2,9 +2,7 @@ import React from 'react'
 // import { withRouter } from 'react-router-dom'
 import ParticlesBg from 'particles-bg';
 import '../style/Registration.scss'
-import register from  '../assets/img/register.svg'
-import createEvent from '../assets/img/createEvent.svg'
-import publish from '../assets/img/publish.svg'
+
 
 
 const Registration = () => {
@@ -20,32 +18,24 @@ const Registration = () => {
              {/* square 1 */}
 
                 <div className="squares square-1 box">
-                   
-                    <img src={register} alt="register-img" className="img"/>
-
-                   <h1 className="one">1</h1>
+                   <h1 className="one numbers">1</h1>
                    
                    <aside className="aside"> 
                        <h2>Sign up</h2>
-                       <p>Registrer your data so you can provide the users some information about your events</p>
-                   
+                       <p>Create a personal account so you can provide the users some information about your events</p>
                    </aside>
-                    
-                   
                 </div>
-                  
-                
                    
 
               {/* square 2 */}
                  
-                <div className="square square-2">
-                    <img src={createEvent} alt="create Event"/>
+                <div className="squares square-2">
+
                 <h1 className="two numbers">2</h1>
                   
                    <aside className="aside"> 
                        <h2>Add an event</h2>
-                       <p>Add an event of any your preferences</p>
+                       <p>Create an event of your preferences</p>
                    
                    </aside>
                 </div>
@@ -53,7 +43,7 @@ const Registration = () => {
                   {/* square 3 */}
 
                 <div className="square square-3 box">
-                    <img src={publish} alt="publish"/>
+                   
                 <h1 className="three numbers">3</h1>
                    <aside className="aside"> 
                        <h2>Publish it</h2>
@@ -79,3 +69,10 @@ const Registration = () => {
 }
 
 export default Registration
+
+                   
+                    
+                   
+                  
+                
+                   

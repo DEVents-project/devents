@@ -5,89 +5,124 @@ $middle-color:#650404;
 $dark-color:#460505;
 $font-color: #ffffff;
 
+
+.question {
+    text-align: center;
+    background-color:#ff0d0d70;
+    padding: 0.2em;
+    
+}
+
 // containers
 
 
 .container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     margin-top: 50px;
+    
+    
+
   
     
     .squares {
-    
-        width: 25vw;
-        height: 50vh;
+        
+        width: 25v;
+        height: 45vh;
         
     }
     .one{
-        font-size: 10em;
-      
-        position: relative;
-        bottom: 1.5em;
 
+        font-size: 10em;
+        position: relative;
+        bottom: 3.5rem;
        
     }
     .two {
+
         font-size: 10em;
-      
         position: relative;
-        bottom: 1.5em;
+        bottom: 3.5rem;
+        margin-left: 1rem;
+      
     }
 
     .three {
+
         font-size: 10em;
-      
         position: relative;
-        bottom: 1.5em;
+        bottom: 3.5rem;
+        margin-left: 1rem;
+      
     }
     .square-1{
         border-right: 8px solid rgba(0, 0, 0, 0.52);
-     
-        width: 30%;
+        background-image:url(../assets/img/register.svg);
+        background-size: cover;
+        background-size: 15em;
+        background-repeat: no-repeat;;
+        background-position: bottom;
+        background-position-x: 8em;
+  
+        
+        width: 33%;
+        
     }
     .square-2{
         border-right: 8px solid rgba(0, 0, 0, 0.52);
-        width: 30%;
+        background-image:url(../assets/img/createEvent.svg);
+        background-position: center;
+        background-size: cover;
+        background-size: 14em;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-position-x: 8em;
+        width: 33%;
+        
         
     }
     .square-3{
-    
-        width: 30%;
+        background-image: url(../assets/img/publish.svg);
+        background-position: center;
+        background-size: cover;
+        background-size: 15em;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-position-x: 9em;
+        width: 33%;
+        
     }
-    img {
-        width: 80%;
-       margin-left: 8em;
-        margin-top: 6em;
-        opacity: 0.7;
-
-
-    }
-
 }
+        
+
+        
+        
+   
 
 
 aside {
     width: 50%;
     float: right;           
-    position: relative;
-    // bottom: 15em;
-    right: 2em;;
+    right: 2em;
+    bottom: 2.4rem;
     z-index: 999;
-  
+    
+
   }
   .aside {
-     margin-top: -23em;
-     background-color:rgba(0, 0, 0, 0.575);
+     margin-top: -8em;
+    
      padding: 1em;
      border-radius: 10px;
      width: 15em;
-     margin-right: 3em;
-     color: white;
+     margin-right: 1em;
+     color: rgb(0, 0, 0);
+     position: relative;
+
   }
   p{
       margin-top: 1em;
-     opacity: 0.7;
+     
   }
       
   .box{
@@ -95,24 +130,6 @@ aside {
     display: inline-block;
   }
    
-
-.step-container {
-    display: flex;
-    justify-content: space-around;
-    position: relative;
-    
-    .step{
-        position: absolute;
-        padding: 0.5em;
-       bottom: -25px;
-       color: rgb(0, 0, 255);
-       display:inline;
-       border-bottom: black dotted 5px;
-    
-       
-    
-    }
-}
 
 .buttons-container{
     display: flex;
@@ -132,16 +149,42 @@ aside {
 
   
 }
-.question {
-    text-align: center;
-    background-color: rgba(41, 94, 241, 0.164);
-    padding: 0.7em;
-    
-}
 
 
-// fonts
+// mediaquery 
+// @media screen and (min-width: 360px) {
+   
+//     .container{
+//        flex-direction: column;
+//        align-items: center;
+//        align-content: center;
+//        justify-content: center;
+//        flex-wrap: wrap;
+       
+
+//    }
+   
+//    .container{
+
+//        .squares {
+//            border-right: none;
+//         }
+        
+//         .numbers {
+//             color: blue;
+//             font-size: 4em;
+//         } 
+        
+//         aside {
+            
+            
+//         }
+            
+           
+//    }
+  
+//   }
 
 
 
-// buttons
+//
