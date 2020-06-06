@@ -1,13 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import Context from './Context';
 import { Redirect } from 'react-router-dom';
 import '../style/Account.scss';
 import ProfileImage from '../assets/img/profile-random.jpg';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 
-const Account = () => {
-    const events = ['one', 'two', 'three'];
+const Account = (props) => {
+    const { userData, setUserData } = useContext(Context);
+    const { eventInfo, setEventInfo } = useContext(Context);
+
     const [isEventClicked, setIsEventClicked] = useState(false);
+
+    // this is where the events created by the user will be fetched:
+
+    // useEffect(() => {
+    //     const fetchUserInformation = async () => {
+    //         const options = {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Accept': 'application/json'
+    //             }
+    //         };
+
+    //         const response = await fetch('http://localhost:4000/users', options);
+    //         const data = await response.json();
+    //         console.log('ACCOUNTs - Response: ', data);
+    //         setEvents(data.events);
+    //     };
+
+    //     fetchUserInformation();
+    // }, []);
 
     if (isEventClicked) {
         return <Redirect to='/event' />
@@ -22,23 +46,22 @@ const Account = () => {
                     <img className="profile-image" src={ProfileImage} alt="" />
                 </div>
                 <div className="personal-info">
-                    <h4>Peter Mustermann</h4>
-                    <p>Muster GmbH</p>
-                    <p>mustermann@peter.com</p>
-                    <p>Muster Str. 123, 12345 Berlin</p>
+                    <h4>{userData.name}</h4>
+                    <p>{userData.email}</p>
+                    <p>{userData.password}</p>
                 </div>
                 <button className="button">Edit information</button>
             </div>
             <div className="personal-events">
                 <h4>My events</h4>
-                {/* <div className="events-container">
+                <div className="events-container">
                     {
-                        events.length ?
-                            events.map(el => <EventCard setIsEventClicked={setIsEventClicked} />)
+                        userData.events.length ?
+                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} description={el.description} />)
                             :
                             <p className="no-events">You didn't create any event yet</p>
                     }
-                </div> */}
+                </div>
             </div>
         </div>
     );
