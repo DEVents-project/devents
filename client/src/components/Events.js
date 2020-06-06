@@ -36,14 +36,11 @@ const Events = () => {
             const response = await fetch('http://localhost:4000/workshops', options);
             const data = await response.json();
             console.log('ALL EVENTS - Response: ', data);
-            console.log('before fetching');
             setEvents(data.events);
         };
 
         fetchEvents();
     }, []);
-
-    console.log('EVENTS', events);
 
     // by clicking on 'SEE MORE' it will be redirected to the event's info
     if (isEventClicked) {
