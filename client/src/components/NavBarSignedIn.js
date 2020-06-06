@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import Context from './Context';
 import { NavLink } from 'react-router-dom';
 import '../style/NavBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,9 +8,12 @@ import TextTransition, { presets } from "react-text-transition";
 
 
 const NavBarSignedIn = () => {
+    const { setLoggedIn } = useContext(Context);
+
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
 
+    // this is the LOGO:
     const [titleIndex, setTitleIndex] = useState(0);
     const title = [
         "Devents",
@@ -36,8 +40,9 @@ const NavBarSignedIn = () => {
         }
     };
 
-    const toggleNav = () => {
-        setIsNavVisible(!isNavVisible);
+    const closeSession = () => {
+        localStorage.clear();
+        setLoggedIn(false);
     };
 
     return (
@@ -52,7 +57,7 @@ const NavBarSignedIn = () => {
                         />
                     </h1>
                 </NavLink>
-                <FontAwesomeIcon className="menu-bars" icon={faBars} onClick={toggleNav} />
+                <FontAwesomeIcon className="menu-bars" icon={faBars} onClick={() => setIsNavVisible(!isNavVisible)} />
                 <nav style={{ left: isNavVisible || !isSmallScreen ? '0' : '100%' }}>
                     <ul className="nav-group">
                         <li><NavLink to="/events" onClick={() => setIsNavVisible(false)} activeClassName="selected-section" className="underline">Find events</NavLink></li>
@@ -60,7 +65,7 @@ const NavBarSignedIn = () => {
                     </ul>
                     <ul className="nav-group">
                         <li><NavLink to="/account" onClick={() => setIsNavVisible(false)} activeClassName="selected-section" className="underline">ACCOUNT</NavLink></li>
-                        <li><NavLink to="/" onClick={() => setIsNavVisible(false)} className="underline">SIGN OUT</NavLink></li>
+                        <li><NavLink to="/" onClick={() => { closeSession(); setIsNavVisible(false) }} className="underline">SIGN OUT</NavLink></li>
                     </ul>
                 </nav>
             </header>
