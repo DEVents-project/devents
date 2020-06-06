@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import 'react-google-places-autocomplete/dist/index.min.css';
 
-const GoogleMapsAutocomplete = ({ location, setLocation }) => {
+const GoogleMapsAutocomplete = ({ setLocation, setAddress }) => {
 
     const getLocation = (address) => {
         geocodeByAddress(address)
@@ -16,7 +16,7 @@ const GoogleMapsAutocomplete = ({ location, setLocation }) => {
         <div>
             <GooglePlacesAutocomplete
                 inputClassName={'location-container event-input'}
-                onSelect={(input) => { console.log(input); getLocation(input.description); setLocation(input.description) }}
+                onSelect={(input) => { console.log(input); getLocation(input.description); setAddress(input.description) }}
                 placeholder={'the event\'s location'}
             />
         </div>
