@@ -9,7 +9,7 @@ const env = require("../config/config")
 const UserSchema = new Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    // city: { type: String, required: true },
+    city: { type: String, required: true },
     email: { type: String, required: true },
     role: { type: String, default: "User", required: true },
     tokens: [
@@ -21,7 +21,7 @@ const UserSchema = new Schema({
         }
     ],
     password: { type: String, required: true },
-    company: { type: String, required: false },
+    organizationName: { type: String, required: false },
     website: { type: String, required: false },
 
 })
@@ -40,6 +40,8 @@ UserSchema.methods.getPublicFields = function () {
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
+        password: this.password,
+        img: this.img,
         _id: this._id
     }
     return returnObject

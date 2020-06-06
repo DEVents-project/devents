@@ -2,15 +2,6 @@ const { body, validationResult } = require("express-validator");
 
 exports.validateInputs = () => {
     return [
-        body("email")
-            .isEmail()
-            .normalizeEmail()
-            .withMessage("invalid email"),
-
-        body("password")
-            .isLength({ min: 5 })
-            .withMessage("password is too short"),
-
         body("name")
             .exists()
             .isLength({ min: 4 })
