@@ -1,14 +1,22 @@
-import React from 'react';
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-// If you want to use the provided css
+import React, { useEffect } from 'react';
+import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import 'react-google-places-autocomplete/dist/index.min.css';
 
-const GoogleMapsAutocomplete = ({ setLocation }) => {
+const GoogleMapsAutocomplete = ({ location, setLocation }) => {
+
+    const getLocation = (address) => {
+        geocodeByAddress(address)
+            .then(results => getLatLng(results[0]))
+            .then(({ lat, lng }) =>
+                setLocation({ lat, lng })
+            );
+    };
 
     return (
         <div>
             <GooglePlacesAutocomplete
-                onSelect={(e) => setLocation(e.description)}
+                inputClassName={'location-container event-input'}
+                onSelect={(input) => { console.log(input); getLocation(input.description); setLocation(input.description) }}
                 placeholder={'the event\'s location'}
             />
         </div>
