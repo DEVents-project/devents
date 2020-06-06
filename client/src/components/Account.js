@@ -31,14 +31,14 @@ const Account = () => {
             </div>
             <div className="personal-events">
                 <h4>My events</h4>
-                <div className="events-container">
+                {/* <div className="events-container">
                     {
                         events.length ?
                             events.map(el => <EventCard setIsEventClicked={setIsEventClicked} />)
                             :
                             <p className="no-events">You didn't create any event yet</p>
                     }
-                </div>
+                </div> */}
             </div>
         </div>
     );
