@@ -71,7 +71,7 @@ const CreateEvent = (props) => {
     // console.log('The current location is: ', location);
 
     useEffect(() => {
-        statusAdded && history.push('/event');
+        statusAdded && history.push('/events');
     })
 
     return (
