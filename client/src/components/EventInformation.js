@@ -6,7 +6,9 @@ import Map from './Map';
 
 const EventInformation = (props) => {
     const { eventInfo, setEventInfo } = useContext(Context);
-    console.log(eventInfo.img)
+
+    console.log('eventInfo: ', eventInfo)
+
     return (
         <div className="space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
@@ -21,11 +23,14 @@ const EventInformation = (props) => {
                 }
                 <div className="event-information-box">
                     <p className="event-information-description">{eventInfo.description}</p>
-                    <p className="event-information-location">Location</p>
+                    <p className="event-information-location">{eventInfo.address}</p>
+                </div>
+                <div className="google-map">
                     <Map
                         google={props.google}
                         center={{ lat: 52.5200, lng: 13.4050 }}
-                        height='300px'
+                        height='350px'
+                        width='1000px'
                         zoom={8}
                     />
                 </div>

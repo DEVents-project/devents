@@ -60,7 +60,7 @@ const Account = () => {
                 <div className="events-container">
                     {
                         userData.events.length ?
-                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} description={el.description} />)
+                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} address={el.address} description={el.description} />)
                             :
                             <p className="no-events">You didn't create any event yet</p>
                     }

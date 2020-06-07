@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style/EventCard.scss';
 
-const EventCard = ({ setIsEventClicked, setEventInfo, title, img, date, location, description }) => {
+const EventCard = ({ setIsEventClicked, setEventInfo, title, img, date, location, address, description }) => {
 
     return (
         <div className="event-card">
@@ -21,6 +21,7 @@ const EventCard = ({ setIsEventClicked, setEventInfo, title, img, date, location
                         img: img,
                         date: date,
                         location: location,
+                        address: address,
                         description: description
                     }
                 );
