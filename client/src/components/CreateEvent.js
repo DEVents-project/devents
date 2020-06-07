@@ -21,7 +21,7 @@ const CreateEvent = (props) => {
     const [statusAdded, setStatusAdded] = useState(false)
 
     const handleCreateEvent = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         // IMPORTANT: location is going to be an object: {lat: Number, lng: Number}
         const eventInfo = {
@@ -29,6 +29,7 @@ const CreateEvent = (props) => {
             hostBy,
             date,
             time,
+            address,
             location,
             link,
             description

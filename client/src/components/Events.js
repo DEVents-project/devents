@@ -64,7 +64,7 @@ const Events = () => {
                 <div className="pool-event">
                     {
                         events &&
-                        events.slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} description={el.description} />)
+                        events.slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} address={el.city} description={el.description} />)
                     }
                 </div>
                 {
