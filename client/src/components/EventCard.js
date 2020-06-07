@@ -1,15 +1,31 @@
 import React from 'react';
 import '../style/EventCard.scss';
 
-const EventCard = ({ setIsEventClicked }) => {
+const EventCard = ({ setIsEventClicked, setEventInfo, title, img, date, location, description }) => {
 
     return (
         <div className="event-card">
-            <h3 className="event-title to-back">Name of the event</h3>
-            <img className="event-image to-back" src="https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/meetup.jpg" alt="test-image" />
-            <p className="event-date to-back">Date of the event</p>
-            <p className="event-address to-back">Address of the event</p>
-            <button onClick={() => setIsEventClicked(true)} className="button see-more">See more</button>
+            {
+                img.includes('http') ?
+                    <div className="event-image to-back" style={{ backgroundImage: `url('${img}')` }} alt="test-image" />
+                    :
+                    <div className="event-image to-back" style={{ backgroundImage: `url('https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/meetup.jpg')` }} alt="test-image" />
+            }
+            <h3 className="event-title to-back">{title}</h3>
+            <p className="event-date to-back">{date}</p>
+            <p className="event-address to-back">{location}</p>
+            <button onClick={() => {
+                setEventInfo(
+                    {
+                        title: title,
+                        img: img,
+                        date: date,
+                        location: location,
+                        description: description
+                    }
+                );
+                setIsEventClicked(true);
+            }} className="button see-more">See more</button>
         </div>
     );
 }

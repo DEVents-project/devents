@@ -1,33 +1,55 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Redirect } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import Context from './Context';
+import { BrowserRouter, useHistory } from 'react-router-dom';
 import '../style/Events.scss';
 import Select from 'react-select';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 
 const Events = () => {
+    const history = useHistory();
+
+    const { eventInfo, setEventInfo } = useContext(Context);
 
     const options = [
         { value: 'berlin', label: 'Berlin' },
         { value: 'hamburg', label: 'Hamburg' },
-        { value: 'cologne', label: 'Cologne' },
-        { value: 'bremen', label: 'Bremen' },
-        { value: 'frankfurt', label: 'Frankfurt' },
+        { value: 'munich', label: 'Munich' },
+        { value: 'frankfurt', label: 'Frankfurt' }
     ];
 
-    const events = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
-
-    const [isVisible, setIsVisible] = useState(3);
+    // number of events that will show after clicking on 'SEE MORE':
+    const [isVisible, setIsVisible] = useState(9);
     const [isEventClicked, setIsEventClicked] = useState(false);
+    const [events, setEvents] = useState('');
 
     const loadMore = () => {
-        setIsVisible(isVisible + 3);
+        setIsVisible(isVisible + 9);
     };
 
-    if (isEventClicked) {
-        return <Redirect to='/event' />
-    }
-    // TO DO: with UseState -> fetch from the cities that have events and useState with the cities instead of options at the top
+    useEffect(() => {
+        const fetchEvents = async () => {
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            };
+
+            const response = await fetch('http://localhost:4000/workshops', options);
+            const data = await response.json();
+            console.log('ALL EVENTS - Response: ', data);
+            setEvents(data.events);
+        };
+
+        fetchEvents();
+    }, []);
+
+    // by clicking on 'SEE MORE' it will be redirected to the event's info
+    useEffect(() => {
+        isEventClicked && history.push('/event');
+    });
 
     return (
         <div className="events-container space-navbar">
@@ -41,11 +63,13 @@ const Events = () => {
                 </div>
                 <div className="pool-event">
                     {
-                        events.slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} />)
+                        events &&
+                        events.slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} description={el.description} />)
                     }
                 </div>
                 {
-                    isVisible >= events.length ?
+                    events &&
+                        isVisible >= events.length ?
                         null :
                         <button className="button load-more" onClick={loadMore}>Load more</button>
                 }

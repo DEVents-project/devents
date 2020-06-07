@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import Context from './Context';
+import { BrowserRouter, useHistory } from 'react-router-dom';
 import '../style/Landing.scss';
 import Developers from '../assets/img/devs-sitting-2.png';
 import ParticlesBg from 'particles-bg';
@@ -7,6 +9,21 @@ import CarouselLanding from './CarouselLanding';
 
 
 const Landing = () => {
+    const history = useHistory();
+
+    const { loggedIn } = useContext(Context);
+
+    const [toFindEvent, setToFindEvent] = useState(false);
+    const [toAddEvent, setToAddEvent] = useState(false);
+
+    // by clicking on 'FIND EVENT' it will be redirected to the event's info
+    useEffect(() => {
+        toFindEvent && history.push('/events');
+
+        toAddEvent && loggedIn && history.push('/addevent');
+        toAddEvent && !loggedIn && history.push('/registration');
+    });
+
     return (
         <div className="landing space-navbar">
             <main className="landing-main">
@@ -20,8 +37,8 @@ const Landing = () => {
                     />
                 </div>
                 <div className="call-buttons">
-                    <button className="button action-button">FIND EVENT</button>
-                    <button className="button action-button">ADD EVENT</button>
+                    <button className="button action-button" onClick={() => setToFindEvent(true)}>FIND EVENT</button>
+                    <button className="button action-button" onClick={() => setToAddEvent(true)}>ADD EVENT</button>
                 </div>
                 <img src={Developers} alt="Developers" className="developers" />
             </main>
