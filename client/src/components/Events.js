@@ -9,8 +9,7 @@ import ParticlesBg from 'particles-bg';
 const Events = () => {
     const history = useHistory();
 
-    const { eventInfo, setEventInfo } = useContext(Context);
-    const { events, setEvents } = useContext(Context);
+    const { setEventInfo, events, meetups, workshops, conventions } = useContext(Context);
 
     const options = [
         { value: 'berlin', label: 'Berlin' },
@@ -22,54 +21,11 @@ const Events = () => {
     // number of events that will show after clicking on 'SEE MORE':
     const [isVisible, setIsVisible] = useState(9);
     const [isEventClicked, setIsEventClicked] = useState(false);
-    const [meetups, setMeetups] = useState('')
-    const [workshops, setWorkshops] = useState('');
-    const [conventions, setConventions] = useState('')
     const [eventType, setEventType] = useState('');
 
     const loadMore = () => {
         setIsVisible(isVisible + 9);
     };
-
-    useEffect(() => {
-        const fetchEvents = async () => {
-            const options = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            };
-
-            const allEventsTogether = [];
-
-            const response = await fetch('http://localhost:4000/events', options);
-            const meetups = await response.json();
-            // console.log('MEETUPS - Response: ', meetups);
-            meetups.events.map(meetup => allEventsTogether.push(meetup));
-            setMeetups(meetups.events.filter(event => !event.url)
-            );
-
-            const response2 = await fetch('http://localhost:4000/workshops', options);
-            const workshops = await response2.json();
-            // console.log('WORKSHOPS - Response: ', workshops);
-            workshops.events.map(workshop => allEventsTogether.push(workshop));
-            setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
-            );
-
-            const response3 = await fetch('http://localhost:4000/conventions', options);
-            const conventions = await response3.json();
-            // console.log('CONVENTIONS - Response: ', conventions);
-            conventions.events.map(convention => allEventsTogether.push(convention));
-            setConventions(conventions.events.filter(event => event.url.includes('eventil'))
-            );
-
-            // console.log('ALL EVENTS: ', allEventsTogether);
-            setEvents(allEventsTogether);
-        };
-
-        fetchEvents();
-    }, []);
 
     // by clicking on 'SEE MORE' it will be redirected to the event's info
     useEffect(() => {

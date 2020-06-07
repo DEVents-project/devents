@@ -19,6 +19,9 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [events, setEvents] = useState('');
+  const [meetups, setMeetups] = useState('')
+  const [workshops, setWorkshops] = useState('');
+  const [conventions, setConventions] = useState('');
 
   // HARD CODED USER DATA BY NOW. This should contain the user's info and the events he has created, all fetched from the DB:
   const hardCodedUserData = {
@@ -61,6 +64,46 @@ const App = () => {
   // console.log('CURRENT EVENT INFO: ', eventInfo);
 
   useEffect(() => {
+    const fetchEvents = async () => {
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      };
+
+      const allEventsTogether = [];
+
+      const response = await fetch('http://localhost:4000/events', options);
+      const meetups = await response.json();
+      // console.log('MEETUPS - Response: ', meetups);
+      meetups.events.map(meetup => allEventsTogether.push(meetup));
+      setMeetups(meetups.events.filter(event => !event.url)
+      );
+
+      const response2 = await fetch('http://localhost:4000/workshops', options);
+      const workshops = await response2.json();
+      // console.log('WORKSHOPS - Response: ', workshops);
+      workshops.events.map(workshop => allEventsTogether.push(workshop));
+      setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
+      );
+
+      const response3 = await fetch('http://localhost:4000/conventions', options);
+      const conventions = await response3.json();
+      // console.log('CONVENTIONS - Response: ', conventions);
+      conventions.events.map(convention => allEventsTogether.push(convention));
+      setConventions(conventions.events.filter(event => event.url.includes('eventil'))
+      );
+
+      // console.log('ALL EVENTS: ', allEventsTogether);
+      setEvents(allEventsTogether);
+    };
+
+    fetchEvents();
+  }, []);
+
+  useEffect(() => {
     if (storage) {
       const getUserData = async () => {
         const options = {
@@ -84,7 +127,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Context.Provider value={{ loggedIn, setLoggedIn, userData, setUserData, eventInfo, setEventInfo, events, setEvents }}>
+      <Context.Provider value={{ loggedIn, setLoggedIn, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions }}>
         <BrowserRouter>
           {
             loggedIn ?
