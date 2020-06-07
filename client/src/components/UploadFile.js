@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from "axios";
+import axios from 'axios';
 
 // WIP ---- Not sure if this will work properly buuut 
 export const UploadFile = () => {
@@ -18,7 +18,7 @@ export const UploadFile = () => {
         formData.append("file", file);
         try {
             // need to check if the same route or what?
-            const res = await axios.post('/', formData, {
+            const res = await axios.post('/upload', formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -33,7 +33,6 @@ export const UploadFile = () => {
             } else {
                 console.log(err.response.data.msg);
             }
-
         }
     }
 
@@ -42,14 +41,21 @@ export const UploadFile = () => {
         <div>
             <form onSubmit={handleSubmit}>
                 <input
-                    className="event-input"
+                    className="img-input"
                     type="file"
-                    required
                     onChange={handleUpload}
                 />
-                {fileName}
+                <label className="img-label">
+                    {fileName}
+                </label>
+
+                <button type="submit" className="imag-btn">Upload image</button>
             </form>
 
+            {uploadedFile ?
+                <img src={uploadedFile.filePath} alt="Profile Picture" />
+                :
+                null}
         </div>
     )
 }
