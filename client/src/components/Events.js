@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, Fragment } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Context from './Context';
 import { BrowserRouter, useHistory } from 'react-router-dom';
 import '../style/Events.scss';
@@ -10,6 +10,7 @@ const Events = () => {
     const history = useHistory();
 
     const { eventInfo, setEventInfo } = useContext(Context);
+    const { events, setEvents } = useContext(Context);
 
     const options = [
         { value: 'berlin', label: 'Berlin' },
@@ -21,7 +22,6 @@ const Events = () => {
     // number of events that will show after clicking on 'SEE MORE':
     const [isVisible, setIsVisible] = useState(9);
     const [isEventClicked, setIsEventClicked] = useState(false);
-    const [events, setEvents] = useState('');
     const [meetups, setMeetups] = useState('')
     const [workshops, setWorkshops] = useState('');
     const [conventions, setConventions] = useState('')
@@ -45,26 +45,26 @@ const Events = () => {
 
             const response = await fetch('http://localhost:4000/events', options);
             const meetups = await response.json();
-            console.log('MEETUPS - Response: ', meetups);
+            // console.log('MEETUPS - Response: ', meetups);
             meetups.events.map(meetup => allEventsTogether.push(meetup));
             setMeetups(meetups.events.filter(event => !event.url)
             );
 
             const response2 = await fetch('http://localhost:4000/workshops', options);
             const workshops = await response2.json();
-            console.log('WORKSHOPS - Response: ', workshops);
+            // console.log('WORKSHOPS - Response: ', workshops);
             workshops.events.map(workshop => allEventsTogether.push(workshop));
             setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
             );
 
             const response3 = await fetch('http://localhost:4000/conventions', options);
             const conventions = await response3.json();
-            console.log('CONVENTIONS - Response: ', conventions);
+            // console.log('CONVENTIONS - Response: ', conventions);
             conventions.events.map(convention => allEventsTogether.push(convention));
             setConventions(conventions.events.filter(event => event.url.includes('eventil'))
             );
 
-            console.log('ALL EVENTS: ', allEventsTogether);
+            // console.log('ALL EVENTS: ', allEventsTogether);
             setEvents(allEventsTogether);
         };
 

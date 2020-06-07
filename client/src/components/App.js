@@ -18,6 +18,8 @@ import Context from './Context';
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [events, setEvents] = useState('');
+
   // HARD CODED USER DATA BY NOW. This should contain the user's info and the events he has created, all fetched from the DB:
   const hardCodedUserData = {
     name: 'Peter Griffin',
@@ -56,7 +58,7 @@ const App = () => {
   // this is the state that is going to carry all the information of one specific event, when the user clicks on it to see the description:
   const [eventInfo, setEventInfo] = useState(null);
 
-  console.log('CURRENT EVENT INFO: ', eventInfo);
+  // console.log('CURRENT EVENT INFO: ', eventInfo);
 
   useEffect(() => {
     if (storage) {
@@ -82,7 +84,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Context.Provider value={{ loggedIn, setLoggedIn, userData, setUserData, eventInfo, setEventInfo }}>
+      <Context.Provider value={{ loggedIn, setLoggedIn, userData, setUserData, eventInfo, setEventInfo, events, setEvents }}>
         <BrowserRouter>
           {
             loggedIn ?
