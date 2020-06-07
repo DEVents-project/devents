@@ -1,12 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Context from './Context';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../style/Account.scss';
 import ProfileImage from '../assets/img/profile-random.jpg';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 
-const Account = (props) => {
+const Account = () => {
+    const history = useHistory();
+
     const { userData, setUserData } = useContext(Context);
     const { eventInfo, setEventInfo } = useContext(Context);
 
@@ -33,9 +35,10 @@ const Account = (props) => {
     //     fetchUserInformation();
     // }, []);
 
-    if (isEventClicked) {
-        return <Redirect to='/event' />
-    }
+    // by clicking on 'SEE MORE' it will be redirected to the event's info
+    useEffect(() => {
+        isEventClicked && history.push('/event');
+    });
 
     return (
         <div className="space-navbar account-container">
