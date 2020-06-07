@@ -25,7 +25,7 @@ const Events = () => {
     const [meetups, setMeetups] = useState('')
     const [workshops, setWorkshops] = useState('');
     const [conventions, setConventions] = useState('')
-    const [eventType, setEventType] = useState('workshops');
+    const [eventType, setEventType] = useState('');
 
     const loadMore = () => {
         setIsVisible(isVisible + 9);
@@ -45,30 +45,27 @@ const Events = () => {
 
             const response = await fetch('http://localhost:4000/events', options);
             const meetups = await response.json();
+            console.log('MEETUPS - Response: ', meetups);
             meetups.events.map(meetup => allEventsTogether.push(meetup));
             setMeetups(meetups.events.filter(event => !event.url)
-                .slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
             );
-            console.log('MEETUPS - Response: ', meetups);
 
             const response2 = await fetch('http://localhost:4000/workshops', options);
             const workshops = await response2.json();
+            console.log('WORKSHOPS - Response: ', workshops);
             workshops.events.map(workshop => allEventsTogether.push(workshop));
             setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
-                .slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
             );
-            console.log('WORKSHOPS - Response: ', workshops);
 
             const response3 = await fetch('http://localhost:4000/conventions', options);
             const conventions = await response3.json();
+            console.log('CONVENTIONS - Response: ', conventions);
             conventions.events.map(convention => allEventsTogether.push(convention));
             setConventions(conventions.events.filter(event => event.url.includes('eventil'))
-                .slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
             );
-            console.log('CONVENTIONS - Response: ', conventions);
 
-            setEvents(allEventsTogether);
             console.log('ALL EVENTS: ', allEventsTogether);
+            setEvents(allEventsTogether);
         };
 
         fetchEvents();
@@ -92,19 +89,35 @@ const Events = () => {
                 <div className="pool-event">
                     {
                         events && eventType === '' ?
-                            events.slice(0, isVisible).map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
-                            : eventType === 'workshops' ?
-                                workshops
-                                : eventType === 'conventions' ?
-                                    conventions
-                                    : meetups
+                            events.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
+                            : null
+                    }
+                    {
+                        events && eventType === 'meetups' ?
+                            meetups.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
+                            : null
+                    }
+                    {
+                        events && eventType === 'workshops' ?
+                            workshops.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
+                            : null
+                    }
+                    {
+                        events && eventType === 'conventions' ?
+                            conventions.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
+                            : null
                     }
                 </div>
                 {
-                    events &&
-                        isVisible >= events.length || isVisible >= meetups.length || workshops.length || conventions.length ?
+                    eventType === '' && isVisible >= events.length ?
                         null :
-                        <button className="button load-more" onClick={loadMore}>Load more</button>
+                        eventType === 'meetups' && isVisible >= meetups.length ?
+                            null :
+                            eventType === 'workshops' && isVisible >= workshops.length ?
+                                null :
+                                eventType === 'conventions' && isVisible >= conventions.length ?
+                                    null :
+                                    <button className="button load-more" onClick={loadMore}>Load more</button>
                 }
             </BrowserRouter>
         </div>
