@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import '../style/SignUp.scss';
 import ParticlesBg from 'particles-bg';
 
 
 const SignUp = () => {
+    const history = useHistory();
+
     // Does not match the USER Schema --- schema needs to be update
-    const [name, setName] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [website, setWebsite] = useState(null);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [website, setWebsite] = useState('');
     const [typeOfUser, setTypeOfUser] = useState('developer');
 
     // set a status for what happens after sign up 
-    const [statusSignUp, setStatusSignUp] = useState(false)
+    const [isSignedUp, setIsSignedUp] = useState(false)
 
 
     const handleSignUp = async (e) => {
@@ -36,20 +38,23 @@ const SignUp = () => {
             body: JSON.stringify(signUpData)
 
         }
-        const resp = await fetch("/signup", userData);
+        const resp = await fetch('http://localhost:4000/signup', userData);
         const data = await resp.json();
         console.log("res:", data);
         if (data.success) {
-            setStatusSignUp(true)
+            setIsSignedUp(true)
         }
     }
+
+    useEffect(() => {
+        isSignedUp && history.push('/account')
+    })
 
 
     return (
         <div className="signup-container space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
 
-            {statusSignUp ? <Redirect to="/account" /> : null}
             <form className="signup-form" onSubmit={handleSignUp}>
                 <h2 className="h2-signup">SIGN UP</h2>
                 <label className="signup-field"> Are you:
