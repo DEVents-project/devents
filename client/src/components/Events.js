@@ -22,6 +22,7 @@ const Events = () => {
     const [isVisible, setIsVisible] = useState(9);
     const [isEventClicked, setIsEventClicked] = useState(false);
     const [events, setEvents] = useState('');
+    const [filter, setFilter] = useState('');
 
     const loadMore = () => {
         setIsVisible(isVisible + 9);
@@ -37,10 +38,25 @@ const Events = () => {
                 }
             };
 
-            const response = await fetch('http://localhost:4000/workshops', options);
-            const data = await response.json();
-            console.log('ALL EVENTS - Response: ', data);
-            setEvents(data.events);
+            const allEventsTogether = [];
+
+            const response = await fetch('http://localhost:4000/events', options);
+            const meetups = await response.json();
+            meetups.events.map(meetup => allEventsTogether.push(meetup));
+            console.log('MEETUPS - Response: ', meetups);
+
+            const response2 = await fetch('http://localhost:4000/workshops', options);
+            const workshops = await response2.json();
+            workshops.events.map(workshop => allEventsTogether.push(workshop));
+            console.log('WORKSHOPS - Response: ', workshops);
+
+            const response3 = await fetch('http://localhost:4000/conventions', options);
+            const conventions = await response3.json();
+            conventions.events.map(convention => allEventsTogether.push(convention));
+            console.log('CONVENTIONS - Response: ', conventions);
+
+            setEvents(allEventsTogether);
+            console.log('ALL EVENTS: ', allEventsTogether);
         };
 
         fetchEvents();
