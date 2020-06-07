@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
-import { UploadFile } from './UploadFile';
+
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 
 const CreateEvent = (props) => {
+
+    const history = useHistory();
+
     // The followings are NOT base on the schema - Schema needs to be modified! 
-    const [title, setTitle] = useState(null);
-    const [hostBy, setHostBy] = useState(null);
-    const [date, setDate] = useState(null);
-    const [time, setTime] = useState(null);
-    const [description, setDescription] = useState(null);
-    const [link, setLink] = useState(null);
+    const [title, setTitle] = useState('');
+    const [hostBy, setHostBy] = useState('');
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [description, setDescription] = useState('');
+    const [link, setLink] = useState('');
     // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
     const [location, setLocation] = useState('');
     // this will be the complete address of the event as a STRING
@@ -44,9 +47,10 @@ const CreateEvent = (props) => {
             body: JSON.stringify(eventInfo)
         }
 
-        const resp = await fetch("/addevent", eventData);
+        const resp = await fetch('http://localhost:4000/addevent', eventData);
         const data = await resp.json();
         console.log("res:", data);
+
         if (data.success) {
             setStatusAdded(true)
         }
@@ -67,10 +71,13 @@ const CreateEvent = (props) => {
 
     // console.log('The current location is: ', location);
 
+    useEffect(() => {
+        statusAdded && history.push('/events');
+    })
+
     return (
         <div className="create-event-container">
             <ParticlesBg color="#8d8d8d" num={55} type="cobweb" bg={true} />
-            {statusAdded ? <Redirect to="/events" /> : null}
 
             <form className="event-form space-navbar" onSubmit={handleCreateEvent}>
 
@@ -116,9 +123,6 @@ const CreateEvent = (props) => {
                 </div>
                 <label className="event-label">Location *
                     <GoogleMapsAutocomplete setLocation={setLocation} setAddress={setAddress} />
-                </label>
-                <label className="event-label">Image *
-                    {/* <UploadFile /> */}
                 </label>
                 <label className="event-label">Website
                     <input

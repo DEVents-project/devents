@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Switch, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import '../style/Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,11 +10,13 @@ import DevCoding from '../assets/img/dev-coding2.png';
 
 
 const Login = () => {
+    const history = useHistory();
 
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     // set a status for what happens after login 
-    const [statusLogin, setStatusLogin] = useState(false)
+    const [isLogged, setIsLogged] = useState(false)
+    const [errorMsg, setErrorMsg] = useState(false)
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -31,25 +33,26 @@ const Login = () => {
             },
             body: JSON.stringify(loginData)
         };
-        const resp = await fetch('/login', logged)
+        const resp = await fetch('http://localhost:4000/login', logged)
         const data = await resp.json()
 
         console.log(data);
 
         if (data.success) {
-            setStatusLogin(true)
+            setIsLogged(true)
         } else {
-            setStatusLogin(false)
+            setErrorMsg(true)
         }
     }
+
+    useEffect(() => {
+        isLogged && history.push('/events')
+    });
 
 
     return (
         <main className="login-container space-navbar">
             {/* <img src={DevCoding} alt="Developer coding" className="devCoding" /> */}
-
-            {statusLogin ? <Redirect to='/events' /> : null}
-            {/* What I'm missing ere is to show a message in case user put wrong email or password */}
 
             <ParticlesBg color="#8d8d8d" num={55} type="cobweb" bg={true} />
             <form className="login-form" onSubmit={handleLogin}>
@@ -75,11 +78,9 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required />
                 </label>
-                {!statusLogin ? null : <p>Email or password incorrect</p>}
+                {errorMsg ? <p>Email or password incorrect</p> : null}
                 <button className="button login-btn" type="submit">LOG IN</button>
             </form>
-
-
         </main>
     )
 }
