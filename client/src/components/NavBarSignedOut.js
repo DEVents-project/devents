@@ -4,7 +4,7 @@ import '../style/NavBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import TextTransition, { presets } from "react-text-transition";
-import Logo from '../assets/img/devents-logo2.png';
+// import Logo from '../assets/img/devents-logo2.png';
 
 const NavBarSignedOut = () => {
     const [isNavVisible, setIsNavVisible] = useState(false);

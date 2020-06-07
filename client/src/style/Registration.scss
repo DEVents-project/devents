@@ -5,41 +5,186 @@ $middle-color:#650404;
 $dark-color:#460505;
 $font-color: #ffffff;
 
+
+.question {
+    text-align: center;
+    background-color:#ff0d0d70;
+    padding: 0.2em;
+    
+}
+
 // containers
 
 
 .container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     margin-top: 50px;
-}
-
-.container-2 {
-    display: flex;
-    justify-content: space-around;
-}
-.question {
-    text-align: center;
-    background-color: rgb(86, 86, 184);
     
-}
-.square {
-    background-color: $middle-color;
-    width: 25vw;
-    height: 50vh;
+    
 
-    color: white;
+  
+    
+    .squares {
+        
+        width: 25v;
+        height: 45vh;
+        
+    }
+    .one{
 
+        font-size: 10em;
+        position: relative;
+        bottom: 3.5rem;
+       
+    }
+    .two {
+
+        font-size: 10em;
+        position: relative;
+        bottom: 3.5rem;
+        margin-left: 1rem;
+      
+    }
+
+    .three {
+
+        font-size: 10em;
+        position: relative;
+        bottom: 3.5rem;
+        margin-left: 1rem;
+      
+    }
+    .square-1{
+        border-right: 8px solid rgba(0, 0, 0, 0.52);
+        background-image:url(../assets/img/register.svg);
+        background-size: cover;
+        background-size: 15em;
+        background-repeat: no-repeat;;
+        background-position: bottom;
+        background-position-x: 8em;
+  
+        
+        width: 33%;
+        
+    }
+    .square-2{
+        border-right: 8px solid rgba(0, 0, 0, 0.52);
+        background-image:url(../assets/img/createEvent.svg);
+        background-position: center;
+        background-size: cover;
+        background-size: 14em;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-position-x: 8em;
+        width: 33%;
+        
+        
+    }
+    .square-3{
+        background-image: url(../assets/img/publish.svg);
+        background-position: center;
+        background-size: cover;
+        background-size: 15em;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-position-x: 9em;
+        width: 33%;
+        
+    }
+}
+        
+
+        
+        
+   
+
+
+aside {
+    width: 50%;
+    float: right;           
+    right: 2em;
+    bottom: 2.4rem;
+    z-index: 999;
+    
+
+  }
+  .aside {
+     margin-top: -8em;
+    
+     padding: 1em;
+     border-radius: 10px;
+     width: 15em;
+     margin-right: 1em;
+     color: rgb(0, 0, 0);
+     position: relative;
+
+  }
+  p{
+      margin-top: 1em;
+     
+  }
+      
+  .box{
+    position: relative;
+    display: inline-block;
+  }
+   
+
+.buttons-container{
+    display: flex;
+    justify-content: center;
+    
+    .button {
+        margin-top: 80px;
+        width: 10em;
+        height: 2.5em;
+      
+    }
+    .login-button {
+
+        margin-left:1.5em;
+    
+    }
+
+  
 }
 
-// fonts
-.step-1{
-    position: absolute;
-   bottom: -25px;
-   color: blue;
-   display:inline;
 
-}
-.step-letters{
-    background-color: blue;
-}
+// mediaquery 
+// @media screen and (min-width: 360px) {
+   
+//     .container{
+//        flex-direction: column;
+//        align-items: center;
+//        align-content: center;
+//        justify-content: center;
+//        flex-wrap: wrap;
+       
+
+//    }
+   
+//    .container{
+
+//        .squares {
+//            border-right: none;
+//         }
+        
+//         .numbers {
+//             color: blue;
+//             font-size: 4em;
+//         } 
+        
+//         aside {
+            
+            
+//         }
+            
+           
+//    }
+  
+//   }
+
+
+
+//
