@@ -16,10 +16,10 @@ const CreateEvent = (props) => {
     const [time, setTime] = useState('');
     const [description, setDescription] = useState('');
     const [link, setLink] = useState('');
-    // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
-    const [location, setLocation] = useState('');
     // this will be the complete address of the event as a STRING
-    const [address, setAddress] = useState('');
+    const [location, setLocation] = useState('');
+    // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
+    const [coordinates, setCoordinates] = useState('');
 
     const [statusAdded, setStatusAdded] = useState(false)
 
@@ -32,7 +32,7 @@ const CreateEvent = (props) => {
             hostBy,
             date,
             time,
-            address,
+            coordinates,
             location,
             link,
             description
@@ -122,7 +122,7 @@ const CreateEvent = (props) => {
                     </label>
                 </div>
                 <label className="event-label">Location *
-                    <GoogleMapsAutocomplete setLocation={setLocation} setAddress={setAddress} />
+                    <GoogleMapsAutocomplete setLocation={setLocation} setCoordinates={setCoordinates} />
                 </label>
                 <label className="event-label">Website
                     <input
