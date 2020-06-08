@@ -1,3 +1,5 @@
+@import "index";
+
 header {
     width: 100%;
     height: 15vh;
@@ -5,8 +7,8 @@ header {
     align-items: center;
     justify-content: space-between;
     background-color: #fff;
-    border-bottom: 2px solid #460505;
-    background-color: #460505;
+    border-bottom: 2px solid $dark-blue;
+    background-color: $dark-blue;
     z-index: 100;
     position: fixed;
     top: 0;
@@ -24,7 +26,7 @@ header {
         cursor: pointer;
         color: #fff;
         padding-left: 2rem;
-        background-color: #460505;
+        background-color: $dark-blue;
         display: flex;
         align-items: center;
         text-align: center;
@@ -74,11 +76,11 @@ header {
             padding: 1rem 0;
 
             &:nth-child(1) {
-                background-color: #650404;
+                background-color: $mid-dark-blue;
             }
 
             &:nth-child(2) {
-                background-color: #840404;
+                background-color: $mid-blue;
             }
 
             li {
@@ -102,7 +104,7 @@ header {
     header {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        background-color: #650404;
+        background-color: $mid-dark-blue;
         overflow-y: hidden;
 
         /* logo with h1 element text */
@@ -121,7 +123,7 @@ header {
         // #logo {
         //     grid-column: 1;
         //     clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
-        //     background-color: #460505;
+        //     background-color: $dark-blue;
 
         //     #logo-img {
         //         width: 15rem;

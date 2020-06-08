@@ -1,3 +1,5 @@
+@import "index";
+
 .events-container {
     width: 100%;
     padding: 2rem;
@@ -17,11 +19,11 @@
             position: relative;
 
             &:after {
-                background: #000;
+                background: $mid-blue;
             }
 
             &:hover:after {
-                background: #000;
+                background: $mid-blue;
             }
         }
 

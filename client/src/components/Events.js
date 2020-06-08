@@ -32,9 +32,9 @@ const Events = () => {
         <div className="events-container space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
             <div className="event-types">
-                <h2 className="underline" style={{ color: eventType === 'meetups' ? '#841F1A' : null }} onClick={() => setEventType('meetups')}>Meetups</h2>
-                <h2 className="underline" style={{ color: eventType === 'workshops' ? '#841F1A' : null }} onClick={() => setEventType('workshops')}>Workshops</h2>
-                <h2 className="underline" style={{ color: eventType === 'conventions' ? '#841F1A' : null }} onClick={() => setEventType('conventions')}>Conventions</h2>
+                <h2 className="underline" style={{ color: eventType === 'meetups' ? '#256eac' : null }} onClick={() => setEventType('meetups')}>Meetups</h2>
+                <h2 className="underline" style={{ color: eventType === 'workshops' ? '#256eac' : null }} onClick={() => setEventType('workshops')}>Workshops</h2>
+                <h2 className="underline" style={{ color: eventType === 'conventions' ? '#256eac' : null }} onClick={() => setEventType('conventions')}>Conventions</h2>
                 <select className="checkout" onChange={(e) => setSelectedCity(e.target.value)}>
                     <option value="" disabled>Select city</option>
                     {

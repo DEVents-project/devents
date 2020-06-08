@@ -1,12 +1,14 @@
+@import "index";
+
 .footer-container {
     width: 100%;
     height: 20vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    background-color: #460505;
+    background-color: $dark-blue;
     color: white;
     padding: 0 1rem 0 2rem;
-    border-top: 2px solid #460505;
+    border-top: 2px solid $dark-blue;
 
     .footer {
         width: 100%;
@@ -41,7 +43,7 @@
     //     height: 1rem;
     //     left: 0;
     //     top: -1rem;
-    //     background-image: linear-gradient(to bottom, #46050500, #460505);
+    //     background-image: linear-gradient(to bottom, $dark-blue00, $dark-blue);
     //     z-index: 3;
     // }
 }
@@ -49,14 +51,14 @@
 @media screen and (min-width: 670px) {
     .footer-container {
         padding: 0;
-        background-color: #650404;
+        background-color: $mid-dark-blue;
 
         .footer {
             position: relative;
 
             &:nth-child(1) {
                 clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
-                background-color: #460505;
+                background-color: $dark-blue;
             }
 
             &:nth-child(2) {
@@ -65,7 +67,7 @@
 
             &:nth-child(3) {
                 clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
-                background-color: #840404;
+                background-color: $mid-blue;
                 grid-column: 3 / 4;
             }
         }
