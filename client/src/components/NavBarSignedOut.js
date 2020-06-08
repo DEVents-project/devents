@@ -35,8 +35,6 @@ const NavBarSignedOut = () => {
         }, 12000);
     }, []);
 
-
-
     useEffect(() => {
         const mediaQuery = window.matchMedia('(max-width: 670px)');
         mediaQuery.addListener(handleMediaQueryChange);
