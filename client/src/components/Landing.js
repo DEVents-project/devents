@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import Context from './Context';
 import { BrowserRouter, useHistory } from 'react-router-dom';
 import '../style/Landing.scss';
-import Developers from '../assets/img/devs-sitting-2.png';
+import Developers from '../assets/img/collaboration2.svg';
 import ParticlesBg from 'particles-bg';
 import Typical from 'react-typical';
 import CarouselLanding from './CarouselLanding';
