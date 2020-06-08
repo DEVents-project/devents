@@ -138,6 +138,7 @@ const App = () => {
     }
   }, []);
 
+  console.log('ALL EVENTS FETCHED: ', events);
 
   return (
     <div className="App">
