@@ -13,6 +13,7 @@
 
         h4 {
             font-size: 1.8rem;
+            text-align: center;
         }
 
         .image-frame {
@@ -72,6 +73,10 @@
 
         .personal-account {
             width: 30%;
+
+            .image-frame {
+                margin-top: 2rem;
+            }
         }
         .personal-events {
             width: 60%;
