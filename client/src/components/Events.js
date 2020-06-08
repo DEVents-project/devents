@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import Context from './Context';
 import { useHistory } from 'react-router-dom';
 import '../style/Events.scss';
-import Select from 'react-select';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 
@@ -30,9 +29,9 @@ const Events = () => {
         <div className="events-container space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
             <div className="event-types">
-                <h2 onClick={() => setEventType('meetups')}>Meetups</h2>
-                <h2 onClick={() => setEventType('workshops')}>Workshops</h2>
-                <h2 onClick={() => setEventType('conventions')}>Conventions</h2>
+                <h2 className="underline" style={{ color: eventType === 'meetups' ? '#841F1A' : null }} onClick={() => setEventType('meetups')}>Meetups</h2>
+                <h2 className="underline" style={{ color: eventType === 'workshops' ? '#841F1A' : null }} onClick={() => setEventType('workshops')}>Workshops</h2>
+                <h2 className="underline" style={{ color: eventType === 'conventions' ? '#841F1A' : null }} onClick={() => setEventType('conventions')}>Conventions</h2>
                 <select className="checkout">
                     <option value="" disabled selected>Select city</option>
                     {
