@@ -16,11 +16,14 @@ const CreateEvent = (props) => {
     const [time, setTime] = useState('');
     const [description, setDescription] = useState('');
     const [link, setLink] = useState('');
+
     // this will be the complete address of the event as a STRING
     const [location, setLocation] = useState('');
+
     // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
     const [coordinates, setCoordinates] = useState('');
 
+    // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
 
     const handleCreateEvent = async (e) => {
@@ -96,7 +99,7 @@ const CreateEvent = (props) => {
                     <input
                         className="event-input"
                         type="text"
-                        value={hostBy}
+                        value={hostedBy}
                         placeholder="the host name"
                         onChange={(e) => setHostedBy(e.target.value)}
                     />

@@ -8,16 +8,15 @@ import ParticlesBg from 'particles-bg';
 const SignUp = () => {
     const history = useHistory();
 
-    // Does not match the USER Schema --- schema needs to be update
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [website, setWebsite] = useState('');
     const [typeOfUser, setTypeOfUser] = useState('developer');
+    const [avatar, setAvatar] = useState(false);
 
     // set a status for what happens after sign up 
     const [isSignedUp, setIsSignedUp] = useState(false)
-
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -25,6 +24,7 @@ const SignUp = () => {
         const signUpData = {
             name,
             email,
+            avatar,
             password,
             website
         }
@@ -43,9 +43,10 @@ const SignUp = () => {
         console.log("res:", data);
         if (data.success) {
             setIsSignedUp(true)
-        }
-    }
 
+        }
+
+    }
     useEffect(() => {
         isSignedUp && history.push('/account')
     })
@@ -57,7 +58,7 @@ const SignUp = () => {
 
             <form className="signup-form" onSubmit={handleSignUp}>
                 <h2 className="h2-signup">SIGN UP</h2>
-                <label className="signup-field"> Are you:
+                <label className="signup-field"> Are you
                     <select id={name} className="signup-select" onChange={(e) => setTypeOfUser(e.currentTarget.value)} >
                         <option className="signup-opt" value="developer" selected>Developer</option>
                         <option className="signup-opt" value="organization">Organization</option>
@@ -85,6 +86,20 @@ const SignUp = () => {
                                 onChange={(e) => setName(e.target.value)} />
                     }
                 </label>
+                {
+                    typeOfUser === 'developer' ?
+                        <label className="signup-field" onChange={(e) => setAvatar(e.currentTarget.value)}>Choose your avatar
+                            <div className="avatar-container">
+                                <input type="image" value={avatar} className="avatar" src={'https://joeschmoe.io/api/v1/jeri'} alt="Avatar Jeri" />
+                                <input type="image" className="avatar" src={'https://joeschmoe.io/api/v1/jess'} alt="Avatar Jess" />
+                                <input type="image" className="avatar" src={'https://joeschmoe.io/api/v1/jana'} alt="Avatar Jana" />
+                                <input type="image" className="avatar" src={'https://joeschmoe.io/api/v1/james'} alt="Avatar James" />
+                                <input type="image" className="avatar" src={'https://joeschmoe.io/api/v1/joe'} alt="Avatar Joe" />
+                                <input type="image" className="avatar" src={'https://joeschmoe.io/api/v1/julie'} alt="Avatar Julie" />
+                            </div>
+                        </label> :
+                        null
+                }
 
                 <label className="signup-field">Email *
                     {
