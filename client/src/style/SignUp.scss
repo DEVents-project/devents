@@ -50,8 +50,6 @@ $border: .2rem;
                 font-size: 1rem;
             }
         }
-        
-
         .signup-field {
             width: 90%;
             display: flex;
@@ -70,6 +68,19 @@ $border: .2rem;
                 font-size: 1.1rem;
                 color: $dark-color;
             }
+
+        }
+        .avatar-container {
+                width: 90%;
+                height: auto;
+                display: inline-block;
+                text-align: center;;
+                
+            .avatar {
+                width: 70px;
+                height: 70px;
+                padding: .3rem .2rem ;
+            }  
         }
 
         .sign-btn {

@@ -11,16 +11,18 @@ const CreateEvent = (props) => {
 
     // The followings are NOT base on the schema - Schema needs to be modified! 
     const [title, setTitle] = useState('');
-    const [hostBy, setHostBy] = useState('');
+    const [hostedBy, setHostedBy] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [description, setDescription] = useState('');
     const [url, setUrl] = useState('');
     // this will be the complete address of the event as a STRING
     const [location, setLocation] = useState('');
+
     // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
     const [coordinates, setCoordinates] = useState('');
 
+    // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
 
     const handleCreateEvent = async (e) => {
@@ -29,7 +31,7 @@ const CreateEvent = (props) => {
         // IMPORTANT: location is going to be an object: {lat: Number, lng: Number}
         const eventInfo = {
             title,
-            hostBy,
+            hostedBy,
             date,
             time,
             coordinates,
@@ -95,9 +97,9 @@ const CreateEvent = (props) => {
                     <input
                         className="event-input"
                         type="text"
-                        value={hostBy}
+                        value={hostedBy}
                         placeholder="the host name"
-                        onChange={(e) => setHostBy(e.target.value)}
+                        onChange={(e) => setHostedBy(e.target.value)}
                     />
                 </label>
                 <div className="event-label inline">
