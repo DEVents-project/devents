@@ -28,7 +28,7 @@ const Landing = () => {
         <div className="landing space-navbar">
             <main className="landing-main">
                 <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
-                <h2><span className="underscore">Never miss</span> <br /><span className="keyword"><strong>events for developers</strong></span><br /> <span className="underscore again">again</span></h2>
+                <h1><span className="underscore">Never miss</span> <br /><span className="keyword"><strong>events for developers</strong></span><br /> <span className="underscore again">again</span></h1>
                 <div className="container-description">
                     <Typical
                         steps={['Search for conferences', 1500, 'Assist to workshops', 1500, 'Create your own meetups', 1500, 'Push up your social skills', 1500]}
