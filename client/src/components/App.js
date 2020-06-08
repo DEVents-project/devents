@@ -108,7 +108,7 @@ const App = () => {
       const conventions = await response3.json();
       // console.log('CONVENTIONS - Response: ', conventions);
       conventions.events.map(convention => allEventsTogether.push(convention));
-      setConventions(conventions.events.filter(event => event.url.includes('eventil'))
+      setConventions(conventions.events.filter(event => event.url.includes('eventbrite'))
       );
 
       // we extract all the cities where an event is going to take place:
