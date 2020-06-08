@@ -5,12 +5,14 @@ $dark-color:#460505;
 $font-color: #ffffff;
 $border: .2rem;
 
+@import "index";
+
 
 .login-container {
     width: 100%;
     height: auto;
     padding: 2rem 0;
-    margin: 2rem 0;
+    // margin: 2rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,9 +26,9 @@ $border: .2rem;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: $light-color;
+        background-color: $mid-dark-blue;
         border-radius: $border; 
-        box-shadow: -1.5rem .7rem $middle-color;
+        box-shadow: -1.5rem .7rem $mid-light-blue;
         // transform: skewX(-2deg);
         
         .h2 {
@@ -42,13 +44,12 @@ $border: .2rem;
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            padding: 1rem 1rem;
+            padding: 1rem;
             
             .log-icons {
                 font-size: 1.8rem;
-                color: $dark-color;
+                color: $dark-blue;
             }
-            
             .login-input { 
                 height: 2.8rem;
                 width: 90%;
@@ -57,12 +58,12 @@ $border: .2rem;
                 border: none;
                 border-radius: $border;
                 font-size: 1.1rem;      
-                color: $dark-color;
+                color: $dark-blue;
             }
         }
 
         .login-btn {
-            height: 3rem;
+            height: 2.8rem;
             width: 90%;
             // padding: 1.5rem;
             margin: 1rem 0;
