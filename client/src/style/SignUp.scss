@@ -5,6 +5,11 @@ $dark-color:#460505;
 $font-color: #ffffff;
 $border: .2rem;
 
+// blue colors
+@import "index";
+
+
+
 .signup-container {
     width: 100%;
     height: auto;
@@ -12,17 +17,19 @@ $border: .2rem;
     // margin-bottom: 2rem;
     display: flex;
     justify-content: center;
+
+
     
     .signup-form {
-        width: 80%;
+        width: 90%;
         height: 100%;
         padding: 2rem 0;
         display: flex;
         flex-direction: column;
-        align-self: center;
+        align-items: center;
         justify-content: center;
-        background-color: $light-color;
-        box-shadow: -1.5rem .7rem $middle-color;
+        background-color: $mid-dark-blue;
+        box-shadow: -1.5rem .7rem $mid-light-blue;
         border-radius: $border;
         color: $font-color;
 
@@ -34,10 +41,10 @@ $border: .2rem;
         .h5-signup {
             width: 90%;
             padding: .3rem 2rem;
-            color: black;
+            color: $dark-blue;
         }
         .signup-select {
-            width: 90%;
+            width: 100%;
             height: 2rem;
             border: none;
             border-radius: $border;
@@ -47,31 +54,31 @@ $border: .2rem;
             .signup-opt {
                 padding: 1ch;
                 margin-left:1ch;
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
         }
-        .signup-field {
-            width: 90%;
+        .signup-label {
+            width: 80%;
             display: flex;
             flex-direction: column;
-            align-self: center;
             justify-content: center;
-            padding: .5rem 1rem;
+            padding: .3rem;
+            
 
             .signup-input {
                 height: 2.5rem;
-                width: 90%;
+                width: 100%;
                 padding: 1ch;
                 margin: .3rem 0;
                 border-radius: $border;
                 border: none;
                 font-size: 1.1rem;
-                color: $dark-color;
+                color: $dark-blue;
             }
 
         }
         .avatar-container {
-                width: 90%;
+                width: 100%;
                 height: auto;
                 display: inline-block;
                 text-align: center;;
@@ -79,14 +86,14 @@ $border: .2rem;
             .avatar {
                 width: 70px;
                 height: 70px;
-                padding: .3rem .2rem ;
+                padding: .2rem .2rem 0;
             }  
         }
 
         .sign-btn {
             width: 80%;
             height: 2.8rem;
-            margin: 1rem 2.2rem;
+            // margin: 1rem auto;
             font-size: 1.2rem;
         }
         

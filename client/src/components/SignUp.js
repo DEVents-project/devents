@@ -58,13 +58,13 @@ const SignUp = () => {
 
             <form className="signup-form" onSubmit={handleSignUp}>
                 <h2 className="h2-signup">SIGN UP</h2>
-                <label className="signup-field"> Are you
+                <label className="signup-label"> Are you
                     <select id={name} className="signup-select" onChange={(e) => setTypeOfUser(e.currentTarget.value)} >
                         <option className="signup-opt" value="developer" selected>Developer</option>
                         <option className="signup-opt" value="organization">Organization</option>
                     </select>
                 </label>
-                <label className="signup-field">
+                <label className="signup-label">
                     {
                         typeOfUser === 'developer' ?
                             'Name *'
@@ -88,7 +88,7 @@ const SignUp = () => {
                 </label>
                 {
                     typeOfUser === 'developer' ?
-                        <label className="signup-field" onChange={(e) => setAvatar(e.currentTarget.value)}>Choose your avatar
+                        <label className="signup-label" onChange={(e) => setAvatar(e.currentTarget.value)}>Choose your avatar
                             <div className="avatar-container">
                                 <input type="image" value={avatar} className="avatar" src={'https://joeschmoe.io/api/v1/jeri'} alt="Avatar Jeri" />
                                 <input type="image" className="avatar" src={'https://joeschmoe.io/api/v1/jess'} alt="Avatar Jess" />
@@ -101,7 +101,7 @@ const SignUp = () => {
                         null
                 }
 
-                <label className="signup-field">Email *
+                <label className="signup-label">Email *
                     {
                         typeOfUser === 'developer' ?
                             <input
@@ -126,7 +126,7 @@ const SignUp = () => {
                         null
                         :
 
-                        <label className="signup-field">Website
+                        <label className="signup-label">Website
                         <input
                                 className="signup-input"
                                 type="url"
@@ -136,7 +136,7 @@ const SignUp = () => {
                         </label>
                 }
 
-                <label className="signup-field">Password *
+                <label className="signup-label">Password *
                         <input
                         className="signup-input"
                         type="password"
