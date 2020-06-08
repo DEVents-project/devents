@@ -9,14 +9,8 @@ import ParticlesBg from 'particles-bg';
 const Events = () => {
     const history = useHistory();
 
-    const { setEventInfo, events, meetups, workshops, conventions } = useContext(Context);
-
-    const options = [
-        { value: 'berlin', label: 'Berlin' },
-        { value: 'hamburg', label: 'Hamburg' },
-        { value: 'munich', label: 'Munich' },
-        { value: 'frankfurt', label: 'Frankfurt' }
-    ];
+    const { setEventInfo, events, meetups, workshops, conventions, citiesWithEvent } = useContext(Context);
+    console.log('CITIES WITH EVEntS: ', citiesWithEvent);
 
     // number of events that will show after clicking on 'SEE MORE':
     const [isVisible, setIsVisible] = useState(9);
@@ -39,7 +33,14 @@ const Events = () => {
                 <h2 onClick={() => setEventType('meetups')}>Meetups</h2>
                 <h2 onClick={() => setEventType('workshops')}>Workshops</h2>
                 <h2 onClick={() => setEventType('conventions')}>Conventions</h2>
-                <Select options={options} placeholder='Select city' className="checkout" />
+                <select className="checkout">
+                    <option value="" disabled selected>Select city</option>
+                    {
+                        citiesWithEvent &&
+                        citiesWithEvent.map(city => <option value={city}>{city}</option>)
+                    }
+                </select>
+                {/* <Select options={citiesWithEvent} placeholder='Select city' className="checkout" /> */}
             </div>
             <div className="pool-event">
                 {
