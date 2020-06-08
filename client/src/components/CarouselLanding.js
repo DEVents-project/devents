@@ -50,7 +50,7 @@ const CarouselLanding = () => {
         >
             {
                 events &&
-                events.slice(0, 5).map((event, i) => <CarouselSlide key={i} title={event.title} img={event.img} date={event.date} location={event.location} coordinates={event.city} description={event.description} />)
+                events.slice(0, 5).map((event, i) => <CarouselSlide key={i} title={event.title} img={event.img} date={event.date} location={event.location} coordinates={event.city} description={event.description} url={event.url} />)
             }
         </Carousel>
     );
