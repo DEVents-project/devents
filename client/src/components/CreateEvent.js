@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
 
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 
-const CreateEvent = (props) => {
+const CreateEvent = () => {
 
     const history = useHistory();
 
@@ -20,6 +20,8 @@ const CreateEvent = (props) => {
     const [location, setLocation] = useState('');
     // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
     const [coordinates, setCoordinates] = useState('');
+    // we will need the city to filter the events
+    const [city, setCity] = useState('');
 
     const [statusAdded, setStatusAdded] = useState(false)
 
@@ -35,11 +37,11 @@ const CreateEvent = (props) => {
             coordinates,
             location,
             link,
-            description
+            description,
+            city
         }
 
         const eventData = {
-
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -49,31 +51,24 @@ const CreateEvent = (props) => {
 
         const resp = await fetch('http://localhost:4000/addevent', eventData);
         const data = await resp.json();
-        console.log("res:", data);
+        // console.log("res:", data);
 
         if (data.success) {
             setStatusAdded(true)
         }
     }
 
+    // method to get the city from the address string after inserting it in the input:
     useEffect(() => {
-        const script = document.createElement('script');
-
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
-        script.async = true;
-
-        document.body.appendChild(script);
-
-        return () => {
-            document.body.removeChild(script);
-        }
-    }, []);
-
-    // console.log('The current location is: ', location);
+        setCity(location.split(',')[1]);
+    }, [location])
 
     useEffect(() => {
         statusAdded && history.push('/events');
     })
+
+    // console.log('Coordinates: ', coordinates);
+    // console.log('Location: ', location);
 
     return (
         <div className="create-event-container">

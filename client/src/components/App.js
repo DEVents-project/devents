@@ -64,6 +64,19 @@ const App = () => {
   // console.log('CURRENT EVENT INFO: ', eventInfo);
 
   useEffect(() => {
+    const script = document.createElement('script');
+
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    }
+  }, []);
+
+  useEffect(() => {
     const fetchEvents = async () => {
       const options = {
         method: 'GET',
@@ -124,6 +137,8 @@ const App = () => {
       getUserData();
     }
   }, []);
+
+  console.log('ALL EVENTS FETCHED: ', events);
 
   return (
     <div className="App">
