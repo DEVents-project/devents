@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
 
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 
-const CreateEvent = () => {
+const CreateEvent = (props) => {
 
     const history = useHistory();
 
@@ -15,13 +15,11 @@ const CreateEvent = () => {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [description, setDescription] = useState('');
-    const [link, setLink] = useState('');
+    const [url, setUrl] = useState('');
     // this will be the complete address of the event as a STRING
     const [location, setLocation] = useState('');
     // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
     const [coordinates, setCoordinates] = useState('');
-    // we will need the city to filter the events
-    const [city, setCity] = useState('');
 
     const [statusAdded, setStatusAdded] = useState(false)
 
@@ -36,9 +34,8 @@ const CreateEvent = () => {
             time,
             coordinates,
             location,
-            link,
-            description,
-            city
+            url,
+            description
         }
 
         const eventData = {
@@ -51,24 +48,31 @@ const CreateEvent = () => {
 
         const resp = await fetch('http://localhost:4000/addevent', eventData);
         const data = await resp.json();
-        // console.log("res:", data);
+        console.log("res:", data);
 
         if (data.success) {
             setStatusAdded(true)
         }
     }
 
-    // method to get the city from the address string after inserting it in the input:
     useEffect(() => {
-        setCity(location.split(',')[1]);
-    }, [location])
+        const script = document.createElement('script');
+
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
+        script.async = true;
+
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        }
+    }, []);
+
+    // console.log('The current location is: ', location);
 
     useEffect(() => {
         statusAdded && history.push('/events');
     })
-
-    // console.log('Coordinates: ', coordinates);
-    // console.log('Location: ', location);
 
     return (
         <div className="create-event-container">
@@ -123,9 +127,9 @@ const CreateEvent = () => {
                     <input
                         className="event-input"
                         type="url"
-                        value={link}
+                        value={url}
                         placeholder="the event website"
-                        onChange={(e) => setLink(e.target.value)}
+                        onChange={(e) => setUrl(e.target.value)}
                     />
                 </label>
                 <label className="event-label">Description *

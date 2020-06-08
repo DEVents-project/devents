@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style/EventCard.scss';
 
-const EventCard = ({ setIsEventClicked, setEventInfo, title, img, date, location, coordinates, description }) => {
+const EventCard = ({ setIsEventClicked, setEventInfo, title, img, date, location, coordinates, description, url }) => {
 
     return (
         <div className="event-card">
@@ -22,7 +22,8 @@ const EventCard = ({ setIsEventClicked, setEventInfo, title, img, date, location
                         date: date,
                         location: location,
                         coordinates: coordinates,
-                        description: description
+                        description: description,
+                        url: url
                     }
                 );
                 setIsEventClicked(true);
