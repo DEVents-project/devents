@@ -11,7 +11,7 @@ const CreateEvent = (props) => {
 
     // The followings are NOT base on the schema - Schema needs to be modified! 
     const [title, setTitle] = useState('');
-    const [hostBy, setHostBy] = useState('');
+    const [hostedBy, setHostedBy] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [description, setDescription] = useState('');
@@ -29,7 +29,7 @@ const CreateEvent = (props) => {
         // IMPORTANT: location is going to be an object: {lat: Number, lng: Number}
         const eventInfo = {
             title,
-            hostBy,
+            hostedBy,
             date,
             time,
             coordinates,
@@ -98,7 +98,7 @@ const CreateEvent = (props) => {
                         type="text"
                         value={hostBy}
                         placeholder="the host name"
-                        onChange={(e) => setHostBy(e.target.value)}
+                        onChange={(e) => setHostedBy(e.target.value)}
                     />
                 </label>
                 <div className="event-label inline">
