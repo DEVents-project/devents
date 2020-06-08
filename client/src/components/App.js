@@ -22,6 +22,7 @@ const App = () => {
   const [meetups, setMeetups] = useState('')
   const [workshops, setWorkshops] = useState('');
   const [conventions, setConventions] = useState('');
+  const [citiesWithEvent, setCitiesWithEvent] = useState('');
 
   // HARD CODED USER DATA BY NOW. This should contain the user's info and the events he has created, all fetched from the DB:
   const hardCodedUserData = {
@@ -87,6 +88,7 @@ const App = () => {
       };
 
       const allEventsTogether = [];
+      const allCities = [];
 
       const response = await fetch('http://localhost:4000/events', options);
       const meetups = await response.json();
@@ -109,7 +111,14 @@ const App = () => {
       setConventions(conventions.events.filter(event => event.url.includes('eventil'))
       );
 
+      // we extract all the cities where an event is going to take place:
+      allEventsTogether.map(event => allCities.push(event.city));
+      const extractedCities = [...new Set(allCities)];
+
       // console.log('ALL EVENTS: ', allEventsTogether);
+      // console.log('ALL CITIES: ', extractedCities);
+
+      setCitiesWithEvent(extractedCities);
       setEvents(allEventsTogether);
     };
 
@@ -142,7 +151,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Context.Provider value={{ loggedIn, setLoggedIn, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions }}>
+      <Context.Provider value={{ loggedIn, setLoggedIn, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions, citiesWithEvent }}>
         <BrowserRouter>
           {
             loggedIn ?
