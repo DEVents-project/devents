@@ -2,19 +2,19 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const EventSchema = new Schema({
-    name: { type: String, required: true },
+    title: { type: String, required: true },
 
     hostedBy: { type: String, required: true },
 
-    city: { type: String, required: true },
-
-    address: { type: String, required: true },
-
     date: { type: String, required: true },
 
-    description: { type: String, required: true },
+    time: {type: String, required: true},
 
-    link: { type: String },
+    location: { type: String, required: true },
+
+    website: { type: String },
+
+    description: { type: String, required: true },
 
     createdAt: { type: Date, default: Date.now }
 });
