@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Context from './Context';
-import { BrowserRouter, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../style/Events.scss';
 import Select from 'react-select';
 import EventCard from './EventCard';
@@ -35,47 +35,45 @@ const Events = () => {
     return (
         <div className="events-container space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
-            <BrowserRouter>
-                <div className="event-types">
-                    <h2 onClick={() => setEventType('meetups')}>Meetups</h2>
-                    <h2 onClick={() => setEventType('workshops')}>Workshops</h2>
-                    <h2 onClick={() => setEventType('conventions')}>Conventions</h2>
-                    <Select options={options} placeholder='Select city' className="checkout" />
-                </div>
-                <div className="pool-event">
-                    {
-                        events && eventType === '' ?
-                            events.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
-                            : null
-                    }
-                    {
-                        events && eventType === 'meetups' ?
-                            meetups.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
-                            : null
-                    }
-                    {
-                        events && eventType === 'workshops' ?
-                            workshops.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
-                            : null
-                    }
-                    {
-                        events && eventType === 'conventions' ?
-                            conventions.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
-                            : null
-                    }
-                </div>
+            <div className="event-types">
+                <h2 onClick={() => setEventType('meetups')}>Meetups</h2>
+                <h2 onClick={() => setEventType('workshops')}>Workshops</h2>
+                <h2 onClick={() => setEventType('conventions')}>Conventions</h2>
+                <Select options={options} placeholder='Select city' className="checkout" />
+            </div>
+            <div className="pool-event">
                 {
-                    eventType === '' && isVisible >= events.length ?
-                        null :
-                        eventType === 'meetups' && isVisible >= meetups.length ?
-                            null :
-                            eventType === 'workshops' && isVisible >= workshops.length ?
-                                null :
-                                eventType === 'conventions' && isVisible >= conventions.length ?
-                                    null :
-                                    <button className="button load-more" onClick={loadMore}>Load more</button>
+                    events && eventType === '' ?
+                        events.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
+                        : null
                 }
-            </BrowserRouter>
+                {
+                    events && eventType === 'meetups' ?
+                        meetups.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
+                        : null
+                }
+                {
+                    events && eventType === 'workshops' ?
+                        workshops.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
+                        : null
+                }
+                {
+                    events && eventType === 'conventions' ?
+                        conventions.slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} />)
+                        : null
+                }
+            </div>
+            {
+                eventType === '' && isVisible >= events.length ?
+                    null :
+                    eventType === 'meetups' && isVisible >= meetups.length ?
+                        null :
+                        eventType === 'workshops' && isVisible >= workshops.length ?
+                            null :
+                            eventType === 'conventions' && isVisible >= conventions.length ?
+                                null :
+                                <button className="button load-more" onClick={loadMore}>Load more</button>
+            }
         </div>
     );
 }

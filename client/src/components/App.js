@@ -138,6 +138,7 @@ const App = () => {
     }
   }, []);
 
+
   return (
     <div className="App">
       <Context.Provider value={{ loggedIn, setLoggedIn, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions }}>
