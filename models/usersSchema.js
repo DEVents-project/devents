@@ -7,9 +7,7 @@ const env = require("../config/config")
 
 
 const UserSchema = new Schema({
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    // city: { type: String, required: true },
+    name: { type: String, required: true },
     email: { type: String, required: true },
     role: { type: String, default: "User", required: true },
     tokens: [
@@ -22,7 +20,6 @@ const UserSchema = new Schema({
     ],
     password: { type: String, required: true },
     avatar: { type: String, required: false },
-    // organizationName: { type: String, required: false },
     website: { type: String, required: false },
 
 })
@@ -38,8 +35,7 @@ UserSchema.methods.generateAuthToken = function () {
 
 UserSchema.methods.getPublicFields = function () {
     let returnObject = {
-        firstName: this.firstName,
-        lastName: this.lastName,
+        name: this.name,
         email: this.email,
         password: this.password,
         avatar: this.img,
