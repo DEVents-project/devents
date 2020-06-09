@@ -16,7 +16,7 @@ import Context from './Context';
 
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [events, setEvents] = useState('');
   const [meetups, setMeetups] = useState('')
@@ -30,7 +30,7 @@ const App = () => {
     avatar: 'https://joeschmoe.io/api/v1/james',
     email: 'test@test.com',
     password: 'password',
-    _id: '5edf4f0445412b2d49e01e49',
+    _id: '5edf8bed1ca25b37245278fd',
     events: [
       {
         title: 'Example of title 1',
