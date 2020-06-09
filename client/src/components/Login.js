@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import Context from './Context';
 
 import '../style/Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,8 +12,8 @@ import DevCoding from '../assets/img/dev-coding2.png';
 
 const Login = () => {
     const history = useHistory();
-    // const context = useContext(Context)
-    // const { userData, setUserData, localStorage, setLocalStorage } = useContext(context);
+    const { userData, setUserData } = useContext(Context);
+    const { localStorage, setLocalStorage } = useContext(Context);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
@@ -40,13 +41,13 @@ const Login = () => {
         const data = await resp.json()
         console.log(data.user);
 
+        const header = resp.headers.get('x-auth');
 
         if (data.success) {
-            // const header = response.headers.get('x-auth');
-            // localStorage.setItem('token', header);
-            // setStorage(header);
+            localStorage.setItem('token', header);
+            setLocalStorage(header);
+            setUserData(data.user)
             setIsLogged(true)
-            // setUserData(data.user)
         } else {
             setErrorMsg(true)
         }
