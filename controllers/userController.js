@@ -38,11 +38,11 @@ exports.postUser = async (req, res, next) => {
 }
 
 exports.putUser = async (req, res, next) => {
-    const { id } = req.params;
-    const user = req.body
+    const { _id } = req.body;
+    const user = req.body;
     try {
         if (Object.keys(req.body).includes("password")) {
-            const hashedPassword = await encrypt(client.password)
+            const hashedPassword = await encrypt(user.password)
             user.password = hashedPassword
         }
         const updatedUser = await User.findByIdAndUpdate(id, user, { new: true })

@@ -8,7 +8,7 @@ Route.get("/", auth, isAdmin, getUsers)
 Route.get("/:id", auth, getUser)
 Route.post("/", validateUser(), postUser)
 Route.post("/login", login)
-Route.put("/:id", auth, putUser)
+Route.put("/", auth, putUser)
 Route.delete("/:id", auth, deleteUser)
 
 
