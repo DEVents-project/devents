@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import '../style/Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import ParticlesBg from 'particles-bg';
 import DevCoding from '../assets/img/dev-coding2.png';
 
@@ -11,14 +11,14 @@ import DevCoding from '../assets/img/dev-coding2.png';
 
 const Login = () => {
     const history = useHistory();
-    const Context = useContext()
+    // const context = useContext(Context)
+    // const { userData, setUserData, localStorage, setLocalStorage } = useContext(context);
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('')
     // set a status for what happens after login 
     const [isLogged, setIsLogged] = useState(false)
     const [errorMsg, setErrorMsg] = useState(false)
-    const { userData, setUserData } = useContext(Context);
 
 
     const handleLogin = async (e) => {
@@ -38,12 +38,15 @@ const Login = () => {
         };
         const resp = await fetch('http://localhost:4000/login', logged)
         const data = await resp.json()
-
         console.log(data.user);
 
+
         if (data.success) {
+            // const header = response.headers.get('x-auth');
+            // localStorage.setItem('token', header);
+            // setStorage(header);
             setIsLogged(true)
-            setUserData(data.user)
+            // setUserData(data.user)
         } else {
             setErrorMsg(true)
         }
