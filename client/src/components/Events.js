@@ -58,13 +58,13 @@ const Events = () => {
                 }
             </div>
             {
-                eventType === '' && isVisible >= events.length ?
+                events && eventType === '' && isVisible >= events.filter(event => event.city === selectedCity).length ?
                     null :
-                    eventType === 'meetups' && isVisible >= meetups.length ?
+                    eventType === 'meetups' && isVisible >= meetups.filter(meetup => meetup.city === selectedCity).length ?
                         null :
-                        eventType === 'workshops' && isVisible >= workshops.length ?
+                        eventType === 'workshops' && isVisible >= workshops.filter(workshop => workshop.city === selectedCity).length ?
                             null :
-                            eventType === 'conventions' && isVisible >= conventions.length ?
+                            eventType === 'conventions' && isVisible >= conventions.filter(convention => convention.city === selectedCity).length ?
                                 null :
                                 <button className="button load-more" onClick={loadMore}>Load more</button>
             }
