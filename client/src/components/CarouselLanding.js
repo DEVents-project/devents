@@ -10,7 +10,7 @@ const CarouselLanding = () => {
 
     const { events, setEvents } = useContext(Context);
 
-    console.log('EVENTS: ', events);
+    // console.log('EVENTS: ', events);
 
     // const content = [
     //     {

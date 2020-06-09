@@ -72,7 +72,7 @@ const Account = () => {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "x-auth": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWRmNGYwNDQ1NDEyYjJkNDllMDFlNDkiLCJpYXQiOjE1OTE2OTQyNTN9.Ioy6p11dxrmKfEp2y7yCMz5DdkkRhAkC-KmcYD7tRHQ'
+                "x-auth": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWRmOGJlZDFjYTI1YjM3MjQ1Mjc4ZmQiLCJpYXQiOjE1OTE3MDg2NzV9.2zOtEpMmXWNnpw7Ze-c-ZEz_hKHIHBJjaBdAPHGCD1g'
             },
             body: JSON.stringify(newInfo)
 
@@ -120,9 +120,9 @@ const Account = () => {
                                         {
                                             listOfAvatars.map((avatar, i) => {
                                                 return (
-                                                    <div className="avatar-box">
+                                                    <div key={i} className="avatar-box">
                                                         <input type="radio" id={i} name='avatar' value={listOfAvatars[i]} onChange={(e) => setNewAvatar(e.currentTarget.value)} />
-                                                        <label for={i}> <img src={avatar} alt={avatar.slice(28)} style={{ height: '112px' }} /></label>
+                                                        <label htmlFor={i}> <img src={avatar} alt={avatar.slice(28)} style={{ height: '112px' }} /></label>
                                                     </div>
                                                 )
                                             })
