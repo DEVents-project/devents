@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import Context from './Context';
 
 import '../style/SignUp.scss';
 import ParticlesBg from 'particles-bg';
@@ -7,20 +8,27 @@ import ParticlesBg from 'particles-bg';
 
 const SignUp = () => {
     const history = useHistory();
-    // const Context = useContext(Context);
-
+    const { userData, setUserData } = useContext(Context);
+    const { localStorage, setLocalStorage } = useContext(Context);
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [website, setWebsite] = useState('');
     const [typeOfUser, setTypeOfUser] = useState('developer');
-    const [avatar, setAvatar] = useState(false);
+    const [avatar, setAvatar] = useState('');
 
     // set a status for what happens after sign up 
     const [isSignedUp, setIsSignedUp] = useState(false)
-    // const { userData, setUserData } = useContext(Context);
 
+    const avatars = [
+        'https://joeschmoe.io/api/v1/jeri',
+        'https://joeschmoe.io/api/v1/jess',
+        'https://joeschmoe.io/api/v1/jana',
+        'https://joeschmoe.io/api/v1/james',
+        'https://joeschmoe.io/api/v1/joe',
+        'https://joeschmoe.io/api/v1/julie',
+    ];
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -44,10 +52,16 @@ const SignUp = () => {
         }
         const resp = await fetch('http://localhost:4000/signup', userData);
         const data = await resp.json();
+
         console.log("res:", data);
+
+        const header = resp.headers.get('x-auth');
+
         if (data.success) {
+            localStorage.setItem('token', header);
+            setLocalStorage(header);
             setIsSignedUp(true)
-            // setUserData(data.user)
+            setUserData(data.user)
         }
 
     }
@@ -92,27 +106,31 @@ const SignUp = () => {
                 </label>
                 {
                     typeOfUser === 'developer' ?
-                        <div className="signup-label" onChange={(e) => setAvatar(e.currentTarget.value)}>Choose your avatar
-                            <div className="avatar-container">
-                                <label for="optOne"><img className="avatar" src={'https://joeschmoe.io/api/v1/jeri'} alt="Avatar Jeri" /></label>
-                                <input type="radio" name="avatars" id="optOne" className="input-hiden" checked />
+                        <p className="signup-label">Choose your avatar</p>
+                        :
+                        null
+                }
 
-                                <label for="optTwo"><img className="avatar" src={'https://joeschmoe.io/api/v1/jess'} alt="Avatar Jess" /></label>
-                                <input type="radio" name="avatars" id="optTwo" className="input-hiden" />
-
-                                <label for="optThree"><img className="avatar" src={'https://joeschmoe.io/api/v1/julie'} alt="Avatar Julie" /></label>
-                                <input type="radio" name="avatars" id="optThree" className="input-hiden" />
-
-                                <label for="optFour"><img className="avatar" src={'https://joeschmoe.io/api/v1/jana'} alt="Avatar Jana" /></label>
-                                <input type="radio" name="avatars" id="optFour" className="input-hiden" />
-
-                                <label for="optFive"><img className="avatar opacity" src={'https://joeschmoe.io/api/v1/james'} alt="Avatar James" /></label>
-                                <input type="radio" name="avatars" id="optFive" className="input-hiden" />
-
-                                <label for="optFive"><img className="avatar" src={'https://joeschmoe.io/api/v1/joe'} alt="Avatar Joe" /></label>
-                                <input type="radio" name="avatars" id="optFive" className="input-hiden" />
-                            </div>
-                        </div> :
+                {
+                    typeOfUser === 'developer' ?
+                        <div className="avatar-container">
+                            {
+                                avatars.map((avatar, i) => {
+                                    return (
+                                        <div key={i} >
+                                            <input
+                                                type="radio"
+                                                id={i}
+                                                name='avatar'
+                                                value={avatars[i]}
+                                                onChange={(e) => setAvatar(e.currentTarget.value)} />
+                                            <label htmlFor={i}><img src={avatar} className="avatar" alt={avatar.slice(28)} /></label>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                        :
                         null
                 }
 

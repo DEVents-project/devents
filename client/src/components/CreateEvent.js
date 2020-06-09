@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import Context from './Context';
 import { Redirect, useHistory } from 'react-router-dom';
 import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
@@ -8,6 +9,8 @@ import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 const CreateEvent = (props) => {
 
     const history = useHistory();
+    const { userData, setUserData } = useContext(Context);
+
 
     // The followings are NOT base on the schema - Schema needs to be modified! 
     const [title, setTitle] = useState('');
@@ -16,6 +19,7 @@ const CreateEvent = (props) => {
     const [time, setTime] = useState('');
     const [description, setDescription] = useState('');
     const [url, setUrl] = useState('');
+    const [image, setImage] = useState('');
     // this will be the complete address of the event as a STRING
     const [location, setLocation] = useState('');
 
@@ -37,6 +41,7 @@ const CreateEvent = (props) => {
             coordinates,
             location,
             url,
+            image,
             description
         }
 
@@ -124,6 +129,14 @@ const CreateEvent = (props) => {
                 </div>
                 <label className="event-label">Location *
                     <GoogleMapsAutocomplete setLocation={setLocation} setCoordinates={setCoordinates} />
+                </label>
+                <label className="event-label"> Image
+                    <input
+                        type="file"
+                        className="event-input"
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
+                    />
                 </label>
                 <label className="event-label">Website
                     <input
