@@ -35,4 +35,4 @@ server.use((err, req, res, next) => {
     res.json({ status: err.status, err: err.message });
 });
 
-server.listen(port, () => console.log("server is running"));
+server.listen(port, () => console.log(`server is running on port ${port}`));
