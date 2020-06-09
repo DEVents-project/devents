@@ -16,7 +16,7 @@ import Context from './Context';
 
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [events, setEvents] = useState('');
   const [meetups, setMeetups] = useState('')
