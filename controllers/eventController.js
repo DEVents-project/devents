@@ -1,5 +1,23 @@
 const createError = require("http-errors");
 const Event = require("../models/eventSchema");
+const Grid = require("gridfs-stream");
+const mongoose = require("mongoose")
+
+// Mongo URI
+const mongoURI = 'mongodb://127.0.0.1:27017/devents';
+
+// Create mongo connection
+const conn = mongoose.createConnection(mongoURI);
+
+//Init gfs
+let gfs;
+
+conn.once('open', () => {
+    //Init stream
+    gfs = Grid(conn.db, mongoose.mongo);
+    gfs.collection("uploads");
+})
+
 
 exports.getEvents = async (req, res, next) => {
     try {
@@ -24,9 +42,28 @@ exports.getEvent = async (req, res, next) => {
     };
 };
 
+exports.getImage = async (req, res) => {
+    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+        res.contentType("image/png")
+        const readStream = gfs.createReadStream(file.filename);
+        console.log(file, "file")
+        readStream.pipe(res)
+    })
+};
+
 exports.postEvent = async (req, res, next) => {
+    console.log(req.file)
     try {
-        const event = new Event(req.body);
+        const event = new Event({
+            title: req.body.title,
+            hostedBy: req.body.hostedBy,
+            date: req.body.date,
+            time: req.body.time,
+            location: req.body.location,
+            imgUrl: `/image/${req.file.filename}`,
+            website: req.body.website,
+            description: req.body.description
+        });
         await event.save();
         res.json({ success: true, event: event });
     }

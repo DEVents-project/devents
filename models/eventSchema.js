@@ -8,9 +8,11 @@ const EventSchema = new Schema({
 
     date: { type: String, required: true },
 
-    time: {type: String, required: true},
+    time: { type: String, required: true },
 
     location: { type: String, required: true },
+
+    imgUrl: { type: String, required: false },
 
     website: { type: String },
 
