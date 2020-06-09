@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import '../style/Login.scss';
@@ -11,12 +11,15 @@ import DevCoding from '../assets/img/dev-coding2.png';
 
 const Login = () => {
     const history = useHistory();
+    const Context = useContext()
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // set a status for what happens after login 
     const [isLogged, setIsLogged] = useState(false)
     const [errorMsg, setErrorMsg] = useState(false)
+    const { userData, setUserData } = useContext(Context);
+
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -36,10 +39,11 @@ const Login = () => {
         const resp = await fetch('http://localhost:4000/login', logged)
         const data = await resp.json()
 
-        console.log(data);
+        console.log(data.user);
 
         if (data.success) {
             setIsLogged(true)
+            setUserData(data.user)
         } else {
             setErrorMsg(true)
         }
