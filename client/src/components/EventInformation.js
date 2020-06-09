@@ -16,7 +16,8 @@ const EventInformation = (props) => {
                 <p className="event-information-date">{eventInfo.date}</p>
                 <h2 className="event-information-title">{eventInfo.title}</h2>
                 {
-                    eventInfo.img.includes('http') ?
+                    eventInfo.img &&
+                        eventInfo.img.includes('http') ?
                         <div className="event-information-box-one">
                             <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                             <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
