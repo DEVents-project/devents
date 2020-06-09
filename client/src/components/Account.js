@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 import Context from './Context';
 import { useHistory } from 'react-router-dom';
 import '../style/Account.scss';
-import ProfileImage from '../assets/img/profile-random.jpg';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 
@@ -13,6 +12,7 @@ const Account = () => {
     const { eventInfo, setEventInfo } = useContext(Context);
 
     const [isEventClicked, setIsEventClicked] = useState(false);
+    const [editInfo, setEditInfo] = useState(false);
 
     // this is where the events created by the user will be fetched:
 
@@ -48,12 +48,36 @@ const Account = () => {
                 <div className="image-frame">
                     <img className="profile-image" src={userData.img} alt="" />
                 </div>
-                <div className="personal-info">
-                    <h4>{userData.name}</h4>
-                    <p>{userData.email}</p>
-                    <p>{userData.password}</p>
-                </div>
-                <button className="button">Edit information</button>
+
+                {
+                    editInfo ?
+                        <Fragment>
+                            <div className="personal-info">
+                                <form action="" className="edit-form">
+                                    <label htmlFor="name" className="edit-label">
+                                        <input type="text" placeholder={userData.name} />
+                                    </label>
+                                    <label htmlFor="email" className="edit-label">
+                                        <input type="email" placeholder={userData.email} />
+                                    </label>
+                                    <label htmlFor="password" className="edit-label">
+                                        <input type="password" placeholder='new password' />
+                                    </label>
+                                </form>
+                            </div>
+                            <button className="button save-button" onClick={() => setEditInfo(false)}>Save</button>
+                        </Fragment>
+                        :
+                        <Fragment>
+                            <div className="personal-info">
+                                <h4>{userData.name}</h4>
+                                <p>{userData.email}</p>
+                                <p>{userData.password}</p>
+                            </div>
+                            <button className="button" onClick={() => setEditInfo(true)}>Edit information</button>
+                        </Fragment>
+                }
+
             </div>
             <div className="personal-events">
                 <h4>My events</h4>
