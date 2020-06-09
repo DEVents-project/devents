@@ -60,7 +60,7 @@ const App = () => {
   }
   const [userData, setUserData] = useState(hardCodedUserData);
   // localstorage to save the token coming from the header. by clicking on signout the localstorage will be cleared:
-  const [storage, setStorage] = useState(localStorage.getItem('token'));
+  const [storage, setStorage] = useState(localStorage.getItem('x-auth'));
   // this is the state that is going to carry all the information of one specific event, when the user clicks on it to see the description:
   const [eventInfo, setEventInfo] = useState(null);
 
@@ -153,7 +153,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Context.Provider value={{ loggedIn, setLoggedIn, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions, citiesWithEvent }}>
+      <Context.Provider value={{ loggedIn, setLoggedIn, storage, setStorage, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions, citiesWithEvent }}>
         <BrowserRouter>
           {
             loggedIn ?
