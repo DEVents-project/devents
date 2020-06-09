@@ -77,30 +77,30 @@ $border: .2rem;
             }
 
         }
-        .avatar-container {
-                width: 100%;
-                height: auto;
-                display: inline-block;
-                text-align: center;;
-                
-            .avatar {
-                width: 70px;
-                height: 70px;
-                padding: .2rem .2rem 0;
-                cursor: pointer;
-
-                .avatar .input-hiden:active + .opacity {
-                    opacity: .5;
-                }
-            }  
-            input[type="radio"] {
-                opacity: 0;
-                position: fixed;
-                width: 0;
-                
-            }
+        .avatar-container {  
+            width: 80%;
+            margin: 1rem .5rem;
+            display: grid;
+            grid-gap: 0.4rem;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        }   
+        .avatar {
+            width: 80px;
+            height: 80px;
         }
+        [type="radio"] {
+            width: 0;
+            height: 0;
+            position: absolute;
+            opacity: 0;
 
+            label{
+                cursor: pointer;
+            }    
+            &:checked + label {
+                outline: 3px solid $mid-light-blue;
+            }
+        }    
         .sign-btn {
             width: 80%;
             height: 2.8rem;
