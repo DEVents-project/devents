@@ -21,6 +21,7 @@ const UserSchema = new Schema({
     password: { type: String, required: true },
     avatar: { type: String, required: false },
     website: { type: String, required: false },
+    events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }]
 
 })
 
