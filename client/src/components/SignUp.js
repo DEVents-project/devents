@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import '../style/SignUp.scss';
@@ -7,6 +7,8 @@ import ParticlesBg from 'particles-bg';
 
 const SignUp = () => {
     const history = useHistory();
+    // const Context = useContext(Context);
+
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -17,6 +19,8 @@ const SignUp = () => {
 
     // set a status for what happens after sign up 
     const [isSignedUp, setIsSignedUp] = useState(false)
+    // const { userData, setUserData } = useContext(Context);
+
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -43,7 +47,7 @@ const SignUp = () => {
         console.log("res:", data);
         if (data.success) {
             setIsSignedUp(true)
-
+            // setUserData(data.user)
         }
 
     }
@@ -88,16 +92,27 @@ const SignUp = () => {
                 </label>
                 {
                     typeOfUser === 'developer' ?
-                        <label className="signup-label" onChange={(e) => setAvatar(e.currentTarget.value)}>Choose your avatar
+                        <div className="signup-label" onChange={(e) => setAvatar(e.currentTarget.value)}>Choose your avatar
                             <div className="avatar-container">
-                                <input type="image" value={avatar} className="avatar" src={'https://joeschmoe.io/api/v1/jeri'} alt="Avatar Jeri" />
-                                <input type="image" className="avatar" src={'https://joeschmoe.io/api/v1/jess'} alt="Avatar Jess" />
-                                <input type="image" className="avatar" src={'https://joeschmoe.io/api/v1/jana'} alt="Avatar Jana" />
-                                <input type="image" className="avatar" src={'https://joeschmoe.io/api/v1/james'} alt="Avatar James" />
-                                <input type="image" className="avatar" src={'https://joeschmoe.io/api/v1/joe'} alt="Avatar Joe" />
-                                <input type="image" className="avatar" src={'https://joeschmoe.io/api/v1/julie'} alt="Avatar Julie" />
+                                <label for="optOne"><img className="avatar" src={'https://joeschmoe.io/api/v1/jeri'} alt="Avatar Jeri" /></label>
+                                <input type="radio" name="avatars" id="optOne" className="input-hiden" checked />
+
+                                <label for="optTwo"><img className="avatar" src={'https://joeschmoe.io/api/v1/jess'} alt="Avatar Jess" /></label>
+                                <input type="radio" name="avatars" id="optTwo" className="input-hiden" />
+
+                                <label for="optThree"><img className="avatar" src={'https://joeschmoe.io/api/v1/julie'} alt="Avatar Julie" /></label>
+                                <input type="radio" name="avatars" id="optThree" className="input-hiden" />
+
+                                <label for="optFour"><img className="avatar" src={'https://joeschmoe.io/api/v1/jana'} alt="Avatar Jana" /></label>
+                                <input type="radio" name="avatars" id="optFour" className="input-hiden" />
+
+                                <label for="optFive"><img className="avatar opacity" src={'https://joeschmoe.io/api/v1/james'} alt="Avatar James" /></label>
+                                <input type="radio" name="avatars" id="optFive" className="input-hiden" />
+
+                                <label for="optFive"><img className="avatar" src={'https://joeschmoe.io/api/v1/joe'} alt="Avatar Joe" /></label>
+                                <input type="radio" name="avatars" id="optFive" className="input-hiden" />
                             </div>
-                        </label> :
+                        </div> :
                         null
                 }
 
