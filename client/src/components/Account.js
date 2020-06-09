@@ -120,7 +120,7 @@ const Account = () => {
                                         {
                                             listOfAvatars.map((avatar, i) => {
                                                 return (
-                                                    <div className="avatar-box">
+                                                    <div key={i} className="avatar-box">
                                                         <input type="radio" id={i} name='avatar' value={listOfAvatars[i]} onChange={(e) => setNewAvatar(e.currentTarget.value)} />
                                                         <label for={i}> <img src={avatar} alt={avatar.slice(28)} style={{ height: '112px' }} /></label>
                                                     </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Context from './Context';
-import { BrowserRouter, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../style/Landing.scss';
 import Developers from '../assets/img/collaboration2.svg';
 import ParticlesBg from 'particles-bg';

@@ -9,7 +9,7 @@ const Events = () => {
     const history = useHistory();
 
     const { setEventInfo, events, meetups, workshops, conventions, citiesWithEvent } = useContext(Context);
-    console.log('CITIES WITH EVENTS: ', citiesWithEvent);
+    // console.log('CITIES WITH EVENTS: ', citiesWithEvent);
 
     // number of events that will show after clicking on 'SEE MORE':
     const [isVisible, setIsVisible] = useState(9);
@@ -26,7 +26,7 @@ const Events = () => {
         isEventClicked && history.push('/event');
     });
 
-    console.log('SELECTED CITY: ', selectedCity);
+    // console.log('SELECTED CITY: ', selectedCity);
 
     return (
         <div className="events-container space-navbar">
@@ -39,7 +39,7 @@ const Events = () => {
                     <option value="" disabled>Select city</option>
                     {
                         citiesWithEvent &&
-                        citiesWithEvent.map(city => <option value={city}>{city}</option>)
+                        citiesWithEvent.map((city, i) => <option key={i} value={city}>{city}</option>)
                     }
                 </select>
             </div>
