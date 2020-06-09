@@ -27,6 +27,7 @@ const App = () => {
   // HARD CODED USER DATA BY NOW. This should contain the user's info and the events he has created, all fetched from the DB:
   const hardCodedUserData = {
     name: 'Peter Griffin',
+    img: 'https://joeschmoe.io/api/v1/james',
     email: 'test@test.com',
     password: 'password',
     events: [

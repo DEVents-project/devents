@@ -46,7 +46,7 @@ const Account = () => {
             <div className="personal-account">
                 <h4>My information</h4>
                 <div className="image-frame">
-                    <img className="profile-image" src={ProfileImage} alt="" />
+                    <img className="profile-image" src={userData.img} alt="" />
                 </div>
                 <div className="personal-info">
                     <h4>{userData.name}</h4>
