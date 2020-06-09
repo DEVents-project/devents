@@ -1,3 +1,5 @@
+@import "index";
+
 .account-container {
     width: 100%;
     height: auto;
@@ -19,7 +21,7 @@
         .image-frame {
             width: 15rem;
             height: 15rem;
-            border: 2px solid rgb(100, 100, 100);
+            border: 2px solid $dark-blue;
             border-radius: 50%;
             overflow: hidden;
             margin: 1rem 0;
@@ -41,6 +43,68 @@
                 font-size: 1rem;
                 line-height: 1.5;
             }
+
+            // edit form:
+
+            .edit-form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+
+                .edit-label {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    padding: 0.3rem;
+
+                    input {
+                        height: 2.5rem;
+                        width: 100%;
+                        padding: 1ch;
+                        margin: 0.3rem 0;
+                        border-radius: 0.2rem;
+                        border: none;
+                        border: 1px solid $mid-blue;
+                        font-size: 1.1rem;
+                        color: $dark-blue;
+
+                        &::placeholder {
+                            font-family: "Montserrat", sans-serif;
+                        }
+                    }
+                }
+
+                .select-avatar {
+                    text-align: center;
+                }
+
+                .container-avatars {
+                    margin: 1rem 0;
+                    display: grid;
+                    grid-gap: 0.5rem;
+                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                }
+
+                [type="radio"] {
+                    position: absolute;
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+
+                    label {
+                        cursor: pointer;
+                    }
+
+                    &:checked + label {
+                        outline: 3px solid $mid-light-blue;
+                    }
+                }
+            }
+        }
+        .save-button {
+            margin-top: 1rem;
+            padding: 0.5rem 2.5rem;
         }
     }
 
