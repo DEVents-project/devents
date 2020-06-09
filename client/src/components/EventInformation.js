@@ -7,7 +7,7 @@ import Map from './Map';
 const EventInformation = (props) => {
     const { eventInfo, setEventInfo } = useContext(Context);
 
-    console.log('eventInfo: ', eventInfo)
+    // console.log('eventInfo: ', eventInfo)
 
     return (
         <div className="space-navbar">

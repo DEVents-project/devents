@@ -66,6 +66,7 @@ const App = () => {
 
   // console.log('CURRENT EVENT INFO: ', eventInfo);
 
+  // FETCHING GOOGLE MAPS API:
   useEffect(() => {
     const script = document.createElement('script');
 
