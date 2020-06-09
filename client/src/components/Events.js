@@ -10,6 +10,7 @@ const Events = () => {
 
     const { setEventInfo, events, meetups, workshops, conventions, citiesWithEvent } = useContext(Context);
     // console.log('CITIES WITH EVENTS: ', citiesWithEvent);
+    console.log('Conventions: ', conventions);
 
     // number of events that will show after clicking on 'SEE MORE':
     const [isVisible, setIsVisible] = useState(9);
