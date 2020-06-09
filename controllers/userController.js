@@ -48,10 +48,10 @@ const getAccessToken = async (code) => {
 
     //get a string of the access token, scope and token type
     const data = await res.text();
-    
+
     //parse the string to separate them all
     const params = new URLSearchParams(data);
-    
+
     //get only the access token
     return params.get('access_token');
 }
@@ -97,7 +97,7 @@ exports.putUser = async (req, res, next) => {
             const hashedPassword = await encrypt(user.password)
             user.password = hashedPassword
         }
-        const updatedUser = await User.findByIdAndUpdate(id, user, { new: true })
+        const updatedUser = await User.findByIdAndUpdate(_id, user, { new: true })
         if (!updatedUser) throw createError(500)
         res.json({ success: true, user: updatedUser })
     } catch (err) {
