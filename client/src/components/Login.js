@@ -12,8 +12,7 @@ import DevCoding from '../assets/img/dev-coding2.png';
 
 const Login = () => {
     const history = useHistory();
-    const { userData, setUserData } = useContext(Context);
-    const { storage, setLocalStorage } = useContext(Context);
+    const { userData, setUserData, storage, setLocalStorage } = useContext(Context);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
