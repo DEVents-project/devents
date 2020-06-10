@@ -51,12 +51,12 @@ const SignUp = () => {
 
         }
         const resp = await fetch('http://localhost:4000/users', userData);
+        const header = resp.headers.get('x-auth');
         const data = await resp.json();
 
         console.log("res:", data);
 
-        const header = resp.headers.get('x-auth');
-
+        console.log(header);
         if (data.success) {
             localStorage.setItem('token', header);
             setStorage(header);
