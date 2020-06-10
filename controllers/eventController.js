@@ -53,8 +53,6 @@ exports.getImage = async (req, res) => {
 };
 
 exports.postEvent = async (req, res, next) => {
-    console.log(req.file)
-    console.log(req.body, "from post event")
 
     try {
         const newEvent = new Event({
@@ -68,11 +66,11 @@ exports.postEvent = async (req, res, next) => {
             description: req.body.description
         });
         await newEvent.save();
-        let userData = await User.findById(req.user._id)
-        userData.events.push(newEvent._id)
-        userData.save()
+        // let userData = await User.findById(req.user._id)
+        // userData.events.push(newEvent._id)
+        // userData.save()
 
-        res.json({ success: true, event: newEvent, user: userData });
+        res.json({ success: true, event: newEvent });
     }
     catch (err) {
         next(err);

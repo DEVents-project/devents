@@ -20,6 +20,7 @@ const CreateEvent = (props) => {
     const [description, setDescription] = useState('');
     const [url, setUrl] = useState('');
     const [image, setImage] = useState('');
+    const [serverImg, setServerImg] = useState('');
     // this will be the complete address of the event as a STRING
     const [location, setLocation] = useState('');
 
@@ -29,37 +30,62 @@ const CreateEvent = (props) => {
     // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
 
-    const handleCreateEvent = async (e) => {
+    const handleCreateEvent = (e) => {
         e.preventDefault();
+        console.log(image)
+        const imgBody = new FormData();
+
+
+        imgBody.append('title', title);
+        imgBody.append('hostedBy', hostedBy);
+        imgBody.append('date', date);
+        imgBody.append('time', time);
+        // imgBody.append('coordinates', coordinates);
+        imgBody.append('location', location);
+        imgBody.append('website', url);
+        imgBody.append('imgUrl', image);
+        imgBody.append('description', description);
 
         // IMPORTANT: location is going to be an object: {lat: Number, lng: Number}
-        const eventInfo = {
-            title,
-            hostedBy,
-            date,
-            time,
-            coordinates,
-            location,
-            url,
-            image,
-            description
-        }
+        // const eventInfo = {
+        //     title,
+        //     hostedBy,
+        //     date,
+        //     time,
+        //     coordinates,
+        //     location,
+        //     url,
+        //     image,
+        //     description
+        // }
 
-        const eventData = {
+        fetch("http://localhost:4000/events", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(eventInfo)
-        }
+            body: imgBody
+        }).then(res => {
+            console.log(res)
+        })
 
-        const resp = await fetch('http://localhost:4000/addevent', eventData);
-        const data = await resp.json();
-        console.log("res:", data);
+        // const eventData = {
+        //     method: "POST",
+        //     body: imgBody
+        //     // headers: {
+        //     //     "Content-Type": "application/json"
+        //     // },
+        //     // body: JSON.stringify(eventInfo)
 
-        if (data.success) {
-            setStatusAdded(true)
-        }
+        // }
+
+        // const resp = await fetch('http://localhost:4000/events', eventData);
+        // // const data = await resp.json();
+        // console.log(resp);
+
+        // if (data.success) {
+        //     console.log(object)
+        //     setStatusAdded(true)
+        //     setServerImg(res.url)
+
+        // }
     }
 
     useEffect(() => {
@@ -127,15 +153,15 @@ const CreateEvent = (props) => {
                         />
                     </label>
                 </div>
-                <label className="event-label">Location *
+                {/* <label className="event-label">Location *
                     <GoogleMapsAutocomplete setLocation={setLocation} setCoordinates={setCoordinates} />
-                </label>
+                </label> */}
                 <label className="event-label"> Image
                     <input
                         type="file"
                         className="event-input"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
+                        // value={image}
+                        onChange={(e) => setImage(e.target.files[0])}
                     />
                 </label>
                 <label className="event-label">Website
