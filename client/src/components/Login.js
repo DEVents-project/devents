@@ -12,12 +12,11 @@ import DevCoding from '../assets/img/dev-coding2.png';
 
 const Login = () => {
     const history = useHistory();
-    const { userData, setUserData, storage, setLocalStorage } = useContext(Context);
+    const { userData, setUserData, setToken, setLoggedIn, loggedIn } = useContext(Context);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
     // set a status for what happens after login 
-    const [isLogged, setIsLogged] = useState(false)
     const [errorMsg, setErrorMsg] = useState(false)
 
 
@@ -32,7 +31,8 @@ const Login = () => {
         const logged = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+
             },
             body: JSON.stringify(loginData)
         };
@@ -43,17 +43,17 @@ const Login = () => {
         const header = resp.headers.get('x-auth');
 
         if (data.success) {
-            storage.setItem('token', header);
-            setLocalStorage(header);
+            localStorage.setItem('token', header);
+            setToken(header);
             setUserData(data.user)
-            setIsLogged(true)
+            setLoggedIn(true)
         } else {
             setErrorMsg(true)
         }
     }
 
     useEffect(() => {
-        isLogged && history.push('/events')
+        loggedIn && history.push('/events')
     });
 
 
