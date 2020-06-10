@@ -8,7 +8,7 @@ import ParticlesBg from 'particles-bg';
 
 const SignUp = () => {
     const history = useHistory();
-    const { userData, setUserData, setToken } = useContext(Context);
+    const { userData, setUserData, setToken, loggedIn, setLoggedIn } = useContext(Context);
 
 
     const [name, setName] = useState('');
@@ -19,7 +19,7 @@ const SignUp = () => {
     const [avatar, setAvatar] = useState('');
 
     // set a status for what happens after sign up 
-    const [isSignedUp, setIsSignedUp] = useState(false);
+    // const [isSignedUp, setIsSignedUp] = useState(false);
 
     const avatars = [
         'https://joeschmoe.io/api/v1/jeri',
@@ -59,12 +59,12 @@ const SignUp = () => {
             localStorage.setItem('token', header);
             setToken(header);
             setUserData(data.user)
-            setIsSignedUp(true)
+            setLoggedIn(true)
         }
     };
 
     useEffect(() => {
-        isSignedUp && history.push('/account')
+        loggedIn && history.push('/account')
     })
 
     return (
@@ -120,6 +120,7 @@ const SignUp = () => {
                                                 id={i}
                                                 name='avatar'
                                                 value={avatars[i]}
+                                                required
                                                 onChange={(e) => setAvatar(e.currentTarget.value)} />
                                             <label htmlFor={i}><img src={avatar} className="avatar" alt={avatar.slice(28)} /></label>
                                         </div>

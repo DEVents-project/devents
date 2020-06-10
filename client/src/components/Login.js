@@ -12,13 +12,11 @@ import DevCoding from '../assets/img/dev-coding2.png';
 
 const Login = () => {
     const history = useHistory();
-    const { userData, setUserData } = useContext(Context);
-    const { localStorage, setLocalStorage } = useContext(Context);
+    const { userData, setUserData, setToken, setLoggedIn, loggedIn } = useContext(Context);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
     // set a status for what happens after login 
-    const [isLogged, setIsLogged] = useState(false)
     const [errorMsg, setErrorMsg] = useState(false)
 
 
@@ -33,11 +31,12 @@ const Login = () => {
         const logged = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+
             },
             body: JSON.stringify(loginData)
         };
-        const resp = await fetch('http://localhost:4000/login', logged)
+        const resp = await fetch('http://localhost:4000/users/login', logged)
         const data = await resp.json()
         console.log(data.user);
 
@@ -45,16 +44,16 @@ const Login = () => {
 
         if (data.success) {
             localStorage.setItem('token', header);
-            setLocalStorage(header);
+            setToken(header);
             setUserData(data.user)
-            setIsLogged(true)
+            setLoggedIn(true)
         } else {
             setErrorMsg(true)
         }
     }
 
     useEffect(() => {
-        isLogged && history.push('/events')
+        loggedIn && history.push('/events')
     });
 
 
