@@ -19,20 +19,26 @@ const NavBarSignedOut = () => {
     ];
 
     useEffect(() => {
-        setInterval(() => {
-            setTimeout(() => {
-                setTitleIndex(index => index + 1);
+        let interval = true;
+
+        if (interval) {
+            setInterval(() => {
                 setTimeout(() => {
                     setTitleIndex(index => index + 1);
                     setTimeout(() => {
                         setTitleIndex(index => index + 1);
                         setTimeout(() => {
                             setTitleIndex(index => index + 1);
+                            setTimeout(() => {
+                                setTitleIndex(index => index + 1);
+                            }, 800);
                         }, 800);
                     }, 800);
                 }, 800);
-            }, 800);
-        }, 12000);
+            }, 12000);
+        }
+
+        return () => interval = false;
     }, []);
 
     useEffect(() => {
