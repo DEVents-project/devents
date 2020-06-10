@@ -8,7 +8,7 @@ import ParticlesBg from 'particles-bg';
 
 const SignUp = () => {
     const history = useHistory();
-    const { userData, setUserData, storage, setStorage } = useContext(Context);
+    const { userData, setUserData, setToken } = useContext(Context);
 
 
     const [name, setName] = useState('');
@@ -19,7 +19,7 @@ const SignUp = () => {
     const [avatar, setAvatar] = useState('');
 
     // set a status for what happens after sign up 
-    const [isSignedUp, setIsSignedUp] = useState(false)
+    const [isSignedUp, setIsSignedUp] = useState(false);
 
     const avatars = [
         'https://joeschmoe.io/api/v1/jeri',
@@ -42,7 +42,6 @@ const SignUp = () => {
         }
 
         const userData = {
-
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -56,19 +55,17 @@ const SignUp = () => {
 
         console.log("res:", data);
 
-        console.log(header);
         if (data.success) {
             localStorage.setItem('token', header);
-            setStorage(header);
+            setToken(header);
             setUserData(data.user)
             setIsSignedUp(true)
         }
+    };
 
-    }
     useEffect(() => {
         isSignedUp && history.push('/account')
     })
-
 
     return (
         <div className="signup-container space-navbar">
