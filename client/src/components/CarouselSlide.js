@@ -3,7 +3,7 @@ import Context from './Context';
 import { useHistory } from 'react-router-dom';
 import '../style/CarouselSlide.scss';
 
-const CarouselSlide = ({ title, location, img, date, coordinates, description }) => {
+const CarouselSlide = ({ title, location, img, date, coordinates, description, url }) => {
     const history = useHistory();
 
     const { setEventInfo } = useContext(Context);
@@ -29,7 +29,8 @@ const CarouselSlide = ({ title, location, img, date, coordinates, description })
                                 date: date,
                                 location: location,
                                 coordinates: coordinates,
-                                description: description
+                                description: description,
+                                url: url
                             }
                         );
                         setLinkToEvent(true)

@@ -7,7 +7,7 @@ import Map from './Map';
 const EventInformation = (props) => {
     const { eventInfo, setEventInfo } = useContext(Context);
 
-    console.log('eventInfo: ', eventInfo)
+    // console.log('eventInfo: ', eventInfo)
 
     return (
         <div className="space-navbar">
@@ -16,12 +16,19 @@ const EventInformation = (props) => {
                 <p className="event-information-date">{eventInfo.date}</p>
                 <h2 className="event-information-title">{eventInfo.title}</h2>
                 {
-                    eventInfo.img.includes('http') ?
-                        <img className="event-information-image" src={eventInfo.img} alt="event-image" />
+                    eventInfo.img &&
+                        eventInfo.img.includes('http') ?
+                        <div className="event-information-box-one">
+                            <img className="event-information-image" src={eventInfo.img} alt="event-image" />
+                            <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
+                        </div>
                         :
-                        <img className="event-information-image" src="https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/meetup.jpg" alt="backup-image" />
+                        <div className="event-information-box-one">
+                            <img className="event-information-image" src="https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/meetup.jpg" alt="backup-image" />
+                            <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
+                        </div>
                 }
-                <div className="event-information-box">
+                <div className="event-information-box-two">
                     <p className="event-information-description">{eventInfo.description}</p>
                     <p className="event-information-location">{eventInfo.address}</p>
                 </div>

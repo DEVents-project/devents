@@ -23,30 +23,28 @@ const deleteEvents = async () => {
 
 deleteEvents()
 
-const eventilEventBerlin = "https://eventil.com/events?utf8=%E2%9C%93&q%5Bcfp_open%5D=&q%5Bonline_scope%5D=&q%5Bpast%5D=&q%5Bsearch_for%5D=developer+&q%5Bwhere_scope%5D=berlin&q%5Btime%5D=&button=";
+const eventbriteBerlin = "https://www.eventbrite.de/d/germany--berlin/science-and-tech--conferences/developer/?page=1";
 
-got(eventilEventBerlin).then(res => {
+got(eventbriteBerlin).then(res => {
     const eventsPageDom = new JSDOM(res.body.toString()).window.document;
-    const eventsParentElement = eventsPageDom.querySelector(".events-list");
+    const eventsParentElement = eventsPageDom.querySelector(".search-main-content__events-list");
     const eventsElements = eventsParentElement.querySelectorAll("li")
     eventsElements.forEach(event => {
-        const eventUrl = `https://eventil.com${event.querySelector("div").querySelector("a").getAttribute("href")}`
-        const eventAddress = event.querySelector("div").querySelector("p").textContent;
-        const address = eventAddress.trim()
-        // console.log(address)
+        const eventUrl = event.querySelector("div").querySelector("a").getAttribute("href")
+        const eventAddress = event.querySelector(".card-text--truncated__one").textContent;
+
         got(eventUrl).then(data => {
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            let title = eventPageDom.querySelector("h1").textContent.trim();
+            let title = eventPageDom.querySelector(".listing-hero-title").textContent;
             eventData.title = title;
-            let date = eventPageDom.querySelector(".banner-ticket__date").querySelectorAll("time")[0].textContent.trim();
+            let date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
             eventData.date = date;
-            eventData.location = address;
+            eventData.location = eventAddress;
             eventData.city = "Berlin";
-            eventData.description = eventPageDom.querySelector(".event-description").querySelector("p").textContent;
-            const bg = eventPageDom.querySelector(".banner-image").style.backgroundImage
-            const img = bg.slice(4, -1).replace(/"/g, "");
-            eventData.img = img;
+            let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
+            eventData.description = description.trim()
+
             eventData.url = eventUrl
 
             const dataForSave = new Convention(eventData)
@@ -58,35 +56,34 @@ got(eventilEventBerlin).then(res => {
 
             });
 
+
+
         })
     })
 
 })
 
-const eventilEventHamburg = "https://eventil.com/events?utf8=%E2%9C%93&q%5Bcfp_open%5D=&q%5Bonline_scope%5D=&q%5Bpast%5D=&q%5Bsearch_for%5D=developer&q%5Bwhere_scope%5D=hamburg&q%5Btime%5D=&button="
+const eventbriteHamburg = "https://www.eventbrite.de/d/germany--hamburg/science-and-tech--conferences/developer/?page=1";
 
-got(eventilEventHamburg).then(res => {
+got(eventbriteHamburg).then(res => {
     const eventsPageDom = new JSDOM(res.body.toString()).window.document;
-    const eventsParentElement = eventsPageDom.querySelector(".events-list");
+    const eventsParentElement = eventsPageDom.querySelector(".search-main-content__events-list");
     const eventsElements = eventsParentElement.querySelectorAll("li")
     eventsElements.forEach(event => {
-        const eventUrl = `https://eventil.com${event.querySelector("div").querySelector("a").getAttribute("href")}`
-        const eventAddress = event.querySelector("div").querySelector("p").textContent;
-        const address = eventAddress.trim()
-        // console.log(address)
+        const eventUrl = event.querySelector("div").querySelector("a").getAttribute("href")
+        const eventAddress = event.querySelector(".card-text--truncated__one").textContent;
         got(eventUrl).then(data => {
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            let title = eventPageDom.querySelector("h1").textContent.trim();
+            let title = eventPageDom.querySelector(".listing-hero-title").textContent;
             eventData.title = title;
-            let date = eventPageDom.querySelector(".banner-ticket__date").querySelectorAll("time")[0].textContent.trim();
+            let date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
             eventData.date = date;
-            eventData.location = address;
+            // const eventAddress = event.querySelector(".event-details hide-small").querySelector("p").textContent;
+            eventData.location = eventAddress;
             eventData.city = "Hamburg";
-            eventData.description = eventPageDom.querySelector(".event-description").querySelector("p").textContent;
-            const bg = eventPageDom.querySelector(".banner-image").style.backgroundImage
-            const img = bg.slice(4, -1).replace(/"/g, "");
-            eventData.img = img;
+            let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
+            eventData.description = description.trim()
             eventData.url = eventUrl
 
             const dataForSave = new Convention(eventData)
@@ -97,36 +94,41 @@ got(eventilEventHamburg).then(res => {
                 console.log(err, eventData.title, "saved")
 
             });
+
+
 
         })
     })
 
 })
 
-const eventilEventMunich = "https://eventil.com/events?utf8=%E2%9C%93&q%5Bcfp_open%5D=&q%5Bonline_scope%5D=&q%5Bpast%5D=&q%5Bsearch_for%5D=developer&q%5Bwhere_scope%5D=munich&q%5Btime%5D=&button="
+const eventbriteMunich = "https://www.eventbrite.de/d/germany--m%C3%BCnchen/science-and-tech--conferences/developer/?page=1";
 
-got(eventilEventMunich).then(res => {
+got(eventbriteMunich).then(res => {
     const eventsPageDom = new JSDOM(res.body.toString()).window.document;
-    const eventsParentElement = eventsPageDom.querySelector(".events-list");
+    const eventsParentElement = eventsPageDom.querySelector(".search-main-content__events-list");
     const eventsElements = eventsParentElement.querySelectorAll("li")
     eventsElements.forEach(event => {
-        const eventUrl = `https://eventil.com${event.querySelector("div").querySelector("a").getAttribute("href")}`
-        const eventAddress = event.querySelector("div").querySelector("p").textContent;
-        const address = eventAddress.trim()
+        const eventUrl = event.querySelector("div").querySelector("a").getAttribute("href")
+        const eventAddress = event.querySelector(".card-text--truncated__one").textContent;
+
+        // const address = eventAddress.trim()
         // console.log(address)
         got(eventUrl).then(data => {
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            let title = eventPageDom.querySelector("h1").textContent.trim();
+            let title = eventPageDom.querySelector(".listing-hero-title").textContent;
             eventData.title = title;
-            let date = eventPageDom.querySelector(".banner-ticket__date").querySelectorAll("time")[0].textContent.trim();
+            let date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
             eventData.date = date;
-            eventData.location = address;
+            // const eventAddress = event.querySelector(".event-details hide-small").querySelector("p").textContent;
+            eventData.location = eventAddress;
             eventData.city = "Munich";
-            eventData.description = eventPageDom.querySelector(".event-description").querySelector("p").textContent;
-            const bg = eventPageDom.querySelector(".banner-image").style.backgroundImage
-            const img = bg.slice(4, -1).replace(/"/g, "");
-            eventData.img = img;
+            let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
+            eventData.description = description.trim()
+            // const bg = eventPageDom.querySelector(".banner-image").style.backgroundImage
+            // const img = bg.slice(4, -1).replace(/"/g, "");
+            // eventData.img = img;
             eventData.url = eventUrl
 
             const dataForSave = new Convention(eventData)
@@ -137,6 +139,9 @@ got(eventilEventMunich).then(res => {
                 console.log(err, eventData.title, "saved")
 
             });
+
+            // console.log(eventData)
+
 
         })
     })

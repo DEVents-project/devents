@@ -23,6 +23,23 @@ const NavBarSignedIn = () => {
     ];
 
     useEffect(() => {
+        setInterval(() => {
+            setTimeout(() => {
+                setTitleIndex(index => index + 1);
+                setTimeout(() => {
+                    setTitleIndex(index => index + 1);
+                    setTimeout(() => {
+                        setTitleIndex(index => index + 1);
+                        setTimeout(() => {
+                            setTitleIndex(index => index + 1);
+                        }, 800);
+                    }, 800);
+                }, 800);
+            }, 800);
+        }, 12000);
+    }, []);
+
+    useEffect(() => {
         const mediaQuery = window.matchMedia('(max-width: 670px)');
         mediaQuery.addListener(handleMediaQueryChange);
         handleMediaQueryChange(mediaQuery);

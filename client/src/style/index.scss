@@ -53,6 +53,20 @@
     src: local("Lincoln"), url("../assets/fonts/Lincolnlessdots.otf") format("opentype");
 }
 
+/* ------------------------- COLORS ------------------------- */
+
+$dark-blue: #040b11;
+$mid-dark-blue: #154065;
+$mid-blue: #256eac;
+$mid-light-blue: #68a7df;
+$light-blue: #bcd8f1;
+
+$dark-orange: rgb(161, 73, 15);
+$orange: rgb(255, 115, 22);
+$light-orange: rgb(255, 137, 59);
+
+$purple: #3f3d56;
+
 /* ------------------------- RESET RULES ------------------------- */
 
 * {
@@ -88,7 +102,7 @@ body {
     cursor: pointer;
     border-radius: 5px;
     color: #fff;
-    box-shadow: 1px 3px #460505;
+    box-shadow: 1px 3px $dark-blue;
 
     &:after {
         content: "";
@@ -97,7 +111,7 @@ body {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #c10202;
+        background-color: $mid-blue;
         z-index: -2;
     }
 
@@ -108,7 +122,7 @@ body {
         left: 0;
         width: 0%;
         height: 100%;
-        background-color: #e00202;
+        background-color: $dark-blue;
         transition: all 0.3s;
         z-index: -1;
     }

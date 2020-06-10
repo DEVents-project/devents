@@ -7,9 +7,7 @@ const env = require("../config/config")
 
 
 const UserSchema = new Schema({
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    city: { type: String, required: true },
+    name: { type: String, required: true },
     email: { type: String, required: true },
     role: { type: String, default: "User", required: true },
     tokens: [
@@ -21,8 +19,9 @@ const UserSchema = new Schema({
         }
     ],
     password: { type: String, required: true },
-    organizationName: { type: String, required: false },
+    avatar: { type: String, required: false },
     website: { type: String, required: false },
+    events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }]
 
 })
 
@@ -37,11 +36,10 @@ UserSchema.methods.generateAuthToken = function () {
 
 UserSchema.methods.getPublicFields = function () {
     let returnObject = {
-        firstName: this.firstName,
-        lastName: this.lastName,
+        name: this.name,
         email: this.email,
         password: this.password,
-        img: this.img,
+        avatar: this.avatar,
         _id: this._id
     }
     return returnObject

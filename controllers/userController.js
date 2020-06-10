@@ -16,11 +16,10 @@ exports.getUsers = async (req, res, next) => {
 }
 
 exports.getUser = async (req, res, next) => {
-    const { id } = req.params
+    const { token } = req.header
+    // console.log('token:', token);
     try {
-        const user = User.findById(id)
-        if (!user) throw createError(404)
-        res.json({ success: true, user: user })
+        res.json({ success: true, user: req.user })
     } catch (err) {
         next(err)
     }
@@ -48,10 +47,10 @@ const getAccessToken = async (code) => {
 
     //get a string of the access token, scope and token type
     const data = await res.text();
-    
+
     //parse the string to separate them all
     const params = new URLSearchParams(data);
-    
+
     //get only the access token
     return params.get('access_token');
 }
@@ -90,19 +89,21 @@ exports.postUser = async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-
 }
 
 exports.putUser = async (req, res, next) => {
-    const { id } = req.params;
-    const user = req.body
+    const user = req.body;
+
     try {
         if (Object.keys(req.body).includes("password")) {
-            const hashedPassword = await encrypt(client.password)
+            const hashedPassword = await encrypt(user.password)
             user.password = hashedPassword
         }
-        const updatedUser = await User.findByIdAndUpdate(id, user, { new: true })
+
+        const updatedUser = await User.findByIdAndUpdate(req.user._id, user, { new: true })
         if (!updatedUser) throw createError(500)
+        // console.log('updatedUser: ', updatedUser);
+
         res.json({ success: true, user: updatedUser })
     } catch (err) {
         next(err)
