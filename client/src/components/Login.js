@@ -13,7 +13,7 @@ import DevCoding from '../assets/img/dev-coding2.png';
 const Login = () => {
     const history = useHistory();
     const { userData, setUserData } = useContext(Context);
-    const { localStorage, setLocalStorage } = useContext(Context);
+    const { storage, setLocalStorage } = useContext(Context);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
@@ -37,7 +37,7 @@ const Login = () => {
             },
             body: JSON.stringify(loginData)
         };
-        const resp = await fetch('http://localhost:4000/login', logged)
+        const resp = await fetch('http://localhost:4000/users/login', logged)
         const data = await resp.json()
         console.log(data.user);
 
