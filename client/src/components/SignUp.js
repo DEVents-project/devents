@@ -8,8 +8,8 @@ import ParticlesBg from 'particles-bg';
 
 const SignUp = () => {
     const history = useHistory();
-    const { userData, setUserData } = useContext(Context);
-    const { localStorage, setLocalStorage } = useContext(Context);
+    const { userData, setUserData, storage, setStorage } = useContext(Context);
+
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -59,9 +59,9 @@ const SignUp = () => {
 
         if (data.success) {
             localStorage.setItem('token', header);
-            setLocalStorage(header);
-            setIsSignedUp(true)
+            setStorage(header);
             setUserData(data.user)
+            setIsSignedUp(true)
         }
 
     }
