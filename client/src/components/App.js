@@ -26,11 +26,11 @@ const App = () => {
 
   const [userData, setUserData] = useState(null);
   // localstorage to save the token coming from the header. by clicking on signout the localstorage will be cleared:
-  const [storage, setStorage] = useState(localStorage.getItem('x-auth'));
+  const [token, setToken] = useState(localStorage.getItem('x-auth'));
   // this is the state that is going to carry all the information of one specific event, when the user clicks on it to see the description:
   const [eventInfo, setEventInfo] = useState(null);
 
-  // console.log('CURRENT EVENT INFO: ', eventInfo);
+  console.log('CURRENT USER DAta: ', userData);
 
   // FETCHING GOOGLE MAPS API:
   useEffect(() => {
@@ -95,12 +95,12 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (storage) {
+    if (token) {
       const getUserData = async () => {
         const options = {
           method: 'GET',
           headers: {
-            'x-auth': storage,
+            'x-auth': token,
             'Content-Type': 'application/json'
           }
         };
@@ -120,7 +120,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Context.Provider value={{ loggedIn, setLoggedIn, storage, setStorage, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions, citiesWithEvent }}>
+      <Context.Provider value={{ loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions, citiesWithEvent }}>
         <BrowserRouter>
           {
             loggedIn ?
