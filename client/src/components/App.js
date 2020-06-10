@@ -26,11 +26,12 @@ const App = () => {
 
   const [userData, setUserData] = useState(null);
   // localstorage to save the token coming from the header. by clicking on signout the localstorage will be cleared:
-  const [token, setToken] = useState(localStorage.getItem('x-auth'));
+  const [token, setToken] = useState(localStorage.getItem('token'));
   // this is the state that is going to carry all the information of one specific event, when the user clicks on it to see the description:
   const [eventInfo, setEventInfo] = useState(null);
 
-  console.log('CURRENT USER DAta: ', userData);
+  console.log('CURRENT USER DATA: ', userData);
+  console.log('IS LOGGED IN: ', loggedIn);
 
   // FETCHING GOOGLE MAPS API:
   useEffect(() => {
@@ -46,6 +47,7 @@ const App = () => {
     }
   }, []);
 
+  // FETCHING ALL THE EVENTS:
   useEffect(() => {
     const fetchEvents = async () => {
       const options = {
@@ -94,7 +96,12 @@ const App = () => {
     fetchEvents();
   }, []);
 
+
+  // FETCHING THE USER INFORMATION - SESSION:
   useEffect(() => {
+    console.log('getting token');
+    console.log('THE TOKEN: ', token);
+
     if (token) {
       const getUserData = async () => {
         const options = {
