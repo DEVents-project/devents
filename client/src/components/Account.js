@@ -42,7 +42,7 @@ const Account = () => {
 
             const response = await fetch('http://localhost:4000/users', options);
             const data = await response.json();
-            console.log('ACCOUNTs - Response: ', data);
+            console.log('ACCOUNT - Response: ', data);
             setUserData(data.user);
         };
 
@@ -76,7 +76,7 @@ const Account = () => {
 
         const response = await fetch('http://localhost:4000/users', newUserData);
         const data = await response.json();
-        console.log("response:", data);
+        // console.log("ACCOUNT response:", data);
         if (data.success) {
             setUserData(data.user);
             setEditInfo(false);
@@ -87,6 +87,8 @@ const Account = () => {
     useEffect(() => {
         isEventClicked && history.push('/event');
     });
+
+    console.log('ACCOUNT MOUNTING');
 
     return (
         <div className="space-navbar account-container">
@@ -154,6 +156,6 @@ const Account = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Account;
