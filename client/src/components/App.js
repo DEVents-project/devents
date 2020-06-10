@@ -30,8 +30,6 @@ const App = () => {
   // this is the state that is going to carry all the information of one specific event, when the user clicks on it to see the description:
   const [eventInfo, setEventInfo] = useState(null);
 
-  console.log('CURRENT USER DATA: ', userData);
-  console.log('IS LOGGED IN: ', loggedIn);
 
   // FETCHING GOOGLE MAPS API:
   useEffect(() => {
@@ -47,6 +45,7 @@ const App = () => {
     }
   }, []);
 
+
   // FETCHING ALL THE EVENTS:
   useEffect(() => {
     const fetchEvents = async () => {
@@ -61,30 +60,80 @@ const App = () => {
       const allEventsTogether = [];
       const allCities = [];
 
+      const allMeetups = [];
+      // THESE ARE THE EVENTS POSTED BY THE USERS. THEY WILL BE DISPLAYED IN THE MEETUPS:
       const response = await fetch('http://localhost:4000/events', options);
       const meetups = await response.json();
-      // console.log('MEETUPS - Response: ', meetups);
-      meetups.events.map(meetup => allEventsTogether.push(meetup));
-      setMeetups(meetups.events.filter(event => !event.url)
-      );
+      // console.log('MEETUPS FROM USERS - Response: ', meetups);
+      meetups.events.map(meetup => { allMeetups.push(meetup); allEventsTogether.push(meetup) });
 
-      const response2 = await fetch('http://localhost:4000/workshops', options);
-      const workshops = await response2.json();
+      // THESE ARE MEETUPS FROM 'LE WAGON'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
+      const response2 = await fetch('http://localhost:4000/meetups/lewagon', options);
+      const meetupsLW = await response2.json();
+      meetupsLW.events.events.map(meetup => {
+        allMeetups.push({
+          title: meetup.name.text,
+          description: meetup.description.text,
+          url: meetup.url,
+          date: meetup.start.utc,
+          city: meetup.city ? meetup.city : 'online'
+        });
+        allEventsTogether.push(
+          {
+            title: meetup.name.text,
+            description: meetup.description.text,
+            url: meetup.url,
+            date: meetup.start.utc,
+            city: meetup.city ? meetup.city : 'online'
+          }
+        )
+      });
+      // console.log('MEETUPS FETCHED LW - Response: ', meetupsLW.events.events);
+
+      // THESE ARE MEETUPS FROM 'WILD CODE SCHOOL'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
+      const response3 = await fetch('http://localhost:4000/meetups/wcs', options);
+      const meetupsWCS = await response3.json();
+      meetupsWCS.events.events.map(meetup => {
+        allMeetups.push({
+          title: meetup.name.text,
+          description: meetup.description.text,
+          url: meetup.url,
+          date: meetup.start.utc,
+          city: meetup.city ? meetup.city : 'online'
+        });
+        allEventsTogether.push(
+          {
+            title: meetup.name.text,
+            description: meetup.description.text,
+            url: meetup.url,
+            date: meetup.start.utc,
+            city: meetup.city ? meetup.city : 'online'
+          }
+        )
+      });
+      // console.log('MEETUPS FETCHED WCS - Response: ', meetupsWCS.events.events);
+      // console.log('ALL MEETUPS: ', allMeetups)
+      setMeetups(allMeetups);
+
+      const response4 = await fetch('http://localhost:4000/workshops', options);
+      const workshops = await response4.json();
       // console.log('WORKSHOPS - Response: ', workshops);
       workshops.events.map(workshop => allEventsTogether.push(workshop));
       setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
       );
 
-      const response3 = await fetch('http://localhost:4000/conventions', options);
-      const conventions = await response3.json();
+      const response5 = await fetch('http://localhost:4000/conventions', options);
+      const conventions = await response5.json();
       // console.log('CONVENTIONS - Response: ', conventions);
       conventions.events.map(convention => allEventsTogether.push(convention));
       setConventions(conventions.events.filter(event => event.url.includes('eventbrite'))
       );
 
       // we extract all the cities where an event is going to take place:
-      allEventsTogether.map(event => allCities.push(event.city));
-      const extractedCities = [...new Set(allCities)];
+
+      allEventsTogether.filter(event => event.city && event.city !== 'undefined')
+        .map(event => allCities.push(event.city));
+      const extractedCities = [...new Set(allCities)].sort();
 
       // console.log('ALL EVENTS: ', allEventsTogether);
       // console.log('ALL CITIES: ', extractedCities);
@@ -96,12 +145,11 @@ const App = () => {
     fetchEvents();
   }, []);
 
+  // console.log('ALL EVENTS FETCHED: ', events);
 
-  // FETCHING THE USER INFORMATION - SESSION:
+
+  // FETCHING THE USER INFORMATION - USER SESSION:
   useEffect(() => {
-    console.log('getting token');
-    console.log('THE TOKEN: ', token);
-
     if (token) {
       const getUserData = async () => {
         const options = {
@@ -123,7 +171,6 @@ const App = () => {
     }
   }, []);
 
-  // console.log('ALL EVENTS FETCHED: ', events);
 
   return (
     <div className="App">
