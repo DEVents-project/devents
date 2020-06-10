@@ -4,8 +4,7 @@ const { validateUser } = require("../middleware/validatorUser");
 const auth = require("../middleware/authenticator");
 const isAdmin = require("../middleware/rolesAuthenticator");
 
-// Route.get("/", auth, isAdmin, getUsers);
-Route.get("/", getUsers);
+Route.get("/", auth, isAdmin, getUsers);
 Route.get("/:id", auth, getUser);
 //github login
 Route.get("/login/github", getGithub);

@@ -69,22 +69,26 @@ const getGithubUser = async (access_token) => {
 }
 
 exports.getGithubCallback = async (req, res, next) => {
-    const code = req.query.code;
-    const token = await getAccessToken(code);
-    const githubData = await getGithubUser(token);
-    res.json(githubData);
+    try{
+        const code = req.query.code;
+        const token = await getAccessToken(code);
+        const githubData = await getGithubUser(token);
+        res.json(githubData);
+    }
+    catch(err) {
+        next(err);
+    }
 }
 
 exports.postUser = async (req, res, next) => {
-
     try {
         const user = new User(req.body);
-        const token = user.generateAuthToken()
-        await user.save()
-        const data = user.getPublicFields()
-        res.header("x-auth", token).json({ success: true, user: data })
+        const token = user.generateAuthToken();
+        await user.save();
+        const data = user.getPublicFields();
+        res.header("x-auth", token).json({ success: true, user: data });
     } catch (err) {
-        next(err)
+        next(err);
     }
 
 }
