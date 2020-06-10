@@ -4,6 +4,7 @@ $middle-color: #650404;
 $dark-color: #460505;
 $font-color: #ffffff;
 $border: 0.2rem;
+@import 'index';
 
 .create-event-container {
     width: 100%;
@@ -13,15 +14,15 @@ $border: 0.2rem;
     justify-content: center;
 
     .event-form {
-        width: 80%;
+        width: 90%;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: $light-color;
+        background-color: $mid-dark-blue;
         color: $font-color;
-        box-shadow: -1.5rem 0.7rem $middle-color;
+        box-shadow: -1.5rem 0.7rem $mid-light-blue;
         border-radius: $border;
         padding: 2rem 0;
 
@@ -31,17 +32,17 @@ $border: 0.2rem;
         }
 
         .h5-event {
-            width: 90%;
+            width: 80%;
             margin: 0 auto;
-            color: black;
+            color:$dark-blue;
             align-self: flex-start;
         }
         .event-label {
-            width: 90%;
+            width: 80%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0.3rem;
+            padding: .3rem;
 
             .space-top {
                 margin-top: 0.3rem;
@@ -51,20 +52,20 @@ $border: 0.2rem;
                 width: 100%;
                 height: 2.5rem;
                 padding: 1ch;
-                margin: 0.3rem 0;
+                margin: .3rem 0;
                 border-radius: $border;
                 border: none;
-                font-size: 1rem;
-                color: $dark-color;
+                font-size: 1.1rem;
+                color: $dark-blue;
             }
             .event-textarea {
                 height: auto;
             }
         }
         .event-btn {
-            width: 90%;
+            width: 80%;
             height: 2.8rem;
-            margin: 1rem;
+            margin: 1.2rem;
         }
     }
 }
@@ -84,7 +85,7 @@ $border: 0.2rem;
             }
 
             .inline {
-                width: 90%;
+                width: 80%;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;

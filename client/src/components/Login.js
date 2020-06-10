@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import Context from './Context';
 
 import '../style/Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import ParticlesBg from 'particles-bg';
 import DevCoding from '../assets/img/dev-coding2.png';
 
@@ -11,12 +12,15 @@ import DevCoding from '../assets/img/dev-coding2.png';
 
 const Login = () => {
     const history = useHistory();
+    const { userData, setUserData } = useContext(Context);
+    const { localStorage, setLocalStorage } = useContext(Context);
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('')
     // set a status for what happens after login 
     const [isLogged, setIsLogged] = useState(false)
     const [errorMsg, setErrorMsg] = useState(false)
+
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -35,10 +39,14 @@ const Login = () => {
         };
         const resp = await fetch('http://localhost:4000/login', logged)
         const data = await resp.json()
+        console.log(data.user);
 
-        console.log(data);
+        const header = resp.headers.get('x-auth');
 
         if (data.success) {
+            localStorage.setItem('token', header);
+            setLocalStorage(header);
+            setUserData(data.user)
             setIsLogged(true)
         } else {
             setErrorMsg(true)
@@ -63,7 +71,7 @@ const Login = () => {
                         type="email"
                         placeholder="your email"
                         name="email"
-                        id="login-email"
+                        value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required />
                 </label>
@@ -74,7 +82,7 @@ const Login = () => {
                         type="password"
                         placeholder="your password"
                         name="password"
-                        id="login-password"
+                        value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required />
                 </label>
