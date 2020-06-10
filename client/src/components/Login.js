@@ -43,7 +43,7 @@ const Login = () => {
         const header = resp.headers.get('x-auth');
 
         if (data.success) {
-            localStorage.setItem('token', header);
+            storage.setItem('token', header);
             setLocalStorage(header);
             setUserData(data.user)
             setIsLogged(true)
