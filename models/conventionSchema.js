@@ -9,6 +9,6 @@ const conventionSchema = new Schema({
     description: String,
     img: String,
     url: String,
-})
+});
 
-module.exports = mongoose.model("conventions", conventionSchema)
+module.exports = mongoose.model("conventions", conventionSchema);

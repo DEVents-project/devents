@@ -9,6 +9,6 @@ const workshopSchema = new Schema({
     description: String,
     img: String,
     url: String,
-})
+});
 
-module.exports = mongoose.model("workshops", workshopSchema)
+module.exports = mongoose.model("workshops", workshopSchema);
