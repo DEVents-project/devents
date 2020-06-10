@@ -50,7 +50,7 @@ const SignUp = () => {
             body: JSON.stringify(signUpData)
 
         }
-        const resp = await fetch('http://localhost:4000/signup', userData);
+        const resp = await fetch('http://localhost:4000/users', userData);
         const data = await resp.json();
 
         console.log("res:", data);
