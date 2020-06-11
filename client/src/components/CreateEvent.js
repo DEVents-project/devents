@@ -113,6 +113,7 @@ const CreateEvent = (props) => {
                         type="text"
                         value={hostedBy}
                         placeholder="the host name"
+                        required
                         onChange={(e) => setHostedBy(e.target.value)}
                     />
                 </label>
