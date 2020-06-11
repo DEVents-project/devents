@@ -9,7 +9,7 @@ const Account = () => {
     const history = useHistory();
 
     const { userData, setUserData, setEventInfo, token } = useContext(Context);
-
+    console.log('USERDATA:', userData);
     const [isEventClicked, setIsEventClicked] = useState(false);
     // this state change fragment between info and inputs to be edited
     const [editInfo, setEditInfo] = useState(false);
@@ -148,7 +148,7 @@ const Account = () => {
                         userData &&
                             userData.events &&
                             userData.events.length ?
-                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} />)
+                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.imgUrl} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} />)
                             :
                             <p className="no-events">You didn't create any event yet</p>
                     }
