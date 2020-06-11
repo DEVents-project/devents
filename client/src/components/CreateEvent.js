@@ -59,15 +59,6 @@ const CreateEvent = (props) => {
             if (res.success) {
                 setStatusAdded(true)
             }
-            // fetch("http://localhost:4000/events", {
-            //     method: "POST",
-            //     headers: {
-            //         'Content-Type': 'multipart/form-data'
-            //     },
-            //     body: imgBody
-            // }).then(res => {
-            //     console.log(res)
-            // })
 
         } catch (err) {
             console.log(err)
@@ -77,24 +68,6 @@ const CreateEvent = (props) => {
 
 
         // IMPORTANT: location is going to be an object: {lat: Number, lng: Number}
-
-
-
-
-        // const eventData = {
-        //     method: "POST",
-        //     body: imgBody
-        //     // headers: {
-        //     //     "Content-Type": "application/json"
-        //     // },
-        //     // body: JSON.stringify(eventInfo)
-
-        // }
-
-        // const resp = await fetch('http://localhost:4000/events', eventData);
-        // // const data = await resp.json();
-        // console.log(resp);
-
 
     }
 
@@ -163,9 +136,9 @@ const CreateEvent = (props) => {
                         />
                     </label>
                 </div>
-                {/* <label className="event-label">Location *
+                <label className="event-label">Location *
                     <GoogleMapsAutocomplete setLocation={setLocation} setCoordinates={setCoordinates} />
-                </label> */}
+                </label>
                 <label className="event-label"> Image
                     <input
                         type="file"
