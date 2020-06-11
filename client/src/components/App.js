@@ -64,9 +64,24 @@ const App = () => {
       // THESE ARE THE EVENTS POSTED BY THE USERS. THEY WILL BE DISPLAYED IN THE MEETUPS:
       const response = await fetch('http://localhost:4000/events', options);
       const meetups = await response.json();
-      // console.log('MEETUPS FROM USERS - Response: ', meetups);
+      meetups.events.map(meetup => {
+        allMeetups.push({
+          title: meetup.title,
+          description: meetup.description,
+          url: meetup.website,
+          date: meetup.date,
+          city: meetup.location.split(', ')[1]
+        });
+        allEventsTogether.push({
+          title: meetup.title,
+          description: meetup.description,
+          url: meetup.website,
+          date: meetup.date,
+          city: meetup.location.split(', ')[1]
+        })
+      });
+      // console.log('MEETUPS FROM USERS - Response: ', meetups.events);
 
-      meetups.events.map(meetup => { allMeetups.push(meetup); allEventsTogether.push(meetup) });
 
       // THESE ARE MEETUPS FROM 'LE WAGON'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
       const response2 = await fetch('http://localhost:4000/meetups/lewagon', options);
@@ -137,7 +152,7 @@ const App = () => {
       const extractedCities = [...new Set(allCities)].sort();
 
       // console.log('ALL EVENTS: ', allEventsTogether);
-      // console.log('ALL CITIES: ', extractedCities);
+      console.log('ALL CITIES: ', extractedCities);
 
       setCitiesWithEvent(extractedCities);
       setEvents(allEventsTogether);

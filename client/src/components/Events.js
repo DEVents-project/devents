@@ -17,7 +17,7 @@ const Events = () => {
     const [isVisible, setIsVisible] = useState(9);
     const [isEventClicked, setIsEventClicked] = useState(false);
     const [eventType, setEventType] = useState('');
-    const [selectedCity, setSelectedCity] = useState(citiesWithEvent[0]);
+    const [selectedCity, setSelectedCity] = useState('');
 
     const loadMore = () => {
         setIsVisible(isVisible + 9);
@@ -30,7 +30,7 @@ const Events = () => {
 
     useEffect(() => {
         setSelectedCity(citiesWithEvent[0]);
-    }, []);
+    }, [citiesWithEvent]);
 
     // console.log('SELECTED CITY: ', selectedCity);
     // console.log('WORKSHOPS: ', workshops);
