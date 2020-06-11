@@ -107,7 +107,7 @@ const CreateEvent = (props) => {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </label>
-                <label className="event-label">Host by
+                <label className="event-label">Host by *
                     <input
                         className="event-input"
                         type="text"
@@ -140,13 +140,6 @@ const CreateEvent = (props) => {
                 <label className="event-label">Location *
                     <GoogleMapsAutocomplete setLocation={setLocation} setCoordinates={setCoordinates} />
                 </label>
-                <label className="event-label"> Image
-                    <input
-                        type="file"
-                        className="event-input"
-                        onChange={(e) => setImage(e.target.files[0])}
-                    />
-                </label>
                 <label className="event-label">Website
                     <input
                         className="event-input"
@@ -154,6 +147,13 @@ const CreateEvent = (props) => {
                         value={url}
                         placeholder="the event website"
                         onChange={(e) => setUrl(e.target.value)}
+                    />
+                </label>
+                <label className="event-label img-label"> Image
+                    <input
+                        type="file"
+                        className="event-input img-file"
+                        onChange={(e) => setImage(e.target.files[0])}
                     />
                 </label>
                 <label className="event-label">Description *

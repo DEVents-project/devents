@@ -61,6 +61,14 @@ $border: 0.2rem;
             .event-textarea {
                 height: auto;
             }
+            .img-file {
+                padding: 0;
+                background-color: white;
+                height: inherit;
+                cursor: pointer;
+                
+            }
+       
         }
         .event-btn {
             width: 80%;
