@@ -4,13 +4,13 @@ const { Schema } = mongoose;
 const EventSchema = new Schema({
     title: { type: String, required: true },
 
-    hostedBy: { type: String, required: true },
+    hostedBy: { type: String, required: false },
 
     date: { type: String, required: true },
 
     time: { type: String, required: true },
 
-    // location: { type: String, required: true },
+    location: { type: String, required: true },
 
     imgUrl: { type: String, required: false },
 

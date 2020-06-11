@@ -22,7 +22,7 @@ conn.once('open', () => {
 
 exports.getEvents = async (req, res, next) => {
     try {
-        const events = await Event.find().populate("event", "-__v");
+        const events = await Event.find();
         res.json({ success: true, events: events });
     }
     catch (err) {
@@ -34,7 +34,7 @@ exports.getEvent = async (req, res, next) => {
     const { id } = req.params;
 
     try {
-        const event = await Event.findById(id).populate("event", "-__v");
+        const event = await Event.findById(id);
         if (!event) throw createError(404);
         res.json({ success: true, event: event });
     }
