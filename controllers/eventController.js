@@ -22,7 +22,7 @@ conn.once('open', () => {
 
 exports.getEvents = async (req, res, next) => {
     try {
-        const events = await Event.find();
+        const events = await Event.find().populate("event", "-__v");
         res.json({ success: true, events: events });
     }
     catch (err) {
@@ -34,7 +34,7 @@ exports.getEvent = async (req, res, next) => {
     const { id } = req.params;
 
     try {
-        const event = await Event.findById(id);
+        const event = await Event.findById(id).populate("event", "-__v");
         if (!event) throw createError(404);
         res.json({ success: true, event: event });
     }
@@ -53,8 +53,6 @@ exports.getImage = async (req, res) => {
 };
 
 exports.postEvent = async (req, res, next) => {
-    console.log(req.file)
-    console.log(req.body, "from post event")
 
     try {
         const newEvent = new Event({
@@ -69,6 +67,7 @@ exports.postEvent = async (req, res, next) => {
         });
         await newEvent.save();
         let userData = await User.findById(req.user._id)
+        console.log(userData)
         userData.events.push(newEvent._id)
         userData.save()
 

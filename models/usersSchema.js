@@ -40,6 +40,7 @@ UserSchema.methods.getPublicFields = function () {
         email: this.email,
         password: this.password,
         avatar: this.avatar,
+        events: this.events,
         _id: this._id
     }
     return returnObject
