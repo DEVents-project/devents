@@ -65,6 +65,7 @@ const App = () => {
       const response = await fetch('http://localhost:4000/events', options);
       const meetups = await response.json();
       // console.log('MEETUPS FROM USERS - Response: ', meetups);
+
       meetups.events.map(meetup => { allMeetups.push(meetup); allEventsTogether.push(meetup) });
 
       // THESE ARE MEETUPS FROM 'LE WAGON'. THEY WILL BE DISPLAYED ON MEETUPS TOO:

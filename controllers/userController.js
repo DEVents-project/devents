@@ -17,9 +17,11 @@ exports.getUsers = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
     const { token } = req.header
+    const { _id } = req.user
     // console.log('token:', token);
     try {
-        res.json({ success: true, user: req.user })
+        const user = await User.findById(_id).populate("events", "title hostedBy date time location imgUrl website description createdAt");
+        res.json({ success: true, user: user })
     } catch (err) {
         next(err)
     }
@@ -68,13 +70,13 @@ const getGithubUser = async (access_token) => {
 }
 
 exports.getGithubCallback = async (req, res, next) => {
-    try{
+    try {
         const code = req.query.code;
         const token = await getAccessToken(code);
         const githubData = await getGithubUser(token);
         res.json(githubData);
     }
-    catch(err) {
+    catch (err) {
         next(err);
     }
 }

@@ -57,6 +57,7 @@ const CreateEvent = (props) => {
             });
 
             if (res.success) {
+                console.log("hola")
                 setStatusAdded(true)
             }
 
