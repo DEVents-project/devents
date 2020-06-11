@@ -7,7 +7,7 @@ import Map from './Map';
 const EventInformation = (props) => {
     const { eventInfo, setEventInfo } = useContext(Context);
 
-    // console.log('eventInfo: ', eventInfo)
+    console.log('eventInfo: ', eventInfo);
 
     return (
         <div className="space-navbar">
@@ -35,6 +35,7 @@ const EventInformation = (props) => {
                 <div className="google-map">
                     <Map
                         google={props.google}
+                        coordinates={eventInfo.coordinates}
                         center={{ lat: 52.5200, lng: 13.4050 }}
                         height='350px'
                         width='1000px'

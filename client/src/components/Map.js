@@ -15,6 +15,7 @@ class Map extends React.Component {
             city: '',
             area: '',
             state: '',
+            coordinates: this.props.coordinates,
             mapPosition: {
                 lat: this.props.center.lat,
                 lng: this.props.center.lng
@@ -29,6 +30,7 @@ class Map extends React.Component {
       * Get the current address from the default map position and set those values in the state
       */
     componentDidMount() {
+        console.log('COORDINATES: ', this.state.coordinates)
         Geocode.fromLatLng(this.state.mapPosition.lat, this.state.mapPosition.lng).then(
             response => {
                 const address = response.results[0].formatted_address,
