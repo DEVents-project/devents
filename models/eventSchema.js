@@ -10,7 +10,7 @@ const EventSchema = new Schema({
 
     time: { type: String, required: true },
 
-    location: { type: String, required: true },
+    // location: { type: String, required: true },
 
     imgUrl: { type: String, required: false },
 

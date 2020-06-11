@@ -3,14 +3,15 @@ import Context from './Context';
 import { Redirect, useHistory } from 'react-router-dom';
 import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
+import axios from 'axios'
 
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 
 const CreateEvent = (props) => {
 
     const history = useHistory();
-    const { userData, setUserData } = useContext(Context);
-
+    const { userData, setUserData, token } = useContext(Context);
+    console.log(userData)
 
     // The followings are NOT base on the schema - Schema needs to be modified! 
     const [title, setTitle] = useState('');
@@ -30,12 +31,12 @@ const CreateEvent = (props) => {
     // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
 
-    const handleCreateEvent = (e) => {
+    const handleCreateEvent = async (e) => {
         e.preventDefault();
         console.log(image)
         const imgBody = new FormData();
 
-
+        imgBody.append('file', image);
         imgBody.append('title', title);
         imgBody.append('hostedBy', hostedBy);
         imgBody.append('date', date);
@@ -43,28 +44,42 @@ const CreateEvent = (props) => {
         // imgBody.append('coordinates', coordinates);
         imgBody.append('location', location);
         imgBody.append('website', url);
-        imgBody.append('imgUrl', image);
+
         imgBody.append('description', description);
+        imgBody.append('_id', userData._id)
+
+        try {
+            const res = await axios.post('http://localhost:4000/events', imgBody, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'x-auth': token
+                }
+            });
+
+            if (res.success) {
+                setStatusAdded(true)
+            }
+            // fetch("http://localhost:4000/events", {
+            //     method: "POST",
+            //     headers: {
+            //         'Content-Type': 'multipart/form-data'
+            //     },
+            //     body: imgBody
+            // }).then(res => {
+            //     console.log(res)
+            // })
+
+        } catch (err) {
+            console.log(err)
+        }
+
+
+
 
         // IMPORTANT: location is going to be an object: {lat: Number, lng: Number}
-        // const eventInfo = {
-        //     title,
-        //     hostedBy,
-        //     date,
-        //     time,
-        //     coordinates,
-        //     location,
-        //     url,
-        //     image,
-        //     description
-        // }
 
-        fetch("http://localhost:4000/events", {
-            method: "POST",
-            body: imgBody
-        }).then(res => {
-            console.log(res)
-        })
+
+
 
         // const eventData = {
         //     method: "POST",
@@ -80,12 +95,7 @@ const CreateEvent = (props) => {
         // // const data = await resp.json();
         // console.log(resp);
 
-        // if (data.success) {
-        //     console.log(object)
-        //     setStatusAdded(true)
-        //     setServerImg(res.url)
 
-        // }
     }
 
     useEffect(() => {
@@ -160,7 +170,6 @@ const CreateEvent = (props) => {
                     <input
                         type="file"
                         className="event-input"
-                        // value={image}
                         onChange={(e) => setImage(e.target.files[0])}
                     />
                 </label>
