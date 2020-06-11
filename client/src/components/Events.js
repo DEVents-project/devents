@@ -17,7 +17,7 @@ const Events = () => {
     const [isVisible, setIsVisible] = useState(9);
     const [isEventClicked, setIsEventClicked] = useState(false);
     const [eventType, setEventType] = useState('');
-    const [selectedCity, setSelectedCity] = useState('');
+    const [selectedCity, setSelectedCity] = useState(citiesWithEvent[0]);
 
     const loadMore = () => {
         setIsVisible(isVisible + 9);
@@ -32,7 +32,8 @@ const Events = () => {
         setSelectedCity(citiesWithEvent[0]);
     }, []);
 
-    console.log('SELECTED CITY: ', selectedCity);
+    // console.log('SELECTED CITY: ', selectedCity);
+    // console.log('WORKSHOPS: ', workshops);
 
     return (
         <div className="events-container space-navbar">
@@ -56,19 +57,20 @@ const Events = () => {
                 }
             </div>
             <div className="pool-event">
-
                 {
                     events ?
                         <Fragment>
-                            {eventType === '' ?
-                                events.filter(event => event.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} url={el.url} />)
-                                : events && eventType === 'meetups' ?
-                                    meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} url={el.url} />)
-                                    : events && eventType === 'workshops' ?
-                                        workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} url={el.url} />)
-                                        : events && eventType === 'conventions' ?
-                                            conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} url={el.url} />)
-                                            : null}
+                            {
+                                eventType === '' ?
+                                    events.filter(event => event.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} url={el.url} />)
+                                    : events && eventType === 'meetups' ?
+                                        meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} url={el.url} />)
+                                        : events && eventType === 'workshops' ?
+                                            workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} url={el.url} />)
+                                            : events && eventType === 'conventions' ?
+                                                conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.city} description={el.description} url={el.url} />)
+                                                : null
+                            }
                         </Fragment>
                         :
                         <div className="loading-message">
@@ -94,7 +96,7 @@ const Events = () => {
                     :
                     null
             }
-        </div >
+        </div>
     );
 }
 
