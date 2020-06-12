@@ -20,7 +20,7 @@ exports.getUser = async (req, res, next) => {
     const { _id } = req.user
     // console.log('token:', token);
     try {
-        const user = await User.findById(_id).populate("events", "title hostedBy date time location imgUrl website description createdAt");
+        const user = await User.findById(_id).populate("events", "title hostedBy date time location imgUrl website description createdAt coordinates");
         res.json({ success: true, user: user })
     } catch (err) {
         next(err)

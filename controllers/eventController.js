@@ -61,6 +61,7 @@ exports.postEvent = async (req, res, next) => {
             date: req.body.date,
             time: req.body.time,
             location: req.body.location,
+            coordinates: req.body.coordinates,
             imgUrl: `/image/${req.file.filename}`,
             website: req.body.website,
             description: req.body.description
