@@ -12,6 +12,8 @@ const EventSchema = new Schema({
 
     location: { type: String, required: true },
 
+    coordinates: { type: String, required: true },
+
     imgUrl: { type: String, required: false },
 
     website: { type: String },
