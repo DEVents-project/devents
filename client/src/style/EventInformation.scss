@@ -36,6 +36,13 @@
     .event-information-location {
         margin: 1rem 0;
     }
+
+    .google-map {
+        .map-address {
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+    }
 }
 
 @media screen and (min-width: 768px) {

@@ -7,8 +7,8 @@ const GoogleMapsAutocomplete = ({ setLocation, setCoordinates }) => {
     const getCoordinates = (address) => {
         geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
-            .then(({ lat, lng }) =>
-                setCoordinates({ lat, lng })
+            .then((lat, lng) =>
+                setCoordinates(JSON.stringify(lat, lng))
             );
     };
 

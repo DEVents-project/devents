@@ -15,7 +15,6 @@ class Map extends React.Component {
             city: '',
             area: '',
             state: '',
-            coordinates: this.props.coordinates,
             mapPosition: {
                 lat: this.props.center.lat,
                 lng: this.props.center.lng
@@ -30,7 +29,6 @@ class Map extends React.Component {
       * Get the current address from the default map position and set those values in the state
       */
     componentDidMount() {
-        console.log('COORDINATES: ', this.state.coordinates)
         Geocode.fromLatLng(this.state.mapPosition.lat, this.state.mapPosition.lng).then(
             response => {
                 const address = response.results[0].formatted_address,
@@ -207,8 +205,7 @@ class Map extends React.Component {
                     >
                         {/*Marker*/}
                         <Marker google={this.props.google}
-                            name={'Dolores park'}
-                            draggable={true}
+                            draggable={false}
                             onDragEnd={this.onMarkerDragEnd}
                             position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
                         />
@@ -216,7 +213,7 @@ class Map extends React.Component {
                         {/* InfoWindow on top of marker */}
                         <InfoWindow
                             onClose={this.onInfoWindowClose}
-                            position={{ lat: (this.state.markerPosition.lat + 0.0018), lng: this.state.markerPosition.lng }}
+                            position={{ lat: (this.state.markerPosition.lat + 0.001), lng: this.state.markerPosition.lng }}
                         >
                             <div>
                                 <span style={{ padding: 0, margin: 0 }}>{this.state.address}</span>
@@ -229,8 +226,8 @@ class Map extends React.Component {
         let map;
         if (this.props.center.lat !== undefined) {
             map = <div>
-                <div>
-                    {/* <div className="form-group">
+                {/* <div>
+                    <div className="form-group">
                         <label htmlFor="">City</label>
                         <input type="text" name="city" className="form-control" onChange={this.onChange} readOnly="readOnly" value={this.state.city} />
                     </div>
@@ -245,8 +242,8 @@ class Map extends React.Component {
                     <div className="form-group">
                         <label htmlFor="">Address</label>
                         <input type="text" name="address" className="form-control" onChange={this.onChange} readOnly="readOnly" value={this.state.address} />
-                    </div> */}
-                </div>
+                    </div> 
+            </div>*/}
                 <AsyncMap
                     googleMapURL={googleApi}
                     loadingElement={

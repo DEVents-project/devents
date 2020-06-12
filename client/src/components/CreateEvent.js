@@ -27,7 +27,7 @@ const CreateEvent = (props) => {
 
     // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
     const [coordinates, setCoordinates] = useState('');
-
+    console.log('COORDINATES', coordinates);
     // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
 
@@ -41,7 +41,7 @@ const CreateEvent = (props) => {
         imgBody.append('hostedBy', hostedBy);
         imgBody.append('date', date);
         imgBody.append('time', time);
-        // imgBody.append('coordinates', coordinates);
+        imgBody.append('coordinates', coordinates);
         imgBody.append('location', location);
         imgBody.append('website', url);
 
@@ -68,7 +68,9 @@ const CreateEvent = (props) => {
 
 
 
-        // IMPORTANT: location is going to be an object: {lat: Number, lng: Number}
+        // IMPORTANT: location is going to be an string. Examples:
+        // {"lat":52.4846517,"lng":13.4241349}
+        // {"lat":52.51160549999999,"lng":13.4702261}
 
     }
 
@@ -85,7 +87,7 @@ const CreateEvent = (props) => {
         }
     }, []);
 
-    // console.log('The current location is: ', location);
+    console.log('The current coordinates: ', coordinates);
 
     useEffect(() => {
         statusAdded && history.push('/events');

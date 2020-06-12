@@ -53,14 +53,15 @@ const Account = () => {
         e.preventDefault();
 
         // old data:
-        const { name, email, password, avatar } = userData;
+        const { name, email, password, avatar, events } = userData;
         // console.log('TOKEN HERE: ', token);
 
         const newInfo = {
             name: newName === '' ? name : newName,
             email: newEmail === '' ? email : newEmail,
             password: newPassword === '' ? password : newPassword,
-            avatar: newAvatar === '' ? avatar : newAvatar
+            avatar: newAvatar === '' ? avatar : newAvatar,
+            events: events
         };
         // console.log('NEW INFO: ', newInfo);
 

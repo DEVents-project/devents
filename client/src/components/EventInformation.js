@@ -7,7 +7,14 @@ import Map from './Map';
 const EventInformation = (props) => {
     const { eventInfo, setEventInfo } = useContext(Context);
 
-    console.log('eventInfo: ', eventInfo);
+
+    const currentCoordinates = eventInfo.coordinates.split(',');
+    const lat = parseFloat(currentCoordinates[0].slice(7, 14));
+    const lng = parseFloat(currentCoordinates[1].slice(6, 13));
+
+    console.log('currentCoordinates: ', currentCoordinates);
+    console.log('lat: ', lat);
+    console.log('lng: ', lng);
 
     return (
         <div className="space-navbar">
@@ -33,13 +40,13 @@ const EventInformation = (props) => {
                     <p className="event-information-location">{eventInfo.address}</p>
                 </div>
                 <div className="google-map">
+                    <p className="map-address">{eventInfo.location}</p>
                     <Map
                         google={props.google}
-                        coordinates={eventInfo.coordinates}
-                        center={{ lat: 52.5200, lng: 13.4050 }}
+                        center={{ lat: lat, lng: lng }}
                         height='350px'
                         width='1000px'
-                        zoom={8}
+                        zoom={15}
                     />
                 </div>
             </div>
