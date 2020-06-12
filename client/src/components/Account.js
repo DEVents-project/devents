@@ -9,7 +9,7 @@ const Account = () => {
     const history = useHistory();
 
     const { userData, setUserData, setEventInfo, token } = useContext(Context);
-    console.log('USERDATA:', userData);
+    // console.log('USERDATA:', userData);
     const [isEventClicked, setIsEventClicked] = useState(false);
     // this state change fragment between info and inputs to be edited
     const [editInfo, setEditInfo] = useState(false);
@@ -42,7 +42,7 @@ const Account = () => {
 
             const response = await fetch('http://localhost:4000/users', options);
             const data = await response.json();
-            console.log('ACCOUNT - Response: ', data);
+            // console.log('ACCOUNT - Response: ', data);
             setUserData(data.user);
         };
 
@@ -89,7 +89,6 @@ const Account = () => {
         isEventClicked && history.push('/event');
     });
 
-    console.log('ACCOUNT MOUNTING');
 
     return (
         <div className="space-navbar account-container">

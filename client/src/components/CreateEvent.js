@@ -65,13 +65,9 @@ const CreateEvent = (props) => {
             console.log(err)
         }
 
-
-
-
         // IMPORTANT: location is going to be an string. Examples:
         // {"lat":52.4846517,"lng":13.4241349}
         // {"lat":52.51160549999999,"lng":13.4702261}
-
     }
 
     useEffect(() => {
@@ -86,8 +82,6 @@ const CreateEvent = (props) => {
             document.body.removeChild(script);
         }
     }, []);
-
-    console.log('The current coordinates: ', coordinates);
 
     useEffect(() => {
         statusAdded && history.push('/events');

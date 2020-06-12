@@ -7,14 +7,11 @@ import Map from './Map';
 const EventInformation = (props) => {
     const { eventInfo, setEventInfo } = useContext(Context);
 
-
-    const currentCoordinates = eventInfo.coordinates.split(',');
-    const lat = parseFloat(currentCoordinates[0].slice(7, 14));
-    const lng = parseFloat(currentCoordinates[1].slice(6, 13));
-
-    console.log('currentCoordinates: ', currentCoordinates);
-    console.log('lat: ', lat);
-    console.log('lng: ', lng);
+    // getting the coordinates to pass them to the google maps:
+    const lat = parseFloat(eventInfo.coordinates.split(',')[0].slice(7, 14));
+    const lng = parseFloat(eventInfo.coordinates.split(',')[1].slice(6, 13));
+    // console.log('lat: ', lat);
+    // console.log('lng: ', lng);
 
     return (
         <div className="space-navbar">
@@ -24,16 +21,10 @@ const EventInformation = (props) => {
                 <h2 className="event-information-title">{eventInfo.title}</h2>
                 {
                     eventInfo.img &&
-                        eventInfo.img.includes('http') ?
-                        <div className="event-information-box-one">
-                            <img className="event-information-image" src={eventInfo.img} alt="event-image" />
-                            <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
-                        </div>
-                        :
-                        <div className="event-information-box-one">
-                            <img className="event-information-image" src="https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/meetup.jpg" alt="backup-image" />
-                            <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
-                        </div>
+                    <div className="event-information-box-one">
+                        <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                        <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
+                    </div>
                 }
                 <div className="event-information-box-two">
                     <p className="event-information-description">{eventInfo.description}</p>
