@@ -6,7 +6,7 @@ import Map from './Map';
 
 const EventInformation = (props) => {
     const { eventInfo, setEventInfo } = useContext(Context);
-    console.log('EVENT_INFO:::::', eventInfo);
+
     // getting the coordinates to pass them to the google maps:
     const lat = eventInfo.coordinates && parseFloat(eventInfo.coordinates.split(',')[0].slice(7, 14));
     const lng = eventInfo.coordinates && parseFloat(eventInfo.coordinates.split(',')[1].slice(6, 13));

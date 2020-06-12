@@ -8,7 +8,7 @@ import ParticlesBg from 'particles-bg';
 const Account = () => {
     const history = useHistory();
 
-    const { userData, setUserData, setEventInfo, token } = useContext(Context);
+    const { userData, setUserData, setEventInfo, token, events } = useContext(Context);
     // console.log('USERDATA:', userData);
     const [isEventClicked, setIsEventClicked] = useState(false);
     // this state change fragment between info and inputs to be edited
@@ -29,6 +29,8 @@ const Account = () => {
     ];
 
     // this is where the events created by the user will be fetched:
+    const [refresh, setRefresh] = useState(true);
+
     useEffect(() => {
         const fetchUserInformation = async () => {
             const options = {
@@ -47,7 +49,8 @@ const Account = () => {
         };
 
         fetchUserInformation();
-    }, []);
+        setRefresh(false)
+    }, [refresh]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -89,6 +92,7 @@ const Account = () => {
         isEventClicked && history.push('/event');
     });
 
+    // console.log('USER DATA::: ', userData);
 
     return (
         <div className="space-navbar account-container">
