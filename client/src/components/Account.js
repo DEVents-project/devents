@@ -77,7 +77,7 @@ const Account = () => {
 
         const response = await fetch('http://localhost:4000/users', newUserData);
         const data = await response.json();
-        // console.log("ACCOUNT response:", data);
+        console.log("ACCOUNT response:", data);
         if (data.success) {
             setUserData(data.user);
             setEditInfo(false);
