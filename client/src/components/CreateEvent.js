@@ -41,7 +41,7 @@ const CreateEvent = (props) => {
         imgBody.append('hostedBy', hostedBy);
         imgBody.append('date', date);
         imgBody.append('time', time);
-        // imgBody.append('coordinates', coordinates);
+        imgBody.append('coordinates', coordinates);
         imgBody.append('location', location);
         imgBody.append('website', url);
 
