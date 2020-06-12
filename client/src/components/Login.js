@@ -62,7 +62,7 @@ const Login = () => {
             {/* <img src={DevCoding} alt="Developer coding" className="devCoding" /> */}
 
             <ParticlesBg color="#8d8d8d" num={55} type="cobweb" bg={true} />
-            <form className="login-form" onSubmit={handleLogin}>
+            <form className="login-form puff-in-center" onSubmit={handleLogin}>
                 <h2 className="h2">LOG IN</h2>
                 <label className="login-field">
                     <FontAwesomeIcon className="log-icons" icon={faEnvelope} />

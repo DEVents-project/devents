@@ -28,7 +28,7 @@ const Landing = () => {
         <div className="landing space-navbar">
             <main className="landing-main">
                 <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
-                <h1><span className="underscore">Never miss</span> <br /><span className="keyword"><strong>events for developers</strong></span><br /> <span className="underscore again">again</span></h1>
+                <h1 className="slide-from-left"><span className="underscore">Never miss</span> <br /><span className="keyword"><strong>events for developers</strong></span><br /> <span className="underscore again">again</span></h1>
                 <div className="container-description">
                     <Typical
                         steps={['Search for conferences', 1500, 'Assist to workshops', 1500, 'Create your own meetups', 1500, 'Push up your social skills', 1500]}
@@ -37,8 +37,8 @@ const Landing = () => {
                     />
                 </div>
                 <div className="call-buttons">
-                    <button className="button action-button" onClick={() => setToFindEvent(true)}>FIND EVENT</button>
-                    <button className="button action-button" onClick={() => setToAddEvent(true)}>ADD EVENT</button>
+                    <button className="button action-button scale-in-center" onClick={() => setToFindEvent(true)}>FIND EVENT</button>
+                    <button className="button action-button scale-in-center" onClick={() => setToAddEvent(true)}>ADD EVENT</button>
                 </div>
                 <img src={Developers} alt="Developers" className="developers" />
             </main>
