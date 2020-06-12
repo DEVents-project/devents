@@ -6,8 +6,12 @@ import Map from './Map';
 
 const EventInformation = (props) => {
     const { eventInfo, setEventInfo } = useContext(Context);
-
-    console.log('eventInfo: ', eventInfo);
+    console.log('EVENT_INFO:::::', eventInfo);
+    // getting the coordinates to pass them to the google maps:
+    const lat = eventInfo.coordinates && parseFloat(eventInfo.coordinates.split(',')[0].slice(7, 14));
+    const lng = eventInfo.coordinates && parseFloat(eventInfo.coordinates.split(',')[1].slice(6, 13));
+    // console.log('lat: ', lat);
+    // console.log('lng: ', lng);
 
     return (
         <div className="space-navbar">
@@ -15,32 +19,35 @@ const EventInformation = (props) => {
             <div className="event-information-container">
                 <p className="event-information-date">{eventInfo.date}</p>
                 <h2 className="event-information-title">{eventInfo.title}</h2>
-                {
-                    eventInfo.img &&
-                        eventInfo.img.includes('http') ?
-                        <div className="event-information-box-one">
-                            <img className="event-information-image" src={eventInfo.img} alt="event-image" />
-                            <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
-                        </div>
-                        :
-                        <div className="event-information-box-one">
-                            <img className="event-information-image" src="https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/meetup.jpg" alt="backup-image" />
-                            <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
-                        </div>
-                }
+                <div className="event-information-box-one">
+                    {
+                        eventInfo.img && eventInfo.img.includes('/image/') ?
+                            <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                            :
+                            <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                    }
+                    <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
+                </div>
                 <div className="event-information-box-two">
                     <p className="event-information-description">{eventInfo.description}</p>
                     <p className="event-information-location">{eventInfo.address}</p>
                 </div>
                 <div className="google-map">
-                    <Map
-                        google={props.google}
-                        coordinates={eventInfo.coordinates}
-                        center={{ lat: 52.5200, lng: 13.4050 }}
-                        height='350px'
-                        width='1000px'
-                        zoom={8}
-                    />
+                    <p className="map-address">{eventInfo.location ?
+                        eventInfo.location
+                        :
+                        null}</p>
+                    {
+                        eventInfo.coordinates ?
+                            <Map
+                                google={props.google}
+                                center={{ lat: lat, lng: lng }}
+                                height='350px'
+                                width='1000px'
+                                zoom={15}
+                            />
+                            : null
+                    }
                 </div>
             </div>
         </div>

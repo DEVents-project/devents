@@ -27,7 +27,7 @@ const CreateEvent = (props) => {
 
     // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
     const [coordinates, setCoordinates] = useState('');
-
+    console.log('COORDINATES', coordinates);
     // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
 
@@ -65,11 +65,9 @@ const CreateEvent = (props) => {
             console.log(err)
         }
 
-
-
-
-        // IMPORTANT: location is going to be an object: {lat: Number, lng: Number}
-
+        // IMPORTANT: location is going to be an string. Examples:
+        // {"lat":52.4846517,"lng":13.4241349}
+        // {"lat":52.51160549999999,"lng":13.4702261}
     }
 
     useEffect(() => {
@@ -84,8 +82,6 @@ const CreateEvent = (props) => {
             document.body.removeChild(script);
         }
     }, []);
-
-    // console.log('The current location is: ', location);
 
     useEffect(() => {
         statusAdded && history.push('/events');
