@@ -91,7 +91,7 @@ const CreateEvent = (props) => {
         <div className="create-event-container">
             <ParticlesBg color="#8d8d8d" num={55} type="cobweb" bg={true} />
 
-            <form className="event-form space-navbar" onSubmit={handleCreateEvent}>
+            <form className="event-form space-navbar puff-in-center" onSubmit={handleCreateEvent}>
 
                 <h2 className="h2-event">CREATE EVENT</h2>
                 <label className="event-label">Title *

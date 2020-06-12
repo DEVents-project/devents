@@ -71,7 +71,7 @@ const SignUp = () => {
         <div className="signup-container space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
 
-            <form className="signup-form" onSubmit={handleSignUp}>
+            <form className="signup-form puff-in-center" onSubmit={handleSignUp}>
                 <h2 className="h2-signup">SIGN UP</h2>
                 <label className="signup-label"> Are you
                     <select id={name} className="signup-select" onChange={(e) => setTypeOfUser(e.currentTarget.value)} >

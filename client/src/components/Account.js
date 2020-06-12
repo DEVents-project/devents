@@ -103,7 +103,7 @@ const Account = () => {
     return (
         <div className="space-navbar account-container">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
-            <div className="personal-account">
+            <div className="personal-account slide-from-left">
                 <h4>My information</h4>
                 <div className="image-frame">
                     <img className="profile-image" src={userData && userData.avatar} alt="" />
@@ -151,7 +151,7 @@ const Account = () => {
                 }
 
             </div>
-            <div className="personal-events">
+            <div className="personal-events slide-from-right">
                 <h4>My events</h4>
                 <div className="events-container">
                     {

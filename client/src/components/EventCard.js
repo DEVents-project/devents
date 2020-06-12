@@ -4,7 +4,7 @@ import '../style/EventCard.scss';
 const EventCard = ({ setIsEventClicked, setEventInfo, title, img, date, location, coordinates, description, url }) => {
 
     return (
-        <div className="event-card">
+        <div className="event-card scale-in-center">
             {
                 img &&
                     img.includes('/image/') ?
