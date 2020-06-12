@@ -9,7 +9,7 @@ const Account = () => {
     const history = useHistory();
 
     const { userData, setUserData, setEventInfo, token } = useContext(Context);
-    console.log('USERDATA:', userData);
+    // console.log('USERDATA:', userData);
     const [isEventClicked, setIsEventClicked] = useState(false);
     // this state change fragment between info and inputs to be edited
     const [editInfo, setEditInfo] = useState(false);
@@ -42,7 +42,7 @@ const Account = () => {
 
             const response = await fetch('http://localhost:4000/users', options);
             const data = await response.json();
-            console.log('ACCOUNT - Response: ', data);
+            // console.log('ACCOUNT - Response: ', data);
             setUserData(data.user);
         };
 
@@ -53,14 +53,15 @@ const Account = () => {
         e.preventDefault();
 
         // old data:
-        const { name, email, password, avatar } = userData;
+        const { name, email, password, avatar, events } = userData;
         // console.log('TOKEN HERE: ', token);
 
         const newInfo = {
             name: newName === '' ? name : newName,
             email: newEmail === '' ? email : newEmail,
             password: newPassword === '' ? password : newPassword,
-            avatar: newAvatar === '' ? avatar : newAvatar
+            avatar: newAvatar === '' ? avatar : newAvatar,
+            events: events
         };
         // console.log('NEW INFO: ', newInfo);
 
@@ -76,7 +77,7 @@ const Account = () => {
 
         const response = await fetch('http://localhost:4000/users', newUserData);
         const data = await response.json();
-        // console.log("ACCOUNT response:", data);
+        console.log("ACCOUNT response:", data);
         if (data.success) {
             setUserData(data.user);
             setEditInfo(false);
@@ -88,7 +89,6 @@ const Account = () => {
         isEventClicked && history.push('/event');
     });
 
-    console.log('ACCOUNT MOUNTING');
 
     return (
         <div className="space-navbar account-container">
