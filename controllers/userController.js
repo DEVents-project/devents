@@ -102,7 +102,7 @@ exports.putUser = async (req, res, next) => {
             user.password = hashedPassword
         }
 
-        const updatedUser = await User.findByIdAndUpdate(req.user._id, user, { new: true })
+        const updatedUser = await User.findByIdAndUpdate(req.user._id, user, { new: true }).populate("events");
         if (!updatedUser) throw createError(500)
         // console.log('updatedUser: ', updatedUser);
 
