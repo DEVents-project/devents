@@ -62,11 +62,18 @@ const Account = () => {
         const newInfo = {
             name: newName === '' ? name : newName,
             email: newEmail === '' ? email : newEmail,
-            password: newPassword === '' ? password : newPassword,
             avatar: newAvatar === '' ? avatar : newAvatar,
             events: events
         };
-        // console.log('NEW INFO: ', newInfo);
+
+        const newInfoAndPassword = {
+            name: newName === '' ? name : newName,
+            email: newEmail === '' ? email : newEmail,
+            password: newPassword,
+            avatar: newAvatar === '' ? avatar : newAvatar,
+            events: events
+        };
+        console.log('NEW INFO: ', newInfo);
 
         const newUserData = {
             method: "PUT",
@@ -74,8 +81,7 @@ const Account = () => {
                 "Content-Type": "application/json",
                 "x-auth": token
             },
-            body: JSON.stringify(newInfo)
-
+            body: JSON.stringify(newPassword === '' ? newInfo : newInfoAndPassword)
         };
 
         const response = await fetch('http://localhost:4000/users', newUserData);
