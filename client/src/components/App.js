@@ -110,7 +110,7 @@ const App = () => {
           }
         )
       });
-      console.log('MEETUPS FETCHED LW - Response: ', meetupsLW.events.events);
+      // console.log('MEETUPS FETCHED LW - Response: ', meetupsLW.events.events);
 
       // THESE ARE MEETUPS FROM 'WILD CODE SCHOOL'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
       const response3 = await fetch('http://localhost:4000/meetups/wcs', options);
@@ -158,7 +158,7 @@ const App = () => {
       const extractedCities = [...new Set(allCities)].sort();
 
       // console.log('ALL EVENTS: ', allEventsTogether);
-      console.log('ALL CITIES: ', extractedCities);
+      // console.log('ALL CITIES: ', extractedCities);
 
       setCitiesWithEvent(extractedCities);
       setEvents(allEventsTogether);
@@ -167,7 +167,7 @@ const App = () => {
     fetchEvents();
   }, []);
 
-  console.log('ALL EVENTS FETCHED: ', events);
+  // console.log('ALL EVENTS FETCHED: ', events);
 
 
   // FETCHING THE USER INFORMATION - USER SESSION:
