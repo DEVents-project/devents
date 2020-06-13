@@ -66,11 +66,12 @@ exports.postEvent = async (req, res, next) => {
             imgUrl: `/image/${req.file.filename}`,
             website: req.body.website,
             description: req.body.description,
-            authorsID: req.user._id
+            authorId: req.user._id
         });
         await newEvent.save();
         let userData = await User.findById(req.user._id)
         console.log(userData)
+        console.log('NEW Event: ', newEvent)
         userData.events.push(newEvent._id)
         userData.save()
 
@@ -82,12 +83,13 @@ exports.postEvent = async (req, res, next) => {
 };
 
 exports.putEvent = async (req, res, next) => {
-    const { _id } = req.params;
+    const { _id } = req.body;
     const event = req.body;
 
     try {
         const updateEvent = await Event.findByIdAndUpdate(_id, event, { new: true });
         if (!event) throw createError(404);
+        console.log('UPDATE EVENT: ', updateEvent);
         res.json({ success: true, event: updateEvent });
     }
     catch (err) {
