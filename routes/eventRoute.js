@@ -6,7 +6,7 @@ const auth = require("../middleware/authenticator")
 Route.get("/", getEvents);
 Route.get("/:id", getEvent);
 Route.post("/", auth, upload.single("file"), postEvent);
-Route.put("/:id", putEvent);
+Route.put("/", putEvent);
 Route.delete("/:id", deleteEvent);
 
 module.exports = Route;
