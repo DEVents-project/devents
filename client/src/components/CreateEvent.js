@@ -11,7 +11,7 @@ const CreateEvent = (props) => {
 
     const history = useHistory();
     const { userData, setUserData, token } = useContext(Context);
-    console.log(userData)
+    // console.log('CREATE ACCOUNT_userData: ', userData)
 
     // The followings are NOT base on the schema - Schema needs to be modified! 
     const [title, setTitle] = useState('');
@@ -25,15 +25,16 @@ const CreateEvent = (props) => {
     // this will be the complete address of the event as a STRING
     const [location, setLocation] = useState('');
 
+
     // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
     const [coordinates, setCoordinates] = useState('');
-    console.log('COORDINATES', coordinates);
+
     // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
 
     const handleCreateEvent = async (e) => {
         e.preventDefault();
-        console.log(image)
+        // console.log(image)
         const imgBody = new FormData();
 
         imgBody.append('file', image);
@@ -56,8 +57,9 @@ const CreateEvent = (props) => {
                 }
             });
 
-            if (res.success) {
-                console.log("hola")
+            if (res.status) {
+                // console.log('REEEES:', res)
+                setUserData(res.data.user)
                 setStatusAdded(true)
             }
 

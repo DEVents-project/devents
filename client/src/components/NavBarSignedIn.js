@@ -8,7 +8,7 @@ import TextTransition, { presets } from "react-text-transition";
 
 
 const NavBarSignedIn = () => {
-    const { setLoggedIn } = useContext(Context);
+    const { setLoggedIn, setUserData } = useContext(Context);
 
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -65,6 +65,7 @@ const NavBarSignedIn = () => {
 
     const closeSession = () => {
         localStorage.clear();
+        setUserData('');
         setLoggedIn(false);
     };
 

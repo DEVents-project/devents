@@ -1,9 +1,40 @@
+@import "index";
+
 .event-information-container {
     padding: 2rem;
     width: 100%;
     display: flex;
     flex-direction: column;
     font-family: Montserrat, sans-serif;
+
+    form {
+        grid-area: 1/1/-1/-1;
+        padding: 0;
+
+        .map-address {
+            height: 2.5rem;
+            width: 100%;
+            padding: 1ch;
+            margin: 0.3rem 0;
+            border-radius: 0.2rem;
+            border: none;
+            border: 1px solid $mid-blue;
+            font-size: 1.1rem;
+            color: $dark-blue;
+
+            &::placeholder {
+                font-family: "Montserrat", sans-serif;
+            }
+        }
+
+        textarea {
+            min-height: 200px;
+        }
+
+        .save-button {
+            margin: 1rem 0;
+        }
+    }
 
     .event-information-title {
         margin: 1rem 0;
@@ -25,6 +56,16 @@
             text-decoration: none;
             padding-top: 1rem;
             padding-bottom: 1rem;
+        }
+
+        .editing-buttons {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                width: 48%;
+            }
         }
     }
 
@@ -82,6 +123,13 @@
         .google-map {
             margin: 0;
             grid-area: 4/1/-1/-1;
+        }
+
+        form {
+            .save-button {
+                margin: 0;
+                grid-area: 5/2/-1/-1;
+            }
         }
     }
 }
