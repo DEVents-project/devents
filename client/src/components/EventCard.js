@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style/EventCard.scss';
 
-const EventCard = ({ setIsEventClicked, setEventInfo, title, img, date, location, coordinates, description, url }) => {
+const EventCard = ({ setIsEventClicked, setEventInfo, _id, authorId, title, img, date, location, coordinates, description, url }) => {
 
     return (
         <div className="event-card scale-in-center">
@@ -24,7 +24,9 @@ const EventCard = ({ setIsEventClicked, setEventInfo, title, img, date, location
                         location: location,
                         coordinates: coordinates,
                         description: description,
-                        url: url
+                        url: url,
+                        authorId: authorId,
+                        _id: _id
                     }
                 );
                 setIsEventClicked(true);

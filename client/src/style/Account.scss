@@ -44,88 +44,56 @@
                 line-height: 1.5;
             }
 
-            // edit form:
-
-            .edit-form {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-
-                .edit-label {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    padding: 0.3rem;
-
-                    input {
-                        height: 2.5rem;
-                        width: 100%;
-                        padding: 1ch;
-                        margin: 0.3rem 0;
-                        border-radius: 0.2rem;
-                        border: none;
-                        border: 1px solid $mid-blue;
-                        font-size: 1.1rem;
-                        color: $dark-blue;
-
-                        &::placeholder {
-                            font-family: "Montserrat", sans-serif;
-                        }
-                    }
-                }
-
-                .select-avatar {
-                    text-align: center;
-                }
-
-                .container-avatars {
-                    margin: 1rem 0;
-                    display: grid;
-                    grid-gap: 0.5rem;
-                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                }
-
-                [type="radio"] {
-                    position: absolute;
-                    opacity: 0;
-                    width: 0;
-                    height: 0;
-
-                    label {
-                        cursor: pointer;
-                    }
-
-                    &:checked + label {
-                        outline: 3px solid $mid-light-blue;
-                    }
-                }
-            }
-        }
-        .save-button {
-            margin-top: 1rem;
-            padding: 0.5rem 2.5rem;
-        }
-    }
-
-    .personal-events {
-        width: 100%;
-        padding: 2rem 0 2rem;
-
-        h4 {
-            font-size: 1.8rem;
-            text-align: center;
-        }
-
-        .events-container {
-            padding: 2rem;
-            display: grid;
-            grid-gap: 2rem 1rem;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-
-            .no-events {
+            .select-avatar {
                 text-align: center;
             }
+
+            .container-avatars {
+                margin: 1rem 0;
+                display: grid;
+                grid-gap: 0.5rem;
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            [type="radio"] {
+                position: absolute;
+                opacity: 0;
+                width: 0;
+                height: 0;
+
+                label {
+                    cursor: pointer;
+                }
+
+                &:checked + label {
+                    outline: 3px solid $mid-light-blue;
+                }
+            }
+        }
+    }
+    .save-button {
+        margin-top: 1rem;
+        padding: 0.5rem 2.5rem;
+    }
+}
+
+.personal-events {
+    width: 100%;
+    padding: 2rem 0 2rem;
+
+    h4 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .events-container {
+        padding: 2rem;
+        display: grid;
+        grid-gap: 2rem 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+        .no-events {
+            text-align: center;
         }
     }
 }
@@ -147,6 +115,40 @@
 
             .events-container {
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+    }
+}
+
+// edit form:
+
+.edit-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .edit-label {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0.3rem;
+
+        input,
+        textarea,
+        .map-address {
+            height: 2.5rem;
+            width: 100%;
+            padding: 1ch;
+            margin: 0.3rem 0;
+            border-radius: 0.2rem;
+            border: none;
+            border: 1px solid $mid-blue;
+            font-size: 1.1rem;
+            color: $dark-blue;
+
+            &::placeholder {
+                font-family: "Montserrat", sans-serif;
             }
         }
     }
