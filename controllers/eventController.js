@@ -82,11 +82,12 @@ exports.postEvent = async (req, res, next) => {
 };
 
 exports.putEvent = async (req, res, next) => {
-    const { _id } = req.params;
+    const { id } = req.params;
+    console.log(id)
     const event = req.body;
 
     try {
-        const updateEvent = await Event.findByIdAndUpdate(_id, event, { new: true });
+        const updateEvent = await Event.findByIdAndUpdate(id, event, { new: true });
         if (!event) throw createError(404);
         res.json({ success: true, event: updateEvent });
     }
