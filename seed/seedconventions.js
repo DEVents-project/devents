@@ -38,14 +38,25 @@ got(eventbriteBerlin).then(res => {
             let eventData = {};
             let title = eventPageDom.querySelector(".listing-hero-title").textContent;
             eventData.title = title;
-            let date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
-            eventData.date = date;
+            const date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
+
+            const slicedDate = `${date.slice(5, 26)} `
+
+            const newDate = new Date(slicedDate)
+
+
+            const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
+            const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
+
+            eventData.date = dateOfEvent;
+            eventData.time = timeOfEvent;
+
             eventData.location = eventAddress;
             eventData.city = "Berlin";
             let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
             eventData.description = description.trim()
 
-            eventData.url = eventUrl
+            eventData.url = eventUrl;
 
             const dataForSave = new Convention(eventData)
 
@@ -77,9 +88,19 @@ got(eventbriteHamburg).then(res => {
             let eventData = {};
             let title = eventPageDom.querySelector(".listing-hero-title").textContent;
             eventData.title = title;
-            let date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
-            eventData.date = date;
-            // const eventAddress = event.querySelector(".event-details hide-small").querySelector("p").textContent;
+            const date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
+
+            const slicedDate = `${date.slice(5, 26)} `
+
+            const newDate = new Date(slicedDate)
+
+
+            const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
+            const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
+
+            eventData.date = dateOfEvent;
+            eventData.time = timeOfEvent;
+
             eventData.location = eventAddress;
             eventData.city = "Hamburg";
             let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
@@ -119,16 +140,25 @@ got(eventbriteMunich).then(res => {
             let eventData = {};
             let title = eventPageDom.querySelector(".listing-hero-title").textContent;
             eventData.title = title;
-            let date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
-            eventData.date = date;
-            // const eventAddress = event.querySelector(".event-details hide-small").querySelector("p").textContent;
+
+            const date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
+
+            const slicedDate = `${date.slice(5, 26)} `
+
+            const newDate = new Date(slicedDate)
+
+
+            const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
+            const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
+
+            eventData.date = dateOfEvent;
+            eventData.time = timeOfEvent;
+
+
             eventData.location = eventAddress;
             eventData.city = "Munich";
             let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
             eventData.description = description.trim()
-            // const bg = eventPageDom.querySelector(".banner-image").style.backgroundImage
-            // const img = bg.slice(4, -1).replace(/"/g, "");
-            // eventData.img = img;
             eventData.url = eventUrl
 
             const dataForSave = new Convention(eventData)
@@ -140,7 +170,6 @@ got(eventbriteMunich).then(res => {
 
             });
 
-            // console.log(eventData)
 
 
         })

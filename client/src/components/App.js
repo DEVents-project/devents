@@ -73,7 +73,9 @@ const App = () => {
           city: meetup.location.split(', ')[1],
           coordinates: meetup.coordinates,
           img: meetup.imgUrl,
-          location: meetup.location
+          location: meetup.location,
+          authorId: meetup.authorId,
+          _id: meetup._id
         });
         allEventsTogether.push({
           title: meetup.title,
@@ -83,7 +85,9 @@ const App = () => {
           city: meetup.location.split(', ')[1],
           coordinates: meetup.coordinates,
           img: meetup.imgUrl,
-          location: meetup.location
+          location: meetup.location,
+          authorId: meetup.authorId,
+          _id: meetup._id
         })
       });
       // console.log('MEETUPS FROM USERS - Response: ', meetups.events);

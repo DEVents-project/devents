@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 const workshopSchema = new Schema({
     title: String,
     date: String,
+    time: String,
     location: { type: String, required: false },
     city: String,
     description: String,
