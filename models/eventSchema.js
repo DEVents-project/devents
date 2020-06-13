@@ -20,7 +20,9 @@ const EventSchema = new Schema({
 
     description: { type: String, required: true },
 
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+
+    authorsID: { type: String, required: true }
 });
 
 module.exports = mongoose.model("Event", EventSchema);
