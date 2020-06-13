@@ -53,6 +53,7 @@ exports.getImage = async (req, res) => {
 };
 
 exports.postEvent = async (req, res, next) => {
+    console.log(req.user._id)
 
     try {
         const newEvent = new Event({
