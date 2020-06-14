@@ -10,7 +10,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 const Events = () => {
     const history = useHistory();
 
-    const { setEventInfo, events, meetups, workshops, conventions, citiesWithEvent } = useContext(Context);
+    const { userData, fetchEvents, setEventInfo, events, meetups, workshops, conventions, citiesWithEvent } = useContext(Context);
     // console.log('CITIES WITH EVENTS: ', citiesWithEvent);
 
     // number of events that will show after clicking on 'SEE MORE':
@@ -22,6 +22,14 @@ const Events = () => {
     const loadMore = () => {
         setIsVisible(isVisible + 9);
     };
+
+    useEffect(() => {
+        fetchEvents();
+    }, []);
+
+    useEffect(() => {
+        fetchEvents();
+    }, [userData]);
 
     // by clicking on 'SEE MORE' it will be redirected to the event's info
     useEffect(() => {

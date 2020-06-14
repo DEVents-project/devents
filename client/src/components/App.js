@@ -46,130 +46,126 @@ const App = () => {
   }, []);
 
 
-  // FETCHING ALL THE EVENTS:
-  useEffect(() => {
-    const fetchEvents = async () => {
-      const options = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      };
-
-      const allEventsTogether = [];
-      const allCities = [];
-
-      const allMeetups = [];
-      // THESE ARE THE EVENTS POSTED BY THE USERS. THEY WILL BE DISPLAYED IN THE MEETUPS:
-      const response = await fetch('http://localhost:4000/events', options);
-      const meetups = await response.json();
-      meetups.events.map(meetup => {
-        allMeetups.push({
-          title: meetup.title,
-          description: meetup.description,
-          url: meetup.website,
-          date: meetup.date,
-          city: meetup.location.split(', ')[1],
-          coordinates: meetup.coordinates,
-          img: meetup.imgUrl,
-          location: meetup.location,
-          authorId: meetup.authorId,
-          _id: meetup._id
-        });
-        allEventsTogether.push({
-          title: meetup.title,
-          description: meetup.description,
-          url: meetup.website,
-          date: meetup.date,
-          city: meetup.location.split(', ')[1],
-          coordinates: meetup.coordinates,
-          img: meetup.imgUrl,
-          location: meetup.location,
-          authorId: meetup.authorId,
-          _id: meetup._id
-        })
-      });
-      // console.log('MEETUPS FROM USERS - Response: ', meetups.events);
-
-
-      // THESE ARE MEETUPS FROM 'LE WAGON'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
-      const response2 = await fetch('http://localhost:4000/meetups/lewagon', options);
-      const meetupsLW = await response2.json();
-      meetupsLW.events.events.map(meetup => {
-        allMeetups.push({
-          title: meetup.name.text,
-          description: meetup.description.text,
-          url: meetup.url,
-          date: meetup.start.utc,
-          city: meetup.city ? meetup.city : 'online'
-        });
-        allEventsTogether.push(
-          {
-            title: meetup.name.text,
-            description: meetup.description.text,
-            url: meetup.url,
-            date: meetup.start.utc,
-            city: meetup.city ? meetup.city : 'online'
-          }
-        )
-      });
-      // console.log('MEETUPS FETCHED LW - Response: ', meetupsLW.events.events);
-
-      // THESE ARE MEETUPS FROM 'WILD CODE SCHOOL'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
-      const response3 = await fetch('http://localhost:4000/meetups/wcs', options);
-      const meetupsWCS = await response3.json();
-      meetupsWCS.events.events.map(meetup => {
-        allMeetups.push({
-          title: meetup.name.text,
-          description: meetup.description.text,
-          url: meetup.url,
-          date: meetup.start.utc,
-          city: meetup.city ? meetup.city : 'online'
-        });
-        allEventsTogether.push(
-          {
-            title: meetup.name.text,
-            description: meetup.description.text,
-            url: meetup.url,
-            date: meetup.start.utc,
-            city: meetup.city ? meetup.city : 'online'
-          }
-        )
-      });
-      // console.log('MEETUPS FETCHED WCS - Response: ', meetupsWCS.events.events);
-      // console.log('ALL MEETUPS: ', allMeetups)
-      setMeetups(allMeetups);
-
-      const response4 = await fetch('http://localhost:4000/workshops', options);
-      const workshops = await response4.json();
-      // console.log('WORKSHOPS - Response: ', workshops);
-      workshops.events.map(workshop => allEventsTogether.push(workshop));
-      setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
-      );
-
-      const response5 = await fetch('http://localhost:4000/conventions', options);
-      const conventions = await response5.json();
-      // console.log('CONVENTIONS - Response: ', conventions);
-      conventions.events.map(convention => allEventsTogether.push(convention));
-      setConventions(conventions.events.filter(event => event.url.includes('eventbrite'))
-      );
-
-      // we extract all the cities where an event is going to take place:
-
-      allEventsTogether.filter(event => event.city && event.city !== 'undefined')
-        .map(event => allCities.push(event.city));
-      const extractedCities = [...new Set(allCities)].sort();
-
-      // console.log('ALL EVENTS: ', allEventsTogether);
-      // console.log('ALL CITIES: ', extractedCities);
-
-      setCitiesWithEvent(extractedCities);
-      setEvents(allEventsTogether);
+  // FUNCTION FETCHING ALL THE EVENTS:
+  const fetchEvents = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
     };
 
-    fetchEvents();
-  }, []);
+    const allEventsTogether = [];
+    const allCities = [];
+
+    const allMeetups = [];
+    // THESE ARE THE EVENTS POSTED BY THE USERS. THEY WILL BE DISPLAYED IN THE MEETUPS:
+    const response = await fetch('http://localhost:4000/events', options);
+    const meetups = await response.json();
+    meetups.events.map(meetup => {
+      allMeetups.push({
+        title: meetup.title,
+        description: meetup.description,
+        url: meetup.website,
+        date: meetup.date,
+        city: meetup.location.split(', ')[1],
+        coordinates: meetup.coordinates,
+        img: meetup.imgUrl,
+        location: meetup.location,
+        authorId: meetup.authorId,
+        _id: meetup._id
+      });
+      allEventsTogether.push({
+        title: meetup.title,
+        description: meetup.description,
+        url: meetup.website,
+        date: meetup.date,
+        city: meetup.location.split(', ')[1],
+        coordinates: meetup.coordinates,
+        img: meetup.imgUrl,
+        location: meetup.location,
+        authorId: meetup.authorId,
+        _id: meetup._id
+      })
+    });
+    // console.log('MEETUPS FROM USERS - Response: ', meetups.events);
+
+
+    // // THESE ARE MEETUPS FROM 'LE WAGON'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
+    // const response2 = await fetch('http://localhost:4000/meetups/lewagon', options);
+    // const meetupsLW = await response2.json();
+    // meetupsLW.events.events.map(meetup => {
+    //   allMeetups.push({
+    //     title: meetup.name.text,
+    //     description: meetup.description.text,
+    //     url: meetup.url,
+    //     date: meetup.start.utc,
+    //     city: meetup.city ? meetup.city : 'online'
+    //   });
+    //   allEventsTogether.push(
+    //     {
+    //       title: meetup.name.text,
+    //       description: meetup.description.text,
+    //       url: meetup.url,
+    //       date: meetup.start.utc,
+    //       city: meetup.city ? meetup.city : 'online'
+    //     }
+    //   )
+    // });
+    // // console.log('MEETUPS FETCHED LW - Response: ', meetupsLW.events.events);
+
+    // // THESE ARE MEETUPS FROM 'WILD CODE SCHOOL'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
+    // const response3 = await fetch('http://localhost:4000/meetups/wcs', options);
+    // const meetupsWCS = await response3.json();
+    // meetupsWCS.events.events.map(meetup => {
+    //   allMeetups.push({
+    //     title: meetup.name.text,
+    //     description: meetup.description.text,
+    //     url: meetup.url,
+    //     date: meetup.start.utc,
+    //     city: meetup.city ? meetup.city : 'online'
+    //   });
+    //   allEventsTogether.push(
+    //     {
+    //       title: meetup.name.text,
+    //       description: meetup.description.text,
+    //       url: meetup.url,
+    //       date: meetup.start.utc,
+    //       city: meetup.city ? meetup.city : 'online'
+    //     }
+    //   )
+    // });
+    // // console.log('MEETUPS FETCHED WCS - Response: ', meetupsWCS.events.events);
+    // // console.log('ALL MEETUPS: ', allMeetups)
+    setMeetups(allMeetups);
+
+    const response4 = await fetch('http://localhost:4000/workshops', options);
+    const workshops = await response4.json();
+    // console.log('WORKSHOPS - Response: ', workshops);
+    workshops.events.map(workshop => allEventsTogether.push(workshop));
+    setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
+    );
+
+    const response5 = await fetch('http://localhost:4000/conventions', options);
+    const conventions = await response5.json();
+    // console.log('CONVENTIONS - Response: ', conventions);
+    conventions.events.map(convention => allEventsTogether.push(convention));
+    setConventions(conventions.events.filter(event => event.url.includes('eventbrite'))
+    );
+
+    // we extract all the cities where an event is going to take place:
+
+    allEventsTogether.filter(event => event.city && event.city !== 'undefined')
+      .map(event => allCities.push(event.city));
+    const extractedCities = [...new Set(allCities)].sort();
+
+    // console.log('ALL EVENTS: ', allEventsTogether);
+    // console.log('ALL CITIES: ', extractedCities);
+
+    setCitiesWithEvent(extractedCities);
+    setEvents(allEventsTogether);
+  };
 
   // console.log('ALL EVENTS FETCHED: ', events);
 
@@ -200,7 +196,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Context.Provider value={{ loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions, citiesWithEvent }}>
+      <Context.Provider value={{ fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions, citiesWithEvent }}>
         <BrowserRouter>
           {
             loggedIn ?
