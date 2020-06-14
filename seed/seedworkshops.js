@@ -24,7 +24,10 @@ const deleteEvents = async () => {
 deleteEvents()
 
 
-const meetupEventBerlin = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=16&userFreeform=Berlin%2C+Deutschland&mcId=c1007698&mcName=Berlin%2C+DE&sort=default"
+//German link const meetupEventBerlin = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=16&userFreeform=Berlin%2C+Deutschland&mcId=c1007698&mcName=Berlin%2C+DE&sort=default"
+
+// english link
+const meetupEventBerlin = "https://www.meetup.com/find/?allMeetups=false&keywords=developer&radius=16&userFreeform=Berlin%2C+Deutschland&mcId=c1007698&mcName=Berlin%2C+DE&sort=distance";
 
 got(meetupEventBerlin).then(res => {
     const eventsPageDom = new JSDOM(res.body.toString()).window.document;
@@ -32,6 +35,7 @@ got(meetupEventBerlin).then(res => {
     const eventsElements = eventsParentElement.querySelectorAll("li")
     eventsElements.forEach(even => {
         const eventUrl = even.querySelector("div").querySelector("a").getAttribute("href")
+        // console.log(eventUrl)
 
 
         got(eventUrl).then(data => {
@@ -40,7 +44,19 @@ got(meetupEventBerlin).then(res => {
             let eventData = {};
             eventData.title = eventPageDom.querySelector("h1").textContent;
 
-            eventData.date = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
+            // "eventDate raw")
+            const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
+
+            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + eventDate.slice(-14)
+            const time = eventDate.slice(12, 20).replace(/"/g, "")
+            const date = new Date(slicedDate);
+            if (date > new Date()) {
+                const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
+                const timeOfEvent = time
+                eventData.date = dateOfEvent;
+                eventData.time = timeOfEvent
+            }
+
 
             eventData.location = eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address") ? eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address").textContent : undefined;
 
@@ -56,6 +72,7 @@ got(meetupEventBerlin).then(res => {
 
             const dataForSave = new Workshop(eventData)
 
+
             dataForSave.save().then(() => {
                 console.log(eventData.title, "saved")
             }).catch(err => {
@@ -67,7 +84,11 @@ got(meetupEventBerlin).then(res => {
 
 })
 
-const meetupEventHamburg = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=hamburg&mcId=c1007699&change=yes&sort=default"
+// German link
+// const meetupEventHamburg = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=hamburg&mcId=c1007699&change=yes&sort=default"
+
+// English Link
+const meetupEventHamburg = "https://www.meetup.com/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=hamburg&mcId=c1007699&mcName=Hamburg%2C+DE&sort=distance";
 
 got(meetupEventHamburg).then(res => {
     const eventsPageDom = new JSDOM(res.body.toString()).window.document;
@@ -83,7 +104,17 @@ got(meetupEventHamburg).then(res => {
             let eventData = {};
             eventData.title = eventPageDom.querySelector("h1").textContent;
 
-            eventData.date = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
+            const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
+
+            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + eventDate.slice(-14)
+            const time = eventDate.slice(12, 20).replace(/"/g, "")
+            const date = new Date(slicedDate);
+            if (date > new Date()) {
+                const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
+                const timeOfEvent = time
+                eventData.date = dateOfEvent;
+                eventData.time = timeOfEvent
+            }
 
             eventData.location = eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address") ? eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address").textContent : undefined;
 
@@ -110,7 +141,13 @@ got(meetupEventHamburg).then(res => {
 
 })
 
-const meetupEventMunich = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=M%C3%BCnchen%2C+Deutschland&mcId=c1007700&change=yes&sort=default"
+// German 
+
+// const meetupEventMunich = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=M%C3%BCnchen%2C+Deutschland&mcId=c1007700&change=yes&sort=default"
+
+// English
+
+const meetupEventMunich = "https://www.meetup.com/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=M%C3%BCnchen%2C+Deutschland&mcId=c1007700&mcName=M%C3%BCnchen%2C+DE&sort=distance";
 
 got(meetupEventMunich).then(res => {
     const eventsPageDom = new JSDOM(res.body.toString()).window.document;
@@ -126,7 +163,17 @@ got(meetupEventMunich).then(res => {
             let eventData = {};
             eventData.title = eventPageDom.querySelector("h1").textContent;
 
-            eventData.date = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
+            const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
+
+            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + eventDate.slice(-14)
+            const time = eventDate.slice(12, 20).replace(/"/g, "")
+            const date = new Date(slicedDate);
+            if (date > new Date()) {
+                const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
+                const timeOfEvent = time
+                eventData.date = dateOfEvent;
+                eventData.time = timeOfEvent
+            }
 
             eventData.location = eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address") ? eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address").textContent : undefined;
 
