@@ -171,23 +171,24 @@ const App = () => {
 
 
   // FETCHING THE USER INFORMATION - USER SESSION:
+  const getUserData = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'x-auth': token,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    };
+
+    const response = await fetch('http://localhost:4000/users', options);
+    const data = await response.json();
+
+    setUserData(data.user);
+  };
+
   useEffect(() => {
     if (token) {
-      const getUserData = async () => {
-        const options = {
-          method: 'GET',
-          headers: {
-            'x-auth': token,
-            'Content-Type': 'application/json'
-          }
-        };
-
-        const response = await fetch('http://localhost:4000/users', options);
-        const data = await response.json();
-
-        setUserData(data.data);
-      };
-
       setLoggedIn(true);
       getUserData();
     }
@@ -196,7 +197,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Context.Provider value={{ fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions, citiesWithEvent }}>
+      <Context.Provider value={{ getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions, citiesWithEvent }}>
         <BrowserRouter>
           {
             loggedIn ?
