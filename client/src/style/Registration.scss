@@ -7,19 +7,18 @@ $light-blue-op: #6089ada6;
 $font-color: #ffffff;
 
 .main-h3 {
-    text-align: center;
-    margin: 1em 2em 3em 1em;
-    // border-bottom: $mid-dark-blue solid 2px;
-    padding: 2em;
-    // background-color:$dark-blue;
+    padding: 1rem 2rem;
+    line-height: 1;
+    position: relative;
     color: $dark-blue;
-    box-shadow: -5px 5px 5px 1.9px$mid-light-blue;
+    // box-shadow: -5px 5px 5px 1.9px$mid-light-blue;
+    // border-bottom: $mid-dark-blue solid 2px;
+    // background-color:$dark-blue;
 }
 
 .question {
     text-align: center;
-    padding: 0.2em;
-    margin-top: 1.5rem;
+    padding: 0.5em;
     font-size: 2rem;
     
 }

@@ -5,11 +5,12 @@ import '../style/Registration.scss'
 import Signin from '../assets/img/signup.svg'
 import CreateEvent from '../assets/img/createEvent.svg'
 import Publish from '../assets/img/publish.svg';
+import Typical from 'react-typical';
+
 
 
 
 const Registration = () => {
-
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -19,7 +20,13 @@ const Registration = () => {
     return (
         <div className="space-wrap space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
-            <h2 className="main-h3">From developers to developers. A place where sharing and finding meetups, workshops and conventions is simple!</h2>
+            <div className="main-h3">
+                <Typical
+                    steps={['For developers, by developers.', 1500, 'Where finding each other is simple!', 1500]}
+                    loop={Infinity}
+                    wrapper="h2"
+                />
+            </div>
 
             <h1 className="question">DO YOU WANT TO SHARE YOUR EVENT? NO PROBLEM!</h1>
 
