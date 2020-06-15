@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
@@ -10,6 +11,12 @@ import Publish from '../assets/img/publish.svg';
 
 const Registration = () => {
 
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+
     return (
         <div className="space-wrap space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
@@ -18,6 +25,7 @@ const Registration = () => {
             <h1 className="question">DO YOU WANT TO SHARE YOUR EVENT? NO PROBLEM!</h1>
 
             <div className="container">
+
                 <div className="squares">
                     <div className="img-1">
                         <img src={Signin} alt="sing up" className="img-registration" />
@@ -36,7 +44,7 @@ const Registration = () => {
                     </div>
                     <div className="aside aside-2">
                         <h2>CREATE AN EVENT</h2>
-                        <p>Share all the relevant information about your event.</p>
+                        <p className="registration-p">Share all the relevant information about your event.</p>
                     </div>
                 </div>
 
@@ -46,7 +54,7 @@ const Registration = () => {
                     </div>
                     <div className="aside aside-3">
                         <h2>AND PUBLISH IT!</h2>
-                        <p>One click and that's it. Easy peasy! </p>
+                        <p className="registration-p">One click and that's it. Easy peasy! </p>
                     </div>
                 </div>
             </div>
@@ -55,6 +63,7 @@ const Registration = () => {
                 <button className="button signup-button">Sign up</button>
                 <button className="button login-button">Login</button>
             </div>
+
         </div>
     )
 }

@@ -6,7 +6,6 @@ $mid-light-blue: #68a7df;
 $light-blue-op: #256dacb2;
 $font-color: #ffffff;
 
-
 .main-h3 {
     text-align: center;
     margin: 1em 2em 3em 1em;
@@ -32,6 +31,7 @@ $font-color: #ffffff;
     height: 12em;
     border-radius: 50%;
     background-color:$light-blue-op;
+
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -45,16 +45,15 @@ $font-color: #ffffff;
     width: 100%;
     justify-content: center;
 
-    
     .squares {
         min-height: 35vh;
         width: 380px;
         padding-top: 3em;
         flex-direction: column;
         align-items: center;
-    }    
-        
+    }         
 } 
+
 
 .aside {
     width: 50%;
@@ -66,7 +65,7 @@ $font-color: #ffffff;
     margin-top: 1em;
     
 }
-p {
+.registration-p {
     margin-top: 1em;
     opacity: 0.7;
     font-size: 14px;
@@ -92,19 +91,20 @@ p {
 }
         
 
-@media screen and (min-width:768px){
-
+@media screen and (min-width: 768px) {
     .main-h3 {
         text-align: center;
         margin-top: 3em;
         margin-bottom: 3em;    
+
     }
     .question {
         text-align: center;
         padding: 0.2em;
         margin-top: 20px; 
+
     }
-    
+
     // containers
 
     .container {
@@ -138,17 +138,16 @@ p {
             display: flex;
             justify-content: center;
         }     
-}
-        
 
-@media screen and (min-width:1270px){
+}
+
+@media screen and (min-width: 1270px) {
     .question {
         text-align: center;
         padding: 0.2em;
         margin-top: 20px;
-        
     }
-    
+
     // containers
 
     .container {
@@ -160,26 +159,9 @@ p {
         }
     }
 
+
     .button {
         position: relative;
             
      }     
 }
-    
-            
-        
-            
-    
-            
-            
-       
-    
-          
-        
-            
-    
-            
-            
-       
-    
-    
