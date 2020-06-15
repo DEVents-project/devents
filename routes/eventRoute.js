@@ -7,6 +7,6 @@ Route.get("/", getEvents);
 Route.get("/:id", getEvent);
 Route.post("/", auth, upload.single("file"), postEvent);
 Route.put("/", putEvent);
-Route.delete("/:id", deleteEvent);
+Route.delete("/", deleteEvent);
 
 module.exports = Route;
