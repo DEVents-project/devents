@@ -1,7 +1,14 @@
 import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import { withRouter } from 'react-router-dom'
 import ParticlesBg from 'particles-bg';
 import '../style/Registration.scss'
+import  registration from '../assets/img/register.svg'
+import  createEvent from '../assets/img/createEvent.svg'
+import  publish from '../assets/img/publish.svg'
+import login from '../components/Login'
+import signup from '../components/SignUp'
+
 
 
 
@@ -11,46 +18,61 @@ const Registration = () => {
     return (
         <div className="space-wrap space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
-            <h1 className="question">Want to add your event?</h1>
+            <h3 className="main-h3">From developers to developers. A place where sharing and finding meetups, workshops and conventions is simple!</h3>
             
+            <h1 className="question">DO YOU WANT TO SHARE YOUR EVENT? NO PROBLEM!</h1>
+          
             <div className="container">
             
              {/* square 1 */}
-
-                <div className="squares square-1 box">
-                   <h1 className="one numbers">1</h1>
+                    
+             
+                <div className="squares">
+                    <div className="img-1">
+                    <img src={registration} alt="registrer" className="img-registration"/> 
+                    </div>
+                
+                
+                <div className="aside aside-1"> 
+                       <h2>EASY SIGN UP</h2>
+                       <p>Create an account with only your name and email address.</p>
+                   </div>
+                  
                    
-                   <aside className="aside"> 
-                       <h2>Sign up</h2>
-                       <p>Create a personal account so you can provide the users some information about your events</p>
-                   </aside>
                 </div>
+                  
+                
                    
 
               {/* square 2 */}
-                 
+                
                 <div className="squares square-2">
 
-                <h1 className="two numbers">2</h1>
-                  
-                   <aside className="aside"> 
-                       <h2>Add an event</h2>
-                       <p>Create an event of your preferences</p>
-                   
-                   </aside>
+                <div className="img-1">
+                <img src={createEvent} alt="create event"  className="img-registration"/>
                 </div>
+                <div className="aside aside-2"> 
+                       <h2>CREATE AN EVENT</h2>
+                       <p>Share all the relevant information about your event. 
+</p>
+                   
+                   </div>
+                </div>
+                    
 
                   {/* square 3 */}
-
-                <div className="square square-3 box">
                    
-                <h1 className="three numbers">3</h1>
-                   <aside className="aside"> 
-                       <h2>Publish it</h2>
-                       <p>Publish your event and make it global, interact with toun </p>
-                   
-                   </aside>
+                <div className="squares square-3 box">
+                   <div className="img-1">
+                   <img src={publish} alt="publish"  className="img-registration"/>
+                   </div>
+                   <div className="aside aside-3"> 
+                       <h2>AND PUBLISH IT!</h2>
+                       <p>One click and that's it. Easy peasy! </p>
+                   </div>
                 </div>
+                   
+                   
 
             </div>
             
@@ -63,6 +85,9 @@ const Registration = () => {
             <button className="button login-button">Login</button>
         </div>
 
+        <BrowserRouter>
+        
+        </BrowserRouter>
             
         </div>
     )
