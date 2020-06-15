@@ -33,6 +33,10 @@ const CreateEvent = (props) => {
     // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const handleCreateEvent = async (e) => {
         e.preventDefault();
         // console.log(image)

@@ -84,12 +84,18 @@ got(meetupEventBerlin).then(res => {
                     console.log(err, eventData.title, "saved")
 
                 });
+
+
             }
 
+
         })
+
     })
 
+
 })
+
 
 // German link
 // const meetupEventHamburg = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=hamburg&mcId=c1007699&change=yes&sort=default"
@@ -155,11 +161,11 @@ got(meetupEventHamburg).then(res => {
 
 })
 
-// // German 
+// German 
 
-// // const meetupEventMunich = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=M%C3%BCnchen%2C+Deutschland&mcId=c1007700&change=yes&sort=default"
+// const meetupEventMunich = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=M%C3%BCnchen%2C+Deutschland&mcId=c1007700&change=yes&sort=default"
 
-// // English
+// English
 
 const meetupEventMunich = "https://www.meetup.com/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=M%C3%BCnchen%2C+Deutschland&mcId=c1007700&mcName=M%C3%BCnchen%2C+DE&sort=distance";
 

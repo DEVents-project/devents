@@ -32,6 +32,10 @@ const App = () => {
   const [eventInfo, setEventInfo] = useState(null);
 
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   // FETCHING GOOGLE MAPS API:
   useEffect(() => {
     const script = document.createElement('script');
