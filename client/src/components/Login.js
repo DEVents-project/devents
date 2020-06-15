@@ -54,6 +54,8 @@ const Login = () => {
         }
     }
 
+
+
     useEffect(() => {
         loggedIn && history.push('/events')
     });
@@ -92,7 +94,7 @@ const Login = () => {
             </form>
 
             <p className="github-log">Wanna login with your<FontAwesomeIcon className="github-icon" icon={faGithubAlt} />GitHub account?
-                <a className="github-link" href="https://github.com/login/auth/github">Click here</a></p>
+                <a className="github-link" href="http://localhost:4000/login/github">Click here</a></p>
         </main>
     )
 }
