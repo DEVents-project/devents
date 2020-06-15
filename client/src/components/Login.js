@@ -20,6 +20,11 @@ const Login = () => {
     const [errorMsg, setErrorMsg] = useState(false)
 
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+
     const handleLogin = async (e) => {
         e.preventDefault()
 

@@ -34,6 +34,10 @@ const App = () => {
   const [eventInfo, setEventInfo] = useState(null);
 
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   // FETCHING GOOGLE MAPS API:
   useEffect(() => {
     const script = document.createElement('script');
@@ -83,7 +87,6 @@ const App = () => {
     allMeetups.map(event => citiesWithMeetups.push(event.city));
     setMeetupsCities([...new Set(citiesWithMeetups)].sort());
     setMeetups(allMeetups);
-
 
     const allWorkshops = [];
 

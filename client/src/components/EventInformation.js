@@ -31,6 +31,10 @@ const EventInformation = (props) => {
     const [isEventDeleted, setIsEventDeleted] = useState(false);
 
     useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    useEffect(() => {
         isEventDeleted && history.push('/account');
     });
 

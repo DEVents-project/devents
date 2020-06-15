@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import { withRouter } from 'react-router-dom'
 import ParticlesBg from 'particles-bg';
@@ -13,6 +13,11 @@ import signup from '../components/SignUp'
 
 
 const Registration = () => {
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
 
     return (
@@ -35,7 +40,9 @@ const Registration = () => {
 
                     <div className="aside aside-1">
                         <h2>EASY SIGN UP</h2>
+
                         <p className="registration-p">Create an account with only your name and email address.</p>
+
                     </div>
 
 
@@ -53,7 +60,9 @@ const Registration = () => {
                     </div>
                     <div className="aside aside-2">
                         <h2>CREATE AN EVENT</h2>
+
                         <p className="registration-p">Share all the relevant information about your event.
+
 </p>
 
                     </div>
@@ -68,7 +77,9 @@ const Registration = () => {
                     </div>
                     <div className="aside aside-3">
                         <h2>AND PUBLISH IT!</h2>
+
                         <p className="registration-p">One click and that's it. Easy peasy! </p>
+
                     </div>
                 </div>
 

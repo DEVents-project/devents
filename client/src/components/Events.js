@@ -18,6 +18,10 @@ const Events = () => {
     const [eventType, setEventType] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const loadMore = () => {
         setIsVisible(isVisible + 9);
     };
