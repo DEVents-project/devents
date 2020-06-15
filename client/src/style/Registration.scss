@@ -1,190 +1,253 @@
 // Variables
+$dark-blue: #040b11;
+$mid-dark-blue: #154065;
+$mid-blue: #256eac;
+$mid-light-blue: #68a7df;
+$light-blue: #bcd8f1;
 
-$light-color:#840404;
-$middle-color:#650404;
-$dark-color:#460505;
 $font-color: #ffffff;
 
 
+.main-h3 {
+    text-align: center;
+    margin: 3em 2em 3em 2em;
+    // border-bottom: $mid-dark-blue solid 2px;
+    padding: 2em;
+    // background-color:$dark-blue;
+    color: $dark-blue;
+    box-shadow: 5px 5px 5px 1.9px$mid-dark-blue;
+}
+
 .question {
     text-align: center;
-    background-color:#ff0d0d70;
     padding: 0.2em;
+    margin-top: 20px;
+    font-size: 26px;
     
 }
 
 // containers
-
-
+.img-registration{
+    
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    background-color:$mid-light-blue;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: auto;
+                    
+    
+    
+    
+}
 .container {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    
-    
 
-  
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3px;
+    width: 100%;
+    justify-content: center;
+    
+    
+    
+    
+ 
+ 
     
     .squares {
-        
-        width: 25v;
-        height: 45vh;
-        
-    }
-    .one{
-
-        font-size: 10em;
-        position: relative;
-        bottom: 3.5rem;
+        min-height: 35vh;
+        width: 380px;
+        padding-top: 5em;
+        flex-direction: column;
+        align-items: center;
        
     }
-    .two {
-
-        font-size: 10em;
-        position: relative;
-        bottom: 3.5rem;
-        margin-left: 1rem;
-      
-    }
-
-    .three {
-
-        font-size: 10em;
-        position: relative;
-        bottom: 3.5rem;
-        margin-left: 1rem;
-      
-    }
-    .square-1{
-        border-right: 8px solid rgba(0, 0, 0, 0.52);
-        background-image:url(../assets/img/register.svg);
-        background-size: cover;
-        background-size: 15em;
-        background-repeat: no-repeat;;
-        background-position: bottom;
-        background-position-x: 8em;
+        
+        
   
-        
-        width: 33%;
-        
-    }
-    .square-2{
-        border-right: 8px solid rgba(0, 0, 0, 0.52);
-        background-image:url(../assets/img/createEvent.svg);
-        background-position: center;
-        background-size: cover;
-        background-size: 14em;
-        background-repeat: no-repeat;
-        background-position: bottom;
-        background-position-x: 8em;
-        width: 33%;
-        
-        
-    }
-    .square-3{
-        background-image: url(../assets/img/publish.svg);
-        background-position: center;
-        background-size: cover;
-        background-size: 15em;
-        background-repeat: no-repeat;
-        background-position: bottom;
-        background-position-x: 9em;
-        width: 33%;
-        
-    }
+   
 }
-        
-
-        
-        
    
 
-
-aside {
+.aside {
     width: 50%;
-    float: right;           
-    right: 2em;
-    bottom: 2.4rem;
-    z-index: 999;
+    height: 15vh;
+    border-radius: 10px;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 2em;
     
-
-  }
-  .aside {
-     margin-top: -8em;
-    
-     padding: 1em;
-     border-radius: 10px;
-     width: 15em;
-     margin-right: 1em;
-     color: rgb(0, 0, 0);
-     position: relative;
-
-  }
-  p{
-      margin-top: 1em;
-     
-  }
-      
-  .box{
-    position: relative;
-    display: inline-block;
-  }
-   
-
-.buttons-container{
-    display: flex;
-    justify-content: center;
-    
-    .button {
-        margin-top: 80px;
-        width: 10em;
-        height: 2.5em;
-      
-    }
-    .login-button {
-
-        margin-left:1.5em;
-    
-    }
-
-  
 }
-
-
-// mediaquery 
-// @media screen and (min-width: 360px) {
+    
+    
    
-//     .container{
-//        flex-direction: column;
-//        align-items: center;
-//        align-content: center;
-//        justify-content: center;
-//        flex-wrap: wrap;
-       
-
-//    }
    
-//    .container{
 
-//        .squares {
-//            border-right: none;
-//         }
-        
-//         .numbers {
-//             color: blue;
-//             font-size: 4em;
-//         } 
-        
-//         aside {
-            
-            
-//         }
-            
-           
-//    }
+
+
+
+
+
+p {
+    margin-top: 1em;
+    opacity: 0.7;
+    font-size: 14px;
+    
+    
+   
+}
+    
+ 
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
   
-//   }
+  .button {
+      margin-top: 80px;
+      width: 10em;
+      height: 2.5em;
+      margin-bottom: 2em;  
+    
+  }
+  .login-button {
+
+      margin-left:1.5em;
+  
+  }
 
 
+}
+        
+        
+    
+        
 
-//
+        
+        
+   
+
+    
+
+
+@media screen and (min-width:768px){
+
+    .main-h3 {
+        text-align: center;
+        margin-top: 3em;
+        margin-bottom: 3em;
+        
+        
+        
+    }
+    .question {
+        text-align: center;
+        padding: 0.2em;
+        margin-top: 20px;
+      
+        
+    }
+    
+    // containers
+
+    .container {
+        display: flex;
+        
+
+        .img-registration {
+            // position: relative;
+            display: inline-block;
+            margin: 0 auto;
+            
+        }
+        
+
+        .aside {
+           
+            // position: relative;
+            // top: 13em;
+            // right:5em;
+            padding: 20px;
+        
+        }
+       
+    }
+     button {
+            position: relative;
+            // bottom: 4em;
+        }
+        .squares {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .img-1 {
+           
+            display: flex;
+            justify-content: center;
+        }
+    
+            
+    
+  
+       
+}
+        
+
+@media screen and (min-width:1270px){
+    .question {
+        text-align: center;
+        padding: 0.2em;
+        margin-top: 20px;
+        
+    }
+    
+    // containers
+
+    .container {
+
+        display: flex;
+        height: 60vh;
+
+    
+
+        .aside {
+           
+            
+            text-align: center;
+        
+        }
+       
+    }
+
+     button {
+            position: relative;
+            
+        }
+            
+        
+  
+       
+}
+    
+            
+        
+            
+    
+            
+            
+       
+    
+          
+        
+            
+    
+            
+            
+       
+    
+    
