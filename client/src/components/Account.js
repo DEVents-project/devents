@@ -8,7 +8,7 @@ import ParticlesBg from 'particles-bg';
 const Account = () => {
     const history = useHistory();
 
-    const { userData, setUserData, setEventInfo, token, events } = useContext(Context);
+    const { getUserData, userData, setUserData, setEventInfo, token, events } = useContext(Context);
     // console.log('USERDATA:', userData);
     const [isEventClicked, setIsEventClicked] = useState(false);
     // this state change fragment between info and inputs to be edited
@@ -32,23 +32,11 @@ const Account = () => {
     const [refresh, setRefresh] = useState(true);
 
     useEffect(() => {
-        const fetchUserInformation = async () => {
-            const options = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'x-auth': token
-                }
-            };
+        getUserData();
+    }, []);
 
-            const response = await fetch('http://localhost:4000/users', options);
-            const data = await response.json();
-            // console.log('ACCOUNT - Response: ', data);
-            setUserData(data.user);
-        };
-
-        fetchUserInformation();
+    useEffect(() => {
+        getUserData();
         setRefresh(false)
     }, [refresh]);
 
