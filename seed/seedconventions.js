@@ -3,6 +3,7 @@ const jsdom = require("jsdom")
 const { JSDOM } = jsdom;
 const mongoose = require("mongoose")
 const Convention = require("../models/conventionSchema")
+const Moment = require("moment")
 
 mongoose.connect("mongodb://127.0.0.1:27017/devents", { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.connection.on("error", (err) => console.log(err))
@@ -13,7 +14,7 @@ const deleteEvents = async () => {
     try {
         await Convention.deleteMany({});
         // to resolve all the pending promises inside the array 
-        console.log("refresh/deleting users")
+        console.log("refresh/deleting events")
     } catch (err) {
 
         console.log(err)
@@ -36,16 +37,20 @@ got(eventbriteBerlin).then(res => {
         got(eventUrl).then(data => {
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            const date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
-            const slicedDate = `${date.slice(5, 26)} `
-            const newDate = new Date(slicedDate)
+            const eventDate = eventPageDom.querySelector(".js-date-time-first-line").textContent;
+            const slicedDate = `${eventDate.slice(5, 26)} `
 
-            if (newDate) {
-                let title = eventPageDom.querySelector(".listing-hero-title").textContent;
-                eventData.title = title;
+            const date = new Moment(slicedDate);
+            // console.log(date)
 
-                const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
-                const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
+            if (date) {
+                eventData.title = eventPageDom.querySelector("h1").textContent;
+
+                const dateOfEvent = new Moment(date).format('DD MMMM YYYY');
+                const timeOfEvent = new Moment(date).format('LT');
+
+                // console.log(dateOfEvent);
+                // console.log(timeOfEvent)
 
                 eventData.date = dateOfEvent;
                 eventData.time = timeOfEvent;
@@ -83,16 +88,20 @@ got(eventbriteHamburg).then(res => {
         got(eventUrl).then(data => {
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            const date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
-            const slicedDate = `${date.slice(5, 26)} `
-            const newDate = new Date(slicedDate)
+            const eventDate = eventPageDom.querySelector(".js-date-time-first-line").textContent;
+            const slicedDate = `${eventDate.slice(5, 26)} `
 
-            if (newDate) {
-                let title = eventPageDom.querySelector(".listing-hero-title").textContent;
-                eventData.title = title;
+            const date = new Moment(slicedDate);
+            // console.log(date)
 
-                const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
-                const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
+            if (date) {
+                eventData.title = eventPageDom.querySelector("h1").textContent;
+
+                const dateOfEvent = new Moment(date).format('DD MMMM YYYY');
+                const timeOfEvent = new Moment(date).format('LT');
+
+                // console.log(dateOfEvent);
+                // console.log(timeOfEvent)
 
                 eventData.date = dateOfEvent;
                 eventData.time = timeOfEvent;
@@ -133,16 +142,20 @@ got(eventbriteMunich).then(res => {
         got(eventUrl).then(data => {
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            const date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
-            const slicedDate = `${date.slice(5, 26)}`
-            const newDate = new Date(slicedDate)
+            const eventDate = eventPageDom.querySelector(".js-date-time-first-line").textContent;
+            const slicedDate = `${eventDate.slice(5, 26)} `
 
-            if (newDate) {
-                let title = eventPageDom.querySelector(".listing-hero-title").textContent;
-                eventData.title = title;
+            const date = new Moment(slicedDate);
+            // console.log(date)
 
-                const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
-                const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
+            if (date) {
+                eventData.title = eventPageDom.querySelector("h1").textContent;
+
+                const dateOfEvent = new Moment(date).format('DD MMMM YYYY');
+                const timeOfEvent = new Moment(date).format('LT');
+
+                // console.log(dateOfEvent);
+                // console.log(timeOfEvent)
 
                 eventData.date = dateOfEvent;
                 eventData.time = timeOfEvent;

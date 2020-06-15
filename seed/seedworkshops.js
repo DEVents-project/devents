@@ -3,6 +3,7 @@ const jsdom = require("jsdom")
 const { JSDOM } = jsdom;
 const mongoose = require("mongoose")
 const Workshop = require("../models/workshopSchema")
+const Moment = require("moment")
 
 mongoose.connect("mongodb://127.0.0.1:27017/devents", { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.connection.on("error", (err) => console.log(err))
@@ -13,7 +14,7 @@ const deleteEvents = async () => {
     try {
         await Workshop.deleteMany({});
         // to resolve all the pending promises inside the array 
-        console.log("refresh/deleting users")
+        console.log("refresh/deleting events")
     } catch (err) {
 
         console.log(err)
@@ -48,13 +49,18 @@ got(meetupEventBerlin).then(res => {
             const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
 
             const slicedDate = eventDate.slice(5, 11) + " " + "2020" + " " + eventDate.slice(-14, -6);
-            const date = new Date(slicedDate);
+            const date = new Moment(slicedDate);
+            // console.log(date)
 
-            if (date > new Date()) {
+            if (date > new Moment()) {
                 eventData.title = eventPageDom.querySelector("h1").textContent;
 
-                const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-                const timeOfEvent = `${date.getHours()}:${date.getMinutes() < 10 ? date.getMinutes() + "0" : "30"}`;
+                const dateOfEvent = new Moment(date).format('DD MMMM YYYY');
+                const timeOfEvent = new Moment(date).format('LT');
+
+                // console.log(dateOfEvent);
+                // console.log(timeOfEvent)
+
                 eventData.date = dateOfEvent;
                 eventData.time = timeOfEvent;
 
@@ -71,7 +77,6 @@ got(meetupEventBerlin).then(res => {
                 eventData.url = eventUrl
 
                 const dataForSave = new Workshop(eventData)
-
 
                 dataForSave.save().then(() => {
                     console.log(eventData.title, "saved")
@@ -107,13 +112,18 @@ got(meetupEventHamburg).then(res => {
             const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
 
             const slicedDate = eventDate.slice(5, 11) + " " + "2020" + " " + eventDate.slice(-14, -6);
-            const date = new Date(slicedDate);
+            const date = new Moment(slicedDate);
+            // console.log(date)
 
-            if (date > new Date()) {
+            if (date > new Moment()) {
                 eventData.title = eventPageDom.querySelector("h1").textContent;
 
-                const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-                const timeOfEvent = `${date.getHours()}:${date.getMinutes() < 10 ? date.getMinutes() + "0" : "30"}`;
+                const dateOfEvent = new Moment(date).format('DD MMMM YYYY');
+                const timeOfEvent = new Moment(date).format('LT');
+
+                // console.log(dateOfEvent);
+                // console.log(timeOfEvent)
+
                 eventData.date = dateOfEvent;
                 eventData.time = timeOfEvent;
 
@@ -145,11 +155,11 @@ got(meetupEventHamburg).then(res => {
 
 })
 
-// German 
+// // German 
 
-// const meetupEventMunich = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=M%C3%BCnchen%2C+Deutschland&mcId=c1007700&change=yes&sort=default"
+// // const meetupEventMunich = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=M%C3%BCnchen%2C+Deutschland&mcId=c1007700&change=yes&sort=default"
 
-// English
+// // English
 
 const meetupEventMunich = "https://www.meetup.com/find/?allMeetups=false&keywords=developer&radius=26&userFreeform=M%C3%BCnchen%2C+Deutschland&mcId=c1007700&mcName=M%C3%BCnchen%2C+DE&sort=distance";
 
@@ -169,13 +179,18 @@ got(meetupEventMunich).then(res => {
             const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
 
             const slicedDate = eventDate.slice(5, 11) + " " + "2020" + " " + eventDate.slice(-14, -6);
-            const date = new Date(slicedDate);
+            const date = new Moment(slicedDate);
+            // console.log(date)
 
-            if (date > new Date) {
+            if (date > new Moment()) {
                 eventData.title = eventPageDom.querySelector("h1").textContent;
 
-                const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-                const timeOfEvent = `${date.getHours()}:${date.getMinutes() < 10 ? date.getMinutes() + "0" : "30"}`;
+                const dateOfEvent = new Moment(date).format('DD MMMM YYYY');
+                const timeOfEvent = new Moment(date).format('LT');
+
+                // console.log(dateOfEvent);
+                // console.log(timeOfEvent)
+
                 eventData.date = dateOfEvent;
                 eventData.time = timeOfEvent;
 
@@ -197,7 +212,6 @@ got(meetupEventMunich).then(res => {
                     console.log(eventData.title, "saved");
                 }).catch(err => {
                     console.log(err, eventData.title, "saved");
-
                 });
             }
         });
