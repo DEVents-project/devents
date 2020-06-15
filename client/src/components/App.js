@@ -117,7 +117,7 @@ const App = () => {
 
   };
 
-  console.log('ALL EVENTS FETCHED: ', meetups, workshops, conventions);
+  // console.log('ALL EVENTS FETCHED: ', meetups, workshops, conventions);
 
   // FETCHING THE USER INFORMATION - USER SESSION:
   const getUserData = async () => {
@@ -146,7 +146,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Context.Provider value={{ meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, workshops, conventions }}>
+      <Context.Provider value={{ meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
         <BrowserRouter>
           {
             loggedIn ?

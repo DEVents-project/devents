@@ -46,7 +46,7 @@ const Events = () => {
         isEventClicked && history.push('/event');
     });
 
-    console.log('SELECTED CITY: ', selectedCity);
+    // console.log('SELECTED CITY: ', selectedCity);
     // console.log('WORKSHOPS: ', workshops);
 
     return (

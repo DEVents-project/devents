@@ -1,6 +1,5 @@
 
-import React from 'react'
-import { BrowserRouter } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import ParticlesBg from 'particles-bg';
 import '../style/Registration.scss'
 import Signin from '../assets/img/signup.svg'
