@@ -19,7 +19,7 @@ const Registration = () => {
     return (
         <div className="space-wrap space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
-            <h3 className="main-h3">From developers to developers. A place where sharing and finding meetups, workshops and conventions is simple!</h3>
+            <h2 className="main-h3">From developers to developers. A place where sharing and finding meetups, workshops and conventions is simple!</h2>
 
             <h1 className="question">DO YOU WANT TO SHARE YOUR EVENT? NO PROBLEM!</h1>
 
@@ -32,7 +32,7 @@ const Registration = () => {
 
                     <div className="aside aside-1">
                         <h2>EASY SIGN UP</h2>
-                        <p>Create an account with only your name and email address.</p>
+                        <p className="registration-p">Create an account with only your name and email address.</p>
                     </div>
                 </div>
 
