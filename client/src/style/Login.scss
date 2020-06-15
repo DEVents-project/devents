@@ -14,6 +14,7 @@ $border: .2rem;
     padding: 2rem 0;
     // margin: 2rem 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -21,7 +22,7 @@ $border: .2rem;
     .login-form {
         width: 80%;
         height: 100%;
-        padding: 2rem 0;
+        padding: 1.5rem 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -68,6 +69,37 @@ $border: .2rem;
             // padding: 1.5rem;
             margin: 1rem 0;
             font-size: 1.2rem;  
+        }
+    }
+    .github-log {
+        width: 80%;
+        padding: .5rem 0;
+        text-align: center;
+        color:$dark-blue;
+
+        .github-icon {
+            margin: 0 .3rem;
+            font-size: 1rem;
+            color: $dark-blue;  
+        }
+        .github-link{
+            padding: .2rem;
+            cursor: pointer;
+            text-decoration: none;
+            color:$light-blue;
+
+            &:link {
+                color:$mid-light-blue;
+            }
+            &:visited {
+                color:$mid-blue;
+            }
+            &:hover {
+                color:$mid-dark-blue;
+            }
+            &:active {
+                color:$dark-blue;
+            }
         }
     }
 }

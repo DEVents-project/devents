@@ -4,7 +4,9 @@ import Context from './Context';
 
 import '../style/Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faGithubAlt } from '@fortawesome/free-brands-svg-icons';
+
 import ParticlesBg from 'particles-bg';
 import DevCoding from '../assets/img/dev-coding2.png';
 
@@ -52,6 +54,8 @@ const Login = () => {
         }
     }
 
+
+
     useEffect(() => {
         loggedIn && history.push('/events')
     });
@@ -88,6 +92,9 @@ const Login = () => {
                 {errorMsg ? <p>Email or password incorrect</p> : null}
                 <button className="button login-btn" type="submit">LOG IN</button>
             </form>
+
+            <p className="github-log">Wanna login with your<FontAwesomeIcon className="github-icon" icon={faGithubAlt} />GitHub account?
+                <a className="github-link" href="http://localhost:4000/login/github">Click here</a></p>
         </main>
     )
 }
