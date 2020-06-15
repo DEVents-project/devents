@@ -33,6 +33,7 @@
     "http-errors": "^1.7.3",
     "jsdom": "^16.2.2",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.26.0",
     "mongoose": "^5.9.16",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",

@@ -92,7 +92,7 @@ const App = () => {
         _id: meetup._id
       })
     });
-    allMeetups.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+    allMeetups.sort((a, b) => new Moment(a.date) - new Moment(b.date));
 
     // console.log('MEETUPS FROM USERS - Response: ', meetups.events);
 
@@ -142,14 +142,15 @@ const App = () => {
     //   )
     // });
     // // console.log('MEETUPS FETCHED WCS - Response: ', meetupsWCS.events.events);
-    // // console.log('ALL MEETUPS: ', allMeetups)
+    console.log('ALL MEETUPS: ', allMeetups)
     setMeetups(allMeetups);
 
     const response4 = await fetch('http://localhost:4000/workshops', options);
     const workshops = await response4.json();
     // console.log('WORKSHOPS - Response: ', workshops);
     workshops.events.map(workshop => allWorkshops.push(workshop));
-    allWorkshops.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+    allWorkshops.sort((a, b) => new Moment(a.date) - new Moment(b.date));
+
     console.log(allWorkshops, "all Workshops")
     workshops.events.map(workshop => allEventsTogether.push(workshop));
     setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
@@ -162,7 +163,7 @@ const App = () => {
     // array conventions created to push all the conventions and date sort by date
 
     conventions.events.map(convention => allConventions.push(convention));
-    allConventions.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+    allConventions.sort((a, b) => new Moment(a.date) - new Moment(b.date));
     console.log(allConventions, "all Conventions")
 
 

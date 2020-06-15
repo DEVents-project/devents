@@ -42,7 +42,7 @@ const CreateEvent = (props) => {
         imgBody.append('file', image);
         imgBody.append('title', title);
         imgBody.append('hostedBy', hostedBy);
-        imgBody.append('date', new Moment(date).format('MM-DD-YYYY'));
+        imgBody.append('date', new Moment(date).format('DD MMMM YYYY'));
         imgBody.append('time', time);
         imgBody.append('coordinates', coordinates);
         imgBody.append('location', location);
@@ -123,6 +123,7 @@ const CreateEvent = (props) => {
                             className="event-input"
                             type="date"
                             value={date}
+                            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
                             required
                             onChange={(e) => setDate(e.target.value)}
                         />
