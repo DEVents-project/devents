@@ -1,4 +1,5 @@
 import React, { useContext, Fragment, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Context from './Context';
 import '../style/EventInformation.scss';
 import ParticlesBg from 'particles-bg';
@@ -7,7 +8,9 @@ import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 import { faHospitalAlt } from '@fortawesome/free-solid-svg-icons';
 
 const EventInformation = (props) => {
-    const { eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
+    const history = useHistory();
+
+    const { getUserData, fetchEvents, events, setEvents, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
 
     // By clicking on EDIT:
     const [editMode, setEditMode] = useState(false);
@@ -24,6 +27,36 @@ const EventInformation = (props) => {
     // console.log('lng: ', lng);
 
     // console.log('EVEnt INFO NOW: ', eventInfo);
+
+    const [isEventDeleted, setIsEventDeleted] = useState(false);
+
+    useEffect(() => {
+        isEventDeleted && history.push('/account');
+    });
+
+    const deleteEvent = async (e) => {
+        e.preventDefault();
+
+        const eventToDelete = !events ? fetchEvents() : events.filter(event => event._id === eventInfo._id)[0];
+        console.log('EVENT TO DELETE', eventToDelete);
+        const deletedEvent = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "x-auth": token
+            },
+            body: JSON.stringify(eventToDelete)
+        };
+
+        const response = await fetch('http://localhost:4000/events', deletedEvent);
+        const data = await response.json();
+        console.log('EVent Deleted - Response: ', data);
+        if (data.success) {
+            setEvents(data.event);
+            setEditMode(false);
+            setIsEventDeleted(true);
+        };
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -58,28 +91,11 @@ const EventInformation = (props) => {
     };
 
     useEffect(() => {
-        const fetchUserInformation = async () => {
-            const options = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'x-auth': token
-                }
-            };
-
-            const response = await fetch('http://localhost:4000/users', options);
-            const data = await response.json();
-            // console.log('EVent infoRmAtioN - Response: ', data);
-            setUserData(data.user);
-        };
-
-        fetchUserInformation();
+        getUserData();
     }, []);
 
     // console.log('USER INFORMATION_userData: ', userData);
     // console.log('EVENT INFORMATION_eventInfo: ', eventInfo);
-
 
     return (
 
@@ -147,7 +163,7 @@ const EventInformation = (props) => {
                                             }
                                             <div className="editing-buttons">
                                                 <button className="button link-to-site" onClick={() => setEditMode(true)}>EDIT</button>
-                                                <button className="button link-to-site" >DELETE</button>
+                                                <button className="button link-to-site" onClick={(e) => { if (window.confirm('Are you sure you want to delete this event?')) { deleteEvent(e) } }}>DELETE</button>
                                             </div>
                                         </div>
                                         <div className="event-information-box-two">
