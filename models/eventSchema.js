@@ -5,6 +5,7 @@ const EventSchema = new Schema({
     title: { type: String, required: true },
 
     hostedBy: { type: String, required: false },
+    authorId: { type: String, required: false },
 
     authorId: { type: String, required: false },
 
