@@ -36,39 +36,36 @@ got(eventbriteBerlin).then(res => {
         got(eventUrl).then(data => {
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            let title = eventPageDom.querySelector(".listing-hero-title").textContent;
-            eventData.title = title;
             const date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
-
             const slicedDate = `${date.slice(5, 26)} `
-
             const newDate = new Date(slicedDate)
 
+            if (newDate) {
+                let title = eventPageDom.querySelector(".listing-hero-title").textContent;
+                eventData.title = title;
 
-            const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
-            const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
+                const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
+                const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
 
-            eventData.date = dateOfEvent;
-            eventData.time = timeOfEvent;
+                eventData.date = dateOfEvent;
+                eventData.time = timeOfEvent;
 
-            eventData.location = eventAddress;
-            eventData.city = "Berlin";
-            let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
-            eventData.description = description.trim()
+                eventData.location = eventAddress;
+                eventData.city = "Berlin";
+                let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
+                eventData.description = description.trim()
 
-            eventData.url = eventUrl;
+                eventData.url = eventUrl;
 
-            const dataForSave = new Convention(eventData)
+                const dataForSave = new Convention(eventData)
 
-            dataForSave.save().then(() => {
-                console.log(eventData.title, "saved")
-            }).catch(err => {
-                console.log(err, eventData.title, "saved")
+                dataForSave.save().then(() => {
+                    console.log(eventData.title, "saved")
+                }).catch(err => {
+                    console.log(err, eventData.title, "saved")
 
-            });
-
-
-
+                });
+            }
         })
     })
 
@@ -86,37 +83,35 @@ got(eventbriteHamburg).then(res => {
         got(eventUrl).then(data => {
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            let title = eventPageDom.querySelector(".listing-hero-title").textContent;
-            eventData.title = title;
             const date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
-
             const slicedDate = `${date.slice(5, 26)} `
-
             const newDate = new Date(slicedDate)
 
+            if (newDate) {
+                let title = eventPageDom.querySelector(".listing-hero-title").textContent;
+                eventData.title = title;
 
-            const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
-            const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
+                const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
+                const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
 
-            eventData.date = dateOfEvent;
-            eventData.time = timeOfEvent;
+                eventData.date = dateOfEvent;
+                eventData.time = timeOfEvent;
 
-            eventData.location = eventAddress;
-            eventData.city = "Hamburg";
-            let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
-            eventData.description = description.trim()
-            eventData.url = eventUrl
+                eventData.location = eventAddress;
+                eventData.city = "Hamburg";
+                let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
+                eventData.description = description.trim()
+                eventData.url = eventUrl
 
-            const dataForSave = new Convention(eventData)
+                const dataForSave = new Convention(eventData)
 
-            dataForSave.save().then(() => {
-                console.log(eventData.title, "saved")
-            }).catch(err => {
-                console.log(err, eventData.title, "saved")
+                dataForSave.save().then(() => {
+                    console.log(eventData.title, "saved")
+                }).catch(err => {
+                    console.log(err, eventData.title, "saved")
 
-            });
-
-
+                });
+            }
 
         })
     })
@@ -138,40 +133,36 @@ got(eventbriteMunich).then(res => {
         got(eventUrl).then(data => {
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            let title = eventPageDom.querySelector(".listing-hero-title").textContent;
-            eventData.title = title;
-
             const date = eventPageDom.querySelector(".js-date-time-first-line").textContent;
-
-            const slicedDate = `${date.slice(5, 26)} `
-
+            const slicedDate = `${date.slice(5, 26)}`
             const newDate = new Date(slicedDate)
 
+            if (newDate) {
+                let title = eventPageDom.querySelector(".listing-hero-title").textContent;
+                eventData.title = title;
 
-            const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
-            const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
+                const dateOfEvent = `${newDate.getMonth() + 1}-${newDate.getDate()}-${newDate.getFullYear()}`
+                const timeOfEvent = `${newDate.getHours()}:${newDate.getMinutes() < 10 ? newDate.getMinutes() + "0" : "30"}`
 
-            eventData.date = dateOfEvent;
-            eventData.time = timeOfEvent;
-
-
-            eventData.location = eventAddress;
-            eventData.city = "Munich";
-            let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
-            eventData.description = description.trim()
-            eventData.url = eventUrl
-
-            const dataForSave = new Convention(eventData)
-
-            dataForSave.save().then(() => {
-                console.log(eventData.title, "saved")
-            }).catch(err => {
-                console.log(err, eventData.title, "saved")
-
-            });
+                eventData.date = dateOfEvent;
+                eventData.time = timeOfEvent;
 
 
+                eventData.location = eventAddress;
+                eventData.city = "Munich";
+                let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
+                eventData.description = description.trim()
+                eventData.url = eventUrl
 
+                const dataForSave = new Convention(eventData)
+
+                dataForSave.save().then(() => {
+                    console.log(eventData.title, "saved")
+                }).catch(err => {
+                    console.log(err, eventData.title, "saved")
+
+                });
+            }
         })
     })
 

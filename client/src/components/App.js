@@ -13,6 +13,7 @@ import Account from "./Account";
 import EventInformation from "./EventInformation";
 import CreateEvent from "./CreateEvent";
 import Context from './Context';
+import Moment from "moment"
 
 
 const App = () => {
@@ -58,6 +59,8 @@ const App = () => {
 
     const allEventsTogether = [];
     const allCities = [];
+    const allWorkshops = [];
+    const allConventions = [];
 
     const allMeetups = [];
     // THESE ARE THE EVENTS POSTED BY THE USERS. THEY WILL BE DISPLAYED IN THE MEETUPS:
@@ -89,6 +92,8 @@ const App = () => {
         _id: meetup._id
       })
     });
+    allMeetups.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+
     // console.log('MEETUPS FROM USERS - Response: ', meetups.events);
 
 
@@ -143,6 +148,9 @@ const App = () => {
     const response4 = await fetch('http://localhost:4000/workshops', options);
     const workshops = await response4.json();
     // console.log('WORKSHOPS - Response: ', workshops);
+    workshops.events.map(workshop => allWorkshops.push(workshop));
+    allWorkshops.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+    console.log(allWorkshops, "all Workshops")
     workshops.events.map(workshop => allEventsTogether.push(workshop));
     setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
     );
@@ -150,11 +158,21 @@ const App = () => {
     const response5 = await fetch('http://localhost:4000/conventions', options);
     const conventions = await response5.json();
     // console.log('CONVENTIONS - Response: ', conventions);
+
+    // array conventions created to push all the conventions and date sort by date
+
+    conventions.events.map(convention => allConventions.push(convention));
+    allConventions.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+    console.log(allConventions, "all Conventions")
+
+
     conventions.events.map(convention => allEventsTogether.push(convention));
     setConventions(conventions.events.filter(event => event.url.includes('eventbrite'))
     );
 
     // we extract all the cities where an event is going to take place:
+
+
 
     allEventsTogether.filter(event => event.city && event.city !== 'undefined')
       .map(event => allCities.push(event.city));

@@ -4,6 +4,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
 import axios from 'axios'
+import Moment from 'moment'
 
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 
@@ -35,12 +36,13 @@ const CreateEvent = (props) => {
     const handleCreateEvent = async (e) => {
         e.preventDefault();
         // console.log(image)
+
         const imgBody = new FormData();
 
         imgBody.append('file', image);
         imgBody.append('title', title);
         imgBody.append('hostedBy', hostedBy);
-        imgBody.append('date', date);
+        imgBody.append('date', new Moment(date).format('MM-DD-YYYY'));
         imgBody.append('time', time);
         imgBody.append('coordinates', coordinates);
         imgBody.append('location', location);
@@ -86,7 +88,7 @@ const CreateEvent = (props) => {
     }, []);
 
     useEffect(() => {
-        statusAdded && history.push('/events');
+        statusAdded && history.push('/account');
     })
 
     return (
@@ -106,13 +108,12 @@ const CreateEvent = (props) => {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </label>
-                <label className="event-label">Host by *
+                <label className="event-label">Host by
                     <input
                         className="event-input"
                         type="text"
                         value={hostedBy}
                         placeholder="the host name"
-                        required
                         onChange={(e) => setHostedBy(e.target.value)}
                     />
                 </label>
