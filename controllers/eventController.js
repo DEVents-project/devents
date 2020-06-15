@@ -100,12 +100,15 @@ exports.putEvent = async (req, res, next) => {
 };
 
 exports.deleteEvent = async (req, res, next) => {
-    const { id } = req.params;
+    const { _id } = req.body;
 
     try {
-        const event = await Event.findByIdAndDelete(id);
+        const event = await Event.findByIdAndDelete(_id);
+        console.log('EVENT DELETED: ', event);
         if (!event) throw createError(404);
-        res.json({ success: true, event: event });
+        const events = await Event.find({});
+        console.log('ALL EVENTS: ', events);
+        res.json({ success: true, event: events });
     }
     catch (err) {
         next(err);
