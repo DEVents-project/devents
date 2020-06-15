@@ -5,12 +5,11 @@ import '../style/EventInformation.scss';
 import ParticlesBg from 'particles-bg';
 import Map from './Map';
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
-import { faHospitalAlt } from '@fortawesome/free-solid-svg-icons';
 
 const EventInformation = (props) => {
     const history = useHistory();
 
-    const { getUserData, fetchEvents, events, setEvents, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
+    const { getUserData, fetchEvents, meetups, setMeetups, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
 
     // By clicking on EDIT:
     const [editMode, setEditMode] = useState(false);
@@ -31,7 +30,8 @@ const EventInformation = (props) => {
     const [isEventDeleted, setIsEventDeleted] = useState(false);
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
+        fetchEvents();
     }, [])
 
     useEffect(() => {
@@ -41,7 +41,7 @@ const EventInformation = (props) => {
     const deleteEvent = async (e) => {
         e.preventDefault();
 
-        const eventToDelete = !events ? fetchEvents() : events.filter(event => event._id === eventInfo._id)[0];
+        const eventToDelete = meetups.filter(meetup => meetup._id === eventInfo._id)[0];
         console.log('EVENT TO DELETE', eventToDelete);
         const deletedEvent = {
             method: "DELETE",
@@ -52,11 +52,11 @@ const EventInformation = (props) => {
             body: JSON.stringify(eventToDelete)
         };
 
-        const response = await fetch('http://localhost:4000/events', deletedEvent);
-        const data = await response.json();
-        console.log('EVent Deleted - Response: ', data);
-        if (data.success) {
-            setEvents(data.event);
+        const request = await fetch('http://localhost:4000/events', deletedEvent);
+        const response = await request.json();
+        // console.log('EVent Deleted - Response: ', response);
+        if (response.success) {
+            setMeetups(response.event);
             setEditMode(false);
             setIsEventDeleted(true);
         };
@@ -85,11 +85,11 @@ const EventInformation = (props) => {
             body: JSON.stringify(newInfo)
         };
 
-        const response = await fetch('http://localhost:4000/events', newEventInfo);
-        const data = await response.json();
-        // console.log('EVent infoRmAtioN - Response: ', data);
-        if (data.success) {
-            setEventInfo(data.event);
+        const request = await fetch('http://localhost:4000/events', newEventInfo);
+        const response = await request.json();
+        // console.log('EVent infoRmAtioN - Response: ', response);
+        if (response.success) {
+            setEventInfo(response.event);
             setEditMode(false);
         };
     };
@@ -100,6 +100,7 @@ const EventInformation = (props) => {
 
     // console.log('USER INFORMATION_userData: ', userData);
     // console.log('EVENT INFORMATION_eventInfo: ', eventInfo);
+    // console.log('meetups: ', meetups);
 
     return (
 
