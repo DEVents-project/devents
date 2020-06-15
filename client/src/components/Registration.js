@@ -14,9 +14,11 @@ import signup from '../components/SignUp'
 
 const Registration = () => {
 
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+
 
     return (
         <div className="space-wrap space-navbar">
@@ -38,7 +40,9 @@ const Registration = () => {
 
                     <div className="aside aside-1">
                         <h2>EASY SIGN UP</h2>
-                        <p>Create an account with only your name and email address.</p>
+
+                        <p className="registration-p">Create an account with only your name and email address.</p>
+
                     </div>
 
 
@@ -56,7 +60,9 @@ const Registration = () => {
                     </div>
                     <div className="aside aside-2">
                         <h2>CREATE AN EVENT</h2>
-                        <p>Share all the relevant information about your event.
+
+                        <p className="registration-p">Share all the relevant information about your event.
+
 </p>
 
                     </div>
@@ -71,7 +77,9 @@ const Registration = () => {
                     </div>
                     <div className="aside aside-3">
                         <h2>AND PUBLISH IT!</h2>
-                        <p>One click and that's it. Easy peasy! </p>
+
+                        <p className="registration-p">One click and that's it. Easy peasy! </p>
+
                     </div>
                 </div>
 

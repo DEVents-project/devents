@@ -19,11 +19,13 @@ import Moment from "moment"
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [events, setEvents] = useState('');
-  const [meetups, setMeetups] = useState('')
+  // const [events, setEvents] = useState('');
+  const [meetups, setMeetups] = useState('');
+  const [meetupsCities, setMeetupsCities] = useState('');
   const [workshops, setWorkshops] = useState('');
+  const [workshopsCities, setWorkshopsCities] = useState('');
   const [conventions, setConventions] = useState('');
-  const [citiesWithEvent, setCitiesWithEvent] = useState('');
+  const [conventionsCities, setConventionsCities] = useState('');
 
   const [userData, setUserData] = useState(null);
   // localstorage to save the token coming from the header. by clicking on signout the localstorage will be cleared:
@@ -61,16 +63,11 @@ const App = () => {
       }
     };
 
-    const allEventsTogether = [];
-    const allCities = [];
-    const allWorkshops = [];
-    const allConventions = [];
-
     const allMeetups = [];
-    // THESE ARE THE EVENTS POSTED BY THE USERS. THEY WILL BE DISPLAYED IN THE MEETUPS:
-    const response = await fetch('http://localhost:4000/events', options);
-    const meetups = await response.json();
-    meetups.events.map(meetup => {
+
+    const request1 = await fetch('http://localhost:4000/events', options);
+    const response1 = await request1.json();
+    response1.events.map(meetup => {
       allMeetups.push({
         title: meetup.title,
         description: meetup.description,
@@ -83,115 +80,44 @@ const App = () => {
         authorId: meetup.authorId,
         _id: meetup._id
       });
-      allEventsTogether.push({
-        title: meetup.title,
-        description: meetup.description,
-        url: meetup.website,
-        date: meetup.date,
-        city: meetup.location.split(', ')[1],
-        coordinates: meetup.coordinates,
-        img: meetup.imgUrl,
-        location: meetup.location,
-        authorId: meetup.authorId,
-        _id: meetup._id
-      })
     });
-    allMeetups.sort((a, b) => new Moment(a.date) - new Moment(b.date));
 
-    // console.log('MEETUPS FROM USERS - Response: ', meetups.events);
-
-
-    // // THESE ARE MEETUPS FROM 'LE WAGON'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
-    // const response2 = await fetch('http://localhost:4000/meetups/lewagon', options);
-    // const meetupsLW = await response2.json();
-    // meetupsLW.events.events.map(meetup => {
-    //   allMeetups.push({
-    //     title: meetup.name.text,
-    //     description: meetup.description.text,
-    //     url: meetup.url,
-    //     date: meetup.start.utc,
-    //     city: meetup.city ? meetup.city : 'online'
-    //   });
-    //   allEventsTogether.push(
-    //     {
-    //       title: meetup.name.text,
-    //       description: meetup.description.text,
-    //       url: meetup.url,
-    //       date: meetup.start.utc,
-    //       city: meetup.city ? meetup.city : 'online'
-    //     }
-    //   )
-    // });
-    // // console.log('MEETUPS FETCHED LW - Response: ', meetupsLW.events.events);
-
-    // // THESE ARE MEETUPS FROM 'WILD CODE SCHOOL'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
-    // const response3 = await fetch('http://localhost:4000/meetups/wcs', options);
-    // const meetupsWCS = await response3.json();
-    // meetupsWCS.events.events.map(meetup => {
-    //   allMeetups.push({
-    //     title: meetup.name.text,
-    //     description: meetup.description.text,
-    //     url: meetup.url,
-    //     date: meetup.start.utc,
-    //     city: meetup.city ? meetup.city : 'online'
-    //   });
-    //   allEventsTogether.push(
-    //     {
-    //       title: meetup.name.text,
-    //       description: meetup.description.text,
-    //       url: meetup.url,
-    //       date: meetup.start.utc,
-    //       city: meetup.city ? meetup.city : 'online'
-    //     }
-    //   )
-    // });
-    // // console.log('MEETUPS FETCHED WCS - Response: ', meetupsWCS.events.events);
-    console.log('ALL MEETUPS: ', allMeetups)
+    allMeetups.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+    const citiesWithMeetups = [];
+    allMeetups.map(event => citiesWithMeetups.push(event.city));
+    setMeetupsCities([...new Set(citiesWithMeetups)].sort());
     setMeetups(allMeetups);
 
-    const response4 = await fetch('http://localhost:4000/workshops', options);
-    const workshops = await response4.json();
-    // console.log('WORKSHOPS - Response: ', workshops);
-    workshops.events.map(workshop => allWorkshops.push(workshop));
-    allWorkshops.sort((a, b) => new Moment(a.date) - new Moment(b.date));
+    const allWorkshops = [];
 
-    console.log(allWorkshops, "all Workshops")
-    workshops.events.map(workshop => allEventsTogether.push(workshop));
-    setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
-    );
+    const request2 = await fetch('http://localhost:4000/workshops', options);
+    const response2 = await request2.json();
+    // console.log('WORKSHOPS - Response: ', response2);
+    response2.events.map(workshop => allWorkshops.push(workshop));
+    allWorkshops.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
-    const response5 = await fetch('http://localhost:4000/conventions', options);
-    const conventions = await response5.json();
-    // console.log('CONVENTIONS - Response: ', conventions);
-
-    // array conventions created to push all the conventions and date sort by date
-
-    conventions.events.map(convention => allConventions.push(convention));
-    allConventions.sort((a, b) => new Moment(a.date) - new Moment(b.date));
-    console.log(allConventions, "all Conventions")
+    const citiesWithWorkshops = [];
+    allWorkshops.map(event => citiesWithWorkshops.push(event.city));
+    setWorkshopsCities([...new Set(citiesWithWorkshops)].sort());
+    setWorkshops(allWorkshops);
 
 
-    conventions.events.map(convention => allEventsTogether.push(convention));
-    setConventions(conventions.events.filter(event => event.url.includes('eventbrite'))
-    );
+    const allConventions = [];
 
-    // we extract all the cities where an event is going to take place:
+    const request3 = await fetch('http://localhost:4000/conventions', options);
+    const response3 = await request3.json();
+    // console.log('CONVENTIONS - Response: ', response3);
+    response3.events.map(convention => allConventions.push(convention));
+    allConventions.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
+    const citiesWithConventions = [];
+    allConventions.map(event => citiesWithConventions.push(event.city));
+    setConventionsCities([...new Set(citiesWithConventions)].sort());
+    setConventions(allConventions);
 
-
-    allEventsTogether.filter(event => event.city && event.city !== 'undefined')
-      .map(event => allCities.push(event.city));
-    const extractedCities = [...new Set(allCities)].sort();
-
-    // console.log('ALL EVENTS: ', allEventsTogether);
-    // console.log('ALL CITIES: ', extractedCities);
-
-    setCitiesWithEvent(extractedCities);
-    setEvents(allEventsTogether);
   };
 
-  // console.log('ALL EVENTS FETCHED: ', events);
-
+  console.log('ALL EVENTS FETCHED: ', meetups, workshops, conventions);
 
   // FETCHING THE USER INFORMATION - USER SESSION:
   const getUserData = async () => {
@@ -220,7 +146,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Context.Provider value={{ getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions, citiesWithEvent }}>
+      <Context.Provider value={{ meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, workshops, conventions }}>
         <BrowserRouter>
           {
             loggedIn ?
