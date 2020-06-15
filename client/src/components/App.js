@@ -13,6 +13,7 @@ import Account from "./Account";
 import EventInformation from "./EventInformation";
 import CreateEvent from "./CreateEvent";
 import Context from './Context';
+import Moment from "moment"
 
 
 const App = () => {
@@ -94,56 +95,57 @@ const App = () => {
 
 
       // THESE ARE MEETUPS FROM 'LE WAGON'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
-      const response2 = await fetch('http://localhost:4000/meetups/lewagon', options);
-      const meetupsLW = await response2.json();
-      meetupsLW.events.events.map(meetup => {
-        allMeetups.push({
-          title: meetup.name.text,
-          description: meetup.description.text,
-          url: meetup.url,
-          date: meetup.start.utc,
-          city: meetup.city ? meetup.city : 'online'
-        });
-        allEventsTogether.push(
-          {
-            title: meetup.name.text,
-            description: meetup.description.text,
-            url: meetup.url,
-            date: meetup.start.utc,
-            city: meetup.city ? meetup.city : 'online'
-          }
-        )
-      });
+      // const response2 = await fetch('http://localhost:4000/meetups/lewagon', options);
+      // const meetupsLW = await response2.json();
+      // meetupsLW.events.events.map(meetup => {
+      //   allMeetups.push({
+      //     title: meetup.name.text,
+      //     description: meetup.description.text,
+      //     url: meetup.url,
+      //     date: meetup.start.utc,
+      //     city: meetup.city ? meetup.city : 'online'
+      //   });
+      //   allEventsTogether.push(
+      //     {
+      //       title: meetup.name.text,
+      //       description: meetup.description.text,
+      //       url: meetup.url,
+      //       date: meetup.start.utc,
+      //       city: meetup.city ? meetup.city : 'online'
+      //     }
+      //   )
+      // });
       // console.log('MEETUPS FETCHED LW - Response: ', meetupsLW.events.events);
 
       // THESE ARE MEETUPS FROM 'WILD CODE SCHOOL'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
-      const response3 = await fetch('http://localhost:4000/meetups/wcs', options);
-      const meetupsWCS = await response3.json();
-      meetupsWCS.events.events.map(meetup => {
-        allMeetups.push({
-          title: meetup.name.text,
-          description: meetup.description.text,
-          url: meetup.url,
-          date: meetup.start.utc,
-          city: meetup.city ? meetup.city : 'online'
-        });
-        allEventsTogether.push(
-          {
-            title: meetup.name.text,
-            description: meetup.description.text,
-            url: meetup.url,
-            date: meetup.start.utc,
-            city: meetup.city ? meetup.city : 'online'
-          }
-        )
-      });
+      // const response3 = await fetch('http://localhost:4000/meetups/wcs', options);
+      // const meetupsWCS = await response3.json();
+      // meetupsWCS.events.events.map(meetup => {
+      //   allMeetups.push({
+      //     title: meetup.name.text,
+      //     description: meetup.description.text,
+      //     url: meetup.url,
+      //     date: meetup.start.utc,
+      //     city: meetup.city ? meetup.city : 'online'
+      //   });
+      //   allEventsTogether.push(
+      //     {
+      //       title: meetup.name.text,
+      //       description: meetup.description.text,
+      //       url: meetup.url,
+      //       date: meetup.start.utc,
+      //       city: meetup.city ? meetup.city : 'online'
+      //     }
+      //   )
+      // });
       // console.log('MEETUPS FETCHED WCS - Response: ', meetupsWCS.events.events);
       // console.log('ALL MEETUPS: ', allMeetups)
-      setMeetups(allMeetups);
+      // setMeetups(allMeetups);
 
       const response4 = await fetch('http://localhost:4000/workshops', options);
       const workshops = await response4.json();
-      // console.log('WORKSHOPS - Response: ', workshops);
+      // console.log('WORKSHOPS - Response: ', workshops.events);
+
       workshops.events.map(workshop => allEventsTogether.push(workshop));
       setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
       );
@@ -154,14 +156,21 @@ const App = () => {
       conventions.events.map(convention => allEventsTogether.push(convention));
       setConventions(conventions.events.filter(event => event.url.includes('eventbrite'))
       );
+      // console.log('ALL EVENTS: ', allEventsTogether)
+
+      const sortedArray = allEventsTogether.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+
+      console.log("SORTEDARRAY", sortedArray)
 
       // we extract all the cities where an event is going to take place:
 
-      allEventsTogether.filter(event => event.city && event.city !== 'undefined')
+      sortedArray.filter(event => event.city && event.city !== 'undefined')
         .map(event => allCities.push(event.city));
       const extractedCities = [...new Set(allCities)].sort();
 
-      // console.log('ALL EVENTS: ', allEventsTogether);
+
+
+
       // console.log('ALL CITIES: ', extractedCities);
 
       setCitiesWithEvent(extractedCities);

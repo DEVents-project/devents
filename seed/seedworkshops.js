@@ -47,14 +47,13 @@ got(meetupEventBerlin).then(res => {
             // "eventDate raw")
             const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
 
-            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + eventDate.slice(-14)
-            const time = eventDate.slice(12, 20).replace(/"/g, "")
+            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + " " + eventDate.slice(-14, -6);
             const date = new Date(slicedDate);
             if (date > new Date()) {
                 const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-                const timeOfEvent = time
+                const timeOfEvent = `${date.getHours()}:${date.getMinutes() < 10 ? date.getMinutes() + "0" : "30"}`;
                 eventData.date = dateOfEvent;
-                eventData.time = timeOfEvent
+                eventData.time = timeOfEvent;
             }
 
 
@@ -106,15 +105,14 @@ got(meetupEventHamburg).then(res => {
 
             const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
 
-            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + eventDate.slice(-14)
-            const time = eventDate.slice(12, 20).replace(/"/g, "")
+            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + " " + eventDate.slice(-14, -6);
             const date = new Date(slicedDate);
             if (date > new Date()) {
                 const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-                const timeOfEvent = time
+                const timeOfEvent = `${date.getHours()}:${date.getMinutes() < 10 ? date.getMinutes() + "0" : "30"}`;
                 eventData.date = dateOfEvent;
-                eventData.time = timeOfEvent
-            }
+                eventData.time = timeOfEvent;
+            };
 
             eventData.location = eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address") ? eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address").textContent : undefined;
 
@@ -165,15 +163,14 @@ got(meetupEventMunich).then(res => {
 
             const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
 
-            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + eventDate.slice(-14)
-            const time = eventDate.slice(12, 20).replace(/"/g, "")
+            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + " " + eventDate.slice(-14, -6);
             const date = new Date(slicedDate);
             if (date > new Date()) {
                 const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-                const timeOfEvent = time
+                const timeOfEvent = `${date.getHours()}:${date.getMinutes() < 10 ? date.getMinutes() + "0" : "30"}`;
                 eventData.date = dateOfEvent;
-                eventData.time = timeOfEvent
-            }
+                eventData.time = timeOfEvent;
+            };
 
             eventData.location = eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address") ? eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address").textContent : undefined;
 
@@ -187,15 +184,15 @@ got(meetupEventMunich).then(res => {
             eventData.img = img
             eventData.url = eventUrl
 
-            const dataForSave = new Workshop(eventData)
+            const dataForSave = new Workshop(eventData);
 
             dataForSave.save().then(() => {
-                console.log(eventData.title, "saved")
+                console.log(eventData.title, "saved");
             }).catch(err => {
-                console.log(err, eventData.title, "saved")
+                console.log(err, eventData.title, "saved");
 
             });
-        })
-    })
+        });
+    });
 
-})
+});
