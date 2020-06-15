@@ -1,14 +1,11 @@
-import React, { useEffect } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// import { withRouter } from 'react-router-dom'
+
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
 import '../style/Registration.scss'
-import registration from '../assets/img/register.svg'
-import createEvent from '../assets/img/createEvent.svg'
-import publish from '../assets/img/publish.svg'
-import login from '../components/Login'
-import signup from '../components/SignUp'
-
+import Signin from '../assets/img/signup.svg'
+import CreateEvent from '../assets/img/createEvent.svg'
+import Publish from '../assets/img/publish.svg';
 
 
 
@@ -29,76 +26,43 @@ const Registration = () => {
 
             <div className="container">
 
-                {/* square 1 */}
-
-
                 <div className="squares">
                     <div className="img-1">
-                        <img src={registration} alt="registrer" className="img-registration" />
+                        <img src={Signin} alt="sing up" className="img-registration" />
                     </div>
-
 
                     <div className="aside aside-1">
                         <h2>EASY SIGN UP</h2>
-
-                        <p className="registration-p">Create an account with only your name and email address.</p>
-
+                        <p>Create an account with only your name and email address.</p>
                     </div>
-
-
                 </div>
-
-
-
-
-                {/* square 2 */}
 
                 <div className="squares square-2">
 
                     <div className="img-1">
-                        <img src={createEvent} alt="create event" className="img-registration" />
+                        <img src={CreateEvent} alt="create an event" className="img-registration" />
                     </div>
                     <div className="aside aside-2">
                         <h2>CREATE AN EVENT</h2>
-
-                        <p className="registration-p">Share all the relevant information about your event.
-
-</p>
-
+                        <p className="registration-p">Share all the relevant information about your event.</p>
                     </div>
                 </div>
-
-
-                {/* square 3 */}
 
                 <div className="squares square-3 box">
                     <div className="img-1">
-                        <img src={publish} alt="publish" className="img-registration" />
+                        <img src={Publish} alt="publish an event" className="img-registration" />
                     </div>
                     <div className="aside aside-3">
                         <h2>AND PUBLISH IT!</h2>
-
                         <p className="registration-p">One click and that's it. Easy peasy! </p>
-
                     </div>
                 </div>
-
-
-
             </div>
-
-
-
-
 
             <div className="buttons-container">
                 <button className="button signup-button">Sign up</button>
                 <button className="button login-button">Login</button>
             </div>
-
-            <BrowserRouter>
-
-            </BrowserRouter>
 
         </div>
     )

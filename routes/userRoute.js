@@ -12,8 +12,10 @@ Route.post("/login", login);
 Route.put("/", auth, putUser);
 Route.delete("/:id", auth, deleteUser);
 
-//github login
-Route.get("/login/github", getGithub);
-Route.get("/login/github/callback", getGithubCallback);
+// github login
+// Route.get("/login/github", getGithub);
+// Route.get("/login/github/callback", getGithubCallback);
+
+
 
 module.exports = Route;
