@@ -12,6 +12,7 @@ import Footer from './Footer';
 import Account from "./Account";
 import EventInformation from "./EventInformation";
 import CreateEvent from "./CreateEvent";
+import Contact from "./Contact";
 import Context from './Context';
 
 
@@ -213,9 +214,10 @@ const App = () => {
             <Route path="/account" component={Account} />
             <Route path="/event" component={EventInformation} />
             <Route path="/addevent" component={CreateEvent} />
+            <Route path="/contact" component={Contact} />
           </Switch>
-        </BrowserRouter>
         <Footer />
+        </BrowserRouter>
       </Context.Provider>
     </div>
   );
