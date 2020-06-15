@@ -73,12 +73,14 @@ $border: .2rem;
     }
     .github-log {
         width: 80%;
-        padding: .5rem;
+        padding: .5rem 0;
         text-align: center;
+        color:$dark-blue;
 
         .github-icon {
             margin: 0 .3rem;
             font-size: 1rem;
+            color: $dark-blue;  
         }
         .github-link{
             padding: .2rem;
