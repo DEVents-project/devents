@@ -35,6 +35,7 @@ const CreateEvent = (props) => {
     const handleCreateEvent = async (e) => {
         e.preventDefault();
         // console.log(image)
+
         const imgBody = new FormData();
 
         imgBody.append('file', image);
@@ -86,7 +87,7 @@ const CreateEvent = (props) => {
     }, []);
 
     useEffect(() => {
-        statusAdded && history.push('/events');
+        statusAdded && history.push('/account');
     })
 
     return (

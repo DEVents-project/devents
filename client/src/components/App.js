@@ -13,6 +13,7 @@ import Account from "./Account";
 import EventInformation from "./EventInformation";
 import CreateEvent from "./CreateEvent";
 import Context from './Context';
+import Moment from "moment"
 
 
 const App = () => {
@@ -155,6 +156,8 @@ const App = () => {
     );
 
     // we extract all the cities where an event is going to take place:
+
+    const sortedArray = allEventsTogether.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
     allEventsTogether.filter(event => event.city && event.city !== 'undefined')
       .map(event => allCities.push(event.city));

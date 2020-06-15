@@ -42,43 +42,45 @@ got(meetupEventBerlin).then(res => {
 
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            eventData.title = eventPageDom.querySelector("h1").textContent;
+
 
             // "eventDate raw")
             const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
 
-            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + eventDate.slice(-14)
-            const time = eventDate.slice(12, 20).replace(/"/g, "")
+            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + " " + eventDate.slice(-14, -6);
             const date = new Date(slicedDate);
+
             if (date > new Date()) {
+                eventData.title = eventPageDom.querySelector("h1").textContent;
+
                 const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-                const timeOfEvent = time
+                const timeOfEvent = `${date.getHours()}:${date.getMinutes() < 10 ? date.getMinutes() + "0" : "30"}`;
                 eventData.date = dateOfEvent;
-                eventData.time = timeOfEvent
+                eventData.time = timeOfEvent;
+
+                eventData.location = eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address") ? eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address").textContent : undefined;
+
+                eventData.city = "Berlin"
+                eventData.description = eventPageDom.querySelectorAll(".section")[1] ? eventPageDom.querySelectorAll(".section")[1].querySelectorAll("p")[1].textContent : undefined;
+
+
+                const bg = eventPageDom.querySelector(".groupHomeHeader-banner").style.backgroundImage;
+                const img = bg.slice(4, -1).replace(/"/g, "");
+
+                eventData.img = img
+                eventData.url = eventUrl
+
+                const dataForSave = new Workshop(eventData)
+
+
+                dataForSave.save().then(() => {
+                    console.log(eventData.title, "saved")
+                }).catch(err => {
+                    console.log(err, eventData.title, "saved")
+
+                });
             }
 
-
-            eventData.location = eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address") ? eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address").textContent : undefined;
-
-            eventData.city = "Berlin"
-            eventData.description = eventPageDom.querySelectorAll(".section")[1] ? eventPageDom.querySelectorAll(".section")[1].querySelectorAll("p")[1].textContent : undefined;
-
-
-            const bg = eventPageDom.querySelector(".groupHomeHeader-banner").style.backgroundImage;
-            const img = bg.slice(4, -1).replace(/"/g, "");
-
-            eventData.img = img
-            eventData.url = eventUrl
-
-            const dataForSave = new Workshop(eventData)
-
-
-            dataForSave.save().then(() => {
-                console.log(eventData.title, "saved")
-            }).catch(err => {
-                console.log(err, eventData.title, "saved")
-
-            });
         })
     })
 
@@ -102,40 +104,42 @@ got(meetupEventHamburg).then(res => {
 
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            eventData.title = eventPageDom.querySelector("h1").textContent;
-
             const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
 
-            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + eventDate.slice(-14)
-            const time = eventDate.slice(12, 20).replace(/"/g, "")
+            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + " " + eventDate.slice(-14, -6);
             const date = new Date(slicedDate);
+
             if (date > new Date()) {
+                eventData.title = eventPageDom.querySelector("h1").textContent;
+
                 const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-                const timeOfEvent = time
+                const timeOfEvent = `${date.getHours()}:${date.getMinutes() < 10 ? date.getMinutes() + "0" : "30"}`;
                 eventData.date = dateOfEvent;
-                eventData.time = timeOfEvent
+                eventData.time = timeOfEvent;
+
+
+                eventData.location = eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address") ? eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address").textContent : undefined;
+
+                eventData.city = "Hamburg"
+                eventData.description = eventPageDom.querySelectorAll(".section")[1] ? eventPageDom.querySelectorAll(".section")[1].querySelectorAll("p")[1].textContent : undefined;
+
+
+                const bg = eventPageDom.querySelector(".groupHomeHeader-banner").style.backgroundImage;
+                const img = bg.slice(4, -1).replace(/"/g, "");
+
+                eventData.img = img
+                eventData.url = eventUrl
+
+                const dataForSave = new Workshop(eventData)
+
+                dataForSave.save().then(() => {
+                    console.log(eventData.title, "saved")
+                }).catch(err => {
+                    console.log(err, eventData.title, "saved")
+
+                });
             }
 
-            eventData.location = eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address") ? eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address").textContent : undefined;
-
-            eventData.city = "Hamburg"
-            eventData.description = eventPageDom.querySelectorAll(".section")[1] ? eventPageDom.querySelectorAll(".section")[1].querySelectorAll("p")[1].textContent : undefined;
-
-
-            const bg = eventPageDom.querySelector(".groupHomeHeader-banner").style.backgroundImage;
-            const img = bg.slice(4, -1).replace(/"/g, "");
-
-            eventData.img = img
-            eventData.url = eventUrl
-
-            const dataForSave = new Workshop(eventData)
-
-            dataForSave.save().then(() => {
-                console.log(eventData.title, "saved")
-            }).catch(err => {
-                console.log(err, eventData.title, "saved")
-
-            });
         })
     })
 
@@ -161,41 +165,42 @@ got(meetupEventMunich).then(res => {
 
             const eventPageDom = new JSDOM(data.body.toString()).window.document;
             let eventData = {};
-            eventData.title = eventPageDom.querySelector("h1").textContent;
 
             const eventDate = eventPageDom.querySelectorAll(".eventTimeDisplay")[0].querySelector("span").textContent;
 
-            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + eventDate.slice(-14)
-            const time = eventDate.slice(12, 20).replace(/"/g, "")
+            const slicedDate = eventDate.slice(5, 11) + " " + "2020" + " " + eventDate.slice(-14, -6);
             const date = new Date(slicedDate);
-            if (date > new Date()) {
+
+            if (date > new Date) {
+                eventData.title = eventPageDom.querySelector("h1").textContent;
+
                 const dateOfEvent = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-                const timeOfEvent = time
+                const timeOfEvent = `${date.getHours()}:${date.getMinutes() < 10 ? date.getMinutes() + "0" : "30"}`;
                 eventData.date = dateOfEvent;
-                eventData.time = timeOfEvent
+                eventData.time = timeOfEvent;
+
+                eventData.location = eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address") ? eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address").textContent : undefined;
+
+                eventData.city = "Munich";
+                eventData.description = eventPageDom.querySelectorAll(".section")[1] ? eventPageDom.querySelectorAll(".section")[1].querySelectorAll("p")[1].textContent : undefined;
+
+
+                const bg = eventPageDom.querySelector(".groupHomeHeader-banner").style.backgroundImage;
+                const img = bg.slice(4, -1).replace(/"/g, "");
+
+                eventData.img = img
+                eventData.url = eventUrl
+
+                const dataForSave = new Workshop(eventData);
+
+                dataForSave.save().then(() => {
+                    console.log(eventData.title, "saved");
+                }).catch(err => {
+                    console.log(err, eventData.title, "saved");
+
+                });
             }
+        });
+    });
 
-            eventData.location = eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address") ? eventPageDom.querySelectorAll(".venueDisplay")[0].querySelector("address").textContent : undefined;
-
-            eventData.city = "Munich";
-            eventData.description = eventPageDom.querySelectorAll(".section")[1] ? eventPageDom.querySelectorAll(".section")[1].querySelectorAll("p")[1].textContent : undefined;
-
-
-            const bg = eventPageDom.querySelector(".groupHomeHeader-banner").style.backgroundImage;
-            const img = bg.slice(4, -1).replace(/"/g, "");
-
-            eventData.img = img
-            eventData.url = eventUrl
-
-            const dataForSave = new Workshop(eventData)
-
-            dataForSave.save().then(() => {
-                console.log(eventData.title, "saved")
-            }).catch(err => {
-                console.log(err, eventData.title, "saved")
-
-            });
-        })
-    })
-
-})
+});
