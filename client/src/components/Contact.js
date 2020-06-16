@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../style/Contact.scss';
 import ParticlesBg from 'particles-bg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -29,15 +29,19 @@ const Contact = () => {
             });
     };
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="contact-container space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
             {
                 form === 1 ?
-            <form className="contact-form puff-in-center" onSubmit={sendEmail}>
-                <h2 className="h2-contact">CONTACT US</h2>
-                
-                <label className="contact-label">Name *
+                    <form className="contact-form puff-in-center" onSubmit={sendEmail}>
+                        <h2 className="h2-contact">CONTACT US</h2>
+
+                        <label className="contact-label">Name *
                             <input
                                 className="contact-input"
                                 type="text"
@@ -45,8 +49,8 @@ const Contact = () => {
                                 placeholder="your name"
                                 required
                                 onChange={(e) => setUserName(e.target.value)} />
-                </label>
-                <label className="contact-label">Email *
+                        </label>
+                        <label className="contact-label">Email *
                             <input
                                 className="contact-input"
                                 type="email"
@@ -54,8 +58,8 @@ const Contact = () => {
                                 placeholder="your email"
                                 required
                                 onChange={(e) => setUserEmail(e.target.value)} />
-                </label>
-                <label className="contact-label">Message *
+                        </label>
+                        <label className="contact-label">Message *
                             <textarea rows="8" cols="50"
                                 className="contact-textarea"
                                 type="text"
@@ -63,21 +67,21 @@ const Contact = () => {
                                 placeholder="your message"
                                 required
                                 onChange={(e) => setUserMessage(e.target.value)} />
-                </label>
-                <h5 className="h5-contact"> * Required fields </h5>
-                <button
-                    type="submit"
-                    className="button sign-btn">SEND MESSAGE</button>
-            </form>
-            : form === 2 ?
-            <div className="loading-message">
-                                    <p><FontAwesomeIcon icon={faSpinner} spin style={{ color: "rgb(0, 186, 211)" }} /> Sending message...</p>
-                                </div>
-                                :
-                                <div className="thanks">
-                                    <p>Thank you for your message! <FontAwesomeIcon icon={faCheckDouble} style={{ color: "rgb(0, 186, 211)" }} /></p>
-                                </div>
-                }
+                        </label>
+                        <h5 className="h5-contact"> * Required fields </h5>
+                        <button
+                            type="submit"
+                            className="button sign-btn">SEND MESSAGE</button>
+                    </form>
+                    : form === 2 ?
+                        <div className="loading-message">
+                            <p><FontAwesomeIcon icon={faSpinner} spin style={{ color: "rgb(0, 186, 211)" }} /> Sending message...</p>
+                        </div>
+                        :
+                        <div className="thanks">
+                            <p>Thank you for your message! <FontAwesomeIcon icon={faCheckDouble} style={{ color: "rgb(0, 186, 211)" }} /></p>
+                        </div>
+            }
         </div>
     )
 }
