@@ -20,7 +20,7 @@ const Registration = () => {
         <div className="space-wrap space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
             <div className="main-text">
-                <h1 className="slide-from-left">For developers, by developers.<br /><span className="second-line">Where finding each other</span>  <span className="underscore"> is simple!</span></h1>
+                <h1 className="slide-from-left">For developers, by developers.<br /><span className="second-line">Where finding each other is</span>  <span className="underscore-2"> simple !</span></h1>
             </div>
 
             <h2 className="question">DO YOU WANT TO SHARE YOUR EVENT? NO PROBLEM!</h2>
@@ -32,7 +32,7 @@ const Registration = () => {
                     </div>
 
                     <div className="aside aside-1">
-                        <h2>EASY SIGN UP</h2>
+                        <h3 className="title">EASY SIGN UP</h3>
                         <p className="registration-p">Create an account with only your name and email address.</p>
                     </div>
                 </div>
@@ -42,8 +42,8 @@ const Registration = () => {
                         <img src={CreateEvent} alt="create an event" className="img-registration" />
                     </div>
                     <div className="aside aside-2">
-                        <h2>CREATE AN EVENT</h2>
-                        <p className="registration-p">Share all the relevant information about your event.</p>
+                        <h3 className="title">CREATE AN EVENT</h3>
+                        <p className="registration-p">Share the relevant information about your event.</p>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@ const Registration = () => {
                         <img src={Publish} alt="publish an event" className="img-registration" />
                     </div>
                     <div className="aside aside-3">
-                        <h2>AND PUBLISH IT!</h2>
+                        <h3 className="title">AND PUBLISH IT!</h3>
                         <p className="registration-p">One click and that's it. Easy peasy! </p>
                     </div>
                 </div>
