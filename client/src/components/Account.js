@@ -31,7 +31,10 @@ const Account = () => {
     // this is where the events created by the user will be fetched:
     const [refresh, setRefresh] = useState(true);
 
+
+
     useEffect(() => {
+        window.scrollTo(0, 0)
         getUserData();
     }, []);
 
