@@ -14,16 +14,20 @@ import EventInformation from "./EventInformation";
 import CreateEvent from "./CreateEvent";
 import Contact from "./Contact";
 import Context from './Context';
+import Moment from "moment"
 
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [events, setEvents] = useState('');
-  const [meetups, setMeetups] = useState('')
+  // const [events, setEvents] = useState('');
+  const [meetups, setMeetups] = useState('');
+  const [meetupsCities, setMeetupsCities] = useState('');
   const [workshops, setWorkshops] = useState('');
+  const [workshopsCities, setWorkshopsCities] = useState('');
   const [conventions, setConventions] = useState('');
-  const [citiesWithEvent, setCitiesWithEvent] = useState('');
+  const [conventionsCities, setConventionsCities] = useState('');
+  const [allEventsTogether, setAllEventsTogether] = useState('');
 
   const [userData, setUserData] = useState(null);
   // localstorage to save the token coming from the header. by clicking on signout the localstorage will be cleared:
@@ -31,6 +35,10 @@ const App = () => {
   // this is the state that is going to carry all the information of one specific event, when the user clicks on it to see the description:
   const [eventInfo, setEventInfo] = useState(null);
 
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   // FETCHING GOOGLE MAPS API:
   useEffect(() => {
@@ -46,6 +54,21 @@ const App = () => {
     }
   }, []);
 
+  // GET RANDOM PIC
+  const getRandomPic = (typeOfEvent) => {
+    if (typeOfEvent === 'workshops') {
+      const randomNr = Math.floor(Math.random() * (14 - 1)) + 1;
+      return (
+        `https://res.cloudinary.com/jimbocloud/image/upload/v1592300071/devents/workshops/w${randomNr}.jpg`
+      )
+    } else if (typeOfEvent === 'conventions') {
+      const randomNr = Math.floor(Math.random() * (10 - 1)) + 1;
+      return (
+        `https://res.cloudinary.com/jimbocloud/image/upload/v1592300493/devents/conventions/c${randomNr}.jpg`
+      )
+    }
+  };
+
 
   // FUNCTION FETCHING ALL THE EVENTS:
   const fetchEvents = async () => {
@@ -57,14 +80,13 @@ const App = () => {
       }
     };
 
-    const allEventsTogether = [];
-    const allCities = [];
+    const allEvents = [];
 
     const allMeetups = [];
-    // THESE ARE THE EVENTS POSTED BY THE USERS. THEY WILL BE DISPLAYED IN THE MEETUPS:
-    const response = await fetch('http://localhost:4000/events', options);
-    const meetups = await response.json();
-    meetups.events.map(meetup => {
+
+    const request1 = await fetch('http://localhost:4000/events', options);
+    const response1 = await request1.json();
+    response1.events.map(meetup => {
       allMeetups.push({
         title: meetup.title,
         description: meetup.description,
@@ -77,7 +99,7 @@ const App = () => {
         authorId: meetup.authorId,
         _id: meetup._id
       });
-      allEventsTogether.push({
+      allEvents.push({
         title: meetup.title,
         description: meetup.description,
         url: meetup.website,
@@ -88,116 +110,75 @@ const App = () => {
         location: meetup.location,
         authorId: meetup.authorId,
         _id: meetup._id
-      })
+      });
     });
-    // console.log('MEETUPS FROM USERS - Response: ', meetups.events);
 
-
-    // // THESE ARE MEETUPS FROM 'LE WAGON'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
-    // const response2 = await fetch('http://localhost:4000/meetups/lewagon', options);
-    // const meetupsLW = await response2.json();
-    // meetupsLW.events.events.map(meetup => {
-    //   allMeetups.push({
-    //     title: meetup.name.text,
-    //     description: meetup.description.text,
-    //     url: meetup.url,
-    //     date: meetup.start.utc,
-    //     city: meetup.city ? meetup.city : 'online'
-    //   });
-    //   allEventsTogether.push(
-    //     {
-    //       title: meetup.name.text,
-    //       description: meetup.description.text,
-    //       url: meetup.url,
-    //       date: meetup.start.utc,
-    //       city: meetup.city ? meetup.city : 'online'
-    //     }
-    //   )
-    // });
-    // // console.log('MEETUPS FETCHED LW - Response: ', meetupsLW.events.events);
-
-    // // THESE ARE MEETUPS FROM 'WILD CODE SCHOOL'. THEY WILL BE DISPLAYED ON MEETUPS TOO:
-    // const response3 = await fetch('http://localhost:4000/meetups/wcs', options);
-    // const meetupsWCS = await response3.json();
-    // meetupsWCS.events.events.map(meetup => {
-    //   allMeetups.push({
-    //     title: meetup.name.text,
-    //     description: meetup.description.text,
-    //     url: meetup.url,
-    //     date: meetup.start.utc,
-    //     city: meetup.city ? meetup.city : 'online'
-    //   });
-    //   allEventsTogether.push(
-    //     {
-    //       title: meetup.name.text,
-    //       description: meetup.description.text,
-    //       url: meetup.url,
-    //       date: meetup.start.utc,
-    //       city: meetup.city ? meetup.city : 'online'
-    //     }
-    //   )
-    // });
-    // // console.log('MEETUPS FETCHED WCS - Response: ', meetupsWCS.events.events);
-    // // console.log('ALL MEETUPS: ', allMeetups)
+    allMeetups.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+    const citiesWithMeetups = [];
+    allMeetups.map(event => citiesWithMeetups.push(event.city));
+    setMeetupsCities([...new Set(citiesWithMeetups)].sort());
     setMeetups(allMeetups);
 
-    const response4 = await fetch('http://localhost:4000/workshops', options);
-    const workshops = await response4.json();
-    // console.log('WORKSHOPS - Response: ', workshops);
-    workshops.events.map(workshop => allEventsTogether.push(workshop));
-    setWorkshops(workshops.events.filter(event => event.url.includes('meetup'))
-    );
+    const allWorkshops = [];
 
-    const response5 = await fetch('http://localhost:4000/conventions', options);
-    const conventions = await response5.json();
-    // console.log('CONVENTIONS - Response: ', conventions);
-    conventions.events.map(convention => allEventsTogether.push(convention));
-    setConventions(conventions.events.filter(event => event.url.includes('eventbrite'))
-    );
+    const request2 = await fetch('http://localhost:4000/workshops', options);
+    const response2 = await request2.json();
+    // console.log('WORKSHOPS - Response: ', response2);
+    response2.events.map(workshop => { workshop.img = getRandomPic('workshops'); allWorkshops.push(workshop); allEvents.push(workshop) });
+    allWorkshops.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
-    // we extract all the cities where an event is going to take place:
+    const citiesWithWorkshops = [];
+    allWorkshops.map(event => citiesWithWorkshops.push(event.city));
+    setWorkshopsCities([...new Set(citiesWithWorkshops)].sort());
+    setWorkshops(allWorkshops);
 
-    allEventsTogether.filter(event => event.city && event.city !== 'undefined')
-      .map(event => allCities.push(event.city));
-    const extractedCities = [...new Set(allCities)].sort();
 
-    // console.log('ALL EVENTS: ', allEventsTogether);
-    // console.log('ALL CITIES: ', extractedCities);
+    const allConventions = [];
 
-    setCitiesWithEvent(extractedCities);
-    setEvents(allEventsTogether);
+    const request3 = await fetch('http://localhost:4000/conventions', options);
+    const response3 = await request3.json();
+    // console.log('CONVENTIONS - Response: ', response3);
+    response3.events.map(convention => { convention.img = getRandomPic('conventions'); allConventions.push(convention); allEvents.push(convention) });
+    allConventions.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+
+    const citiesWithConventions = [];
+    allConventions.map(event => citiesWithConventions.push(event.city));
+    setConventionsCities([...new Set(citiesWithConventions)].sort());
+    setConventions(allConventions);
+    setAllEventsTogether(allEvents);
   };
 
-  // console.log('ALL EVENTS FETCHED: ', events);
-
+  console.log('ALL EVENTS FETCHED: ', allEventsTogether);
 
   // FETCHING THE USER INFORMATION - USER SESSION:
+  const getUserData = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'x-auth': token,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    };
+
+    const response = await fetch('http://localhost:4000/users', options);
+    const data = await response.json();
+
+    setUserData(data.user);
+  };
+
   useEffect(() => {
     if (token) {
-      const getUserData = async () => {
-        const options = {
-          method: 'GET',
-          headers: {
-            'x-auth': token,
-            'Content-Type': 'application/json'
-          }
-        };
-
-        const response = await fetch('http://localhost:4000/users', options);
-        const data = await response.json();
-
-        setUserData(data.data);
-      };
-
       setLoggedIn(true);
       getUserData();
     }
   }, []);
 
+  console.log('EVENT INFO: ', eventInfo);
 
   return (
     <div className="App">
-      <Context.Provider value={{ fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, events, setEvents, meetups, workshops, conventions, citiesWithEvent }}>
+      <Context.Provider value={{ allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
         <BrowserRouter>
           {
             loggedIn ?

@@ -1,78 +1,77 @@
-import React from 'react'
-// import { withRouter } from 'react-router-dom'
+
+import React, { useEffect } from 'react';
 import ParticlesBg from 'particles-bg';
 import '../style/Registration.scss'
+import Signin from '../assets/img/signup.svg'
+import CreateEvent from '../assets/img/createEvent.svg'
+import Publish from '../assets/img/publish.svg';
+
 
 
 
 const Registration = () => {
-  
-    
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+
     return (
         <div className="space-wrap space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
-            <h1 className="question">Want to add your event?</h1>
-            
-            <div className="container">
-            
-             {/* square 1 */}
-
-                <div className="squares square-1 box">
-                   <h1 className="one numbers">1</h1>
-                   
-                   <aside className="aside"> 
-                       <h2>Sign up</h2>
-                       <p>Create a personal account so you can provide the users some information about your events</p>
-                   </aside>
-                </div>
-                   
-
-              {/* square 2 */}
-                 
-                <div className="squares square-2">
-
-                <h1 className="two numbers">2</h1>
-                  
-                   <aside className="aside"> 
-                       <h2>Add an event</h2>
-                       <p>Create an event of your preferences</p>
-                   
-                   </aside>
-                </div>
-
-                  {/* square 3 */}
-
-                <div className="square square-3 box">
-                   
-                <h1 className="three numbers">3</h1>
-                   <aside className="aside"> 
-                       <h2>Publish it</h2>
-                       <p>Publish your event and make it global, interact with toun </p>
-                   
-                   </aside>
-                </div>
-
+            <div className="main-text">
+                <h1 className="slide-from-left">For developers, by developers.<br /><span className="second-line">Where finding each other</span>  <span className="underscore"> is simple!</span></h1>
             </div>
-            
-           
 
-            
-               
-        <div className="buttons-container">
-            <button className="button signup-button">Sign up</button>
-            <button className="button login-button">Login</button>
-        </div>
+            <h2 className="question">DO YOU WANT TO SHARE YOUR EVENT? NO PROBLEM!</h2>
 
-            
+            <div className="container">
+                <div className="squares">
+                    <div className="img-1">
+                        <img src={Signin} alt="sing up" className="img-registration" />
+                    </div>
+
+                    <div className="aside aside-1">
+                        <h2>EASY SIGN UP</h2>
+                        <p className="registration-p">Create an account with only your name and email address.</p>
+                    </div>
+                </div>
+
+                <div className="squares square-2">
+                    <div className="img-1">
+                        <img src={CreateEvent} alt="create an event" className="img-registration" />
+                    </div>
+                    <div className="aside aside-2">
+                        <h2>CREATE AN EVENT</h2>
+                        <p className="registration-p">Share all the relevant information about your event.</p>
+                    </div>
+                </div>
+
+                <div className="squares square-3 box">
+                    <div className="img-1">
+                        <img src={Publish} alt="publish an event" className="img-registration" />
+                    </div>
+                    <div className="aside aside-3">
+                        <h2>AND PUBLISH IT!</h2>
+                        <p className="registration-p">One click and that's it. Easy peasy! </p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="buttons-container">
+                <button className="button signup-button">Sign up</button>
+                <button className="button login-button">Login</button>
+            </div>
+
         </div>
     )
 }
 
 export default Registration
 
-                   
-                    
-                   
-                  
-                
-                   
+
+
+
+
+
+

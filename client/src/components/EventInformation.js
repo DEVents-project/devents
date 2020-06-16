@@ -1,13 +1,15 @@
 import React, { useContext, Fragment, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Context from './Context';
 import '../style/EventInformation.scss';
 import ParticlesBg from 'particles-bg';
 import Map from './Map';
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
-import { faHospitalAlt } from '@fortawesome/free-solid-svg-icons';
 
 const EventInformation = (props) => {
-    const { eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
+    const history = useHistory();
+
+    const { getUserData, fetchEvents, meetups, setMeetups, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
 
     // By clicking on EDIT:
     const [editMode, setEditMode] = useState(false);
@@ -24,6 +26,41 @@ const EventInformation = (props) => {
     // console.log('lng: ', lng);
 
     // console.log('EVEnt INFO NOW: ', eventInfo);
+
+    const [isEventDeleted, setIsEventDeleted] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        fetchEvents();
+    }, [])
+
+    useEffect(() => {
+        isEventDeleted && history.push('/account');
+    });
+
+    const deleteEvent = async (e) => {
+        e.preventDefault();
+
+        const eventToDelete = meetups.filter(meetup => meetup._id === eventInfo._id)[0];
+        // console.log('EVENT TO DELETE', eventToDelete);
+        const deletedEvent = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "x-auth": token
+            },
+            body: JSON.stringify(eventToDelete)
+        };
+
+        const request = await fetch('http://localhost:4000/events', deletedEvent);
+        const response = await request.json();
+        // console.log('EVent Deleted - Response: ', response);
+        if (response.success) {
+            setMeetups(response.event);
+            setEditMode(false);
+            setIsEventDeleted(true);
+        };
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,38 +85,22 @@ const EventInformation = (props) => {
             body: JSON.stringify(newInfo)
         };
 
-        const response = await fetch('http://localhost:4000/events', newEventInfo);
-        const data = await response.json();
-        // console.log('EVent infoRmAtioN - Response: ', data);
-        if (data.success) {
-            setEventInfo(data.event);
+        const request = await fetch('http://localhost:4000/events', newEventInfo);
+        const response = await request.json();
+        // console.log('EVent infoRmAtioN - Response: ', response);
+        if (response.success) {
+            setEventInfo(response.event);
             setEditMode(false);
         };
     };
 
     useEffect(() => {
-        const fetchUserInformation = async () => {
-            const options = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'x-auth': token
-                }
-            };
-
-            const response = await fetch('http://localhost:4000/users', options);
-            const data = await response.json();
-            // console.log('EVent infoRmAtioN - Response: ', data);
-            setUserData(data.user);
-        };
-
-        fetchUserInformation();
+        getUserData();
     }, []);
 
     // console.log('USER INFORMATION_userData: ', userData);
     // console.log('EVENT INFORMATION_eventInfo: ', eventInfo);
-
+    // console.log('meetups: ', meetups);
 
     return (
 
@@ -103,10 +124,10 @@ const EventInformation = (props) => {
                                         </label>
                                         <div className="event-information-box-one">
                                             {
-                                                eventInfo.img && eventInfo.img.includes('/image/') ?
-                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                                eventInfo.img && eventInfo.img.includes('http') ?
+                                                    <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                                     :
-                                                    <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
                                             }
                                         </div>
                                         <div className="event-information-box-two">
@@ -140,14 +161,14 @@ const EventInformation = (props) => {
                                         <h2 className="event-information-title">{eventInfo.title}</h2>
                                         <div className="event-information-box-one">
                                             {
-                                                eventInfo.img && eventInfo.img.includes('/image/') ?
-                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                                eventInfo.img && eventInfo.img.includes('http') ?
+                                                    <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                                     :
-                                                    <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                                    <img className="event-information-image" src={eventInfo.img ? `http://localhost:4000${eventInfo.img}` : `http://localhost:4000${eventInfo.imgUrl}`} alt="event-image" />
                                             }
                                             <div className="editing-buttons">
                                                 <button className="button link-to-site" onClick={() => setEditMode(true)}>EDIT</button>
-                                                <button className="button link-to-site" >DELETE</button>
+                                                <button className="button link-to-site" onClick={(e) => { if (window.confirm('Are you sure you want to delete this event?')) { deleteEvent(e) } }}>DELETE</button>
                                             </div>
                                         </div>
                                         <div className="event-information-box-two">
@@ -183,10 +204,10 @@ const EventInformation = (props) => {
                             <h2 className="event-information-title">{eventInfo.title}</h2>
                             <div className="event-information-box-one">
                                 {
-                                    eventInfo.img && eventInfo.img.includes('/image/') ?
-                                        <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                    eventInfo.img && eventInfo.img.includes('http') ?
+                                        <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                         :
-                                        <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                        <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
                                 }
                                 {
                                     eventInfo.url ?

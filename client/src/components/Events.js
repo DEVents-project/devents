@@ -6,12 +6,12 @@ import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import ScrollToTop from "react-scroll-to-top"
 
 const Events = () => {
     const history = useHistory();
 
-    const { userData, fetchEvents, setEventInfo, events, meetups, workshops, conventions, citiesWithEvent } = useContext(Context);
-    // console.log('CITIES WITH EVENTS: ', citiesWithEvent);
+    const { userData, fetchEvents, setEventInfo, meetups, meetupsCities, workshops, workshopsCities, conventions, conventionsCities } = useContext(Context);
 
     // number of events that will show after clicking on 'SEE MORE':
     const [isVisible, setIsVisible] = useState(9);
@@ -19,26 +19,33 @@ const Events = () => {
     const [eventType, setEventType] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const loadMore = () => {
         setIsVisible(isVisible + 9);
     };
 
     useEffect(() => {
         fetchEvents();
+        setEventType('meetups');
     }, []);
 
     useEffect(() => {
         fetchEvents();
     }, [userData]);
 
+    const [refresh, setRefresh] = useState(true);
+
+    useEffect(() => {
+        setSelectedCity('disabled')
+    }, [eventType]);
+
     // by clicking on 'SEE MORE' it will be redirected to the event's info
     useEffect(() => {
         isEventClicked && history.push('/event');
     });
-
-    useEffect(() => {
-        setSelectedCity(citiesWithEvent[0]);
-    }, [citiesWithEvent]);
 
     // console.log('SELECTED CITY: ', selectedCity);
     // console.log('WORKSHOPS: ', workshops);
@@ -46,18 +53,24 @@ const Events = () => {
     return (
         <div className="events-container space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
+            <ScrollToTop smooth top="700" />
             <div className="event-types">
                 <h2 className="underline" style={{ color: eventType === 'meetups' ? '#256eac' : null }} onClick={() => setEventType('meetups')}>Meetups</h2>
                 <h2 className="underline" style={{ color: eventType === 'workshops' ? '#256eac' : null }} onClick={() => setEventType('workshops')}>Workshops</h2>
                 <h2 className="underline" style={{ color: eventType === 'conventions' ? '#256eac' : null }} onClick={() => setEventType('conventions')}>Conventions</h2>
 
                 {
-                    events ?
-                        <select className="checkout" onChange={(e) => setSelectedCity(e.target.value)}>
-                            <option value="" disabled>Select city</option>
+                    meetups ?
+                        <select className="checkout" onClick={(e) => setSelectedCity(e.target.value)}>
+                            <option value="disabled" selected={selectedCity === 'disabled' && true} disabled>Select city</option>
                             {
-                                citiesWithEvent &&
-                                citiesWithEvent.map((city, i) => <option key={i} value={city}>{city}</option>)
+                                eventType === 'meetups' ?
+                                    meetupsCities.map((city, i) => <option key={i} value={city}>{city}</option>)
+                                    : eventType === 'workshops' ?
+                                        workshopsCities.map((city, i) => <option key={i} value={city}>{city}</option>)
+                                        :
+                                        conventionsCities.map((city, i) => <option key={i} value={city}>{city}</option>)
+
                             }
                         </select>
                         :
@@ -66,44 +79,48 @@ const Events = () => {
             </div>
             <div className="pool-event">
                 {
-                    events ?
+                    meetups && workshops && conventions ?
                         <Fragment>
                             {
-                                eventType === '' ?
-                                    events.filter(event => event.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
-                                    : events && eventType === 'meetups' ?
-                                        meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
-                                        : events && eventType === 'workshops' ?
-                                            workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
-                                            : events && eventType === 'conventions' ?
-                                                conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
-                                                : null
+                                selectedCity !== 'disabled' ?
+                                    <Fragment>
+                                        {
+                                            eventType === 'meetups' ?
+                                                meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
+                                                : eventType === 'workshops' ?
+                                                    workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
+                                                    : eventType === 'conventions' ?
+                                                        conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
+                                                        : null
+                                        }
+                                    </Fragment>
+                                    :
+                                    <p className="find-city">Please, select a city to find <span className="find-event-type">{eventType}</span>.</p>
                             }
                         </Fragment>
                         :
                         <div className="loading-message">
-                            <p><FontAwesomeIcon icon={faSpinner} spin style={{ color: "rgb(37, 110, 172)" }} /> Searching for events...</p>
+                            <p><FontAwesomeIcon icon={faSpinner} spin style={{ color: "rgb(37, 110, 172)" }} /> Loading...</p>
                         </div>
                 }
             </div>
             {
-                events ?
+                meetups && workshops && conventions ?
                     <Fragment>
                         {
-                            events && eventType === '' && isVisible >= events.filter(event => event.city === selectedCity).length ?
+                            eventType === 'meetups' && isVisible >= meetups.filter(meetup => meetup.city === selectedCity).length ?
                                 null :
-                                eventType === 'meetups' && isVisible >= meetups.filter(meetup => meetup.city === selectedCity).length ?
+                                eventType === 'workshops' && isVisible >= workshops.filter(workshop => workshop.city === selectedCity).length ?
                                     null :
-                                    eventType === 'workshops' && isVisible >= workshops.filter(workshop => workshop.city === selectedCity).length ?
+                                    eventType === 'conventions' && isVisible >= conventions.filter(convention => convention.city === selectedCity).length ?
                                         null :
-                                        eventType === 'conventions' && isVisible >= conventions.filter(convention => convention.city === selectedCity).length ?
-                                            null :
-                                            <button className="button load-more" onClick={loadMore}>Load more</button>
+                                        <button className="button load-more" onClick={loadMore}>Load more</button>
                         }
                     </Fragment>
                     :
                     null
             }
+
         </div>
     );
 }

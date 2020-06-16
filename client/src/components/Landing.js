@@ -17,6 +17,11 @@ const Landing = () => {
     const [toAddEvent, setToAddEvent] = useState(false);
 
     // by clicking on 'FIND EVENT' it will be redirected to the event's info
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     useEffect(() => {
         toFindEvent && history.push('/events');
 

@@ -4,6 +4,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
 import axios from 'axios'
+import Moment from 'moment'
 
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 
@@ -32,15 +33,20 @@ const CreateEvent = (props) => {
     // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const handleCreateEvent = async (e) => {
         e.preventDefault();
         // console.log(image)
+
         const imgBody = new FormData();
 
         imgBody.append('file', image);
         imgBody.append('title', title);
         imgBody.append('hostedBy', hostedBy);
-        imgBody.append('date', date);
+        imgBody.append('date', new Moment(date).format('DD MMMM YYYY'));
         imgBody.append('time', time);
         imgBody.append('coordinates', coordinates);
         imgBody.append('location', location);
@@ -86,7 +92,7 @@ const CreateEvent = (props) => {
     }, []);
 
     useEffect(() => {
-        statusAdded && history.push('/events');
+        statusAdded && history.push('/account');
     })
 
     return (
@@ -106,13 +112,12 @@ const CreateEvent = (props) => {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </label>
-                <label className="event-label">Host by *
+                <label className="event-label">Host by
                     <input
                         className="event-input"
                         type="text"
                         value={hostedBy}
                         placeholder="the host name"
-                        required
                         onChange={(e) => setHostedBy(e.target.value)}
                     />
                 </label>
@@ -122,6 +127,7 @@ const CreateEvent = (props) => {
                             className="event-input"
                             type="date"
                             value={date}
+                            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
                             required
                             onChange={(e) => setDate(e.target.value)}
                         />
