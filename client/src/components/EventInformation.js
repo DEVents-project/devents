@@ -22,10 +22,10 @@ const EventInformation = (props) => {
     // getting the coordinates to pass them to the google maps:
     const lat = eventInfo.coordinates && parseFloat(eventInfo.coordinates.split(',')[0].slice(7, 14));
     const lng = eventInfo.coordinates && parseFloat(eventInfo.coordinates.split(',')[1].slice(6, 13));
-    // console.log('lat: ', lat);
-    // console.log('lng: ', lng);
+    console.log('lat: ', lat);
+    console.log('lng: ', lng);
 
-    // console.log('EVEnt INFO NOW: ', eventInfo);
+    console.log('EVEnt INFO NOW: ', eventInfo);
 
     const [isEventDeleted, setIsEventDeleted] = useState(false);
 
@@ -127,7 +127,7 @@ const EventInformation = (props) => {
                                                 eventInfo.img && eventInfo.img.includes('/image/') ?
                                                     <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
                                                     :
-                                                    <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                                    <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                             }
                                         </div>
                                         <div className="event-information-box-two">
