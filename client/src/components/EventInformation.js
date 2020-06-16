@@ -99,7 +99,7 @@ const EventInformation = (props) => {
     }, []);
 
     // console.log('USER INFORMATION_userData: ', userData);
-    // console.log('EVENT INFORMATION_eventInfo: ', eventInfo);
+    console.log('EVENT INFORMATION_eventInfo: ', eventInfo);
     // console.log('meetups: ', meetups);
 
     return (
@@ -124,10 +124,10 @@ const EventInformation = (props) => {
                                         </label>
                                         <div className="event-information-box-one">
                                             {
-                                                eventInfo.img && eventInfo.img.includes('/image/') ?
-                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
-                                                    :
+                                                eventInfo.img && eventInfo.img.includes('http') ?
                                                     <img className="event-information-image" src={eventInfo.img} alt="event-image" />
+                                                    :
+                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
                                             }
                                         </div>
                                         <div className="event-information-box-two">
@@ -161,10 +161,10 @@ const EventInformation = (props) => {
                                         <h2 className="event-information-title">{eventInfo.title}</h2>
                                         <div className="event-information-box-one">
                                             {
-                                                eventInfo.img && eventInfo.img.includes('/image/') ?
-                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                                eventInfo.img && eventInfo.img.includes('http') ?
+                                                    <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                                     :
-                                                    <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                                    <img className="event-information-image" src={eventInfo.img ? `http://localhost:4000${eventInfo.img}` : `http://localhost:4000${eventInfo.imgUrl}`} alt="event-image" />
                                             }
                                             <div className="editing-buttons">
                                                 <button className="button link-to-site" onClick={() => setEditMode(true)}>EDIT</button>
@@ -204,10 +204,10 @@ const EventInformation = (props) => {
                             <h2 className="event-information-title">{eventInfo.title}</h2>
                             <div className="event-information-box-one">
                                 {
-                                    eventInfo.img && eventInfo.img.includes('/image/') ?
-                                        <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                    eventInfo.img && eventInfo.img.includes('http') ?
+                                        <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                         :
-                                        <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                        <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
                                 }
                                 {
                                     eventInfo.url ?
