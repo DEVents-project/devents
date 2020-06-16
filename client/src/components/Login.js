@@ -98,7 +98,7 @@ const Login = () => {
                 <button className="button login-btn" type="submit">LOG IN</button>
             </form>
 
-            <p className="github-log">Wanna login with your<FontAwesomeIcon className="github-icon" icon={faGithubAlt} />GitHub account?
+            <p className="github-log">Login with your<FontAwesomeIcon className="github-icon" icon={faGithubAlt} />GitHub account?
                 <a className="github-link" href="http://localhost:4000/login/auth/github">Click here</a></p>
         </main>
     )

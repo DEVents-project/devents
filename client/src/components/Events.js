@@ -36,8 +36,6 @@ const Events = () => {
         fetchEvents();
     }, [userData]);
 
-    const [refresh, setRefresh] = useState(true);
-
     useEffect(() => {
         setSelectedCity('disabled')
     }, [eventType]);
@@ -82,18 +80,25 @@ const Events = () => {
                     meetups && workshops && conventions ?
                         <Fragment>
                             {
-                                eventType === 'meetups' ?
-                                    meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
-                                    : eventType === 'workshops' ?
-                                        workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
-                                        : eventType === 'conventions' ?
-                                            conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
-                                            : null
+                                selectedCity !== 'disabled' ?
+                                    <Fragment>
+                                        {
+                                            eventType === 'meetups' ?
+                                                meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
+                                                : eventType === 'workshops' ?
+                                                    workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
+                                                    : eventType === 'conventions' ?
+                                                        conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
+                                                        : null
+                                        }
+                                    </Fragment>
+                                    :
+                                    <p className="find-city">Please, select a city to find <span className="find-event-type">{eventType}</span>.</p>
                             }
                         </Fragment>
                         :
                         <div className="loading-message">
-                            <p><FontAwesomeIcon icon={faSpinner} spin style={{ color: "rgb(37, 110, 172)" }} /> Searching for events...</p>
+                            <p><FontAwesomeIcon icon={faSpinner} spin style={{ color: "rgb(37, 110, 172)" }} /> Loading...</p>
                         </div>
                 }
             </div>

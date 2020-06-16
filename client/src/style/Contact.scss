@@ -10,7 +10,7 @@ $border: .2rem;
 
 
 
-.signup-container {
+.contact-container {
     width: 100%;
     height: auto;
     padding: 2rem 0;
@@ -20,7 +20,7 @@ $border: .2rem;
 
 
     
-    .signup-form {
+    .contact-form {
         width: 90%;
         height: 100%;
         padding: 2rem 0;
@@ -29,21 +29,21 @@ $border: .2rem;
         align-items: center;
         justify-content: center;
         background-color: $mid-dark-blue;
-        box-shadow: -.8rem .5rem $mid-light-blue;
+        box-shadow: -1.5rem .7rem $mid-light-blue;
         border-radius: $border;
         color: $font-color;
 
-        .h2-signup {
+        .h2-contact {
             margin: 1rem 0;
             letter-spacing: .1rem;
             text-align: center;
         }
-        .h5-signup {
+        .h5-contact {
             width: 90%;
             padding: .3rem 2rem;
             color: $dark-blue;
         }
-        .signup-select {
+        .contact-select {
             width: 100%;
             height: 2rem;
             border: none;
@@ -51,13 +51,13 @@ $border: .2rem;
             margin:.5rem 0;
             padding:1ch;
 
-            .signup-opt {
+            .contact-opt {
                 padding: 1ch;
                 margin-left:1ch;
                 font-size: 1.1rem;
             }
         }
-        .signup-label {
+        .contact-label {
             width: 80%;
             display: flex;
             flex-direction: column;
@@ -65,7 +65,7 @@ $border: .2rem;
             padding: .3rem;
             
 
-            .signup-input {
+            .contact-input {
                 height: 2.5rem;
                 width: 100%;
                 padding: 1ch;
@@ -76,31 +76,13 @@ $border: .2rem;
                 color: $dark-blue;
             }
 
-        }
-        .avatar-container {  
-            width: 80%;
-            margin: 1rem .5rem;
-            display: grid;
-            grid-gap: 0.4rem;
-            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-        }   
-        .avatar {
-            width: 80px;
-            height: 80px;
-        }
-        [type="radio"] {
-            width: 0;
-            height: 0;
-            position: absolute;
-            opacity: 0;
-
-            label{
-                cursor: pointer;
-            }    
-            &:checked + label {
-                outline: 3px solid $mid-light-blue;
+            .contact-textarea {
+                font-family: Arial;
+                font-size: 1.1rem;
+                padding: 1ch;
             }
-        }    
+
+        }  
         .sign-btn {
             width: 80%;
             height: 2.8rem;
@@ -111,8 +93,17 @@ $border: .2rem;
     }
 }
 
+.loading-message, .thanks {
+    height: 60vh;
+}
+
+.thanks p {
+        position: relative;
+        top: 50%;
+    }
+
 @media screen and (min-width: 650px){
-    .signup-form {
+    .contact-form {
         max-width:50%;
 
         .sign-btn {

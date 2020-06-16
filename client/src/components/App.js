@@ -12,6 +12,7 @@ import Footer from './Footer';
 import Account from "./Account";
 import EventInformation from "./EventInformation";
 import CreateEvent from "./CreateEvent";
+import Contact from "./Contact";
 import Context from './Context';
 import Moment from "moment"
 
@@ -26,6 +27,7 @@ const App = () => {
   const [workshopsCities, setWorkshopsCities] = useState('');
   const [conventions, setConventions] = useState('');
   const [conventionsCities, setConventionsCities] = useState('');
+  const [allEventsTogether, setAllEventsTogether] = useState('');
 
   const [userData, setUserData] = useState(null);
   // localstorage to save the token coming from the header. by clicking on signout the localstorage will be cleared:
@@ -52,6 +54,21 @@ const App = () => {
     }
   }, []);
 
+  // GET RANDOM PIC
+  const getRandomPic = (typeOfEvent) => {
+    if (typeOfEvent === 'workshops') {
+      const randomNr = Math.floor(Math.random() * (14 - 1)) + 1;
+      return (
+        `https://res.cloudinary.com/jimbocloud/image/upload/v1592300071/devents/workshops/w${randomNr}.jpg`
+      )
+    } else if (typeOfEvent === 'conventions') {
+      const randomNr = Math.floor(Math.random() * (10 - 1)) + 1;
+      return (
+        `https://res.cloudinary.com/jimbocloud/image/upload/v1592300493/devents/conventions/c${randomNr}.jpg`
+      )
+    }
+  };
+
 
   // FUNCTION FETCHING ALL THE EVENTS:
   const fetchEvents = async () => {
@@ -63,6 +80,8 @@ const App = () => {
       }
     };
 
+    const allEvents = [];
+
     const allMeetups = [];
 
     const request1 = await fetch('http://localhost:4000/events', options);
@@ -73,6 +92,20 @@ const App = () => {
         description: meetup.description,
         url: meetup.website,
         date: meetup.date,
+        time: meetup.time,
+        city: meetup.location.split(', ')[1],
+        coordinates: meetup.coordinates,
+        img: meetup.imgUrl,
+        location: meetup.location,
+        authorId: meetup.authorId,
+        _id: meetup._id
+      });
+      allEvents.push({
+        title: meetup.title,
+        description: meetup.description,
+        url: meetup.website,
+        date: meetup.date,
+        time: meetup.time,
         city: meetup.location.split(', ')[1],
         coordinates: meetup.coordinates,
         img: meetup.imgUrl,
@@ -93,7 +126,7 @@ const App = () => {
     const request2 = await fetch('http://localhost:4000/workshops', options);
     const response2 = await request2.json();
     // console.log('WORKSHOPS - Response: ', response2);
-    response2.events.map(workshop => allWorkshops.push(workshop));
+    response2.events.map(workshop => { workshop.img = getRandomPic('workshops'); allWorkshops.push(workshop); allEvents.push(workshop) });
     allWorkshops.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
     const citiesWithWorkshops = [];
@@ -107,17 +140,17 @@ const App = () => {
     const request3 = await fetch('http://localhost:4000/conventions', options);
     const response3 = await request3.json();
     // console.log('CONVENTIONS - Response: ', response3);
-    response3.events.map(convention => allConventions.push(convention));
+    response3.events.map(convention => { convention.img = getRandomPic('conventions'); allConventions.push(convention); allEvents.push(convention) });
     allConventions.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
     const citiesWithConventions = [];
     allConventions.map(event => citiesWithConventions.push(event.city));
     setConventionsCities([...new Set(citiesWithConventions)].sort());
     setConventions(allConventions);
-
+    setAllEventsTogether(allEvents);
   };
 
-  // console.log('ALL EVENTS FETCHED: ', meetups, workshops, conventions);
+  console.log('ALL EVENTS FETCHED: ', allEventsTogether);
 
   // FETCHING THE USER INFORMATION - USER SESSION:
   const getUserData = async () => {
@@ -143,10 +176,11 @@ const App = () => {
     }
   }, []);
 
+  console.log('EVENT INFO: ', eventInfo);
 
   return (
     <div className="App">
-      <Context.Provider value={{ meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
+      <Context.Provider value={{ allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
         <BrowserRouter>
           {
             loggedIn ?
@@ -163,9 +197,10 @@ const App = () => {
             <Route path="/account" component={Account} />
             <Route path="/event" component={EventInformation} />
             <Route path="/addevent" component={CreateEvent} />
+            <Route path="/contact" component={Contact} />
           </Switch>
+          <Footer />
         </BrowserRouter>
-        <Footer />
       </Context.Provider>
     </div>
   );

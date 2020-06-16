@@ -14,6 +14,7 @@ const EventInformation = (props) => {
     // By clicking on EDIT:
     const [editMode, setEditMode] = useState(false);
     const [newDate, setNewDate] = useState('');
+    const [newTime, setNewTime] = useState('');
     const [newTitle, setNewTitle] = useState('');
     const [newDescription, setNewDescription] = useState('');
     const [newLocation, setNewLocation] = useState('');
@@ -42,7 +43,7 @@ const EventInformation = (props) => {
         e.preventDefault();
 
         const eventToDelete = meetups.filter(meetup => meetup._id === eventInfo._id)[0];
-        console.log('EVENT TO DELETE', eventToDelete);
+        // console.log('EVENT TO DELETE', eventToDelete);
         const deletedEvent = {
             method: "DELETE",
             headers: {
@@ -67,6 +68,7 @@ const EventInformation = (props) => {
 
         const newInfo = {
             date: newDate === '' ? eventInfo.date : newDate,
+            time: newTime === '' ? eventInfo.time : newTime,
             title: newTitle === '' ? eventInfo.title : newTitle,
             description: newDescription === '' ? eventInfo.description : newDescription,
             location: newLocation === '' ? eventInfo.location : newLocation,
@@ -119,15 +121,18 @@ const EventInformation = (props) => {
                                         <label htmlFor="date" className="edit-label event-information-date">Date
                                             <input type="date" placeholder={eventInfo && eventInfo.date} onChange={(e) => setNewDate(e.target.value)} />
                                         </label>
+                                        <label htmlFor="time" className="edit-label event-information-time">Time
+                                            <input type="time" placeholder={eventInfo && eventInfo.time} onChange={(e) => setNewTime(e.target.value)} />
+                                        </label>
                                         <label htmlFor="title" className="edit-label event-information-title">Title
                                             <input type="text" placeholder={eventInfo && eventInfo.title} onChange={(e) => setNewTitle(e.target.value)} />
                                         </label>
                                         <div className="event-information-box-one">
                                             {
-                                                eventInfo.img && eventInfo.img.includes('/image/') ?
-                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                                eventInfo.img && eventInfo.img.includes('http') ?
+                                                    <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                                     :
-                                                    <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
                                             }
                                         </div>
                                         <div className="event-information-box-two">
@@ -158,13 +163,14 @@ const EventInformation = (props) => {
 
                                     <Fragment>
                                         <p className="event-information-date">{eventInfo.date}</p>
+                                        <p className="event-information-time">{eventInfo.time}</p>
                                         <h2 className="event-information-title">{eventInfo.title}</h2>
                                         <div className="event-information-box-one">
                                             {
-                                                eventInfo.img && eventInfo.img.includes('/image/') ?
-                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                                eventInfo.img && eventInfo.img.includes('http') ?
+                                                    <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                                     :
-                                                    <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                                    <img className="event-information-image" src={eventInfo.img ? `http://localhost:4000${eventInfo.img}` : `http://localhost:4000${eventInfo.imgUrl}`} alt="event-image" />
                                             }
                                             <div className="editing-buttons">
                                                 <button className="button link-to-site" onClick={() => setEditMode(true)}>EDIT</button>
@@ -201,13 +207,14 @@ const EventInformation = (props) => {
 
                         <Fragment>
                             <p className="event-information-date">{eventInfo.date}</p>
+                            <p className="event-information-time">{eventInfo.time}</p>
                             <h2 className="event-information-title">{eventInfo.title}</h2>
                             <div className="event-information-box-one">
                                 {
-                                    eventInfo.img && eventInfo.img.includes('/image/') ?
-                                        <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                    eventInfo.img && eventInfo.img.includes('http') ?
+                                        <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                         :
-                                        <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                        <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
                                 }
                                 {
                                     eventInfo.url ?
