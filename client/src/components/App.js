@@ -92,6 +92,7 @@ const App = () => {
         description: meetup.description,
         url: meetup.website,
         date: meetup.date,
+        time: meetup.time,
         city: meetup.location.split(', ')[1],
         coordinates: meetup.coordinates,
         img: meetup.imgUrl,
@@ -104,6 +105,7 @@ const App = () => {
         description: meetup.description,
         url: meetup.website,
         date: meetup.date,
+        time: meetup.time,
         city: meetup.location.split(', ')[1],
         coordinates: meetup.coordinates,
         img: meetup.imgUrl,
@@ -197,7 +199,7 @@ const App = () => {
             <Route path="/addevent" component={CreateEvent} />
             <Route path="/contact" component={Contact} />
           </Switch>
-        <Footer />
+          <Footer />
         </BrowserRouter>
       </Context.Provider>
     </div>

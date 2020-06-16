@@ -36,8 +36,6 @@ const Events = () => {
         fetchEvents();
     }, [userData]);
 
-    const [refresh, setRefresh] = useState(true);
-
     useEffect(() => {
         setSelectedCity('disabled')
     }, [eventType]);
@@ -86,11 +84,11 @@ const Events = () => {
                                     <Fragment>
                                         {
                                             eventType === 'meetups' ?
-                                                meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
+                                                meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
                                                 : eventType === 'workshops' ?
-                                                    workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
+                                                    workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
                                                     : eventType === 'conventions' ?
-                                                        conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
+                                                        conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} description={el.description} url={el.url} />)
                                                         : null
                                         }
                                     </Fragment>

@@ -90,7 +90,7 @@
     .event-information-container {
         display: grid;
         grid-gap: 2rem;
-        grid-template-rows: repeat(4, auto);
+        grid-template-rows: repeat(5, auto);
         grid-template-columns: repeat(2, 1fr);
         padding: 2rem 2rem 4rem;
 
@@ -98,14 +98,18 @@
             grid-area: 1/1/2/-1;
         }
 
+        .event-information-time {
+            grid-area: 2/1/3/-1;
+        }
+
         .event-information-title {
             margin: 0;
-            grid-area: 2/1/3/-1;
+            grid-area: 3/1/4/-1;
         }
 
         .event-information-box-one {
             margin: 0;
-            grid-area: 3/1/4/2;
+            grid-area: 4/1/5/2;
         }
 
         .event-information-description {
@@ -114,7 +118,7 @@
 
         .event-information-box-two {
             margin: 0;
-            grid-area: 3/2/4/-1;
+            grid-area: 4/2/5/-1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -122,13 +126,13 @@
 
         .google-map {
             margin: 0;
-            grid-area: 4/1/-1/-1;
+            grid-area: 5/1/-1/-1;
         }
 
         form {
             .save-button {
                 margin: 0;
-                grid-area: 5/2/-1/-1;
+                grid-area: 6/2/-1/-1;
             }
         }
     }
