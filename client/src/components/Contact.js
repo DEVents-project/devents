@@ -25,16 +25,7 @@ const Contact = () => {
             .then(res => res.json())
             .then(res1 => {
                 console.log(res1.status);
-                res1.status === true ? setForm(3) : alert('Sorry, there was an issue by sending your message. Please try again later.')
-                // if(res1.status === true) {
-                //     setUserName('');
-                //     setUserEmail('');
-                //     setUserMessage('');
-                //     alert('Email sent!');
-                // } else {
-                //     alert('Sorry, there was an issue by sending your message. Please try again later.');
-                // }
-                // res1.status === true ? alert('Email sent!') : alert('Sorry, there was an issue by sending your message. Please try again later.')
+                res1.status === true ? setForm(3) : alert('Sorry, there was an issue by sending your message. Please try again later.');
             });
     };
 
