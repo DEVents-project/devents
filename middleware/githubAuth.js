@@ -1,9 +1,8 @@
 const passport = require("passport");
-const GithubStrategy = require('passport-github').Strategy;
+const GithubStrategy = require('passport-github2').Strategy;
 const dot = require("dotenv").config();
 
 // Github login
-
 passport.serializeUser(function (user, cb) {
     cb(null, user);
 });
@@ -18,7 +17,7 @@ const userSecret = process.env.GITHUB_CLIENT_SECRET;
 passport.use(new GithubStrategy({
     clientID: userID,
     clientSecret: userSecret,
-    callbackURL: "http://localhost:4000/login/github/callback"
+    callbackURL: "http://localhost:4000/login/auth/github/callback"
 },
     function (accessToken, refreshToken, profile, cb) {
 
