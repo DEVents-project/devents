@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="footer"></div>
             <div className="footer">
                 <FontAwesomeIcon className="icon" icon={faQuestionCircle} />
-                <FontAwesomeIcon className="icon" icon={faPaperPlane} />
+                <FontAwesomeIcon className="icon" title="Contact" icon={faPaperPlane} />
                 <FontAwesomeIcon className="icon section" icon={faSearch} />
             </div>
         </footer>

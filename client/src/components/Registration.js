@@ -5,7 +5,6 @@ import '../style/Registration.scss'
 import Signin from '../assets/img/signup.svg'
 import CreateEvent from '../assets/img/createEvent.svg'
 import Publish from '../assets/img/publish.svg';
-import Typical from 'react-typical';
 
 
 
@@ -20,18 +19,13 @@ const Registration = () => {
     return (
         <div className="space-wrap space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
-            <div className="main-h3">
-                <Typical
-                    steps={['For developers, by developers.', 1500, 'Where finding each other is simple!', 1500]}
-                    loop={Infinity}
-                    wrapper="h2"
-                />
+            <div className="main-text">
+                <h1 className="slide-from-left">For developers, by developers.<br /><span className="second-line">Where finding each other</span>  <span className="underscore"> is simple!</span></h1>
             </div>
 
-            <h1 className="question">DO YOU WANT TO SHARE YOUR EVENT? NO PROBLEM!</h1>
+            <h2 className="question">DO YOU WANT TO SHARE YOUR EVENT? NO PROBLEM!</h2>
 
             <div className="container">
-
                 <div className="squares">
                     <div className="img-1">
                         <img src={Signin} alt="sing up" className="img-registration" />
@@ -44,7 +38,6 @@ const Registration = () => {
                 </div>
 
                 <div className="squares square-2">
-
                     <div className="img-1">
                         <img src={CreateEvent} alt="create an event" className="img-registration" />
                     </div>
