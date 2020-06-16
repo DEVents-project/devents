@@ -40,6 +40,7 @@
     "multer-gridfs-storage": "^4.1.0",
     "node-fetch": "^2.6.0",
     "passport": "^0.4.1",
-    "passport-github": "^1.1.0"
+    "passport-github": "^1.1.0",
+    "passport-github2": "^0.1.12"
   }
 }
