@@ -78,10 +78,10 @@ server.post('/send-email', async (req, res) => {
     console.log('and... message sent!!!');
 });
 
-server.get("/login/github",
+server.get("/login/auth/github",
     passport.authenticate("github", { scope: ["profile"] }));
 
-server.get("/login/github/callback",
+server.get("/login/auth/github/callback",
     passport.authenticate("github", { failureRedirect: "/login" }),
     function (req, res) {
         console.log(req.user);

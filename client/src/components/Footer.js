@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="footer"></div>
             <div className="footer">
                 <FontAwesomeIcon className="icon" icon={faQuestionCircle} />
-                <Link to="/contact"><FontAwesomeIcon className="icon" icon={faPaperPlane} /></Link>
+                <Link to="/contact"><FontAwesomeIcon className="icon" title="Contact Us" icon={faPaperPlane} /></Link>
                 <FontAwesomeIcon className="icon section" icon={faSearch} />
             </div>
         </footer>
