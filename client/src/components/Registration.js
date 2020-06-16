@@ -20,7 +20,7 @@ const Registration = () => {
         <div className="space-wrap space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
             <div className="main-text">
-                <h1 className="slide-from-left">For developers, by developers.<br /><span className="second-line">Where finding each other</span>  <span className="underscore"> is simple!</span></h1>
+                <h1 className="slide-from-left">For developers, by developers.<br /><span className="second-line">Where finding each other is</span>  <span className="underscore-2"> simple !</span></h1>
             </div>
 
             <h2 className="question">DO YOU WANT TO SHARE YOUR EVENT? NO PROBLEM!</h2>

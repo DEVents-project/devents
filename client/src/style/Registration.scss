@@ -8,7 +8,21 @@ $font-color: #ffffff;
     text-align: center;
     line-height: 2.5rem;
     color: $dark-blue;
-    // position: relative;
+    font-family: CodeProLight;
+}
+.underscore-2 {
+    position: relative;
+
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 5%;
+        left: -5%;
+        width: 110%;
+        height: 21px;
+        background-color: $mid-light-blue;
+        z-index: -1;
+    }
 }
 
 .question {
@@ -116,9 +130,8 @@ $font-color: #ffffff;
 
 @media screen and (min-width: 1270px) {
 .main-text {
-    text-align: start;
+    text-align: center;
 }
-
     .question {
         text-align: center;
         padding: 0.2em;
