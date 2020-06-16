@@ -61,6 +61,39 @@
     }
 }
 
+.scroll-to-top {
+
+    width: 50px;
+    height: 50px;
+    background-color: #256EAC;
+    right: 40px;
+    bottom: 40px;
+    position: fixed;
+    z-index: 0;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: opacity 1s ease-in-out;
+    box-shadow: 0 9px 25px 0 rgba(132,128,177,0.28);
+    border: none;
+    outline: none;
+    svg {
+        fill: white;
+        width: 38px;
+        height: 38px;
+    }
+    
+}
+
+.scroll-to-top:active {
+    transform: matrix(0.95, 0, 0, 0.95, 0, 0);
+}
+
+
+    
+    
+// }
+
+
 @media screen and (min-width: 375px) {
     .events-container {
         .load-more {

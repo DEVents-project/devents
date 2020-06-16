@@ -6,6 +6,7 @@ import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import ScrollToTop from "react-scroll-to-top"
 
 const Events = () => {
     const history = useHistory();
@@ -52,6 +53,7 @@ const Events = () => {
     return (
         <div className="events-container space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
+            <ScrollToTop smooth top="700" />
             <div className="event-types">
                 <h2 className="underline" style={{ color: eventType === 'meetups' ? '#256eac' : null }} onClick={() => setEventType('meetups')}>Meetups</h2>
                 <h2 className="underline" style={{ color: eventType === 'workshops' ? '#256eac' : null }} onClick={() => setEventType('workshops')}>Workshops</h2>
@@ -111,6 +113,7 @@ const Events = () => {
                     :
                     null
             }
+
         </div>
     );
 }
