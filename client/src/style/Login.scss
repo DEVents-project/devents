@@ -1,7 +1,4 @@
 // variables 
-$light-color:#840404;
-$middle-color:#650404;
-$dark-color:#460505;
 $font-color: #ffffff;
 $border: .2rem;
 
@@ -29,7 +26,7 @@ $border: .2rem;
         align-items: center;
         background-color: $mid-dark-blue;
         border-radius: $border; 
-        box-shadow: -1.5rem .7rem $mid-light-blue;
+        box-shadow: -.8rem .5rem $mid-light-blue;
         // transform: skewX(-2deg);
         
         .h2 {
@@ -73,6 +70,7 @@ $border: .2rem;
     }
     .github-log {
         width: 80%;
+        margin-top: 1rem;
         padding: .5rem 0;
         text-align: center;
         color:$dark-blue;

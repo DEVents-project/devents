@@ -22,7 +22,7 @@ $border: 0.2rem;
         align-items: center;
         background-color: $mid-dark-blue;
         color: $font-color;
-        box-shadow: -1.5rem 0.7rem $mid-light-blue;
+        box-shadow: -.8rem 0.5rem $mid-light-blue;
         border-radius: $border;
         padding: 2rem 0;
 
@@ -73,7 +73,7 @@ $border: 0.2rem;
         .event-btn {
             width: 80%;
             height: 2.8rem;
-            margin: 1.2rem;
+            margin: 1rem;
         }
     }
 }
