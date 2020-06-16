@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import Context from './Context';
+import React from 'react';
 
 import '../style/Contact.scss';
 import ParticlesBg from 'particles-bg';
