@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 
+import { Link } from 'react-router-dom';
 import '../style/Footer.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle, faPaperPlane, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +12,7 @@ export default function Footer() {
             <div className="footer"></div>
             <div className="footer">
                 <FontAwesomeIcon className="icon" icon={faQuestionCircle} />
-                <FontAwesomeIcon className="icon" title="Contact" icon={faPaperPlane} />
+                <Link to="/contact"><FontAwesomeIcon className="icon" icon={faPaperPlane} /></Link>
                 <FontAwesomeIcon className="icon section" icon={faSearch} />
             </div>
         </footer>
