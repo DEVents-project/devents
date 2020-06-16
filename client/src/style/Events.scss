@@ -7,6 +7,21 @@
     flex-direction: column;
     justify-content: center;
 
+    .find-city {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    .find-event-type {
+        color: $mid-blue;
+    }
+
     .event-types {
         width: 100%;
         display: flex;
@@ -66,12 +81,20 @@
         .load-more {
             width: 18rem;
         }
+
+        .find-city {
+            font-size: 1.2rem;
+        }
     }
 }
 
 @media screen and (min-width: 768px) {
     .events-container {
         padding: 2rem;
+
+        .find-city {
+            font-size: 1.8rem;
+        }
 
         .event-types {
             flex-direction: row;
