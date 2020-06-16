@@ -7,10 +7,12 @@ const EventCard = ({ setIsEventClicked, setEventInfo, _id, authorId, title, img,
         <div className="event-card scale-in-center">
             {
                 img &&
-                    img.includes('/image/') ?
-                    <div className="event-image to-back" style={{ backgroundImage: `url('http://localhost:4000${img}')` }} alt="test-image" />
+                    img.includes('http') ?
+                    <div className="event-image to-back" style={{
+                        backgroundImage: `url('${img}')`
+                    }} alt="test-image" />
                     :
-                    <div className="event-image to-back" style={{ backgroundImage: `url('https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/meetup.jpg')` }} alt="test-image" />
+                    <div className="event-image to-back" style={{ backgroundImage: `url('http://localhost:4000${img}')` }} alt="test-image" />
             }
             <h3 className="event-title to-back">{title}</h3>
             <p className="event-date to-back">{date}</p>

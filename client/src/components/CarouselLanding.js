@@ -14,6 +14,7 @@ const CarouselLanding = () => {
         fetchEvents();
     }, [])
 
+
     return (
         <Carousel
             showArrows={true}
