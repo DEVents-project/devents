@@ -13,7 +13,6 @@ const workshopRoute = require("./routes/workshopRoute");
 const conventionRoute = require("./routes/conventionRoute");
 const meetupsRoute = require("./routes/meetupsRoute");
 const imgRoute = require("./routes/imgRoute");
-const emailRoute = require("./routes/emailRoute");
 const { cors } = require("./middleware/security");
 
 const port = process.env.PORT || 4000;
@@ -38,7 +37,6 @@ server.use("/workshops", workshopRoute);
 server.use("/conventions", conventionRoute);
 server.use("/meetups", meetupsRoute);
 server.use("/image", imgRoute);
-// server.use("/send-email", emailRoute);
 
 server.post('/send-email', async (req, res) => {
     const { userName, userEmail, userMessage } = req.body;

@@ -93,6 +93,15 @@ $border: .2rem;
     }
 }
 
+.loading-message, .thanks {
+    height: 60vh;
+}
+
+.thanks p {
+        position: relative;
+        top: 50%;
+    }
+
 @media screen and (min-width: 650px){
     .contact-form {
         max-width:50%;
