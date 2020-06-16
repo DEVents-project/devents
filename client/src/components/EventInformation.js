@@ -22,10 +22,10 @@ const EventInformation = (props) => {
     // getting the coordinates to pass them to the google maps:
     const lat = eventInfo.coordinates && parseFloat(eventInfo.coordinates.split(',')[0].slice(7, 14));
     const lng = eventInfo.coordinates && parseFloat(eventInfo.coordinates.split(',')[1].slice(6, 13));
-    console.log('lat: ', lat);
-    console.log('lng: ', lng);
+    // console.log('lat: ', lat);
+    // console.log('lng: ', lng);
 
-    console.log('EVEnt INFO NOW: ', eventInfo);
+    // console.log('EVEnt INFO NOW: ', eventInfo);
 
     const [isEventDeleted, setIsEventDeleted] = useState(false);
 
@@ -42,7 +42,7 @@ const EventInformation = (props) => {
         e.preventDefault();
 
         const eventToDelete = meetups.filter(meetup => meetup._id === eventInfo._id)[0];
-        console.log('EVENT TO DELETE', eventToDelete);
+        // console.log('EVENT TO DELETE', eventToDelete);
         const deletedEvent = {
             method: "DELETE",
             headers: {
@@ -99,7 +99,7 @@ const EventInformation = (props) => {
     }, []);
 
     // console.log('USER INFORMATION_userData: ', userData);
-    console.log('EVENT INFORMATION_eventInfo: ', eventInfo);
+    // console.log('EVENT INFORMATION_eventInfo: ', eventInfo);
     // console.log('meetups: ', meetups);
 
     return (
