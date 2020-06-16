@@ -14,6 +14,7 @@ const EventInformation = (props) => {
     // By clicking on EDIT:
     const [editMode, setEditMode] = useState(false);
     const [newDate, setNewDate] = useState('');
+    const [newTime, setNewTime] = useState('');
     const [newTitle, setNewTitle] = useState('');
     const [newDescription, setNewDescription] = useState('');
     const [newLocation, setNewLocation] = useState('');
@@ -67,6 +68,7 @@ const EventInformation = (props) => {
 
         const newInfo = {
             date: newDate === '' ? eventInfo.date : newDate,
+            time: newTime === '' ? eventInfo.time : newTime,
             title: newTitle === '' ? eventInfo.title : newTitle,
             description: newDescription === '' ? eventInfo.description : newDescription,
             location: newLocation === '' ? eventInfo.location : newLocation,
@@ -119,6 +121,9 @@ const EventInformation = (props) => {
                                         <label htmlFor="date" className="edit-label event-information-date">Date
                                             <input type="date" placeholder={eventInfo && eventInfo.date} onChange={(e) => setNewDate(e.target.value)} />
                                         </label>
+                                        <label htmlFor="time" className="edit-label event-information-time">Time
+                                            <input type="time" placeholder={eventInfo && eventInfo.time} onChange={(e) => setNewTime(e.target.value)} />
+                                        </label>
                                         <label htmlFor="title" className="edit-label event-information-title">Title
                                             <input type="text" placeholder={eventInfo && eventInfo.title} onChange={(e) => setNewTitle(e.target.value)} />
                                         </label>
@@ -158,6 +163,7 @@ const EventInformation = (props) => {
 
                                     <Fragment>
                                         <p className="event-information-date">{eventInfo.date}</p>
+                                        <p className="event-information-time">{eventInfo.time}</p>
                                         <h2 className="event-information-title">{eventInfo.title}</h2>
                                         <div className="event-information-box-one">
                                             {
@@ -201,6 +207,7 @@ const EventInformation = (props) => {
 
                         <Fragment>
                             <p className="event-information-date">{eventInfo.date}</p>
+                            <p className="event-information-time">{eventInfo.time}</p>
                             <h2 className="event-information-title">{eventInfo.title}</h2>
                             <div className="event-information-box-one">
                                 {
