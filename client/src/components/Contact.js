@@ -7,79 +7,62 @@ import ParticlesBg from 'particles-bg';
 
 
 const Contact = () => {
-    const history = useHistory();
-    // const { userData, setUserData, setToken, loggedIn, setLoggedIn } = useContext(Context);
 
+    const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [userMessage, setUserMessage] = useState('');
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
-
-    const handleContact = async (e) => {
+    const sendEmail = (e) => {
         e.preventDefault();
-
-        const contactData = {
-            name,
-            email,
-            message
-        }
-
-        fetch('http://localhost:4000/contact', {
-            method: "POST",
+        const data = { userName, userEmail, userMessage };
+        const options = {
+            method: 'POST',
             headers: {
-                'Accept': 'application/json',
                 'Content-Type': 'application/json'
-        },
-            body: JSON.stringify(contactData)
-            }).then(
-                (response) => (response.json())
-                ).then((response)=>{
-            if (response.status === 'success'){
-                alert("Message Sent."); 
-            this.resetForm()
-            }else if(response.status === 'fail'){
-                alert("Message failed to send.")
-            }
-        })
-    };
-
-    // useEffect(() => {
-    //     loggedIn && history.push('/thanks')
-    // })
+            },
+            body: JSON.stringify(data)
+        };
+        fetch('http://localhost:4000/send-email', options)
+            .then(res => res.json())
+            .then(res1 => {
+                console.log(res1.status);
+                res1.status === true ? alert('Email sent!') : alert('Sorry, there was an issue by sending your message. Please try again later.')
+            })
+    }
 
     return (
         <div className="contact-container space-navbar">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
 
-            <form className="contact-form puff-in-center" onSubmit={handleContact}>
+            <form className="contact-form puff-in-center" onSubmit={sendEmail}>
                 <h2 className="h2-contact">CONTACT US</h2>
                 
                 <label className="contact-label">Name *
                             <input
                                 className="contact-input"
                                 type="text"
-                                value={name}
+                                value={userName}
                                 placeholder="your name"
                                 required
-                                onChange={(e) => setName(e.target.value)} />
+                                onChange={(e) => setUserName(e.target.value)} />
                 </label>
                 <label className="contact-label">Email *
                             <input
                                 className="contact-input"
                                 type="email"
-                                value={email}
+                                value={userEmail}
                                 placeholder="your email"
                                 required
-                                onChange={(e) => setEmail(e.target.value)} />
+                                onChange={(e) => setUserEmail(e.target.value)} />
                 </label>
                 <label className="contact-label">Message *
                             <textarea rows="8" cols="50"
                                 className="contact-textarea"
                                 type="text"
-                                value={message}
+                                value={userMessage}
                                 placeholder="your message"
                                 required
-                                onChange={(e) => setMessage(e.target.value)} />
+                                onChange={(e) => setUserMessage(e.target.value)} />
                 </label>
                 <h5 className="h5-contact"> * Required fields </h5>
                 <button
