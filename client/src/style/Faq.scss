@@ -14,7 +14,6 @@ $mid-blue: #256eac;
         align-items: center;
         padding: 2rem 1rem;
         font-size: 0.9rem;
-
     }
 
     li {
@@ -42,7 +41,7 @@ $mid-blue: #256eac;
 
     .questions {
         font-family: "Montserrat", sans-serif;
-        padding-top: 3rem;
+        margin: 3rem 0;
         text-align: left;
     }
 
@@ -89,6 +88,10 @@ $mid-blue: #256eac;
         h3 {
             font-size: 3rem;
             padding: 0.5rem;
+        }
+
+        .questions {
+        margin: 3rem 1.5rem;
         }
     }
 }
