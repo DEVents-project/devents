@@ -17,7 +17,7 @@ const clientSecret = process.env.GITHUB_CLIENT_SECRET;
 passport.use(new GithubStrategy({
     clientID: clientID,
     clientSecret: clientSecret,
-    callbackURL: "http://localhost:4000/users/login/auth/github/callback"
+    callbackURL: "http://localhost:4000/auth/github/redirect"
 },
     function (accessToken, refreshToken, profile, cb) {
 

@@ -3,8 +3,7 @@ const server = express();
 const createError = require("http-errors");
 const mongoose = require("mongoose");
 const logger = require("morgan");
-const multer = require("multer");
-
+const nodemailer = require("nodemailer");
 const passport = require("passport");
 const passportSetup = require("./middleware/githubAuth")
 
@@ -15,6 +14,8 @@ const userRoute = require("./routes/userRoute");
 const workshopRoute = require("./routes/workshopRoute");
 const conventionRoute = require("./routes/conventionRoute");
 const meetupsRoute = require("./routes/meetupsRoute");
+const imgConventionRoute = require("./routes/imgConventionRoute");
+const imgWorkshopRoute = require("./routes/imgWorkshopRoute")
 const imgRoute = require("./routes/imgRoute");
 const { cors } = require("./middleware/security");
 
@@ -42,17 +43,53 @@ server.use("/workshops", workshopRoute);
 server.use("/conventions", conventionRoute);
 server.use("/meetups", meetupsRoute);
 server.use("/image", imgRoute);
+server.use("/imgconvention", imgConventionRoute)
+server.use("/imgworkshop", imgWorkshopRoute)
+
+
+server.post('/send-email', async (req, res) => {
+    const { userName, userEmail, userMessage } = req.body;
+    const contentHTML = `
+        <h1>A user contacted you!</h1>
+        <h2>User Information:</h2>
+        <ul>
+        <li>Username: ${userName}</li>
+        <li>Email: ${userEmail}</li>
+        </ul>
+        <h2>Message:</h2>
+        <p>${userMessage}</p>
+        `;
+    const transporter = nodemailer.createTransport({
+        host: process.env.HOST,
+        port: process.env.PORT_MAIL,
+        secure: false,
+        auth: {
+            user: process.env.EMAIL_EMISOR,
+            pass: process.env.EMAIL_PASS
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    })
+    await transporter.sendMail({
+        from: `${userName} <${userEmail}>`,
+        to: process.env.EMAIL_RECEIVER,
+        subject: 'A user contacted you!',
+        html: contentHTML
+    });
+    res.json({ status: true });
+    console.log('and... message sent!!!');
+});
 
 server.get("/auth/github",
     passport.authenticate("github", { scope: ["profile"] }));
 
-server.get("/auth/github/callback",
+server.get("/auth/github/redirect",
     passport.authenticate("github", { failureRedirect: "/login" }),
     function (req, res) {
         console.log(req.user);
         res.redirect("/account");
     });
-
 
 server.use((req, res, next) => {
     next(createError(404));
