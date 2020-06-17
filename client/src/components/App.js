@@ -13,6 +13,7 @@ import Account from "./Account";
 import EventInformation from "./EventInformation";
 import CreateEvent from "./CreateEvent";
 import Contact from "./Contact";
+import Faq from "./Faq";
 import Context from './Context';
 import Moment from "moment"
 
@@ -198,6 +199,7 @@ const App = () => {
             <Route path="/event" component={EventInformation} />
             <Route path="/addevent" component={CreateEvent} />
             <Route path="/contact" component={Contact} />
+            <Route path="/faq" component={Faq} />
           </Switch>
           <Footer />
         </BrowserRouter>
