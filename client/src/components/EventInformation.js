@@ -162,8 +162,8 @@ const EventInformation = (props) => {
                                     :
 
                                     <Fragment>
-                                        <p className="event-information-date">{eventInfo.date}</p>
-                                        <p className="event-information-time">{eventInfo.time}</p>
+                                        <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
+                                        <p className="event-information-time">Time: <strong>{eventInfo.time} H</strong></p>
                                         <h2 className="event-information-title">{eventInfo.title}</h2>
                                         <div className="event-information-box-one">
                                             {
@@ -206,8 +206,8 @@ const EventInformation = (props) => {
                         :
 
                         <Fragment>
-                            <p className="event-information-date">{eventInfo.date}</p>
-                            <p className="event-information-time">{eventInfo.time}</p>
+                            <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
+                            <p className="event-information-time">Time <strong>{eventInfo.time} H</strong></p>
                             <h2 className="event-information-title">{eventInfo.title}</h2>
                             <div className="event-information-box-one">
                                 {
