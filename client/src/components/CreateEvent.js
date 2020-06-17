@@ -26,6 +26,7 @@ const CreateEvent = (props) => {
     // this will be the complete address of the event as a STRING
     const [location, setLocation] = useState('');
 
+    console.log('IMAGE: ', image);
 
     // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
     const [coordinates, setCoordinates] = useState('');
@@ -56,6 +57,7 @@ const CreateEvent = (props) => {
         imgBody.append('_id', userData._id)
 
         try {
+            console.log('IMG BODY: ', imgBody);
             const res = await axios.post('http://localhost:4000/events', imgBody, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -64,7 +66,7 @@ const CreateEvent = (props) => {
             });
 
             if (res.status) {
-                // console.log('REEEES:', res)
+                console.log('REEEES:', res)
                 setUserData(res.data.user)
                 setStatusAdded(true)
             }
