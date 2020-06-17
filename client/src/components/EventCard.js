@@ -6,13 +6,9 @@ const EventCard = ({ setIsEventClicked, setEventInfo, _id, authorId, title, img,
     return (
         <div className="event-card scale-in-center">
             {
-                img &&
-                    img.includes('http') ?
-                    <div className="event-image to-back" style={{
-                        backgroundImage: `url('${img}')`
-                    }} alt="test-image" />
-                    :
-                    <div className="event-image to-back" style={{ backgroundImage: `url('http://localhost:4000${img}')` }} alt="test-image" />
+                img ? (
+                    <div className="event-image to-back" style={{ backgroundImage: `url('http://localhost:4000${img}')` }} alt="test-image" />) : null
+
             }
             <h3 className="event-title to-back">{title}</h3>
             <p className="event-date to-back" >Date <span style={{ color: '#256eac' }}>{date}</span></p>

@@ -55,19 +55,19 @@ const App = () => {
   }, []);
 
   // GET RANDOM PIC
-  const getRandomPic = (typeOfEvent) => {
-    if (typeOfEvent === 'workshops') {
-      const randomNr = Math.floor(Math.random() * (14 - 1)) + 1;
-      return (
-        `https://res.cloudinary.com/jimbocloud/image/upload/v1592300071/devents/workshops/w${randomNr}.jpg`
-      )
-    } else if (typeOfEvent === 'conventions') {
-      const randomNr = Math.floor(Math.random() * (10 - 1)) + 1;
-      return (
-        `https://res.cloudinary.com/jimbocloud/image/upload/v1592300493/devents/conventions/c${randomNr}.jpg`
-      )
-    }
-  };
+  // const getRandomPic = (typeOfEvent) => {
+  //   if (typeOfEvent === 'workshops') {
+  //     const randomNr = Math.floor(Math.random() * (14 - 1)) + 1;
+  //     return (
+  //       `https://res.cloudinary.com/jimbocloud/image/upload/v1592300071/devents/workshops/w${randomNr}.jpg`
+  //     )
+  //   } else if (typeOfEvent === 'conventions') {
+  //     const randomNr = Math.floor(Math.random() * (10 - 1)) + 1;
+  //     return (
+  //       `https://res.cloudinary.com/jimbocloud/image/upload/v1592300493/devents/conventions/c${randomNr}.jpg`
+  //     )
+  //   }
+  // };
 
 
   // FUNCTION FETCHING ALL THE EVENTS:
@@ -126,7 +126,7 @@ const App = () => {
     const request2 = await fetch('http://localhost:4000/workshops', options);
     const response2 = await request2.json();
     // console.log('WORKSHOPS - Response: ', response2);
-    response2.events.map(workshop => { workshop.img = getRandomPic('workshops'); allWorkshops.push(workshop); allEvents.push(workshop) });
+    response2.events.map(workshop => { allWorkshops.push(workshop); allEvents.push(workshop) });
     allWorkshops.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
     const citiesWithWorkshops = [];
@@ -140,7 +140,7 @@ const App = () => {
     const request3 = await fetch('http://localhost:4000/conventions', options);
     const response3 = await request3.json();
     // console.log('CONVENTIONS - Response: ', response3);
-    response3.events.map(convention => { convention.img = getRandomPic('conventions'); allConventions.push(convention); allEvents.push(convention) });
+    response3.events.map(convention => { allConventions.push(convention); allEvents.push(convention) });
     allConventions.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
     const citiesWithConventions = [];

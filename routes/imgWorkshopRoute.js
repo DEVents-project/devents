@@ -1,21 +1,12 @@
 const Route = require("express").Router();
 const upload = require("../middleware/gridFsStorage");
-const Image = require("../models/imgWorkshopSchema")
+const { postWorkshopImage, getWorkshopImgInfo, getImage } = require("../controllers/imgWorkshopController")
 
-Route.post("/", upload.single("file"), async (req, res) => {
+Route.post("/", upload.single("file"), postWorkshopImage)
 
-    let addImage = new Image(
-        { imgUrl: `${req.file.filename}` }
-    )
-    await addImage.save();
+Route.get("/", getWorkshopImgInfo)
 
-    res.json({ addImage })
-
-})
-Route.get("/", async (req, res) => {
-    let workshopImages = await Image.find();
-    res.json({ workshopImages })
-})
+Route.get("/:filename", getImage)
 
 
 module.exports = Route

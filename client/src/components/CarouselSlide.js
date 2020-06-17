@@ -16,7 +16,7 @@ const CarouselSlide = ({ title, location, img, date, time, coordinates, descript
 
     return (
         <div className="slide-container" >
-            <div className="oneSlide" style={{ backgroundImage: img.includes('http') ? `url("${img}")` : `url("http://localhost:4000${img}")` }}>
+            <div className="oneSlide" style={{ backgroundImage: `url("http://localhost:4000${img}")` }}>
                 <div className="slide-text">
                     <h2 className="titleAdvert">{title}</h2>
                     <p className="textAdvert">{location}</p>

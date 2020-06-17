@@ -5,6 +5,7 @@ import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
 import axios from 'axios'
 import Moment from 'moment'
+import defaultImg from '../assets/img/eventImgDefault.png'
 
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 
@@ -42,6 +43,7 @@ const CreateEvent = (props) => {
         // console.log(image)
 
         const imgBody = new FormData();
+
 
         imgBody.append('file', image);
         imgBody.append('title', title);

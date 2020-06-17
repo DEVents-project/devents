@@ -1,23 +1,12 @@
 const Route = require("express").Router();
 const upload = require("../middleware/gridFsStorage");
-const Image = require("../models/imgConventionSchema")
+const { postConventionImage, getConventionImgInfo, getImage } = require("../controllers/imgConventionController")
 
-Route.post("/", upload.single("file"), async (req, res) => {
+Route.post("/", upload.single("file"), postConventionImage)
 
-    let addImage = new Image(
-        { imgUrl: `${req.file.filename}` }
-    )
+Route.get("/", getConventionImgInfo)
 
-
-    await addImage.save();
-
-    res.json({ addImage })
-
-})
-Route.get("/", async (req, res) => {
-    let conventionsImages = await Image.find();
-    res.json({ conventionsImages })
-})
+Route.get("/:filename", getImage)
 
 
 module.exports = Route
