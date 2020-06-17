@@ -10,6 +10,10 @@ const Contact = () => {
     const [userEmail, setUserEmail] = useState('');
     const [userMessage, setUserMessage] = useState('');
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const sendEmail = (e) => {
         e.preventDefault();
         setForm(2);
@@ -28,10 +32,6 @@ const Contact = () => {
                 res1.status === true ? setForm(3) : alert('Sorry, there was an issue by sending your message. Please try again later.');
             });
     };
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
 
     return (
         <div className="contact-container space-navbar">

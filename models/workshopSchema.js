@@ -5,7 +5,7 @@ const workshopSchema = new Schema({
     title: String,
     date: String,
     time: String,
-    location: { type: String, required: false },
+    location: String,
     city: String,
     description: String,
     img: String,
