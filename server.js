@@ -3,7 +3,6 @@ const server = express();
 const createError = require("http-errors");
 const mongoose = require("mongoose");
 const logger = require("morgan");
-const multer = require("multer");
 const nodemailer = require("nodemailer");
 const passport = require("passport");
 const passportSetup = require("./middleware/githubAuth")

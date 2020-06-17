@@ -75,15 +75,15 @@ const fetchImgConventions = async () => {
                     eventData.description = description.trim()
 
                     eventData.url = eventUrl;
-                    eventData.img = allImgConventions[Math.floor(Math.random() * allImgConventions.length)];
-
+                    // let randomImg = Math.floor(Math.random() * allImgConventions.length)
+                    eventData.img = allImgConventions[0];
+                    allImgConventions.shift()
                     const dataForSave = new Convention(eventData)
 
                     dataForSave.save().then(() => {
                         console.log(eventData.title, "saved")
                     }).catch(err => {
                         console.log(err, eventData.title, "saved")
-
                     });
                 }
             })
