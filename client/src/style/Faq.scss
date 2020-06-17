@@ -1,0 +1,125 @@
+$mid-blue: #256eac;
+
+@import "index";
+
+.faq-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding-top: 2rem;
+
+    .theme-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1rem;
+        font-size: 0.9rem;
+
+    }
+
+    li {
+        padding: 0.3rem;
+    }
+}
+
+.questions-container {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3.5rem;
+
+    h3 {
+        font-size: 5rem;
+        padding: 1rem;
+    }
+
+    a, h6 {
+        color: $mid-blue;
+        cursor: pointer;
+    }
+
+    .questions {
+        font-family: "Montserrat", sans-serif;
+        padding-top: 3rem;
+        text-align: left;
+    }
+
+    p, ol {
+        padding: 0.5rem 1rem;
+    }
+
+    #whatisdevents, #howtocreateevent, #howtocreateaccount, #editpersonalinfo, #doineedtopay, #findevents, #attendevents {
+        padding-top: 2rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .faq-container {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding-top: 2rem;
+
+    }
+    .questions-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+
+        h3 {
+            font-size: 2rem;
+            padding: 0.2rem;
+        }
+
+        h5 {
+            padding-top: 0.5rem;
+        }
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .questions-container {
+        padding: 1rem;
+        h3 {
+            font-size: 3rem;
+            padding: 0.5rem;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .faq-container {
+        .theme-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+
+        }
+    }
+    .questions-container {
+        padding: 1rem;
+        h3 {
+            font-size: 3.5rem;
+            padding: 0.6rem;
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .questions-container {
+        padding: 1rem;
+        h3 {
+            font-size: 5rem;
+            padding: 0.9rem;
+        }
+    }
+}
+
