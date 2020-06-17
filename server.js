@@ -57,8 +57,8 @@ server.post('/send-email', async (req, res) => {
         <p>${userMessage}</p>
         `;
     const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
+        host: process.env.HOST,
+        port: process.env.PORT_MAIL,
         secure: false,
         auth: {
             user: process.env.EMAIL_EMISOR,
@@ -70,7 +70,7 @@ server.post('/send-email', async (req, res) => {
     })
     await transporter.sendMail({
         from: `${userName} <${userEmail}>`,
-        to: "devents.team2020@gmail.com",
+        to: process.env.EMAIL_RECEIVER,
         subject: 'A user contacted you!',
         html: contentHTML
     });
