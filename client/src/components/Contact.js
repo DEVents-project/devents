@@ -75,7 +75,7 @@ const Contact = () => {
                     </form>
                     : form === 2 ?
                         <div className="loading-message">
-                            <p><FontAwesomeIcon icon={faSpinner} spin style={{ color: "rgb(0, 186, 211)" }} /> Sending message...</p>
+                            <p><FontAwesomeIcon icon={faSpinner} spin style={{ color: "rgb(37, 110, 172)" }} /> Sending message...</p>
                         </div>
                         :
                         <div className="thanks">
