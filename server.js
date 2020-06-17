@@ -43,10 +43,10 @@ server.use("/conventions", conventionRoute);
 server.use("/meetups", meetupsRoute);
 server.use("/image", imgRoute);
 
-server.get("/login/auth/github",
+server.get("/auth/github",
     passport.authenticate("github", { scope: ["profile"] }));
 
-server.get("/login/auth/github/callback",
+server.get("/auth/github/callback",
     passport.authenticate("github", { failureRedirect: "/login" }),
     function (req, res) {
         console.log(req.user);
