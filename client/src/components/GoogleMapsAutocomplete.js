@@ -18,6 +18,7 @@ const GoogleMapsAutocomplete = ({ setLocation, setCoordinates }) => {
                 inputClassName={'location-container event-input map-address'}
                 onSelect={(input) => { console.log(input); getCoordinates(input.description); setLocation(input.description) }}
                 placeholder={'the event\'s location'}
+                required={true}
             />
         </div>
     )
