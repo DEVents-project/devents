@@ -83,7 +83,6 @@ const fetchImgWorkshops = async () => {
                     // const img = bg.slice(4, -1).replace(/"/g, "");
 
                     // eventData.img = img
-
                     eventData.img = allImgWorkshops[Math.floor(Math.random() * allImgWorkshops.length)];
                     eventData.url = eventUrl
 
@@ -95,6 +94,7 @@ const fetchImgWorkshops = async () => {
                         console.log(err, eventData.title, "saved")
 
                     });
+
                 }
             })
 
