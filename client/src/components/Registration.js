@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
 import '../style/Registration.scss'
 import Signin from '../assets/img/signup.svg'
@@ -59,8 +60,8 @@ const Registration = () => {
             </div>
 
             <div className="buttons-container">
-                <button className="button signup-button">Sign up</button>
-                <button className="button login-button">Login</button>
+                <Link to='/signup' className="button signup-button">Sign up</Link>
+                <Link to='/login' className="button login-button">Login</Link>
             </div>
 
         </div>
