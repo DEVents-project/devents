@@ -5,6 +5,8 @@ import '../style/EventInformation.scss';
 import ParticlesBg from 'particles-bg';
 import Map from './Map';
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 const EventInformation = (props) => {
     const history = useHistory();
@@ -182,10 +184,12 @@ const EventInformation = (props) => {
                                             <p className="event-information-location">{eventInfo.address}</p>
                                         </div>
                                         <div className="google-map">
-                                            <p className="map-address">{eventInfo.location ?
-                                                eventInfo.location
-                                                :
-                                                null}</p>
+                                            {
+                                                eventInfo.location ?
+                                                    <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location}</p>
+                                                    :
+                                                    null
+                                            }
                                             {
                                                 eventInfo.coordinates ?
                                                     <Map
@@ -227,10 +231,12 @@ const EventInformation = (props) => {
                                 <p className="event-information-location">{eventInfo.address}</p>
                             </div>
                             <div className="google-map">
-                                <p className="map-address">{eventInfo.location ?
-                                    eventInfo.location
-                                    :
-                                    null}</p>
+                                {
+                                    eventInfo.location ?
+                                        <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location}</p>
+                                        :
+                                        null
+                                }
                                 {
                                     eventInfo.coordinates ?
                                         <Map
