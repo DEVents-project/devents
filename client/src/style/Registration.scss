@@ -1,52 +1,60 @@
-// Variables
-$dark-blue: #040b11;
-$mid-dark-blue: #154065;
-$mid-blue: #256eac;
-$mid-light-blue: #5a8fbd;
+@import "index";
+
 $light-blue-op: #6089ada6;
 $font-color: #ffffff;
 
 .main-text {
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 3rem;
+    text-align: center;
     line-height: 2.5rem;
-    font-size: 1rem;
-    position: relative;
     color: $dark-blue;
-    // box-shadow: -5px 5px 5px 1.9px$mid-light-blue;
-    // border-bottom: $mid-dark-blue solid 2px;
-    // background-color:$dark-blue;
+    font-family: CodeProLight;
+}
+.underscore-2 {
+    position: relative;
+
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 5%;
+        left: -5%;
+        width: 110%;
+        height: 21px;
+        background-color: $mid-light-blue;
+        z-index: -1;
+    }
 }
 
 .question {
     text-align: center;
-    padding: .5rem;
     font-size: 1.5rem;
+    padding-top: 2rem;
 }
 
 // containers
-.img-registration{
-    width: 14em;
-    height: 14em;
-    border-radius: 50%;
-    background-color:$light-blue-op;
-
-    display: block;
-    margin: 1rem auto auto;
-}
 
 .container {
     width: 100%;
+    padding: 1rem 0;
     display: flex;
     flex-wrap: wrap;
-    padding: 2rem;
     justify-content: center;
 
     .squares {
         min-height: 35vh;
         width: 380px;
-        padding-top: 3rem;
+        padding-top: 1rem;
         flex-direction: column;
         align-items: center;
+
+        .img-registration{
+            width: 14rem;
+            height: 14rem;
+            border-radius: 50%;
+            background-color:$light-blue-op;
+            display: block;
+            margin: 1rem auto auto;
+        }
     }         
 } 
 
@@ -56,23 +64,27 @@ $font-color: #ffffff;
     border-radius: 10px;
     text-align: center;
     margin: 1rem auto;
-    
-}
-.registration-p {
-    margin-top: 1rem;
-    opacity: 0.7;
-    font-size: 1rem;
-}
-    
+
+    .title {
+        font-size: 1.3rem;
+    }
+
+    .registration-p {
+        text-align: center;
+        padding-top: 1rem;
+        opacity: 0.8;
+    }
+}   
+
 .buttons-container {
   display: flex;
   justify-content: center;
+  padding: 1rem 0 3rem;
+  position: relative;
   
   .button {
-    margin: 2rem 0 3rem;
-    width: 8rem;
+    width: 10rem;
     height: 2.8rem;
-    
   }
 
   .login-button {
@@ -81,48 +93,27 @@ $font-color: #ffffff;
   }
 }
         
-
 @media screen and (min-width: 768px) {
-    .main-h3 {
-        text-align: center;
-        margin-top: 2rem;
-        margin-bottom: 3rem;    
-
-    }
-    .question {
-        text-align: center;
-        line-height: 1rem;
-        // padding: 0.2rem;
-        margin-top: 5rem; 
-
-    }
-
-    // containers
-
     .container {
-        display: flex;
-
         .img-registration {
-            // position: relative;
+            position: relative;
             display: inline-block;
             margin: 0 auto;  
         }
         
-        .aside {    
-            // position: relative;
-            // top: 13em;
-            // right:5em;
-            padding: 10px;
-        
-        }   
+        // .aside {    
+        //     padding: 1rem 0;
+        //     margin: 0;
+            
+        // }   
     }
     .buttons-container{
-        padding-top: 5rem;
-    
         .button {
+            width: 15rem;
+            height: 3.5rem;
             position: relative;
-            // margin: 5rem;
-            // bottom: 4em;
+            // bottom: 3rem;
+            font-size: 1.4rem;
         }
     }
         .squares {
@@ -131,7 +122,6 @@ $font-color: #ffffff;
             align-items: center;
         }
         .img-1 {
-           
             display: flex;
             justify-content: center;
         }     
@@ -139,6 +129,9 @@ $font-color: #ffffff;
 }
 
 @media screen and (min-width: 1270px) {
+.main-text {
+    text-align: center;
+}
     .question {
         text-align: center;
         padding: 0.2em;
@@ -154,9 +147,5 @@ $font-color: #ffffff;
         .aside {
             text-align: center;
         }
-    }
-    .button {
-        position: relative;
-            
-     }     
+    }  
 }
