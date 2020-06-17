@@ -1,13 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import ParticlesBg from 'particles-bg';
 import '../style/Registration.scss'
 import  registration from '../assets/img/register.svg'
 import  createEvent from '../assets/img/createEvent.svg'
 import  publish from '../assets/img/publish.svg'
-import login from '../components/Login'
-import signup from '../components/SignUp'
+import SignUp from './SignUp';
+import Login from "./Login";
 
 
 
@@ -86,7 +86,11 @@ const Registration = () => {
         </div>
 
         <BrowserRouter>
-        
+       <Switch>
+           <Route path="/login">
+            <Login/>               
+           </Route>
+       </Switch>
         </BrowserRouter>
             
         </div>
