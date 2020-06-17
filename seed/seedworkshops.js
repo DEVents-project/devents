@@ -38,7 +38,7 @@ const fetchImgWorkshops = async () => {
     const request = await fetch("http://localhost:4000/imgworkshop", options);
     const response = await request.json();
     response.workshopImages.map(img => {
-        allImgWorkshops.push(`http://localhost:4000/imgworkshop/${img.imgUrl}`)
+        allImgWorkshops.push(`/imgworkshop/${img.imgUrl}`)
     })
 
 
@@ -83,7 +83,7 @@ const fetchImgWorkshops = async () => {
                     // const img = bg.slice(4, -1).replace(/"/g, "");
 
                     // eventData.img = img
-                    eventData.img = allImgWorkshops[Math.floor(Math.random() * allImgWorkshops.length)];
+                    eventData.imgUrl = allImgWorkshops[Math.floor(Math.random() * allImgWorkshops.length)];
                     eventData.url = eventUrl
 
                     const dataForSave = new Workshop(eventData)
@@ -145,7 +145,7 @@ const fetchImgWorkshops = async () => {
 
                     // eventData.img = img
 
-                    eventData.img = allImgWorkshops[Math.floor(Math.random() * allImgWorkshops.length)];
+                    eventData.imgUrl = allImgWorkshops[Math.floor(Math.random() * allImgWorkshops.length)];
                     eventData.url = eventUrl
 
                     const dataForSave = new Workshop(eventData)
@@ -211,7 +211,7 @@ const fetchImgWorkshops = async () => {
 
                     // eventData.img = img
                     eventData.url = eventUrl
-                    eventData.img = allImgWorkshops[Math.floor(Math.random() * allImgWorkshops.length)];
+                    eventData.imgUrl = allImgWorkshops[Math.floor(Math.random() * allImgWorkshops.length)];
 
                     const dataForSave = new Workshop(eventData);
 
