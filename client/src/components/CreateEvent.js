@@ -35,6 +35,9 @@ const CreateEvent = (props) => {
     // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
 
+    // console.log('LAT', lat);
+    // console.log('LNG', lng);
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -149,7 +152,7 @@ const CreateEvent = (props) => {
                     </label>
                 </div>
                 <label className="event-label">Location *
-                    <GoogleMapsAutocomplete setLocation={setLocation} setCoordinates={setCoordinates} setLat={setLat} setLng={setLng} />
+                    <GoogleMapsAutocomplete isRequired={true} setLocation={setLocation} setCoordinates={setCoordinates} setLat={setLat} setLng={setLng} />
                 </label>
                 <label className="event-label">Website
                     <input

@@ -6,7 +6,6 @@ const EventSchema = new Schema({
     title: { type: String, required: true },
 
     hostedBy: { type: String, required: false },
-    authorId: { type: String, required: false },
 
     authorId: { type: String, required: false },
 
@@ -17,6 +16,10 @@ const EventSchema = new Schema({
     location: { type: String, required: true },
 
     coordinates: { type: String, required: true },
+
+    lat: { type: Number, required: true },
+
+    lng: { type: Number, required: true },
 
     imgUrl: { type: String, required: true },
 
