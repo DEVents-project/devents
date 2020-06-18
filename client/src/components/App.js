@@ -36,24 +36,12 @@ const App = () => {
   // this is the state that is going to carry all the information of one specific event, when the user clicks on it to see the description:
   const [eventInfo, setEventInfo] = useState(null);
 
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-
-  // FETCHING GOOGLE MAPS API:
-  useEffect(() => {
-    const script = document.createElement('script');
-
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
-    script.async = true;
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    }
-  }, []);
 
   // GET RANDOM PIC
   // const getRandomPic = (typeOfEvent) => {
@@ -96,10 +84,13 @@ const App = () => {
         time: meetup.time,
         city: meetup.location.split(', ')[1],
         coordinates: meetup.coordinates,
-        img: meetup.imgUrl,
+        imgUrl: meetup.imgUrl,
         location: meetup.location,
         authorId: meetup.authorId,
-        _id: meetup._id
+        _id: meetup._id,
+        type: 'meetup',
+        lat: parseFloat(meetup.coordinates.split(',')[0].slice(7, 14)),
+        lng: parseFloat(meetup.coordinates.split(',')[1].slice(6, 13))
       });
       allEvents.push({
         title: meetup.title,
@@ -109,10 +100,13 @@ const App = () => {
         time: meetup.time,
         city: meetup.location.split(', ')[1],
         coordinates: meetup.coordinates,
-        img: meetup.imgUrl,
+        imgUrl: meetup.imgUrl,
         location: meetup.location,
         authorId: meetup.authorId,
-        _id: meetup._id
+        _id: meetup._id,
+        type: 'meetup',
+        lat: parseFloat(meetup.coordinates.split(',')[0].slice(7, 14)),
+        lng: parseFloat(meetup.coordinates.split(',')[1].slice(6, 13))
       });
     });
 
@@ -151,7 +145,7 @@ const App = () => {
     setAllEventsTogether(allEvents);
   };
 
-  console.log('ALL EVENTS FETCHED: ', allEventsTogether);
+  // console.log('ALL EVENTS FETCHED: ', allEventsTogether);
 
   // FETCHING THE USER INFORMATION - USER SESSION:
   const getUserData = async () => {
@@ -170,6 +164,23 @@ const App = () => {
     setUserData(data.user);
   };
 
+
+  // FETCHING GOOGLE MAPS API:
+  useEffect(() => {
+    const script = document.createElement('script');
+
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    }
+  }, []);
+
+
+  // LOAD THE USER DATA IF LOGGED IN:
   useEffect(() => {
     if (token) {
       setLoggedIn(true);
@@ -177,11 +188,20 @@ const App = () => {
     }
   }, []);
 
-  console.log('EVENT INFO: ', eventInfo);
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  useEffect(() => {
+    fetchEvents();
+  }, [userData]);
+
+  // console.log('EVENT INFO: ', eventInfo);
 
   return (
     <div className="App">
-      <Context.Provider value={{ allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
+      <Context.Provider value={{ lat, setLat, lng, setLng, allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
         <BrowserRouter>
           {
             loggedIn ?
