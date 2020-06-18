@@ -70,13 +70,13 @@ const EventInformation = (props) => {
             title: newTitle === '' ? eventInfo.title : newTitle,
             description: newDescription === '' ? eventInfo.description : newDescription,
             location: newLocation === '' ? eventInfo.location : newLocation,
-            coordinates: JSON.stringify(newCoordinates) === '' ? eventInfo.coordinates : JSON.stringify(newCoordinates),
+            coordinates: newCoordinates === '' ? eventInfo.coordinates : JSON.stringify(newCoordinates),
             _id: eventInfo._id,
             lat: JSON.stringify(newCoordinates) === '' ? lat : newCoordinates.lat,
             lng: JSON.stringify(newCoordinates) === '' ? lng : newCoordinates.lng
         };
 
-        // console.log('NEW INFO: ', newInfo);
+        console.log('NEW INFO: ', newInfo);
 
         const newEventInfo = {
             method: "PUT",
@@ -104,7 +104,7 @@ const EventInformation = (props) => {
     });
 
 
-    // console.log('INFORMATION EVENT: ', eventInfo);
+    console.log('INFORMATION EVENT: ', eventInfo);
 
 
     return (
