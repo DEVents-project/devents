@@ -8,7 +8,7 @@ import ParticlesBg from 'particles-bg';
 const Account = () => {
     const history = useHistory();
 
-    const { getUserData, userData, setUserData, setEventInfo, eventInfo, token, events, lat, lng } = useContext(Context);
+    const { setLoggedIn, getUserData, userData, setUserData, setEventInfo, token } = useContext(Context);
 
     const [isEventClicked, setIsEventClicked] = useState(false);
     // this state change fragment between info and inputs to be edited
@@ -18,6 +18,9 @@ const Account = () => {
     const [newEmail, setNewEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [newAvatar, setNewAvatar] = useState('');
+
+    const [isAccountDeleted, setIsAccountDeleted] = useState(false);
+
 
     const listOfAvatars = [
         'https://joeschmoe.io/api/v1/jeri',
@@ -80,9 +83,32 @@ const Account = () => {
         };
     };
 
+    const deleteAccount = async (e) => {
+        e.preventDefault();
+
+        const deletedUser = {
+            method: "DELETE",
+            headers: {
+                "x-auth": token,
+                "eventId": userData._id
+            },
+        };
+
+        const request = await fetch('http://localhost:4000/users', deletedUser);
+        const response = await request.json();
+        console.log('User Deleted - Response: ', response);
+        if (response.success) {
+            localStorage.clear();
+            setIsAccountDeleted(true);
+            setUserData(null);
+            setLoggedIn(false);
+        };
+    };
+
     // by clicking on 'SEE MORE' it will be redirected to the event's info
     useEffect(() => {
         isEventClicked && history.push('/event');
+        isAccountDeleted && history.push('/');
     });
 
     // console.log('ACCOUNT_userData: ', userData);
@@ -123,6 +149,7 @@ const Account = () => {
                                             })
                                         }
                                     </div>
+                                    <button className="button save-button" onClick={(e) => { if (window.confirm('Are you sure you want to delete your account?')) { deleteAccount(e) } }}>Delete</button>
                                     <button type='submit' className="button save-button" >Save</button>
                                 </form>
                             </div>

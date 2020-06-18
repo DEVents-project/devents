@@ -113,9 +113,10 @@ exports.putUser = async (req, res, next) => {
 }
 
 exports.deleteUser = async (req, res, next) => {
-    const { id } = req.params;
+    const eventId = req.header('eventId');
+    console.log('EVENT ID: ', eventId);
     try {
-        const user = await User.findByIdAndDelete(id)
+        const user = await User.findByIdAndDelete(eventId)
         if (!user) throw createError(404)
         res.json({ success: true, user: user })
     } catch (err) {

@@ -6,7 +6,7 @@ const EventCard = ({ el, setIsEventClicked }) => {
 
     const { setEventInfo } = useContext(Context);
 
-    console.log('THIS IS THE EVENT INFO: ', el);
+    // console.log('THIS IS THE EVENT INFO: ', el);
 
     return (
         <div className="event-card scale-in-center">
