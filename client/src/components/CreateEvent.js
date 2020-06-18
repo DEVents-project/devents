@@ -30,6 +30,8 @@ const CreateEvent = (props) => {
 
     // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
     const [coordinates, setCoordinates] = useState('');
+    const [lat, setLat] = useState('');
+    const [lng, setLng] = useState('');
 
     // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
@@ -50,6 +52,8 @@ const CreateEvent = (props) => {
         imgBody.append('date', new Moment(date).format('DD MMMM YYYY'));
         imgBody.append('time', time);
         imgBody.append('coordinates', coordinates);
+        imgBody.append('lat', lat);
+        imgBody.append('lng', lng);
         imgBody.append('location', location);
         imgBody.append('website', url);
 
@@ -145,7 +149,7 @@ const CreateEvent = (props) => {
                     </label>
                 </div>
                 <label className="event-label">Location *
-                    <GoogleMapsAutocomplete setLocation={setLocation} setCoordinates={setCoordinates} />
+                    <GoogleMapsAutocomplete setLocation={setLocation} setCoordinates={setCoordinates} setLat={setLat} setLng={setLng} />
                 </label>
                 <label className="event-label">Website
                     <input

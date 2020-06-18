@@ -36,24 +36,12 @@ const App = () => {
   // this is the state that is going to carry all the information of one specific event, when the user clicks on it to see the description:
   const [eventInfo, setEventInfo] = useState(null);
 
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-
-  // FETCHING GOOGLE MAPS API:
-  useEffect(() => {
-    const script = document.createElement('script');
-
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
-    script.async = true;
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    }
-  }, []);
 
   // GET RANDOM PIC
   const getRandomPic = (typeOfEvent) => {
@@ -99,7 +87,8 @@ const App = () => {
         img: meetup.imgUrl,
         location: meetup.location,
         authorId: meetup.authorId,
-        _id: meetup._id
+        _id: meetup._id,
+        type: 'meetup'
       });
       allEvents.push({
         title: meetup.title,
@@ -112,7 +101,8 @@ const App = () => {
         img: meetup.imgUrl,
         location: meetup.location,
         authorId: meetup.authorId,
-        _id: meetup._id
+        _id: meetup._id,
+        type: 'meetup'
       });
     });
 
@@ -127,7 +117,7 @@ const App = () => {
     const request2 = await fetch('http://localhost:4000/workshops', options);
     const response2 = await request2.json();
     // console.log('WORKSHOPS - Response: ', response2);
-    response2.events.map(workshop => { workshop.img = getRandomPic('workshops'); allWorkshops.push(workshop); allEvents.push(workshop) });
+    response2.events.map(workshop => { workshop.img = getRandomPic('workshops'); workshop.type = 'workshop'; allWorkshops.push(workshop); allEvents.push(workshop) });
     allWorkshops.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
     const citiesWithWorkshops = [];
@@ -141,7 +131,7 @@ const App = () => {
     const request3 = await fetch('http://localhost:4000/conventions', options);
     const response3 = await request3.json();
     // console.log('CONVENTIONS - Response: ', response3);
-    response3.events.map(convention => { convention.img = getRandomPic('conventions'); allConventions.push(convention); allEvents.push(convention) });
+    response3.events.map(convention => { convention.img = getRandomPic('conventions'); convention.type = 'convention'; allConventions.push(convention); allEvents.push(convention) });
     allConventions.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
     const citiesWithConventions = [];
@@ -151,7 +141,7 @@ const App = () => {
     setAllEventsTogether(allEvents);
   };
 
-  console.log('ALL EVENTS FETCHED: ', allEventsTogether);
+  // console.log('ALL EVENTS FETCHED: ', allEventsTogether);
 
   // FETCHING THE USER INFORMATION - USER SESSION:
   const getUserData = async () => {
@@ -170,6 +160,23 @@ const App = () => {
     setUserData(data.user);
   };
 
+
+  // FETCHING GOOGLE MAPS API:
+  useEffect(() => {
+    const script = document.createElement('script');
+
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    }
+  }, []);
+
+
+  // LOAD THE USER DATA IF LOGGED IN:
   useEffect(() => {
     if (token) {
       setLoggedIn(true);
@@ -177,11 +184,11 @@ const App = () => {
     }
   }, []);
 
-  console.log('EVENT INFO: ', eventInfo);
+  // console.log('EVENT INFO: ', eventInfo);
 
   return (
     <div className="App">
-      <Context.Provider value={{ allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
+      <Context.Provider value={{ lat, setLat, lng, setLng, allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
         <BrowserRouter>
           {
             loggedIn ?

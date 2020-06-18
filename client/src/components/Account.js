@@ -8,7 +8,7 @@ import ParticlesBg from 'particles-bg';
 const Account = () => {
     const history = useHistory();
 
-    const { getUserData, userData, setUserData, setEventInfo, token, events } = useContext(Context);
+    const { getUserData, userData, setUserData, setEventInfo, eventInfo, token, events } = useContext(Context);
     // console.log('USERDATA:', userData);
     const [isEventClicked, setIsEventClicked] = useState(false);
     // this state change fragment between info and inputs to be edited
@@ -28,16 +28,13 @@ const Account = () => {
         'https://joeschmoe.io/api/v1/julie',
     ];
 
-    // this is where the events created by the user will be fetched:
-    const [refresh, setRefresh] = useState(true);
-
-
 
     useEffect(() => {
         window.scrollTo(0, 0)
         getUserData();
     }, []);
 
+    const [refresh, setRefresh] = useState(true);
     useEffect(() => {
         getUserData();
         setRefresh(false)
@@ -89,7 +86,7 @@ const Account = () => {
         isEventClicked && history.push('/event');
     });
 
-    // console.log('ACCOUNT_userData: ', userData);
+    console.log('ACCOUNT_userData: ', userData);
 
     return (
         <div className="space-navbar account-container">
@@ -149,7 +146,7 @@ const Account = () => {
                         userData &&
                             userData.events &&
                             userData.events.length ?
-                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.imgUrl} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} description={el.description} />)
+                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.imgUrl} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} description={el.description} type={el.type} />)
                             :
                             <p className="no-events">You didn't create any event yet</p>
                     }
