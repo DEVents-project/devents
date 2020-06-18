@@ -21,6 +21,10 @@ const SignUp = () => {
     // set a status for what happens after sign up 
     // const [isSignedUp, setIsSignedUp] = useState(false);
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const avatars = [
         'https://joeschmoe.io/api/v1/jeri',
         'https://joeschmoe.io/api/v1/jess',

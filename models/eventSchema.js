@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
+
 const EventSchema = new Schema({
     title: { type: String, required: true },
 
@@ -17,7 +18,7 @@ const EventSchema = new Schema({
 
     coordinates: { type: String, required: true },
 
-    imgUrl: { type: String, required: false },
+    imgUrl: { type: String, required: true },
 
     website: { type: String },
 

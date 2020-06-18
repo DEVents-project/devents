@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
 import ParticlesBg from 'particles-bg';
 import '../style/Registration.scss'
-import  registration from '../assets/img/register.svg'
+import  registration from '../assets/img/signup.svg'
 import  createEvent from '../assets/img/createEvent.svg'
 import  publish from '../assets/img/publish.svg'
 import SignUp from './SignUp';

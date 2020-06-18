@@ -1,253 +1,158 @@
-// Variables
-$dark-blue: #040b11;
-$mid-dark-blue: #154065;
-$mid-blue: #256eac;
-$mid-light-blue: #68a7df;
-$light-blue: #bcd8f1;
+@import "index";
 
+$light-blue-op: #6089ada6;
 $font-color: #ffffff;
 
-
-.main-h3 {
+.main-text {
+    padding: 2rem 1rem 3rem;
     text-align: center;
-    margin: 3em 2em 3em 2em;
-    // border-bottom: $mid-dark-blue solid 2px;
-    padding: 2em;
-    // background-color:$dark-blue;
+    line-height: 2.5rem;
     color: $dark-blue;
-    box-shadow: 5px 5px 5px 1.9px$mid-dark-blue;
+    font-family: CodeProLight;
+    text-align: center;
+}
+.underscore-2 {
+    position: relative;
+
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 5%;
+        left: -5%;
+        width: 110%;
+        height: 21px;
+        background-color: $mid-light-blue;
+        z-index: -1;
+    }
 }
 
 .question {
     text-align: center;
-    padding: 0.2em;
-    margin-top: 20px;
-    font-size: 26px;
-    
+    font-size: 1.5rem;
+    padding-top: 2rem;
 }
 
 // containers
-.img-registration{
-    
-    width: 10em;
-    height: 10em;
-    border-radius: 50%;
-    background-color:$mid-light-blue;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
-    margin-bottom: auto;
-                    
-    
-    
-    
-}
-.container {
 
+.container {
+    width: 100%;
+    padding: 1rem 0;
     display: flex;
     flex-wrap: wrap;
-    padding: 3px;
-    width: 100%;
     justify-content: center;
-    
-    
-    
-    
- 
- 
-    
+
     .squares {
         min-height: 35vh;
         width: 380px;
-        padding-top: 5em;
+        padding-top: 1rem;
         flex-direction: column;
         align-items: center;
-       
+
+        .img-registration {
+            width: 14rem;
+            height: 14rem;
+            border-radius: 50%;
+            background-color: $light-blue-op;
+            display: block;
+            margin: 1rem auto auto;
+        }
     }
-        
-        
-  
-   
 }
-   
 
 .aside {
     width: 50%;
     height: 15vh;
     border-radius: 10px;
     text-align: center;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 2em;
-    
+    margin: 1rem auto;
+
+    .title {
+        font-size: 1.3rem;
+    }
+
+    .registration-p {
+        text-align: center;
+        padding-top: 1rem;
+        opacity: 0.8;
+    }
 }
-    
-    
-   
-   
-
-
-
-
-
-
-p {
-    margin-top: 1em;
-    opacity: 0.7;
-    font-size: 14px;
-    
-    
-   
-}
-    
- 
 
 .buttons-container {
-  display: flex;
-  justify-content: center;
-  
-  .button {
-      margin-top: 80px;
-      width: 10em;
-      height: 2.5em;
-      margin-bottom: 2em;  
-    
-  }
-  .login-button {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0 3rem;
+    position: relative;
 
-      margin-left:1.5em;
-  
-  }
-
-
-}
-        
-        
-    
-        
-
-        
-        
-   
-
-    
-
-
-@media screen and (min-width:768px){
-
-    .main-h3 {
-        text-align: center;
-        margin-top: 3em;
-        margin-bottom: 3em;
-        
-        
-        
-    }
-    .question {
-        text-align: center;
-        padding: 0.2em;
-        margin-top: 20px;
-      
-        
-    }
-    
-    // containers
-
-    .container {
+    a {
+        text-decoration: none;
         display: flex;
-        
+        align-items: center;
+        justify-content: center;
+    }
 
+    .button {
+        width: 10rem;
+        height: 2.8rem;
+    }
+
+    .login-button {
+        margin-left: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
         .img-registration {
-            // position: relative;
+            position: relative;
             display: inline-block;
             margin: 0 auto;
-            
         }
-        
 
-        .aside {
-           
-            // position: relative;
-            // top: 13em;
-            // right:5em;
-            padding: 20px;
-        
-        }
-       
+        // .aside {
+        //     padding: 1rem 0;
+        //     margin: 0;
+
+        // }
     }
-     button {
+    .buttons-container {
+        margin: 3rem 0 2rem;
+        .button {
+            width: 15rem;
+            height: 3.5rem;
             position: relative;
-            // bottom: 4em;
+            // bottom: 3rem;
+            font-size: 1.4rem;
         }
-        .squares {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .img-1 {
-           
-            display: flex;
-            justify-content: center;
-        }
-    
-            
-    
-  
-       
+    }
+    .squares {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .img-1 {
+        display: flex;
+        justify-content: center;
+    }
 }
-        
 
-@media screen and (min-width:1270px){
+@media screen and (min-width: 1270px) {
+    .main-text {
+        text-align: center;
+    }
     .question {
         text-align: center;
         padding: 0.2em;
         margin-top: 20px;
-        
     }
-    
+
     // containers
 
     .container {
-
         display: flex;
         height: 60vh;
 
-    
-
         .aside {
-           
-            
             text-align: center;
-        
         }
-       
     }
-
-     button {
-            position: relative;
-            
-        }
-            
-        
-  
-       
 }
-    
-            
-        
-            
-    
-            
-            
-       
-    
-          
-        
-            
-    
-            
-            
-       
-    
-    

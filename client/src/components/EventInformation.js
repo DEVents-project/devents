@@ -5,16 +5,18 @@ import '../style/EventInformation.scss';
 import ParticlesBg from 'particles-bg';
 import Map from './Map';
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
-import { faHospitalAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 const EventInformation = (props) => {
     const history = useHistory();
 
-    const { getUserData, fetchEvents, events, setEvents, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
+    const { getUserData, fetchEvents, meetups, setMeetups, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
 
     // By clicking on EDIT:
     const [editMode, setEditMode] = useState(false);
     const [newDate, setNewDate] = useState('');
+    const [newTime, setNewTime] = useState('');
     const [newTitle, setNewTitle] = useState('');
     const [newDescription, setNewDescription] = useState('');
     const [newLocation, setNewLocation] = useState('');
@@ -31,14 +33,19 @@ const EventInformation = (props) => {
     const [isEventDeleted, setIsEventDeleted] = useState(false);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+        fetchEvents();
+    }, [])
+
+    useEffect(() => {
         isEventDeleted && history.push('/account');
     });
 
     const deleteEvent = async (e) => {
         e.preventDefault();
 
-        const eventToDelete = !events ? fetchEvents() : events.filter(event => event._id === eventInfo._id)[0];
-        console.log('EVENT TO DELETE', eventToDelete);
+        const eventToDelete = meetups.filter(meetup => meetup._id === eventInfo._id)[0];
+        // console.log('EVENT TO DELETE', eventToDelete);
         const deletedEvent = {
             method: "DELETE",
             headers: {
@@ -48,11 +55,11 @@ const EventInformation = (props) => {
             body: JSON.stringify(eventToDelete)
         };
 
-        const response = await fetch('http://localhost:4000/events', deletedEvent);
-        const data = await response.json();
-        console.log('EVent Deleted - Response: ', data);
-        if (data.success) {
-            setEvents(data.event);
+        const request = await fetch('http://localhost:4000/events', deletedEvent);
+        const response = await request.json();
+        // console.log('EVent Deleted - Response: ', response);
+        if (response.success) {
+            setMeetups(response.event);
             setEditMode(false);
             setIsEventDeleted(true);
         };
@@ -63,6 +70,7 @@ const EventInformation = (props) => {
 
         const newInfo = {
             date: newDate === '' ? eventInfo.date : newDate,
+            time: newTime === '' ? eventInfo.time : newTime,
             title: newTitle === '' ? eventInfo.title : newTitle,
             description: newDescription === '' ? eventInfo.description : newDescription,
             location: newLocation === '' ? eventInfo.location : newLocation,
@@ -81,11 +89,11 @@ const EventInformation = (props) => {
             body: JSON.stringify(newInfo)
         };
 
-        const response = await fetch('http://localhost:4000/events', newEventInfo);
-        const data = await response.json();
-        // console.log('EVent infoRmAtioN - Response: ', data);
-        if (data.success) {
-            setEventInfo(data.event);
+        const request = await fetch('http://localhost:4000/events', newEventInfo);
+        const response = await request.json();
+        // console.log('EVent infoRmAtioN - Response: ', response);
+        if (response.success) {
+            setEventInfo(response.event);
             setEditMode(false);
         };
     };
@@ -96,6 +104,7 @@ const EventInformation = (props) => {
 
     // console.log('USER INFORMATION_userData: ', userData);
     // console.log('EVENT INFORMATION_eventInfo: ', eventInfo);
+    // console.log('meetups: ', meetups);
 
     return (
 
@@ -114,15 +123,18 @@ const EventInformation = (props) => {
                                         <label htmlFor="date" className="edit-label event-information-date">Date
                                             <input type="date" placeholder={eventInfo && eventInfo.date} onChange={(e) => setNewDate(e.target.value)} />
                                         </label>
+                                        <label htmlFor="time" className="edit-label event-information-time">Time
+                                            <input type="time" placeholder={eventInfo && eventInfo.time} onChange={(e) => setNewTime(e.target.value)} />
+                                        </label>
                                         <label htmlFor="title" className="edit-label event-information-title">Title
                                             <input type="text" placeholder={eventInfo && eventInfo.title} onChange={(e) => setNewTitle(e.target.value)} />
                                         </label>
                                         <div className="event-information-box-one">
                                             {
-                                                eventInfo.img && eventInfo.img.includes('/image/') ?
-                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                                eventInfo.img && eventInfo.img.includes('http') ?
+                                                    <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                                     :
-                                                    <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
                                             }
                                         </div>
                                         <div className="event-information-box-two">
@@ -152,14 +164,15 @@ const EventInformation = (props) => {
                                     :
 
                                     <Fragment>
-                                        <p className="event-information-date">{eventInfo.date}</p>
+                                        <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
+                                        <p className="event-information-time">Time: <strong>{eventInfo.time} H</strong></p>
                                         <h2 className="event-information-title">{eventInfo.title}</h2>
                                         <div className="event-information-box-one">
                                             {
-                                                eventInfo.img && eventInfo.img.includes('/image/') ?
-                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                                eventInfo.img && eventInfo.img.includes('http') ?
+                                                    <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                                     :
-                                                    <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                                    <img className="event-information-image" src={eventInfo.img ? `http://localhost:4000${eventInfo.img}` : `http://localhost:4000${eventInfo.imgUrl}`} alt="event-image" />
                                             }
                                             <div className="editing-buttons">
                                                 <button className="button link-to-site" onClick={() => setEditMode(true)}>EDIT</button>
@@ -171,10 +184,12 @@ const EventInformation = (props) => {
                                             <p className="event-information-location">{eventInfo.address}</p>
                                         </div>
                                         <div className="google-map">
-                                            <p className="map-address">{eventInfo.location ?
-                                                eventInfo.location
-                                                :
-                                                null}</p>
+                                            {
+                                                eventInfo.location ?
+                                                    <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location}</p>
+                                                    :
+                                                    null
+                                            }
                                             {
                                                 eventInfo.coordinates ?
                                                     <Map
@@ -195,14 +210,15 @@ const EventInformation = (props) => {
                         :
 
                         <Fragment>
-                            <p className="event-information-date">{eventInfo.date}</p>
+                            <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
+                            <p className="event-information-time">Time <strong>{eventInfo.time} H</strong></p>
                             <h2 className="event-information-title">{eventInfo.title}</h2>
                             <div className="event-information-box-one">
                                 {
-                                    eventInfo.img && eventInfo.img.includes('/image/') ?
-                                        <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                    eventInfo.img && eventInfo.img.includes('http') ?
+                                        <img className="event-information-image" src={eventInfo.img} alt="event-image" />
                                         :
-                                        <img className="event-information-image" src='https://res.cloudinary.com/jimbocloud/image/upload/v1590935043/devents/conference2.jpg' alt="event-image" />
+                                        <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
                                 }
                                 {
                                     eventInfo.url ?
@@ -215,10 +231,12 @@ const EventInformation = (props) => {
                                 <p className="event-information-location">{eventInfo.address}</p>
                             </div>
                             <div className="google-map">
-                                <p className="map-address">{eventInfo.location ?
-                                    eventInfo.location
-                                    :
-                                    null}</p>
+                                {
+                                    eventInfo.location ?
+                                        <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location}</p>
+                                        :
+                                        null
+                                }
                                 {
                                     eventInfo.coordinates ?
                                         <Map

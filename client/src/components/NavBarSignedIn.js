@@ -89,7 +89,7 @@ const NavBarSignedIn = () => {
                     </ul>
                     <ul className="nav-group">
                         <li><NavLink to="/account" onClick={() => setIsNavVisible(false)} activeClassName="selected-section" className="underline">ACCOUNT</NavLink></li>
-                        <li><NavLink to="/" onClick={() => { closeSession(); setIsNavVisible(false) }} className="underline">SIGN OUT</NavLink></li>
+                        <li><NavLink to="/" onClick={() => { closeSession(); setIsNavVisible(false) }} className="underline">LOG OUT</NavLink></li>
                     </ul>
                 </nav>
             </header>

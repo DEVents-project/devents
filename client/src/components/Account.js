@@ -31,7 +31,10 @@ const Account = () => {
     // this is where the events created by the user will be fetched:
     const [refresh, setRefresh] = useState(true);
 
+
+
     useEffect(() => {
+        window.scrollTo(0, 0)
         getUserData();
     }, []);
 
@@ -146,7 +149,7 @@ const Account = () => {
                         userData &&
                             userData.events &&
                             userData.events.length ?
-                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.imgUrl} date={el.date} location={el.location} coordinates={el.coordinates} description={el.description} />)
+                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.imgUrl} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} description={el.description} />)
                             :
                             <p className="no-events">You didn't create any event yet</p>
                     }
