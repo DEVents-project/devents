@@ -11,13 +11,13 @@ passport.deserializeUser(function (id, cb) {
     cb(null, id);
 });
 
-const userID = process.env.GITHUB_CLIENT_ID;
-const userSecret = process.env.GITHUB_CLIENT_SECRET;
+const clientID = process.env.GITHUB_CLIENT_ID;
+const clientSecret = process.env.GITHUB_CLIENT_SECRET;
 
 passport.use(new GithubStrategy({
-    clientID: userID,
-    clientSecret: userSecret,
-    callbackURL: "http://localhost:4000/login/auth/github/callback"
+    clientID: clientID,
+    clientSecret: clientSecret,
+    callbackURL: "http://localhost:4000/auth/github/redirect"
 },
     function (accessToken, refreshToken, profile, cb) {
 
