@@ -75,6 +75,19 @@
         margin-top: 1rem;
         padding: 0.5rem 2.5rem;
     }
+    .delete-button {
+        margin-top: 2rem;
+        padding: 0.5rem 2.5rem;
+        box-shadow: 1px 3px $dark-red;
+
+        &:after {
+            background-color: $mid-red;
+        }
+
+        &:before {
+            background-color: $dark-red;
+        }
+    }
 }
 
 .personal-events {
