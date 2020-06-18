@@ -238,7 +238,6 @@ const EventInformation = (props) => {
                                             <p className="event-information-description">{eventInfo.description}</p>
                                             <p className="event-information-location">{eventInfo.address}</p>
                                         </div>
-                                        <button onClick={getOneEvent}>CLICK ME</button>
                                         <div className="google-map">
                                             {
                                                 eventInfo.location ?
@@ -247,7 +246,7 @@ const EventInformation = (props) => {
                                                     null
                                             }
                                             {
-                                                eventInfo ?
+                                                eventInfo.coordinates ?
                                                     <Map
                                                         google={props.google}
                                                         center={{ lat: eventInfo.lat, lng: eventInfo.lng }}
