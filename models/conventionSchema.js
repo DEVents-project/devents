@@ -8,7 +8,7 @@ const conventionSchema = new Schema({
     location: String,
     city: String,
     description: String,
-    img: String,
+    imgUrl: String,
     url: String,
 });
 
