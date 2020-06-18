@@ -10,7 +10,7 @@ Route.get("/", auth, getUser);
 Route.post("/", validateUser(), postUser);
 Route.post("/login", login);
 Route.put("/", auth, putUser);
-Route.delete("/:id", auth, deleteUser);
+Route.delete("/", auth, deleteUser);
 
 // github login
 // Route.get("/login/github", getGithub);
