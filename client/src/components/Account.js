@@ -8,8 +8,8 @@ import ParticlesBg from 'particles-bg';
 const Account = () => {
     const history = useHistory();
 
-    const { getUserData, userData, setUserData, setEventInfo, eventInfo, token, events } = useContext(Context);
-    // console.log('USERDATA:', userData);
+    const { getUserData, userData, setUserData, setEventInfo, eventInfo, token, events, lat, lng } = useContext(Context);
+
     const [isEventClicked, setIsEventClicked] = useState(false);
     // this state change fragment between info and inputs to be edited
     const [editInfo, setEditInfo] = useState(false);
@@ -45,7 +45,6 @@ const Account = () => {
 
         // old data:
         const { name, email, password, avatar, events } = userData;
-        // console.log('TOKEN HERE: ', token);
 
         const newInfo = {
             name: newName === '' ? name : newName,
@@ -86,7 +85,7 @@ const Account = () => {
         isEventClicked && history.push('/event');
     });
 
-    console.log('ACCOUNT_userData: ', userData);
+    // console.log('ACCOUNT_userData: ', userData);
 
     return (
         <div className="space-navbar account-container">
@@ -146,7 +145,7 @@ const Account = () => {
                         userData &&
                             userData.events &&
                             userData.events.length ?
-                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.imgUrl} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} description={el.description} type={el.type} />)
+                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
                             :
                             <p className="no-events">You didn't create any event yet</p>
                     }

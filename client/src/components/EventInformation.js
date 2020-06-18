@@ -7,12 +7,11 @@ import Map from './Map';
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { setLanguage } from 'react-geocode';
 
 const EventInformation = (props) => {
     const history = useHistory();
 
-    const { lat, setLat, lng, setLng, getOneEvent, getUserData, fetchEvents, meetups, setMeetups, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
+    const { lat, setLat, lng, setLng, getOneEvent, meetups, setMeetups, eventInfo, setEventInfo, userData, token } = useContext(Context);
 
     // By clicking on EDIT:
     const [editMode, setEditMode] = useState(false);
@@ -23,103 +22,18 @@ const EventInformation = (props) => {
     const [newLocation, setNewLocation] = useState('');
     const [newCoordinates, setNewCoordinates] = useState('');
 
-    const [eventType, setEventType] = useState(localStorage.getItem('eventType'));
-    const [eventId, setEventId] = useState(localStorage.getItem('eventId'));
-
-
-
-    const [refresh, setRefresh] = useState(false);
     useEffect(() => {
 
         window.scrollTo(0, 0);
 
-        setLat(localStorage.getItem('lat'));
-        setLng(localStorage.getItem('lng'));
-
-        const getOneEvent = async () => {
-
-            const options = {
-                method: 'GET',
-                headers: {
-                    'eventId': eventId,
-                    'lan': lat,
-                    'lng': lng,
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            };
-
-            if (eventType === 'meetup') {
-                const response = await fetch('http://localhost:4000/events/event', options);
-                const data = await response.json();
-                setEventInfo(
-                    {
-                        title: data.event.title,
-                        img: data.event.imgUrl,
-                        date: data.event.date,
-                        time: data.event.time,
-                        location: data.event.location,
-                        coordinates: data.event.coordinates,
-                        description: data.event.description,
-                        url: data.event.url,
-                        authorId: data.event.authorId,
-                        _id: data.event._id,
-                        type: data.event.type
-                    });
-
-                console.log('RESPONSE: ', data)
-
-            } else if (eventType === 'workshop') {
-                const response = await fetch('http://localhost:4000/workshops', options);
-                const data = await response.json();
-                setEventInfo(
-                    {
-                        title: data.event.title,
-                        img: data.event.imgUrl,
-                        date: data.event.date,
-                        time: data.event.time,
-                        location: data.event.location,
-                        coordinates: data.event.coordinates,
-                        description: data.event.description,
-                        url: data.event.url,
-                        authorId: data.event.authorId,
-                        _id: data.event._id,
-                        type: data.event.type
-                    });
-
-            } else if (eventType === 'convention') {
-                const response = await fetch('http://localhost:4000/conventions', options);
-                const data = await response.json();
-                setEventInfo(
-                    {
-                        title: data.event.title,
-                        img: data.event.imgUrl,
-                        date: data.event.date,
-                        time: data.event.time,
-                        location: data.event.location,
-                        coordinates: data.event.coordinates,
-                        description: data.event.description,
-                        url: data.event.url,
-                        authorId: data.event.authorId,
-                        _id: data.event._id,
-                        type: data.event.type
-                    });
-            }
-        };
-
-        if (eventInfo) {
-            console.log('EVENTINFO === TRUE', eventInfo.coordinates);
-            setLat(parseFloat(eventInfo.coordinates.split(',')[0].slice(7, 14)));
-            setLng(parseFloat(eventInfo.coordinates.split(',')[1].slice(6, 13)));
+        const event = localStorage.getItem('event-info')
+        if (event) {
+            setEventInfo(JSON.parse(event))
+        } else {
             localStorage.setItem('eventType', eventInfo.type);
             localStorage.setItem('eventId', eventInfo._id);
-            localStorage.setItem('lat', lat);
-            localStorage.setItem('lng', lng);
-        } else {
-            console.log('EVENTINFO === FALSE');
-            getOneEvent();
-            setRefresh(true)
         }
+
     }, []);
 
 
@@ -143,12 +57,14 @@ const EventInformation = (props) => {
         if (response.success) {
             setMeetups(response.event);
             setEditMode(false);
+            localStorage.removeItem('event-info');
             setIsEventDeleted(true);
         };
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // console.log('NEW COORDINATES: ', newCoordinates);
 
         const newInfo = {
             date: newDate === '' ? eventInfo.date : newDate,
@@ -156,8 +72,10 @@ const EventInformation = (props) => {
             title: newTitle === '' ? eventInfo.title : newTitle,
             description: newDescription === '' ? eventInfo.description : newDescription,
             location: newLocation === '' ? eventInfo.location : newLocation,
-            coordinates: newCoordinates === '' ? eventInfo.coordinates : newCoordinates,
-            _id: eventInfo._id
+            coordinates: JSON.stringify(newCoordinates) === '' ? eventInfo.coordinates : JSON.stringify(newCoordinates),
+            _id: eventInfo._id,
+            lat: JSON.stringify(newCoordinates) === '' ? lat : newCoordinates.lat,
+            lng: JSON.stringify(newCoordinates) === '' ? lng : newCoordinates.lng
         };
 
         // console.log('NEW INFO: ', newInfo);
@@ -176,6 +94,7 @@ const EventInformation = (props) => {
         // console.log('EVent infoRmAtioN - Response: ', response);
         if (response.success) {
             setEventInfo(response.event);
+            localStorage.setItem('event-info', JSON.stringify(response.event));
             setEditMode(false);
         };
     };
@@ -186,27 +105,9 @@ const EventInformation = (props) => {
         isEventDeleted && history.push('/account');
     });
 
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    //     setRefresh(true)
 
-    //     localStorage.setItem('eventType', eventInfo.type);
-    //     localStorage.setItem('eventId', eventInfo._id);
-    //     localStorage.setItem('lat', lat);
-    //     localStorage.setItem('lng', lng);
-    // }, [])
+    // console.log('INFORMATION EVENT: ', eventInfo);
 
-
-    console.log('EVEnT TYPE: ', eventType)
-    console.log('EVEnT ID: ', eventId)
-
-    console.log('lat: ', lat);
-    console.log('lng: ', lng);
-
-    console.log('INFORMATION EVENT: ', eventInfo);
-    // console.log('USER INFORMATION_userData: ', userData);
-    // console.log('EVENT INFORMATION_eventInfo: ', eventInfo);
-    // console.log('meetups: ', meetups);
 
     return (
 
@@ -238,10 +139,10 @@ const EventInformation = (props) => {
                                                     </label>
                                                     <div className="event-information-box-one">
                                                         {
-                                                            eventInfo.img && eventInfo.img.includes('http') ?
-                                                                <img className="event-information-image" src={eventInfo.img} alt="event-image" />
+                                                            eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
+                                                                <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
                                                                 :
-                                                                <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                                                <img className="event-information-image" src={`http://localhost:4000${eventInfo.imgUrl}`} alt="event-image" />
                                                         }
                                                     </div>
                                                     <div className="event-information-box-two">
@@ -251,13 +152,13 @@ const EventInformation = (props) => {
                                                     </div>
                                                     <div className="google-map">
                                                         <label className="event-information-location">Location
-                                                <GoogleMapsAutocomplete setLocation={setNewLocation} setCoordinates={setNewCoordinates} />
+                                                <GoogleMapsAutocomplete setLocation={setNewLocation} setCoordinates={setNewCoordinates} setLat={setLat} setLng={setLng} />
                                                         </label>
                                                         {
-                                                            eventInfo.coordinates && lat && lng ?
+                                                            eventInfo ?
                                                                 <Map
                                                                     google={props.google}
-                                                                    center={{ lat: lat, lng: lng }}
+                                                                    center={{ lat: eventInfo.lat, lng: eventInfo.lng }}
                                                                     height='350px'
                                                                     width='1000px'
                                                                     zoom={15}
@@ -276,13 +177,13 @@ const EventInformation = (props) => {
                                                     <h2 className="event-information-title">{eventInfo.title}</h2>
                                                     <div className="event-information-box-one">
                                                         {
-                                                            eventInfo.img && eventInfo.img.includes('http') ?
-                                                                <img className="event-information-image" src={eventInfo.img} alt="event-image" />
+                                                            eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
+                                                                <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
                                                                 :
-                                                                <img className="event-information-image" src={eventInfo.img ? `http://localhost:4000${eventInfo.img}` : `http://localhost:4000${eventInfo.imgUrl}`} alt="event-image" />
+                                                                <img className="event-information-image" src={eventInfo.imgUrl ? `http://localhost:4000${eventInfo.imgUrl}` : `http://localhost:4000${eventInfo.imgUrlUrl}`} alt="event-image" />
                                                         }
                                                         <div className="editing-buttons">
-                                                            <button className="button link-to-site" onClick={() => setEditMode(true)}>EDIT</button>
+                                                            <button className="button link-to-site" onClick={() => { setEditMode(true); localStorage.removeItem('event-info') }}>EDIT</button>
                                                             <button className="button link-to-site" onClick={(e) => { if (window.confirm('Are you sure you want to delete this event?')) { deleteEvent(e) } }}>DELETE</button>
                                                         </div>
                                                     </div>
@@ -298,10 +199,10 @@ const EventInformation = (props) => {
                                                                 null
                                                         }
                                                         {
-                                                            lat && lng ?
+                                                            eventInfo ?
                                                                 <Map
                                                                     google={props.google}
-                                                                    center={{ lat: lat, lng: lng }}
+                                                                    center={{ lat: eventInfo.lat, lng: eventInfo.lng }}
                                                                     height='350px'
                                                                     width='1000px'
                                                                     zoom={15}
@@ -322,10 +223,10 @@ const EventInformation = (props) => {
                                         <h2 className="event-information-title">{eventInfo.title}</h2>
                                         <div className="event-information-box-one">
                                             {
-                                                eventInfo.img && eventInfo.img.includes('http') ?
-                                                    <img className="event-information-image" src={eventInfo.img} alt="event-image" />
+                                                eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
+                                                    <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
                                                     :
-                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.img}`} alt="event-image" />
+                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.imgUrl}`} alt="event-image" />
                                             }
                                             {
                                                 eventInfo.url ?
@@ -346,10 +247,10 @@ const EventInformation = (props) => {
                                                     null
                                             }
                                             {
-                                                eventInfo.coordinates ?
+                                                eventInfo ?
                                                     <Map
                                                         google={props.google}
-                                                        center={{ lat: lat, lng: lng }}
+                                                        center={{ lat: eventInfo.lat, lng: eventInfo.lng }}
                                                         height='350px'
                                                         width='1000px'
                                                         zoom={15}

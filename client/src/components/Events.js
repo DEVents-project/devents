@@ -11,7 +11,7 @@ import ScrollToTop from "react-scroll-to-top"
 const Events = () => {
     const history = useHistory();
 
-    const { lat, setLat, lng, setLng, userData, fetchEvents, setEventInfo, meetups, meetupsCities, workshops, workshopsCities, conventions, conventionsCities } = useContext(Context);
+    const { meetups, meetupsCities, workshops, workshopsCities, conventions, conventionsCities } = useContext(Context);
 
     // number of events that will show after clicking on 'SEE MORE':
     const [isVisible, setIsVisible] = useState(9);
@@ -21,20 +21,12 @@ const Events = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
+        setEventType('meetups')
     }, [])
 
     const loadMore = () => {
         setIsVisible(isVisible + 9);
     };
-
-    useEffect(() => {
-        fetchEvents();
-        setEventType('meetups');
-    }, []);
-
-    useEffect(() => {
-        fetchEvents();
-    }, [userData]);
 
     useEffect(() => {
         setSelectedCity('disabled')
@@ -84,11 +76,11 @@ const Events = () => {
                                     <Fragment>
                                         {
                                             eventType === 'meetups' ?
-                                                meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} lat={el.lat} lng={el.lng} description={el.description} url={el.url} type={el.type} lat={lat} setLat={setLat} lng={lng} setLng={setLng} />)
+                                                meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} el={el} setIsEventClicked={setIsEventClicked} />)
                                                 : eventType === 'workshops' ?
-                                                    workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} lat={el.lat} lng={el.lng} description={el.description} url={el.url} type={el.type} lat={lat} setLat={setLat} lng={lng} setLng={setLng} />)
+                                                    workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} el={el} setIsEventClicked={setIsEventClicked} />)
                                                     : eventType === 'conventions' ?
-                                                        conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.img} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} lat={el.lat} lng={el.lng} description={el.description} url={el.url} type={el.type} lat={lat} setLat={setLat} lng={lng} setLng={setLng} />)
+                                                        conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} el={el} setIsEventClicked={setIsEventClicked} />)
                                                         : null
                                         }
                                     </Fragment>

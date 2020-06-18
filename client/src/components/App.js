@@ -84,11 +84,13 @@ const App = () => {
         time: meetup.time,
         city: meetup.location.split(', ')[1],
         coordinates: meetup.coordinates,
-        img: meetup.imgUrl,
+        imgUrl: meetup.imgUrl,
         location: meetup.location,
         authorId: meetup.authorId,
         _id: meetup._id,
-        type: 'meetup'
+        type: 'meetup',
+        lat: parseFloat(meetup.coordinates.split(',')[0].slice(7, 14)),
+        lng: parseFloat(meetup.coordinates.split(',')[1].slice(6, 13))
       });
       allEvents.push({
         title: meetup.title,
@@ -98,11 +100,13 @@ const App = () => {
         time: meetup.time,
         city: meetup.location.split(', ')[1],
         coordinates: meetup.coordinates,
-        img: meetup.imgUrl,
+        imgUrl: meetup.imgUrl,
         location: meetup.location,
         authorId: meetup.authorId,
         _id: meetup._id,
-        type: 'meetup'
+        type: 'meetup',
+        lat: parseFloat(meetup.coordinates.split(',')[0].slice(7, 14)),
+        lng: parseFloat(meetup.coordinates.split(',')[1].slice(6, 13))
       });
     });
 
@@ -117,7 +121,7 @@ const App = () => {
     const request2 = await fetch('http://localhost:4000/workshops', options);
     const response2 = await request2.json();
     // console.log('WORKSHOPS - Response: ', response2);
-    response2.events.map(workshop => { workshop.img = getRandomPic('workshops'); workshop.type = 'workshop'; allWorkshops.push(workshop); allEvents.push(workshop) });
+    response2.events.map(workshop => { workshop.imgUrl = getRandomPic('workshops'); workshop.type = 'workshop'; allWorkshops.push(workshop); allEvents.push(workshop) });
     allWorkshops.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
     const citiesWithWorkshops = [];
@@ -131,7 +135,7 @@ const App = () => {
     const request3 = await fetch('http://localhost:4000/conventions', options);
     const response3 = await request3.json();
     // console.log('CONVENTIONS - Response: ', response3);
-    response3.events.map(convention => { convention.img = getRandomPic('conventions'); convention.type = 'convention'; allConventions.push(convention); allEvents.push(convention) });
+    response3.events.map(convention => { convention.imgUrl = getRandomPic('conventions'); convention.type = 'convention'; allConventions.push(convention); allEvents.push(convention) });
     allConventions.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
 
     const citiesWithConventions = [];
@@ -183,6 +187,15 @@ const App = () => {
       getUserData();
     }
   }, []);
+
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  useEffect(() => {
+    fetchEvents();
+  }, [userData]);
 
   // console.log('EVENT INFO: ', eventInfo);
 

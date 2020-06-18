@@ -7,14 +7,17 @@ const GoogleMapsAutocomplete = ({ setLocation, setCoordinates, setLat, setLng })
     const getCoordinates = (address) => {
         geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
-            .then((lat, lng) => {
-                setCoordinates(JSON.stringify(lat, lng))
-                return (JSON.stringify(lat, lng))
-            }).then((res) => {
-                console.log('RES', res);
-                setLat(parseFloat(res.split(',')[0].slice(7, 14)));
-                setLng(parseFloat(res.split(',')[1].slice(6, 13)));
-            });
+            .then((data) => {
+                // console.log('LAT: ', data.lat);
+                // console.log('LNG: ', data.lng);
+                setCoordinates(data)
+                return (data)
+            }).then(res => {
+                // console.log('RES:LAT', res.lat);
+                // console.log('RES:LNG', res.lng);
+                setLat(res.lat);
+                setLng(res.lng)
+            })
     };
 
     return (
