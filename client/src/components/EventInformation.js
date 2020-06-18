@@ -22,6 +22,7 @@ const EventInformation = (props) => {
     const [newLocation, setNewLocation] = useState('');
     const [newCoordinates, setNewCoordinates] = useState('');
 
+
     useEffect(() => {
 
         window.scrollTo(0, 0);
@@ -29,9 +30,6 @@ const EventInformation = (props) => {
         const event = localStorage.getItem('event-info')
         if (event) {
             setEventInfo(JSON.parse(event))
-        } else {
-            localStorage.setItem('eventType', eventInfo.type);
-            localStorage.setItem('eventId', eventInfo._id);
         }
 
     }, []);
@@ -152,7 +150,7 @@ const EventInformation = (props) => {
                                                     </div>
                                                     <div className="google-map">
                                                         <label className="event-information-location">Location
-                                                <GoogleMapsAutocomplete setLocation={setNewLocation} setCoordinates={setNewCoordinates} setLat={setLat} setLng={setLng} />
+                                                <GoogleMapsAutocomplete isRequired={false} setLocation={setNewLocation} setCoordinates={setNewCoordinates} setLat={setLat} setLng={setLng} />
                                                         </label>
                                                         {
                                                             eventInfo ?
