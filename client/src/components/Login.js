@@ -99,7 +99,7 @@ const Login = () => {
             </form>
 
             <p className="github-log">Login with your<FontAwesomeIcon className="github-icon" icon={faGithubAlt} />GitHub account?
-                <a className="github-link" href="http://localhost:4000/users/login/auth/github">Click here</a></p>
+                <a className="github-link" href="http://localhost:4000/auth/github">Click here</a></p>
         </main>
     )
 }

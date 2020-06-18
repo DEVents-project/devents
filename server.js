@@ -88,7 +88,7 @@ server.get("/auth/github/redirect",
     passport.authenticate("github", { failureRedirect: "/login" }),
     function (req, res) {
         console.log(req.user);
-        res.redirect("/account");
+        res.redirect("/");
     });
 
 server.use((req, res, next) => {
