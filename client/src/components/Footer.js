@@ -11,9 +11,9 @@ export default function Footer() {
             <div className="footer">&copy;Devents2020</div>
             <div className="footer"></div>
             <div className="footer">
-                <Link to="/faq"><FontAwesomeIcon className="icon" icon={faQuestionCircle} /></Link>
+                <Link to="/faq"><FontAwesomeIcon className="icon" title="Faq" icon={faQuestionCircle} /></Link>
                 <Link to="/contact"><FontAwesomeIcon className="icon" title="Contact Us" icon={faPaperPlane} /></Link>
-                <FontAwesomeIcon className="icon section" icon={faSearch} />
+                {/* <FontAwesomeIcon className="icon section" icon={faSearch} /> */}
             </div>
         </footer>
     )

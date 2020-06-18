@@ -163,7 +163,7 @@ const CreateEvent = (props) => {
                         onChange={(e) => setUrl(e.target.value)}
                     />
                 </label>
-                <label className="event-label img-label"> Image
+                <label className="event-label img-label"> Image (png, jpeg)
                     <input
                         type="file"
                         className="event-input img-file"
