@@ -5,8 +5,14 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const nodemailer = require("nodemailer");
 const passport = require("passport");
-const passportSetup = require("./middleware/oAuth")
+const passportSetup = require("./config/passportSetup");
+const cookieSession = require("cookie-session");
 
+// using config/keys for gitHub and cookies but we can move it to env if everything works
+const keys = require("./config/keys")
+
+// git route
+const gitRoute = require("./routes/gitRoute");
 
 const indexRoute = require("./routes/indexRoute");
 const eventRoute = require("./routes/eventRoute");
@@ -32,9 +38,16 @@ server.use(logger("dev"));
 server.use(cors);
 server.use(express.urlencoded({ extended: false }));
 
+// git stuff 
 server.use(passport.initialize());
 server.use(passport.session());
+server.use("/auth", gitRoute);
 
+// git cookies
+server.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [keys.session.cookieKey]
+}));
 
 server.use("/", indexRoute);
 server.use("/users", userRoute)
@@ -81,15 +94,7 @@ server.post('/send-email', async (req, res) => {
     console.log('and... message sent!!!');
 });
 
-server.get("/auth/github",
-    passport.authenticate("github", { scope: ["profile"] }));
 
-server.get("/auth/github/redirect",
-    passport.authenticate("github", { failureRedirect: "/login" }),
-    function (req, res) {
-        console.log(req.user);
-        res.redirect("/");
-    });
 
 server.use((req, res, next) => {
     next(createError(404));
