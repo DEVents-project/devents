@@ -15,7 +15,8 @@ import CreateEvent from "./CreateEvent";
 import Contact from "./Contact";
 import Faq from "./Faq";
 import Context from './Context';
-import Moment from "moment"
+import Moment from "moment";
+import Logout from './Logout';
 
 
 const App = () => {
@@ -220,6 +221,7 @@ const App = () => {
             <Route path="/addevent" component={CreateEvent} />
             <Route path="/contact" component={Contact} />
             <Route path="/faq" component={Faq} />
+            <Route path="/logout" component={Logout} />
           </Switch>
           <Footer />
         </BrowserRouter>
