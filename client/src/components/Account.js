@@ -150,7 +150,10 @@ const Account = () => {
                                         }
                                     </div>
                                     <button type='submit' className="button save-button" >Save</button>
-                                    <button className="button delete-button button-margin" onClick={(e) => { if (window.confirm('Are you sure you want to delete your account?')) { deleteAccount(e) } }}>Delete Account</button>
+                                    <button className="button delete-button button-margin" onClick={(e) => {
+                                        if (window.confirm(`Dear ${userData.name}, \n\nplease note that the events you have created will remain on the website if you do not remove them before deleting your account. \n\nAre you sure you want to delete your account?`)) { deleteAccount(e) }
+                                    }}>Delete Account
+                                         </button>
                                 </form>
                             </div>
                         </Fragment>
