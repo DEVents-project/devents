@@ -69,7 +69,6 @@ const Login = () => {
     return (
         <main className="login-container space-navbar">
 
-
             <ParticlesBg color="#8d8d8d" num={55} type="cobweb" bg={true} />
             <form className="login-form puff-in-center" onSubmit={handleLogin}>
                 <h2 className="h2">LOG IN</h2>
