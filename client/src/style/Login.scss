@@ -1,13 +1,12 @@
-// variables 
+// variables
 $font-color: #ffffff;
-$border: .2rem;
+$border: 0.2rem;
 
 @import "index";
 
-
 .login-container {
     width: 100%;
-    height: auto;
+    min-height: 65vh;
     padding: 2rem 0;
     // margin: 2rem 0;
     display: flex;
@@ -15,7 +14,6 @@ $border: .2rem;
     justify-content: center;
     align-items: center;
 
-           
     .login-form {
         width: 80%;
         height: 100%;
@@ -25,17 +23,17 @@ $border: .2rem;
         justify-content: center;
         align-items: center;
         background-color: $mid-dark-blue;
-        border-radius: $border; 
-        box-shadow: -.8rem .5rem $mid-light-blue;
+        border-radius: $border;
+        box-shadow: -0.8rem 0.5rem $mid-light-blue;
         // transform: skewX(-2deg);
-        
+
         .h2 {
             margin: 1rem 0;
             // padding: 0 0 2rem;
-            letter-spacing: .1rem;
+            letter-spacing: 0.1rem;
             color: $font-color;
         }
-        
+
         .login-field {
             width: 90%;
             display: flex;
@@ -43,19 +41,19 @@ $border: .2rem;
             align-items: center;
             justify-content: center;
             padding: 1rem;
-            
+
             .log-icons {
                 font-size: 1.8rem;
                 color: $dark-blue;
             }
-            .login-input { 
+            .login-input {
                 height: 2.8rem;
                 width: 90%;
-                margin-left: 1rem ;
+                margin-left: 1rem;
                 padding: 1ch;
                 border: none;
                 border-radius: $border;
-                font-size: 1.1rem;      
+                font-size: 1.1rem;
                 color: $dark-blue;
             }
         }
@@ -65,51 +63,49 @@ $border: .2rem;
             width: 90%;
             // padding: 1.5rem;
             margin: 1rem 0;
-            font-size: 1.2rem;  
+            font-size: 1.2rem;
         }
     }
     .github-log {
         width: 80%;
         margin-top: 1rem;
-        padding: .5rem 0;
+        padding: 0.5rem 0;
         text-align: center;
-        color:$dark-blue;
+        color: $dark-blue;
 
         .github-icon {
-            margin: 0 .3rem;
+            margin: 0 0.3rem;
             font-size: 1rem;
-            color: $dark-blue;  
+            color: $dark-blue;
         }
-        .github-link{
-            padding: .2rem;
+        .github-link {
+            padding: 0.2rem;
             cursor: pointer;
             text-decoration: none;
-            color:$light-blue;
+            color: $light-blue;
 
             &:link {
-                color:$mid-light-blue;
+                color: $mid-light-blue;
             }
             &:visited {
-                color:$mid-blue;
+                color: $mid-blue;
             }
             &:hover {
-                color:$mid-dark-blue;
+                color: $mid-dark-blue;
             }
             &:active {
-                color:$dark-blue;
+                color: $dark-blue;
             }
         }
     }
 }
 
-@media screen and(min-width: 650px){
+@media screen and(min-width: 650px) {
     .login-form {
         max-width: 40%;
         max-height: 70%;
-        
     }
 }
-
 
 .devCoding {
     display: block;
@@ -118,9 +114,5 @@ $border: .2rem;
     align-self: flex-end;
     position: absolute;
     bottom: 10rem;
-    right: 3rem ;
-
+    right: 3rem;
 }
-
-
-
