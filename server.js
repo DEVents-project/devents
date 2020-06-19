@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const nodemailer = require("nodemailer");
 const passport = require("passport");
+const env = require("./config/config")
 
 
 
@@ -22,7 +23,7 @@ const { cors } = require("./middleware/security");
 
 const port = process.env.PORT || 4000;
 
-mongoose.connect("mongodb://127.0.0.1:27017/devents", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(env.db, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on("error", (err) => console.log(err));
 mongoose.connection.on("open", () => console.log("database connected"));
 
