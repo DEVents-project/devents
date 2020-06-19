@@ -166,6 +166,7 @@ const CreateEvent = (props) => {
                 <label className="event-label img-label"> Image (png, jpeg)
                     <input
                         type="file"
+                        placeholder="only png or jpeg"
                         className="event-input img-file"
                         onChange={(e) => setImage(e.target.files[0])}
                     />

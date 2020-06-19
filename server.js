@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const nodemailer = require("nodemailer");
 const passport = require("passport");
-const passportSetup = require("./middleware/githubAuth")
+
 
 
 const indexRoute = require("./routes/indexRoute");
@@ -80,16 +80,6 @@ server.post('/send-email', async (req, res) => {
     res.json({ status: true });
     console.log('and... message sent!!!');
 });
-
-server.get("/login/auth/github",
-    passport.authenticate("github", { scope: ["profile"] }));
-
-server.get("/login/auth/github/callback",
-    passport.authenticate("github", { failureRedirect: "/login" }),
-    function (req, res) {
-        console.log(req.user);
-        res.redirect("/account");
-    });
 
 server.use((req, res, next) => {
     next(createError(404));
