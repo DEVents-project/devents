@@ -8,7 +8,7 @@ import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { faGithubAlt } from '@fortawesome/free-brands-svg-icons';
 
 import ParticlesBg from 'particles-bg';
-import DevCoding from '../assets/img/dev-coding2.png';
+
 
 
 
@@ -68,7 +68,7 @@ const Login = () => {
 
     return (
         <main className="login-container space-navbar">
-            {/* <img src={DevCoding} alt="Developer coding" className="devCoding" /> */}
+
 
             <ParticlesBg color="#8d8d8d" num={55} type="cobweb" bg={true} />
             <form className="login-form puff-in-center" onSubmit={handleLogin}>
