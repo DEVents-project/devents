@@ -182,7 +182,7 @@ const EventInformation = (props) => {
                                                         }
                                                         <div className="editing-buttons">
                                                             <button className="button link-to-site" onClick={() => { setEditMode(true); localStorage.removeItem('event-info') }}>EDIT</button>
-                                                            <button className="button link-to-site" onClick={(e) => { if (window.confirm('Are you sure you want to delete this event?')) { deleteEvent(e) } }}>DELETE</button>
+                                                            <button className="button link-to-site delete-button" onClick={(e) => { if (window.confirm('Are you sure you want to delete this event?')) { deleteEvent(e) } }}>DELETE</button>
                                                         </div>
                                                     </div>
                                                     <div className="event-information-box-two">
