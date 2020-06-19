@@ -150,7 +150,7 @@ const Account = () => {
                                         }
                                     </div>
                                     <button type='submit' className="button save-button" >Save</button>
-                                    <button className="button delete-button" onClick={(e) => { if (window.confirm('Are you sure you want to delete your account?')) { deleteAccount(e) } }}>Delete Account</button>
+                                    <button className="button delete-button button-margin" onClick={(e) => { if (window.confirm('Are you sure you want to delete your account?')) { deleteAccount(e) } }}>Delete Account</button>
                                 </form>
                             </div>
                         </Fragment>
