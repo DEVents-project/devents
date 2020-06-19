@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const nodemailer = require("nodemailer");
 const passport = require("passport");
-const passportSetup = require("./middleware/githubAuth")
+const passportSetup = require("./middleware/oAuth")
 
 
 const indexRoute = require("./routes/indexRoute");

@@ -1,5 +1,6 @@
 const passport = require("passport");
 const GithubStrategy = require('passport-github').Strategy;
+const User = require("../models/usersSchema");
 const dot = require("dotenv").config();
 
 // Github login
@@ -22,7 +23,7 @@ passport.use(new GithubStrategy({
     function (accessToken, refreshToken, profile, cb) {
         console.log(profile);
 
-        User.findOrCreate({ githubId: profile.id }, function (err, user) {
+        User.findOne({ githubId: profile.id }, function (err, user) {
             return cb(null, user);
         });
     }
