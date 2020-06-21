@@ -44,22 +44,6 @@ const App = () => {
     window.scrollTo(0, 0)
   }, [])
 
-  // GET RANDOM PIC
-  // const getRandomPic = (typeOfEvent) => {
-  //   if (typeOfEvent === 'workshops') {
-  //     const randomNr = Math.floor(Math.random() * (14 - 1)) + 1;
-  //     return (
-  //       `https://res.cloudinary.com/jimbocloud/image/upload/v1592300071/devents/workshops/w${randomNr}.jpg`
-  //     )
-  //   } else if (typeOfEvent === 'conventions') {
-  //     const randomNr = Math.floor(Math.random() * (10 - 1)) + 1;
-  //     return (
-  //       `https://res.cloudinary.com/jimbocloud/image/upload/v1592300493/devents/conventions/c${randomNr}.jpg`
-  //     )
-  //   }
-  // };
-
-
   // FUNCTION FETCHING ALL THE EVENTS:
   const fetchEvents = async () => {
     const options = {
@@ -111,11 +95,17 @@ const App = () => {
       });
     });
 
-    allMeetups.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+    const filteredMeetups = allMeetups.filter(meetup => new Date(meetup.date).getTime() > new Date().getTime())
+    // const theMeetups = response1.events.map(meetup => new Date(meetup.date).getTime())
+
+    console.log('MEETUPS: ', filteredMeetups);
+    // console.log('NOW: ', new Date().getTime());
+
+    filteredMeetups.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
     const citiesWithMeetups = [];
-    allMeetups.map(event => citiesWithMeetups.push(event.city));
+    filteredMeetups.map(event => citiesWithMeetups.push(event.city));
     setMeetupsCities([...new Set(citiesWithMeetups)].sort());
-    setMeetups(allMeetups);
+    setMeetups(filteredMeetups);
 
     const allWorkshops = [];
 
