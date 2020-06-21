@@ -27,7 +27,7 @@ const Registration = () => {
             <h2 className="question">DO YOU WANT TO SHARE YOUR EVENT? NO PROBLEM!</h2>
 
             <div className="container">
-                <div className="squares">
+                <div className="squares fade-in">
                     <div className="img-1">
                         <img src={Signin} alt="sing up" className="img-registration" />
                     </div>
@@ -38,7 +38,7 @@ const Registration = () => {
                     </div>
                 </div>
 
-                <div className="squares square-2">
+                <div className="squares square-2 fade-in">
                     <div className="img-1">
                         <img src={CreateEvent} alt="create an event" className="img-registration" />
                     </div>
@@ -48,7 +48,7 @@ const Registration = () => {
                     </div>
                 </div>
 
-                <div className="squares square-3 box">
+                <div className="squares square-3 box fade-in">
                     <div className="img-1">
                         <img src={Publish} alt="publish an event" className="img-registration" />
                     </div>
