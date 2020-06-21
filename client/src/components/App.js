@@ -95,11 +95,7 @@ const App = () => {
       });
     });
 
-    const filteredMeetups = allMeetups.filter(meetup => new Date(meetup.date).getTime() > new Date().getTime())
-    // const theMeetups = response1.events.map(meetup => new Date(meetup.date).getTime())
-
-    console.log('MEETUPS: ', filteredMeetups);
-    // console.log('NOW: ', new Date().getTime());
+    const filteredMeetups = allMeetups.filter(meetup => new Date(meetup.date).getTime() > new Date().getTime());
 
     filteredMeetups.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
     const citiesWithMeetups = [];
