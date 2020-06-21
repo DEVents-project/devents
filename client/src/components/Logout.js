@@ -15,8 +15,10 @@ const Logout = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            setUserData('');
             isLoggedOut && history.push('/');
+            setTimeout(() => {
+                setUserData('');
+            }, 500);
         }, 3000);
     });
 
