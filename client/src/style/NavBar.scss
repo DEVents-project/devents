@@ -22,7 +22,7 @@ header {
 
     #logo {
         height: 100%;
-        font-size: 2.5rem;
+        font-size: 2rem;
         cursor: pointer;
         color: #fff;
         padding-left: 2rem;
@@ -31,22 +31,6 @@ header {
         align-items: center;
         text-align: center;
     }
-
-    /* logo image */
-
-    // #logo {
-    //     height: 100%;
-    //     cursor: pointer;
-    //     padding-left: 1rem;
-    //     display: flex;
-    //     align-items: center;
-    //     text-align: center;
-
-    //     #logo-img {
-    //         width: 12rem;
-    //         height: auto;
-    //     }
-    // }
 
     .menu-bars {
         font-size: 2.5rem;
@@ -113,7 +97,7 @@ header {
             grid-column: 1;
             clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
 
-            @media screen and (min-width: 800px) {
+            @media screen and (min-width: 1000px) {
                 font-size: 3rem;
             }
         }
