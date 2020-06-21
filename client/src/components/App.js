@@ -129,7 +129,9 @@ const App = () => {
     allConventions.map(event => citiesWithConventions.push(event.city));
     setConventionsCities([...new Set(citiesWithConventions)].sort());
     setConventions(allConventions);
-    setAllEventsTogether(allEvents);
+
+    const filteredEvents = allEvents.filter(event => new Date(event.date).getTime() > new Date().getTime());
+    setAllEventsTogether(filteredEvents);
   };
 
   // console.log('ALL EVENTS FETCHED: ', allEventsTogether);
