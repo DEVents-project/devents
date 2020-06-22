@@ -6,6 +6,11 @@
     display: flex;
     flex-direction: column;
 
+    a {
+        text-decoration: none;
+        text-align: center;
+    }
+
     .personal-account {
         width: 100%;
         display: flex;
