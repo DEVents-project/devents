@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
 import Context from './Context';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import '../style/Account.scss';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
@@ -96,11 +96,9 @@ const Account = () => {
 
         const request = await fetch('http://localhost:4000/users', deletedUser);
         const response = await request.json();
-        console.log('User Deleted - Response: ', response);
+        // console.log('User Deleted - Response: ', response);
         if (response.success) {
-            localStorage.clear();
             setIsAccountDeleted(true);
-            setUserData(null);
             setLoggedIn(false);
         };
     };
@@ -108,7 +106,7 @@ const Account = () => {
     // by clicking on 'SEE MORE' it will be redirected to the event's info
     useEffect(() => {
         isEventClicked && history.push('/event');
-        isAccountDeleted && history.push('/');
+        isAccountDeleted && history.push('/deletedaccount');
     });
 
     // console.log('ACCOUNT_userData: ', userData);
@@ -150,10 +148,10 @@ const Account = () => {
                                         }
                                     </div>
                                     <button type='submit' className="button save-button" >Save</button>
-                                    <button className="button delete-button button-margin" onClick={(e) => {
-                                        if (window.confirm(`Dear ${userData.name}, \n\nplease note that the events you have created will remain on the website if you do not remove them before deleting your account. \n\nAre you sure you want to delete your account?`)) { deleteAccount(e) }
+                                    <NavLink to="deletedaccount" className="button delete-button button-margin" onClick={(e) => {
+                                        if (window.confirm(`Dear ${userData.name}, \n\nplease note that the events you have created will remain on the website if you do not remove them before deleting your account. \n\nAre you sure you want to delete your account?`)) { localStorage.clear(); deleteAccount(e) }
                                     }}>Delete Account
-                                         </button>
+                                         </NavLink>
                                 </form>
                             </div>
                         </Fragment>
