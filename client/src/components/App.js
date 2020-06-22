@@ -17,6 +17,7 @@ import Faq from "./Faq";
 import Context from './Context';
 import Moment from "moment";
 import Logout from './Logout';
+import DeletedAccount from './DeletedAccount';
 
 
 const App = () => {
@@ -30,6 +31,9 @@ const App = () => {
   const [conventions, setConventions] = useState('');
   const [conventionsCities, setConventionsCities] = useState('');
   const [allEventsTogether, setAllEventsTogether] = useState('');
+
+  // so that the user can delete his events althought they took already place in the past, we need an array of ALL the meetups without filtering them by date:
+  const [unfilteredMeetups, setUnfilteredMeetups] = useState('');
 
   const [userData, setUserData] = useState(null);
   // localstorage to save the token coming from the header. by clicking on signout the localstorage will be cleared:
@@ -95,6 +99,8 @@ const App = () => {
       });
     });
 
+    setUnfilteredMeetups(allMeetups);
+
     const filteredMeetups = allMeetups.filter(meetup => new Date(meetup.date).getTime() > new Date().getTime());
 
     filteredMeetups.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
@@ -109,12 +115,13 @@ const App = () => {
     const response2 = await request2.json();
     // console.log('WORKSHOPS - Response: ', response2);
     response2.events.map(workshop => { allWorkshops.push(workshop); allEvents.push(workshop) });
-    allWorkshops.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+    allWorkshops.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'))
+    const allFilteredWorkshops = allWorkshops.filter(workshop => new Date(workshop.date).getTime() > new Date().getTime());
 
     const citiesWithWorkshops = [];
-    allWorkshops.map(event => citiesWithWorkshops.push(event.city));
+    allFilteredWorkshops.map(event => citiesWithWorkshops.push(event.city));
     setWorkshopsCities([...new Set(citiesWithWorkshops)].sort());
-    setWorkshops(allWorkshops);
+    setWorkshops(allFilteredWorkshops);
 
 
     const allConventions = [];
@@ -123,14 +130,16 @@ const App = () => {
     const response3 = await request3.json();
     // console.log('CONVENTIONS - Response: ', response3);
     response3.events.map(convention => { allConventions.push(convention); allEvents.push(convention) });
-    allConventions.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'));
+    allConventions.sort((a, b) => new Moment(a.date).format('MMDDYYYY') - new Moment(b.date).format('MMDDYYYY'))
+    const allFilteredConventions = allConventions.filter(convention => new Date(convention.date).getTime() > new Date().getTime());
 
     const citiesWithConventions = [];
-    allConventions.map(event => citiesWithConventions.push(event.city));
+    allFilteredConventions.map(event => citiesWithConventions.push(event.city));
     setConventionsCities([...new Set(citiesWithConventions)].sort());
-    setConventions(allConventions);
+    setConventions(allFilteredConventions);
 
     const filteredEvents = allEvents.filter(event => new Date(event.date).getTime() > new Date().getTime());
+    // console.log('FILTERED EVENTS: ', filteredEvents);
     setAllEventsTogether(filteredEvents);
   };
 
@@ -177,10 +186,14 @@ const App = () => {
     }
   }, []);
 
-
   useEffect(() => {
     fetchEvents();
   }, []);
+
+
+  useEffect(() => {
+    fetchEvents();
+  }, [eventInfo]);
 
   useEffect(() => {
     fetchEvents();
@@ -190,7 +203,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Context.Provider value={{ lat, setLat, lng, setLng, allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
+      <Context.Provider value={{ unfilteredMeetups, lat, setLat, lng, setLng, allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
         <BrowserRouter>
           {
             loggedIn ?
@@ -210,6 +223,7 @@ const App = () => {
             <Route path="/contact" component={Contact} />
             <Route path="/faq" component={Faq} />
             <Route path="/logout" component={Logout} />
+            <Route path="/deletedaccount" component={DeletedAccount} />
           </Switch>
           <Footer />
         </BrowserRouter>

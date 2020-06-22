@@ -11,7 +11,7 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 const EventInformation = (props) => {
     const history = useHistory();
 
-    const { lat, setLat, lng, setLng, getOneEvent, meetups, setMeetups, eventInfo, setEventInfo, userData, token } = useContext(Context);
+    const { lat, setLat, lng, setLng, getOneEvent, unfilteredMeetups, setMeetups, eventInfo, setEventInfo, userData, token } = useContext(Context);
 
     // By clicking on EDIT:
     const [editMode, setEditMode] = useState(false);
@@ -34,11 +34,10 @@ const EventInformation = (props) => {
 
     }, []);
 
-
     const deleteEvent = async (e) => {
         e.preventDefault();
 
-        const eventToDelete = meetups.filter(meetup => meetup._id === eventInfo._id)[0];
+        const eventToDelete = unfilteredMeetups.filter(meetup => meetup._id === eventInfo._id)[0];
         // console.log('EVENT TO DELETE', eventToDelete);
         const deletedEvent = {
             method: "DELETE",
@@ -76,7 +75,7 @@ const EventInformation = (props) => {
             lng: JSON.stringify(newCoordinates) === '' ? lng : newCoordinates.lng
         };
 
-        console.log('NEW INFO: ', newInfo);
+        // console.log('NEW INFO: ', newInfo);
 
         const newEventInfo = {
             method: "PUT",
@@ -104,7 +103,7 @@ const EventInformation = (props) => {
     });
 
 
-    console.log('INFORMATION EVENT: ', eventInfo);
+    // console.log('INFORMATION EVENT: ', eventInfo);
 
 
     return (
