@@ -60,6 +60,21 @@ const Login = () => {
     }
 
 
+    // const loginGithub = async () => {
+    //     const options = {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+
+    //         }
+    //     }
+
+    //     const fetch = await fetch("http://localhost:4000/github/account", options)
+    //     const res = await fetch.json()
+    //     console.log("res", res)
+    // }
+
+
 
     useEffect(() => {
         loggedIn && history.push('/events')
@@ -98,7 +113,7 @@ const Login = () => {
             </form>
 
             <p className="github-log">Login with your<FontAwesomeIcon className="github-icon" icon={faGithubAlt} />GitHub account?
-                <a className="github-link" href="http://localhost:4000/auth/github">Click here</a></p>
+                <a className="github-link" href="http://localhost:4000/auth/github" >Click here</a></p>
         </main>
     )
 }

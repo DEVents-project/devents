@@ -5,7 +5,7 @@ import '../style/Account.scss';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 
-const Account = () => {
+const Account = (props) => {
     const history = useHistory();
 
     const { setLoggedIn, getUserData, userData, setUserData, setEventInfo, token } = useContext(Context);
@@ -35,7 +35,10 @@ const Account = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
         getUserData();
-    }, []);
+        fetch("http://localhost:4000/auth/github/redirect")
+            .then(res => res.json())
+            .then(res => console.log(res))
+    }, [props.location.pathname]);
 
     const [refresh, setRefresh] = useState(true);
     useEffect(() => {
