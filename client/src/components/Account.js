@@ -5,11 +5,11 @@ import '../style/Account.scss';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 
-const Account = () => {
+const Account = (props) => {
     const history = useHistory();
 
-    const { getUserData, userData, setUserData, setEventInfo, token, events } = useContext(Context);
-    // console.log('USERDATA:', userData);
+    const { setLoggedIn, getUserData, userData, setUserData, setEventInfo, token } = useContext(Context);
+
     const [isEventClicked, setIsEventClicked] = useState(false);
     // this state change fragment between info and inputs to be edited
     const [editInfo, setEditInfo] = useState(false);
@@ -18,6 +18,9 @@ const Account = () => {
     const [newEmail, setNewEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [newAvatar, setNewAvatar] = useState('');
+
+    const [isAccountDeleted, setIsAccountDeleted] = useState(false);
+
 
     const listOfAvatars = [
         'https://joeschmoe.io/api/v1/jeri',
@@ -28,16 +31,16 @@ const Account = () => {
         'https://joeschmoe.io/api/v1/julie',
     ];
 
-    // this is where the events created by the user will be fetched:
-    const [refresh, setRefresh] = useState(true);
-
-
 
     useEffect(() => {
         window.scrollTo(0, 0)
         getUserData();
-    }, []);
+        fetch("http://localhost:4000/auth/github/redirect")
+            .then(res => res.json())
+            .then(res => console.log(res))
+    }, [props.location.pathname]);
 
+    const [refresh, setRefresh] = useState(true);
     useEffect(() => {
         getUserData();
         setRefresh(false)
@@ -48,7 +51,6 @@ const Account = () => {
 
         // old data:
         const { name, email, password, avatar, events } = userData;
-        // console.log('TOKEN HERE: ', token);
 
         const newInfo = {
             name: newName === '' ? name : newName,
@@ -84,9 +86,32 @@ const Account = () => {
         };
     };
 
+    const deleteAccount = async (e) => {
+        e.preventDefault();
+
+        const deletedUser = {
+            method: "DELETE",
+            headers: {
+                "x-auth": token,
+                "eventId": userData._id
+            },
+        };
+
+        const request = await fetch('http://localhost:4000/users', deletedUser);
+        const response = await request.json();
+        console.log('User Deleted - Response: ', response);
+        if (response.success) {
+            localStorage.clear();
+            setIsAccountDeleted(true);
+            setUserData(null);
+            setLoggedIn(false);
+        };
+    };
+
     // by clicking on 'SEE MORE' it will be redirected to the event's info
     useEffect(() => {
         isEventClicked && history.push('/event');
+        isAccountDeleted && history.push('/');
     });
 
     // console.log('ACCOUNT_userData: ', userData);
@@ -128,6 +153,10 @@ const Account = () => {
                                         }
                                     </div>
                                     <button type='submit' className="button save-button" >Save</button>
+                                    <button className="button delete-button button-margin" onClick={(e) => {
+                                        if (window.confirm(`Dear ${userData.name}, \n\nplease note that the events you have created will remain on the website if you do not remove them before deleting your account. \n\nAre you sure you want to delete your account?`)) { deleteAccount(e) }
+                                    }}>Delete Account
+                                         </button>
                                 </form>
                             </div>
                         </Fragment>
@@ -149,7 +178,7 @@ const Account = () => {
                         userData &&
                             userData.events &&
                             userData.events.length ?
-                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} _id={el._id} authorId={el.authorId} title={el.title} img={el.imgUrl} date={el.date} time={el.time} location={el.location} coordinates={el.coordinates} description={el.description} />)
+                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
                             :
                             <p className="no-events">You didn't create any event yet</p>
                     }

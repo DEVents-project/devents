@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Context from './Context';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../style/CreateEvent.scss';
 import ParticlesBg from 'particles-bg';
 import axios from 'axios'
 import Moment from 'moment'
+import defaultImg from '../assets/img/eventImgDefault.png'
 
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 
 const CreateEvent = (props) => {
 
     const history = useHistory();
-    const { userData, setUserData, token } = useContext(Context);
+    const { userData, setUserData, token, lat, lng, setLat, setLng } = useContext(Context);
     // console.log('CREATE ACCOUNT_userData: ', userData)
 
     // The followings are NOT base on the schema - Schema needs to be modified! 
@@ -22,17 +23,20 @@ const CreateEvent = (props) => {
     const [description, setDescription] = useState('');
     const [url, setUrl] = useState('');
     const [image, setImage] = useState('');
-    const [serverImg, setServerImg] = useState('');
+
     // this will be the complete address of the event as a STRING
     const [location, setLocation] = useState('');
 
-    console.log('IMAGE: ', image);
+    // console.log('IMAGE: ', image);
 
     // this will be the location of the event as coordinates in an object: {lat: lat, lng: lng}
     const [coordinates, setCoordinates] = useState('');
 
     // route to events pages after event get published
     const [statusAdded, setStatusAdded] = useState(false)
+
+    // console.log('LAT', lat);
+    // console.log('LNG', lng);
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -44,12 +48,15 @@ const CreateEvent = (props) => {
 
         const imgBody = new FormData();
 
+
         imgBody.append('file', image);
         imgBody.append('title', title);
         imgBody.append('hostedBy', hostedBy);
         imgBody.append('date', new Moment(date).format('DD MMMM YYYY'));
         imgBody.append('time', time);
-        imgBody.append('coordinates', coordinates);
+        imgBody.append('coordinates', JSON.stringify(coordinates));
+        imgBody.append('lat', lat);
+        imgBody.append('lng', lng);
         imgBody.append('location', location);
         imgBody.append('website', url);
 
@@ -57,7 +64,7 @@ const CreateEvent = (props) => {
         imgBody.append('_id', userData._id)
 
         try {
-            console.log('IMG BODY: ', imgBody);
+            // console.log('IMG BODY: ', imgBody);
             const res = await axios.post('http://localhost:4000/events', imgBody, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -66,7 +73,7 @@ const CreateEvent = (props) => {
             });
 
             if (res.status) {
-                console.log('REEEES:', res)
+                // console.log('SERVER RESPONSE:', res)
                 setUserData(res.data.user)
                 setStatusAdded(true)
             }
@@ -145,7 +152,7 @@ const CreateEvent = (props) => {
                     </label>
                 </div>
                 <label className="event-label">Location *
-                    <GoogleMapsAutocomplete setLocation={setLocation} setCoordinates={setCoordinates} />
+                    <GoogleMapsAutocomplete isRequired={true} setLocation={setLocation} setCoordinates={setCoordinates} setLat={setLat} setLng={setLng} />
                 </label>
                 <label className="event-label">Website
                     <input
@@ -156,7 +163,7 @@ const CreateEvent = (props) => {
                         onChange={(e) => setUrl(e.target.value)}
                     />
                 </label>
-                <label className="event-label img-label"> Image
+                <label className="event-label img-label"> Image (png, jpeg)
                     <input
                         type="file"
                         placeholder="only png or jpeg"

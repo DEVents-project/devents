@@ -4,6 +4,7 @@ const GithubStrategy = require('passport-github').Strategy;
 const keys = require("./keys");
 const User = require("../models/gitSchema");
 
+
 passport.serializeUser((user, done) => {
     done(null, user._id);
 });
@@ -32,12 +33,15 @@ passport.use(
             } else {
                 // if not, we create one
                 new User({
-                    ghID: profile.id,
+                    ghID: profile._json.id,
                     name: profile.displayName,
                     email: profile._json.email
+
                 }).save().then((newUser) => {
 
                     console.log("new user creates:" + newUser)
+                    let token = newUser.generateAuthToken();
+                    newUser.save()
                     done(null, newUser);
                 })
             }

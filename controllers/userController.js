@@ -20,7 +20,7 @@ exports.getUser = async (req, res, next) => {
     const { _id } = req.user
     // console.log('token:', token);
     try {
-        const user = await User.findById(_id).populate("events", "title hostedBy date time location imgUrl website description createdAt coordinates authorId _id");
+        const user = await User.findById(_id).populate("events", "title hostedBy date time location imgUrl website description createdAt coordinates lat lng authorId _id");
         res.json({ success: true, user: user })
     } catch (err) {
         next(err)
@@ -113,9 +113,10 @@ exports.putUser = async (req, res, next) => {
 }
 
 exports.deleteUser = async (req, res, next) => {
-    const { id } = req.params;
+    const eventId = req.header('eventId');
+    console.log('EVENT ID: ', eventId);
     try {
-        const user = await User.findByIdAndDelete(id)
+        const user = await User.findByIdAndDelete(eventId)
         if (!user) throw createError(404)
         res.json({ success: true, user: user })
     } catch (err) {

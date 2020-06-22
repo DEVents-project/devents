@@ -63,7 +63,9 @@ exports.postEvent = async (req, res, next) => {
             time: req.body.time,
             location: req.body.location,
             coordinates: req.body.coordinates,
-            imgUrl: `/image/${req.file.filename}`,
+            lat: req.body.lat,
+            lng: req.body.lng,
+            imgUrl: req.file ? `/image/${req.file.filename}` : `/imgconvention/eventImgDefault.png`,
             website: req.body.website,
             description: req.body.description,
             authorId: req.user._id

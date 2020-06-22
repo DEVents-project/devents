@@ -2,7 +2,7 @@
 
 .account-container {
     width: 100%;
-    height: auto;
+    min-height: 65vh;
     display: flex;
     flex-direction: column;
 
@@ -73,6 +73,11 @@
     }
     .save-button {
         margin-top: 1rem;
+        padding: 0.5rem 2.5rem;
+    }
+
+    .button-margin {
+        margin-top: 2rem;
         padding: 0.5rem 2.5rem;
     }
 }

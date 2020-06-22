@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Context from './Context';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import '../style/NavBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,9 @@ import TextTransition, { presets } from "react-text-transition";
 
 
 const NavBarSignedIn = () => {
-    const { setLoggedIn, setUserData } = useContext(Context);
+    const history = useHistory();
+
+    const { loggedIn, setLoggedIn, setUserData } = useContext(Context);
 
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -63,11 +65,10 @@ const NavBarSignedIn = () => {
         }
     };
 
-    const closeSession = () => {
-        localStorage.clear();
-        setUserData('');
-        setLoggedIn(false);
-    };
+    useEffect(() => {
+        !loggedIn && history.push('/logout');
+
+    });
 
     return (
         <div>
@@ -89,7 +90,7 @@ const NavBarSignedIn = () => {
                     </ul>
                     <ul className="nav-group">
                         <li><NavLink to="/account" onClick={() => setIsNavVisible(false)} activeClassName="selected-section" className="underline">ACCOUNT</NavLink></li>
-                        <li><NavLink to="/" onClick={() => { closeSession(); setIsNavVisible(false) }} className="underline">LOG OUT</NavLink></li>
+                        <li><NavLink to="/logout" onClick={() => { localStorage.clear(); setIsNavVisible(false); setLoggedIn(false) }} className="underline">LOG OUT</NavLink></li>
                     </ul>
                 </nav>
             </header>

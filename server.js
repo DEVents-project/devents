@@ -7,6 +7,8 @@ const nodemailer = require("nodemailer");
 const passport = require("passport");
 const passportSetup = require("./config/passportSetup");
 const cookieSession = require("cookie-session");
+const env = require("./config/config")
+
 
 // using config/keys for gitHub and cookies but we can move it to env if everything works
 const keys = require("./config/keys")
@@ -28,7 +30,7 @@ const { cors } = require("./middleware/security");
 
 const port = process.env.PORT || 4000;
 
-mongoose.connect("mongodb://127.0.0.1:27017/devents", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(env.db, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on("error", (err) => console.log(err));
 mongoose.connection.on("open", () => console.log("database connected"));
 

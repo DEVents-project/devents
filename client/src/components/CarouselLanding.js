@@ -8,11 +8,7 @@ const Carousel = require('react-responsive-carousel').Carousel;
 
 const CarouselLanding = () => {
 
-    const { allEventsTogether, fetchEvents } = useContext(Context);
-
-    useEffect(() => {
-        fetchEvents();
-    }, [])
+    const { allEventsTogether } = useContext(Context);
 
 
     return (
@@ -30,7 +26,7 @@ const CarouselLanding = () => {
         >
             {
                 allEventsTogether &&
-                allEventsTogether.slice(0, 8).map((event, i) => <CarouselSlide key={i} title={event.title} img={event.img} date={event.date} time={event.time} location={event.location} coordinates={event.coordinates} description={event.description} url={event.url} authorId={event.authorId} _id={event._id} />)
+                allEventsTogether.slice(0, 8).map((event, i) => <CarouselSlide key={i} event={event} />)
             }
         </Carousel>
     );

@@ -38,8 +38,8 @@ const fetchImgConventions = async () => {
 
     const request = await fetch("http://localhost:4000/imgconvention", options);
     const response = await request.json();
-    response.conventionsImages.map(img => {
-        allImgConventions.push(`http://localhost:4000/imgconvention/${img.imgUrl}`)
+    response.conventionImages.map(img => {
+        allImgConventions.push(`/imgconvention/${img.imgUrl}`)
     })
 
     const eventbriteBerlin = "https://www.eventbrite.de/d/germany--berlin/science-and-tech--conferences/developer/?page=1";
@@ -76,7 +76,7 @@ const fetchImgConventions = async () => {
 
                     eventData.url = eventUrl;
                     // let randomImg = Math.floor(Math.random() * allImgConventions.length)
-                    eventData.img = allImgConventions[0];
+                    eventData.imgUrl = allImgConventions[0];
                     allImgConventions.shift()
                     const dataForSave = new Convention(eventData)
 
@@ -125,6 +125,8 @@ const fetchImgConventions = async () => {
                     eventData.description = description.trim()
                     eventData.url = eventUrl
                     eventData.img = allImgConventions[Math.floor(Math.random() * allImgConventions.length)];
+                    eventData.imgUrl = allImgConventions[0];
+                    allImgConventions.shift()
 
                     const dataForSave = new Convention(eventData)
 
@@ -175,8 +177,9 @@ const fetchImgConventions = async () => {
                     let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
                     eventData.description = description.trim()
                     eventData.url = eventUrl
-                    eventData.img = allImgConventions[Math.floor(Math.random() * allImgConventions.length)];
-
+                    // eventData.img = allImgConventions[Math.floor(Math.random() * allImgConventions.length)];
+                    eventData.imgUrl = allImgConventions[0];
+                    allImgConventions.shift()
                     const dataForSave = new Convention(eventData)
 
                     dataForSave.save().then(() => {
