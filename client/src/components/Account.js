@@ -5,7 +5,8 @@ import '../style/Account.scss';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as faFullStar } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faFullHeart } from '@fortawesome/free-solid-svg-icons';
+
 
 const Account = () => {
     const history = useHistory();
@@ -182,13 +183,13 @@ const Account = () => {
                 </div>
                 {
                     userData &&
-                        userData.favoriteEvents &&
-                        userData.favoriteEvents.length ?
+                        userData.favoriteMeetups &&
+                        userData.favoriteMeetups.length ?
                         <Fragment>
-                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullStar} /> <span>Meetups</span> I'm following</h4>
+                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Meetups</span> I'm following</h4>
                             <div className="events-container">
                                 {
-                                    userData.favoriteEvents.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                                    userData.favoriteMeetups.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
                                 }
                             </div>
                         </Fragment>
@@ -200,7 +201,7 @@ const Account = () => {
                         userData.favoriteWorkshops &&
                         userData.favoriteWorkshops.length ?
                         <Fragment>
-                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullStar} /> <span>Workshops</span> I'm following</h4>
+                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Workshops</span> I'm following</h4>
                             <div className="events-container">
                                 {
                                     userData.favoriteWorkshops.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
@@ -215,7 +216,7 @@ const Account = () => {
                         userData.favoriteConventions &&
                         userData.favoriteConventions.length ?
                         <Fragment>
-                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullStar} /> <span>Conventions</span> I'm following</h4>
+                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Conventions</span> I'm following</h4>
                             <div className="events-container">
                                 {
                                     userData.favoriteConventions.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)

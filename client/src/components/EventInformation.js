@@ -6,8 +6,8 @@ import ParticlesBg from 'particles-bg';
 import Map from './Map';
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faStar as faFullStar } from '@fortawesome/free-solid-svg-icons';
-import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faMapMarkerAlt, faHeart as faFullHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 const EventInformation = (props) => {
     const history = useHistory();
@@ -29,12 +29,19 @@ const EventInformation = (props) => {
 
         window.scrollTo(0, 0);
 
-        const event = localStorage.getItem('event-info')
+        const event = localStorage.getItem('event-info');
         if (event) {
-            setEventInfo(JSON.parse(event))
+            setEventInfo(JSON.parse(event));
         }
-
     }, []);
+
+    useEffect(() => {
+        if (userData && userData.favoriteMeetups.filter(meetup => meetup._id === eventInfo._id).length > 0 ||
+            userData && userData.favoriteWorkshops.filter(workshop => workshop._id === eventInfo._id).length > 0 ||
+            userData && userData.favoriteConventions.filter(convention => convention._id === eventInfo._id).length > 0) {
+            setLikedEvent(true);
+        }
+    });
 
     const deleteEvent = async (e) => {
         e.preventDefault();
@@ -118,15 +125,15 @@ const EventInformation = (props) => {
 
         const request = await fetch(`http://localhost:4000/users/${eventId}`, newFavoriteEvent);
         const response = await request.json();
-        console.log('Event added to favorites - Response: ', response);
+        // console.log('Event added to favorites - Response: ', response);
         if (response.success) {
-            setLikedEvent(!likedEvent);
+            setLikedEvent(response.star);
         };
     };
 
 
-    console.log('INFORMATION EVENT: ', eventInfo);
-    console.log('USER DATA: ', userData);
+    // console.log('INFORMATION EVENT: ', eventInfo);
+    // console.log('USER DATA: ', userData);
     // console.log('EVENT INFO AUTHOR-ID: ', eventInfo.authorId);
     // console.log('EVENT INFO AUTHOR-ID = USER DATA ID ? ', userData._id === eventInfo.authorId);
 
@@ -243,11 +250,11 @@ const EventInformation = (props) => {
                                             {
                                                 likedEvent ?
                                                     <div className="add-to-favorite">
-                                                        <FontAwesomeIcon onClick={handleFavorite} className="full-star jello-horizontal" icon={faFullStar} />
+                                                        <FontAwesomeIcon onClick={handleFavorite} className="full-star jello-horizontal" icon={faFullHeart} />
                                                     </div>
                                                     :
                                                     <div className="add-to-favorite">
-                                                        <FontAwesomeIcon onClick={handleFavorite} className="star" icon={faStar} />
+                                                        <FontAwesomeIcon onClick={handleFavorite} className="star" icon={faHeart} />
                                                     </div>
                                             }
                                             <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
