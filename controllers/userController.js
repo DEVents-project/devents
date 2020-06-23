@@ -23,7 +23,7 @@ exports.getUser = async (req, res, next) => {
     const { _id } = req.user
     // console.log('token:', token);
     try {
-        const user = await User.findById(_id).populate("events", "title hostedBy date time location imgUrl website description createdAt coordinates lat lng authorId _id");
+        const user = await User.findById(_id).populate('events').populate('favoriteEvents').populate('favoriteWorkshops').populate('favoriteConventions').exec();
         res.json({ success: true, user: user })
     } catch (err) {
         next(err)
@@ -119,23 +119,31 @@ exports.addFav = async (req, res, next) => {
     // const userId = req.user._id;
     const eventId = req.params.id;
     console.log('PARAMS ID: ', eventId);
+
     try {
+        let userData = await User.findById(req.user._id);
         const favEvent = await Event.findById(eventId);
         const favWorkshop = await Workshop.findById(eventId);
         const favConvention = await Convention.findById(eventId);
 
         if (favEvent) {
-            const updatedUser = await User.findByIdAndUpdate(req.user._id, { $push: { "favoriteEvents": favEvent } }, { safe: true, upsert: true }).populate("events");
-            // console.log('FAV EVENT: ', favEvent);
-            res.json({ success: true, user: updatedUser });
+            userData.favoriteEvents.push(favEvent);
+            userData.save();
+            console.log('USER DATA: ', userData);
+            console.log('FAV Event: ', favEvent);
+            res.json({ success: true, user: userData });
         } else if (favWorkshop) {
-            const updatedUser = await User.findByIdAndUpdate(req.user._id, { $push: { "favoriteEvents": favWorkshop } }, { safe: true, upsert: true }).populate("events");
-            // console.log('FAV WORKSHOP: ', favWorkshop);
-            res.json({ success: true, user: updatedUser });
-        } else if (favConvention) {
-            const updatedUser = await User.findByIdAndUpdate(req.user._id, { $push: { "favoriteEvents": favConvention } }, { safe: true, upsert: true }).populate("events");
-            // console.log('FAV CONVENTION: ', favConvention);
-            res.json({ success: true, user: updatedUser });
+            userData.favoriteWorkshops.push(favWorkshop);
+            userData.save();
+            console.log('USER DATA: ', userData);
+            console.log('FAV Workshop: ', favWorkshop);
+            res.json({ success: true, user: userData });
+        } else {
+            userData.favoriteConventions.push(favConvention);
+            userData.save();
+            console.log('USER DATA: ', userData);
+            console.log('FAV Convention: ', favConvention);
+            res.json({ success: true, user: userData });
         }
 
     } catch (err) {

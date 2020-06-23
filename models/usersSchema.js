@@ -22,7 +22,9 @@ const UserSchema = new Schema({
     avatar: { type: String, required: false },
     website: { type: String, required: false },
     events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
-    favoriteEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }]
+    favoriteEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
+    favoriteWorkshops: [{ type: mongoose.Schema.Types.ObjectId, ref: "workshops" }],
+    favoriteConventions: [{ type: mongoose.Schema.Types.ObjectId, ref: "conventions" }]
 
 });
 
