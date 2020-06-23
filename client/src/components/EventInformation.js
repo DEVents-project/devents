@@ -6,7 +6,8 @@ import ParticlesBg from 'particles-bg';
 import Map from './Map';
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faStar as faFullStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 const EventInformation = (props) => {
     const history = useHistory();
@@ -22,6 +23,7 @@ const EventInformation = (props) => {
     const [newLocation, setNewLocation] = useState('');
     const [newCoordinates, setNewCoordinates] = useState('');
 
+    const [likedEvent, setLikedEvent] = useState(false);
 
     useEffect(() => {
 
@@ -103,7 +105,30 @@ const EventInformation = (props) => {
     });
 
 
-    // console.log('INFORMATION EVENT: ', eventInfo);
+    const handleFavorite = async () => {
+        const eventId = eventInfo._id;
+
+        const newFavoriteEvent = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "x-auth": token
+            }
+        };
+
+        const request = await fetch(`http://localhost:4000/users/${eventId}`, newFavoriteEvent);
+        const response = await request.json();
+        console.log('Event added to favorites - Response: ', response);
+        if (response.success) {
+            setLikedEvent(!likedEvent);
+        };
+    };
+
+
+    console.log('INFORMATION EVENT: ', eventInfo);
+    // console.log('USER DATA ID: ', userData._id);
+    // console.log('EVENT INFO AUTHOR-ID: ', eventInfo.authorId);
+    // console.log('EVENT INFO AUTHOR-ID = USER DATA ID ? ', userData._id === eventInfo.authorId);
 
 
     return (
@@ -212,49 +237,98 @@ const EventInformation = (props) => {
 
                                     </Fragment>
 
-                                    :
+                                    : userData && eventInfo && token && userData._id !== eventInfo.authorId ?
 
-                                    <Fragment>
-                                        <p className="event-information-date">Date: <strong>{eventInfo.date.includes('valid') ? 'More information following the link' : eventInfo.date}</strong></p>
-                                        <p className="event-information-time">Time: <strong>{eventInfo.time.includes('valid') ? 'More information following the link' : eventInfo.time.includes('M') ? eventInfo.time : eventInfo.time + ' H.'}</strong></p>
-                                        <h2 className="event-information-title">{eventInfo.title}</h2>
-                                        <div className="event-information-box-one">
+                                        <Fragment>
                                             {
-                                                eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
-                                                    <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
+                                                likedEvent ?
+                                                    <div className="add-to-favorite">
+                                                        <FontAwesomeIcon onClick={handleFavorite} className="full-star jello-horizontal" icon={faFullStar} />
+                                                    </div>
                                                     :
-                                                    <img className="event-information-image" src={`http://localhost:4000${eventInfo.imgUrl}`} alt="event-image" />
+                                                    <div className="add-to-favorite">
+                                                        <FontAwesomeIcon onClick={handleFavorite} className="star" icon={faStar} />
+                                                    </div>
                                             }
-                                            {
-                                                eventInfo.url ?
-                                                    <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
-                                                    : null
-                                            }
-                                        </div>
-                                        <div className="event-information-box-two">
-                                            <p className="event-information-description">{eventInfo.description}</p>
-                                            <p className="event-information-location">{eventInfo.address}</p>
-                                        </div>
-                                        <div className="google-map">
-                                            {
-                                                eventInfo.location ?
-                                                    <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location}</p>
-                                                    :
-                                                    null
-                                            }
-                                            {
-                                                eventInfo.coordinates ?
-                                                    <Map
-                                                        google={props.google}
-                                                        center={{ lat: eventInfo.lat, lng: eventInfo.lng }}
-                                                        height='350px'
-                                                        width='1000px'
-                                                        zoom={15}
-                                                    />
-                                                    : null
-                                            }
-                                        </div>
-                                    </Fragment>
+                                            <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
+                                            <p className="event-information-time">Time: <strong>{eventInfo.time.includes('M') ? eventInfo.time : eventInfo.time + ' H.'}</strong></p>
+                                            <h2 className="event-information-title">{eventInfo.title}</h2>
+                                            <div className="event-information-box-one">
+                                                {
+                                                    eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
+                                                        <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
+                                                        :
+                                                        <img className="event-information-image" src={eventInfo.imgUrl ? `http://localhost:4000${eventInfo.imgUrl}` : `http://localhost:4000${eventInfo.imgUrlUrl}`} alt="event-image" />
+                                                }
+                                            </div>
+                                            <div className="event-information-box-two">
+                                                <p className="event-information-description">{eventInfo.description}</p>
+                                                <p className="event-information-location">{eventInfo.address}</p>
+                                            </div>
+                                            <div className="google-map">
+                                                {
+                                                    eventInfo.location ?
+                                                        <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location}</p>
+                                                        :
+                                                        null
+                                                }
+                                                {
+                                                    eventInfo ?
+                                                        <Map
+                                                            google={props.google}
+                                                            center={{ lat: eventInfo.lat, lng: eventInfo.lng }}
+                                                            height='350px'
+                                                            width='1000px'
+                                                            zoom={15}
+                                                        />
+                                                        : null
+                                                }
+                                            </div>
+                                        </Fragment>
+
+                                        :
+
+                                        <Fragment>
+                                            <p className="event-information-date">Date: <strong>{eventInfo.date.includes('valid') ? 'More information following the link' : eventInfo.date}</strong></p>
+                                            <p className="event-information-time">Time: <strong>{eventInfo.time.includes('valid') ? 'More information following the link' : eventInfo.time.includes('M') ? eventInfo.time : eventInfo.time + ' H.'}</strong></p>
+                                            <h2 className="event-information-title">{eventInfo.title}</h2>
+                                            <div className="event-information-box-one">
+                                                {
+                                                    eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
+                                                        <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
+                                                        :
+                                                        <img className="event-information-image" src={`http://localhost:4000${eventInfo.imgUrl}`} alt="event-image" />
+                                                }
+                                                {
+                                                    eventInfo.url ?
+                                                        <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
+                                                        : null
+                                                }
+                                            </div>
+                                            <div className="event-information-box-two">
+                                                <p className="event-information-description">{eventInfo.description}</p>
+                                                <p className="event-information-location">{eventInfo.address}</p>
+                                            </div>
+                                            <div className="google-map">
+                                                {
+                                                    eventInfo.location ?
+                                                        <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location}</p>
+                                                        :
+                                                        null
+                                                }
+                                                {
+                                                    eventInfo.coordinates ?
+                                                        <Map
+                                                            google={props.google}
+                                                            center={{ lat: eventInfo.lat, lng: eventInfo.lng }}
+                                                            height='350px'
+                                                            width='1000px'
+                                                            zoom={15}
+                                                        />
+                                                        : null
+                                                }
+                                            </div>
+                                        </Fragment>
 
                             }
 

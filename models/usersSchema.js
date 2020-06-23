@@ -21,7 +21,8 @@ const UserSchema = new Schema({
     password: { type: String, required: true },
     avatar: { type: String, required: false },
     website: { type: String, required: false },
-    events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }]
+    events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
+    favoriteEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }]
 
 });
 
@@ -41,6 +42,7 @@ UserSchema.methods.getPublicFields = function () {
         password: this.password,
         avatar: this.avatar,
         events: this.events,
+        favoriteEvents: this.favoriteEvents,
         _id: this._id
     }
     return returnObject

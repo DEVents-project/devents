@@ -109,7 +109,7 @@ const Account = () => {
         isAccountDeleted && history.push('/deletedaccount');
     });
 
-    // console.log('ACCOUNT_userData: ', userData);
+    console.log('ACCOUNT_userData: ', userData);
 
     return (
         <div className="space-navbar account-container">

@@ -1,5 +1,5 @@
 const Route = require("express").Router();
-const { getUsers, getUser, getGithub, getGithubCallback, postUser, putUser, deleteUser, login } = require("../controllers/userController");
+const { getUsers, getUser, getGithub, getGithubCallback, postUser, putUser, deleteUser, login, addFav } = require("../controllers/userController");
 const { validateUser } = require("../middleware/validatorUser");
 const auth = require("../middleware/authenticator");
 const isAdmin = require("../middleware/rolesAuthenticator");
@@ -10,6 +10,7 @@ Route.get("/", auth, getUser);
 Route.post("/", validateUser(), postUser);
 Route.post("/login", login);
 Route.put("/", auth, putUser);
+Route.patch("/:id", auth, addFav);
 Route.delete("/", auth, deleteUser);
 
 // github login

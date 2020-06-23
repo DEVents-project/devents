@@ -1,5 +1,8 @@
 const createError = require("http-errors");
 const User = require("../models/usersSchema");
+const Event = require("../models/eventSchema");
+const Workshop = require("../models/workshopSchema");
+const Convention = require("../models/conventionSchema");
 const { encrypt } = require("../lib/encryption");
 const fetch = require("node-fetch");
 
@@ -107,6 +110,34 @@ exports.putUser = async (req, res, next) => {
         // console.log('updatedUser: ', updatedUser);
 
         res.json({ success: true, user: updatedUser })
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.addFav = async (req, res, next) => {
+    // const userId = req.user._id;
+    const eventId = req.params.id;
+    console.log('PARAMS ID: ', eventId);
+    try {
+        const favEvent = await Event.findById(eventId);
+        const favWorkshop = await Workshop.findById(eventId);
+        const favConvention = await Convention.findById(eventId);
+
+        if (favEvent) {
+            const updatedUser = await User.findByIdAndUpdate(req.user._id, { $push: { "favoriteEvents": favEvent } }, { safe: true, upsert: true }).populate("events");
+            // console.log('FAV EVENT: ', favEvent);
+            res.json({ success: true, user: updatedUser });
+        } else if (favWorkshop) {
+            const updatedUser = await User.findByIdAndUpdate(req.user._id, { $push: { "favoriteEvents": favWorkshop } }, { safe: true, upsert: true }).populate("events");
+            // console.log('FAV WORKSHOP: ', favWorkshop);
+            res.json({ success: true, user: updatedUser });
+        } else if (favConvention) {
+            const updatedUser = await User.findByIdAndUpdate(req.user._id, { $push: { "favoriteEvents": favConvention } }, { safe: true, upsert: true }).populate("events");
+            // console.log('FAV CONVENTION: ', favConvention);
+            res.json({ success: true, user: updatedUser });
+        }
+
     } catch (err) {
         next(err)
     }
