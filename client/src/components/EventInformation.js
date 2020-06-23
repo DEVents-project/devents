@@ -126,7 +126,7 @@ const EventInformation = (props) => {
 
 
     console.log('INFORMATION EVENT: ', eventInfo);
-    // console.log('USER DATA ID: ', userData._id);
+    console.log('USER DATA: ', userData);
     // console.log('EVENT INFO AUTHOR-ID: ', eventInfo.authorId);
     // console.log('EVENT INFO AUTHOR-ID = USER DATA ID ? ', userData._id === eventInfo.authorId);
 

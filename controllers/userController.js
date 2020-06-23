@@ -127,23 +127,51 @@ exports.addFav = async (req, res, next) => {
         const favConvention = await Convention.findById(eventId);
 
         if (favEvent) {
-            userData.favoriteEvents.push(favEvent);
-            userData.save();
-            console.log('USER DATA: ', userData);
-            console.log('FAV Event: ', favEvent);
-            res.json({ success: true, user: userData });
+            const likedEvent = userData.favoriteEvents.filter(event => event._id === eventId);
+            if (likedEvent) {
+                userData.favoriteEvents.filter(event => event._id !== eventId);
+                userData.save();
+                console.log('USER DATA: ', userData);
+                console.log('FAV Event: ', favEvent);
+                res.json({ success: true, user: userData });
+            } else {
+                userData.favoriteEvents.push(favEvent);
+                userData.save();
+                console.log('USER DATA: ', userData);
+                console.log('FAV Event: ', favEvent);
+                res.json({ success: true, user: userData });
+            }
+
         } else if (favWorkshop) {
-            userData.favoriteWorkshops.push(favWorkshop);
-            userData.save();
-            console.log('USER DATA: ', userData);
-            console.log('FAV Workshop: ', favWorkshop);
-            res.json({ success: true, user: userData });
+            const likedWorkshop = userData.favoriteWorkshops.filter(workshop => workshop._id === eventId);
+            if (likedWorkshop) {
+                userData.favoriteWorkshops.filter(workshop => workshop._id !== eventId);
+                userData.save();
+                console.log('USER DATA: ', userData);
+                console.log('FAV Workshop: ', favWorkshop);
+                res.json({ success: true, user: userData });
+            } else {
+                userData.favoriteWorkshops.push(favWorkshop);
+                userData.save();
+                console.log('USER DATA: ', userData);
+                console.log('FAV Workshop: ', favWorkshop);
+                res.json({ success: true, user: userData });
+            }
         } else {
-            userData.favoriteConventions.push(favConvention);
-            userData.save();
-            console.log('USER DATA: ', userData);
-            console.log('FAV Convention: ', favConvention);
-            res.json({ success: true, user: userData });
+            const likedConvention = userData.favoriteConventions.filter(convention => convention._id === eventId);
+            if (likedConvention) {
+                userData.favoriteConventions.filter(convention => convention._id !== eventId);
+                userData.save();
+                console.log('USER DATA: ', userData);
+                console.log('FAV Workshop: ', favConvention);
+                res.json({ success: true, user: userData });
+            } else {
+                userData.favoriteConventions.push(favConvention);
+                userData.save();
+                console.log('USER DATA: ', userData);
+                console.log('FAV Convention: ', favConvention);
+                res.json({ success: true, user: userData });
+            }
         }
 
     } catch (err) {
