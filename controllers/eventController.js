@@ -72,8 +72,8 @@ exports.postEvent = async (req, res, next) => {
         });
         await newEvent.save();
         let userData = await User.findById(req.user._id)
-        console.log(userData)
-        console.log('NEW Event: ', newEvent)
+        // console.log(userData)
+        // console.log('NEW Event: ', newEvent)
         userData.events.push(newEvent._id)
         userData.save()
 

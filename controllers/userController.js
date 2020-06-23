@@ -1,5 +1,8 @@
 const createError = require("http-errors");
 const User = require("../models/usersSchema");
+const Event = require("../models/eventSchema");
+const Workshop = require("../models/workshopSchema");
+const Convention = require("../models/conventionSchema");
 const { encrypt } = require("../lib/encryption");
 const fetch = require("node-fetch");
 
@@ -20,7 +23,7 @@ exports.getUser = async (req, res, next) => {
     const { _id } = req.user
     // console.log('token:', token);
     try {
-        const user = await User.findById(_id).populate("events", "title hostedBy date time location imgUrl website description createdAt coordinates lat lng authorId _id");
+        const user = await User.findById(_id).populate('events').populate('favoriteMeetups').populate('favoriteWorkshops').populate('favoriteConventions').exec();
         res.json({ success: true, user: user })
     } catch (err) {
         next(err)
@@ -107,6 +110,70 @@ exports.putUser = async (req, res, next) => {
         // console.log('updatedUser: ', updatedUser);
 
         res.json({ success: true, user: updatedUser })
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.addFav = async (req, res, next) => {
+    // const userId = req.user._id;
+    const eventId = req.params.id;
+    // console.log('PARAMS ID: ', eventId);
+
+    try {
+        let userData = await User.findById(req.user._id);
+        const favMeetup = await Event.findById(eventId);
+        const favWorkshop = await Workshop.findById(eventId);
+        const favConvention = await Convention.findById(eventId);
+
+        if (favMeetup) {
+            const likedMeetup = userData.favoriteMeetups.filter(meetup => parseInt(meetup) === parseInt(eventId));
+            // console.log('LIKED MEETUP: ', likedMeetup);
+            if (likedMeetup.length === 0) {
+                userData.favoriteMeetups.push(favMeetup);
+                userData.save();
+                console.log('Meetup WAS NOT THERE: ', favMeetup);
+                res.json({ success: true, user: userData, star: true });
+            } else {
+                const newFavMeetups = userData.favoriteMeetups.filter(meetup => parseInt(meetup) !== parseInt(eventId));
+                userData.favoriteMeetups = newFavMeetups;
+                userData.save();
+
+                // console.log('Meetup ALREADY THERE: ', favMeetup);
+                res.json({ success: true, user: userData, star: false });
+            }
+        } else if (favWorkshop) {
+            const likedWorkshop = userData.favoriteWorkshops.filter(workshop => parseInt(workshop) === parseInt(eventId));
+            // console.log('LIKED WORKSHOP: ', likedWorkshop);
+            if (likedWorkshop.length === 0) {
+                userData.favoriteWorkshops.push(favWorkshop);
+                userData.save();
+                // console.log('Workshop WAS NOT THERE: ', favWorkshop);
+                res.json({ success: true, user: userData, star: true });
+            } else {
+                const newFavWorkshops = userData.favoriteWorkshops.filter(workshop => parseInt(workshop) !== parseInt(eventId));
+                userData.favoriteWorkshops = newFavWorkshops;
+                userData.save();
+                // console.log('Workshop ALREADY THERE: ', favWorkshop);
+                res.json({ success: true, user: userData, star: false });
+            }
+        } else {
+            const likedConvention = userData.favoriteConventions.filter(convention => parseInt(convention) === parseInt(eventId));
+            // console.log('LIKED CONV: ', likedConvention);
+            if (likedConvention.length === 0) {
+                userData.favoriteConventions.push(favConvention);
+                userData.save();
+                console.log('Convention WAS NOT THERE: ', favConvention);
+                res.json({ success: true, user: userData, star: true });
+            } else {
+                const newFavConventions = userData.favoriteConventions.filter(convention => parseInt(convention) !== parseInt(eventId));
+                userData.favoriteConventions = newFavConventions;
+                userData.save();
+                console.log('Convention ALREADY THERE: ', favConvention);
+                res.json({ success: true, user: userData, star: false });
+            }
+        }
+
     } catch (err) {
         next(err)
     }
