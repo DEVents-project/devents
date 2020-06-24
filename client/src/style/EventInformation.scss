@@ -62,10 +62,16 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
+            margin-bottom: 1rem;
 
             button {
                 width: 48%;
             }
+        }
+
+        .share-buttons {
+            width: 100%;
+            display: flex;
         }
     }
 
