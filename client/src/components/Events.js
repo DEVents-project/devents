@@ -50,7 +50,7 @@ const Events = () => {
                 <h2 className="underline" style={{ color: eventType === 'conventions' ? '#256eac' : null }} onClick={() => setEventType('conventions')}>Conventions</h2>
 
                 {
-                    meetups ?
+                    meetups && workshops && conventions ?
                         <select className="checkout" onClick={(e) => setSelectedCity(e.target.value)}>
                             <option value="disabled" selected={selectedCity === 'disabled' && true} disabled>Select city</option>
                             {
