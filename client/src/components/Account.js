@@ -176,7 +176,7 @@ const Account = () => {
                         userData &&
                             userData.events &&
                             userData.events.length ?
-                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                            userData.events.map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
                             :
                             <p className="no-events">You didn't create any event yet</p>
                     }
@@ -189,7 +189,7 @@ const Account = () => {
                             <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Meetups</span> I'm following</h4>
                             <div className="events-container">
                                 {
-                                    userData.favoriteMeetups.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                                    userData.favoriteMeetups.map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
                                 }
                             </div>
                         </Fragment>
@@ -204,7 +204,7 @@ const Account = () => {
                             <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Workshops</span> I'm following</h4>
                             <div className="events-container">
                                 {
-                                    userData.favoriteWorkshops.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                                    userData.favoriteWorkshops.map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
                                 }
                             </div>
                         </Fragment>
@@ -219,7 +219,7 @@ const Account = () => {
                             <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Conventions</span> I'm following</h4>
                             <div className="events-container">
                                 {
-                                    userData.favoriteConventions.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                                    userData.favoriteConventions.map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
                                 }
                             </div>
                         </Fragment>

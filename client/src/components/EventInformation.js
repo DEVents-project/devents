@@ -12,7 +12,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 const EventInformation = (props) => {
     const history = useHistory();
 
-    const { lat, setLat, lng, setLng, getOneEvent, unfilteredMeetups, setMeetups, eventInfo, setEventInfo, userData, token } = useContext(Context);
+    const { lat, setLat, lng, setLng, getOneEvent, unfilteredMeetups, setMeetups, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
 
     // By clicking on EDIT:
     const [editMode, setEditMode] = useState(false);
@@ -125,8 +125,9 @@ const EventInformation = (props) => {
 
         const request = await fetch(`http://localhost:4000/users/${eventId}`, newFavoriteEvent);
         const response = await request.json();
-        // console.log('Event added to favorites - Response: ', response);
+        console.log('Event added to favorites - Response: ', response);
         if (response.success) {
+            setUserData(response.user)
             setLikedEvent(response.star);
         };
     };
@@ -280,7 +281,7 @@ const EventInformation = (props) => {
                                                         null
                                                 }
                                                 {
-                                                    eventInfo ?
+                                                    eventInfo.coordinates ?
                                                         <Map
                                                             google={props.google}
                                                             center={{ lat: eventInfo.lat, lng: eventInfo.lng }}

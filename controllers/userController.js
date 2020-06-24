@@ -118,7 +118,7 @@ exports.putUser = async (req, res, next) => {
 exports.addFav = async (req, res, next) => {
     // const userId = req.user._id;
     const eventId = req.params.id;
-    // console.log('PARAMS ID: ', eventId);
+    console.log('PARAMS ID: ', eventId);
 
     try {
         let userData = await User.findById(req.user._id);
@@ -126,51 +126,54 @@ exports.addFav = async (req, res, next) => {
         const favWorkshop = await Workshop.findById(eventId);
         const favConvention = await Convention.findById(eventId);
 
+        console.log('USER DATA BEFORE: ', userData);
+
         if (favMeetup) {
-            const likedMeetup = userData.favoriteMeetups.filter(meetup => parseInt(meetup) === parseInt(eventId));
-            // console.log('LIKED MEETUP: ', likedMeetup);
-            if (likedMeetup.length === 0) {
-                userData.favoriteMeetups.push(favMeetup);
-                userData.save();
-                console.log('Meetup WAS NOT THERE: ', favMeetup);
-                res.json({ success: true, user: userData, star: true });
-            } else {
-                const newFavMeetups = userData.favoriteMeetups.filter(meetup => parseInt(meetup) !== parseInt(eventId));
+
+            if (userData.favoriteMeetups.includes(favConvention._id)) {
+
+                const newFavMeetups = userData.favoriteMeetups.filter(meetup => meetup._id.toString() !== favMeetup._id.toString());
                 userData.favoriteMeetups = newFavMeetups;
                 userData.save();
-
-                // console.log('Meetup ALREADY THERE: ', favMeetup);
                 res.json({ success: true, user: userData, star: false });
-            }
-        } else if (favWorkshop) {
-            const likedWorkshop = userData.favoriteWorkshops.filter(workshop => parseInt(workshop) === parseInt(eventId));
-            // console.log('LIKED WORKSHOP: ', likedWorkshop);
-            if (likedWorkshop.length === 0) {
-                userData.favoriteWorkshops.push(favWorkshop);
-                userData.save();
-                // console.log('Workshop WAS NOT THERE: ', favWorkshop);
-                res.json({ success: true, user: userData, star: true });
+
             } else {
-                const newFavWorkshops = userData.favoriteWorkshops.filter(workshop => parseInt(workshop) !== parseInt(eventId));
+
+                userData.favoriteMeetups.push(favMeetup._id);
+                userData.save();
+                res.json({ success: true, user: userData, star: true });
+            }
+
+        } else if (favWorkshop) {
+
+            if (userData.favoriteWorkshops.includes(favWorkshop._id)) {
+
+                const newFavWorkshops = userData.favoriteWorkshops.filter(workshop => workshop._id.toString() !== favWorkshop._id.toString());
                 userData.favoriteWorkshops = newFavWorkshops;
                 userData.save();
-                // console.log('Workshop ALREADY THERE: ', favWorkshop);
                 res.json({ success: true, user: userData, star: false });
-            }
-        } else {
-            const likedConvention = userData.favoriteConventions.filter(convention => parseInt(convention) === parseInt(eventId));
-            // console.log('LIKED CONV: ', likedConvention);
-            if (likedConvention.length === 0) {
-                userData.favoriteConventions.push(favConvention);
-                userData.save();
-                console.log('Convention WAS NOT THERE: ', favConvention);
-                res.json({ success: true, user: userData, star: true });
+
             } else {
-                const newFavConventions = userData.favoriteConventions.filter(convention => parseInt(convention) !== parseInt(eventId));
+
+                userData.favoriteWorkshops.push(favWorkshop._id);
+                userData.save();
+                res.json({ success: true, user: userData, star: true });
+            }
+
+        } else if (favConvention) {
+
+            if (userData.favoriteConventions.includes(favConvention._id)) {
+
+                const newFavConventions = userData.favoriteConventions.filter(convention => convention._id.toString() !== favConvention._id.toString());
                 userData.favoriteConventions = newFavConventions;
                 userData.save();
-                console.log('Convention ALREADY THERE: ', favConvention);
                 res.json({ success: true, user: userData, star: false });
+
+            } else {
+
+                userData.favoriteConventions.push(favConvention._id);
+                userData.save();
+                res.json({ success: true, user: userData, star: true });
             }
         }
 
