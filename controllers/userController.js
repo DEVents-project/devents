@@ -130,7 +130,7 @@ exports.addFav = async (req, res, next) => {
 
         if (favMeetup) {
 
-            if (userData.favoriteMeetups.includes(favConvention._id)) {
+            if (userData.favoriteMeetups.includes(favMeetup._id)) {
 
                 const newFavMeetups = userData.favoriteMeetups.filter(meetup => meetup._id.toString() !== favMeetup._id.toString());
                 userData.favoriteMeetups = newFavMeetups;
