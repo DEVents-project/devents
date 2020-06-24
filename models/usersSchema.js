@@ -45,7 +45,7 @@ UserSchema.methods.getPublicFields = function () {
         avatar: this.avatar,
         events: this.events,
         favoriteMeetups: this.favoriteMeetups,
-        favoriteWorkshops: this.favoriteConventions,
+        favoriteWorkshops: this.favoriteWorkshops,
         favoriteConventions: this.favoriteConventions,
         _id: this._id
     }

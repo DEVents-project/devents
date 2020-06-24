@@ -12,7 +12,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 const EventInformation = (props) => {
     const history = useHistory();
 
-    const { lat, setLat, lng, setLng, getOneEvent, unfilteredMeetups, setMeetups, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
+    const { lat, setLat, lng, setLng, unfilteredMeetups, setMeetups, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
 
     // By clicking on EDIT:
     const [editMode, setEditMode] = useState(false);
