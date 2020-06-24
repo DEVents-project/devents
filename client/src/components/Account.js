@@ -4,6 +4,9 @@ import { useHistory, NavLink } from 'react-router-dom';
 import '../style/Account.scss';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as faFullHeart } from '@fortawesome/free-solid-svg-icons';
+
 
 const Account = (props) => {
     const history = useHistory();
@@ -118,7 +121,7 @@ const Account = (props) => {
         <div className="space-navbar account-container">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
             <div className="personal-account slide-from-left">
-                <h4>My information</h4>
+                <h4><span>My information</span></h4>
                 <div className="image-frame">
                     <img className="profile-image" src={userData && userData.avatar} alt="" />
                 </div>
@@ -170,7 +173,7 @@ const Account = (props) => {
 
             </div>
             <div className="personal-events slide-from-right">
-                <h4>My events</h4>
+                <h4><span>My own events</span></h4>
                 <div className="events-container">
                     {
                         userData &&
@@ -181,6 +184,51 @@ const Account = (props) => {
                             <p className="no-events">You didn't create any event yet</p>
                     }
                 </div>
+                {
+                    userData &&
+                        userData.favoriteMeetups &&
+                        userData.favoriteMeetups.length ?
+                        <Fragment>
+                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Meetups</span> I'm following</h4>
+                            <div className="events-container">
+                                {
+                                    userData.favoriteMeetups.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                                }
+                            </div>
+                        </Fragment>
+                        :
+                        null
+                }
+                {
+                    userData &&
+                        userData.favoriteWorkshops &&
+                        userData.favoriteWorkshops.length ?
+                        <Fragment>
+                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Workshops</span> I'm following</h4>
+                            <div className="events-container">
+                                {
+                                    userData.favoriteWorkshops.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                                }
+                            </div>
+                        </Fragment>
+                        :
+                        null
+                }
+                {
+                    userData &&
+                        userData.favoriteConventions &&
+                        userData.favoriteConventions.length ?
+                        <Fragment>
+                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Conventions</span> I'm following</h4>
+                            <div className="events-container">
+                                {
+                                    userData.favoriteConventions.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                                }
+                            </div>
+                        </Fragment>
+                        :
+                        null
+                }
             </div>
         </div>
     );
