@@ -60,7 +60,7 @@ exports.postEvent = async (req, res, next) => {
             title: req.body.title,
             hostedBy: req.body.hostedBy,
             date: req.body.date,
-            time: req.body.time,
+            time: req.body.time.includes('M') ? req.body.time : req.body.time + ' H.',
             location: req.body.location,
             coordinates: req.body.coordinates,
             lat: req.body.lat,

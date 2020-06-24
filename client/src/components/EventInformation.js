@@ -203,7 +203,7 @@ const EventInformation = (props) => {
 
                                                 <Fragment>
                                                     <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
-                                                    <p className="event-information-time">Time: <strong>{eventInfo.time.includes('M') ? eventInfo.time : eventInfo.time + ' H.'}</strong></p>
+                                                    <p className="event-information-time">Time: <strong>{eventInfo.time}</strong></p>
                                                     <h2 className="event-information-title">{eventInfo.title}</h2>
                                                     <div className="event-information-box-one">
                                                         {
