@@ -60,18 +60,31 @@ const Login = () => {
     }
 
 
-    // const loginGithub = async () => {
+    // const gitLogin = async (e) => {
+    //     e.preventDefault()
     //     const options = {
-    //         method: 'GET',
+    //         method: 'POST',
     //         headers: {
     //             'Content-Type': 'application/json',
 
     //         }
     //     }
 
-    //     const fetch = await fetch("http://localhost:4000/github/account", options)
-    //     const res = await fetch.json()
+    //     const git = await fetch("http://localhost:4000/auth/github/redirect", options)
+    //     const res = await git.json()
     //     console.log("res", res)
+
+    //     const header = git.headers.get('x-auth');
+
+    //     if (res.success) {
+    //         localStorage.setItem('token', header);
+    //         setToken(header);
+    //         setUserData(res.user)
+    //         setLoggedIn(true)
+    //     } else {
+    //         setErrorMsg(true)
+    //     }
+
     // }
 
 
@@ -113,7 +126,7 @@ const Login = () => {
             </form>
 
             <p className="github-log">Login with your<FontAwesomeIcon className="github-icon" icon={faGithubAlt} />GitHub account?
-                <a className="github-link" href="http://localhost:4000/auth/github" >Click here</a></p>
+                <button className="github-button"><a className="github-link" href="http://localhost:4000/auth/github" >CLICK HERE</a></button></p>
         </main>
     )
 }

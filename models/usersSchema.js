@@ -7,6 +7,7 @@ const env = require("../config/config");
 
 
 const UserSchema = new Schema({
+    ghID: { type: String },
     name: { type: String, required: true },
     email: { type: String, required: true },
     role: { type: String, default: "User", required: true },
@@ -18,7 +19,7 @@ const UserSchema = new Schema({
             }
         }
     ],
-    password: { type: String, required: true },
+    password: { type: String, required: false },
     avatar: { type: String, required: false },
     website: { type: String, required: false },
     events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
