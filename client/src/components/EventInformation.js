@@ -12,7 +12,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 const EventInformation = (props) => {
     const history = useHistory();
 
-    const { lat, setLat, lng, setLng, getOneEvent, unfilteredMeetups, setMeetups, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
+    const { lat, setLat, lng, setLng, unfilteredMeetups, setMeetups, eventInfo, setEventInfo, userData, setUserData, token } = useContext(Context);
 
     // By clicking on EDIT:
     const [editMode, setEditMode] = useState(false);
@@ -203,7 +203,7 @@ const EventInformation = (props) => {
 
                                                 <Fragment>
                                                     <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
-                                                    <p className="event-information-time">Time: <strong>{eventInfo.time.includes('M') ? eventInfo.time : eventInfo.time + ' H.'}</strong></p>
+                                                    <p className="event-information-time">Time: <strong>{eventInfo.time}</strong></p>
                                                     <h2 className="event-information-title">{eventInfo.title}</h2>
                                                     <div className="event-information-box-one">
                                                         {
