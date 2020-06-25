@@ -1,11 +1,9 @@
 const Grid = require("gridfs-stream");
 const Image = require("../models/imgWorkshopSchema")
 const mongoose = require("mongoose")
-const env = require("./config/config")
-
 
 // Mongo URI
-const mongoURI = env.MONGO_PROD;
+const mongoURI = 'mongodb+srv://DEVents:DEVents2020@cluster0-xhusr.mongodb.net/devents';
 
 // Create mongo connection
 const conn = mongoose.createConnection(mongoURI);
