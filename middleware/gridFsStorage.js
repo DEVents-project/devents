@@ -1,5 +1,5 @@
 const GridFsStorage = require('multer-gridfs-storage');
-const env = require("./config/config")
+const env = require("../config/config")
 const mongoURI = env.db;
 const multer = require("multer")
 
