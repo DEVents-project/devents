@@ -4,10 +4,7 @@
   "description": "final project DCI",
   "main": "server.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon server.js",
-    "build": "node build --output client",
-    "heroku-postbuild": "npm install && npm run build"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
