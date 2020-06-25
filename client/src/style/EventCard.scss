@@ -1,3 +1,5 @@
+@import "index";
+
 .event-card {
     max-width: 300px;
     position: relative;
@@ -75,6 +77,55 @@
             .to-back {
                 opacity: 0.3;
             }
+        }
+    }
+}
+
+.passed-event {
+    position: relative;
+    overflow: hidden;
+
+    &:hover:after {
+        opacity: 0.5;
+    }
+
+    .passed-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -50px;
+        margin-top: -25px;
+        z-index: 5;
+
+        &:active {
+            top: calc(50% + 3px);
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &:after {
+        content: "Event already passed";
+        position: absolute;
+        width: 170%;
+        height: 6rem;
+        top: 40%;
+        left: -35%;
+        font-size: 1.5rem;
+        text-align: center;
+        color: #fff;
+        background-color: $mid-red;
+        transform: rotate(-35deg);
+        z-index: 2;
+        padding-top: 4rem;
+
+        @media screen and (min-width: 920px) {
+            top: 25%;
+            left: -30%;
+            width: 160%;
+            font-size: 2rem;
         }
     }
 }
