@@ -10,6 +10,7 @@ import { faMapMarkerAlt, faHeart as faFullHeart } from '@fortawesome/free-solid-
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import Moment from 'moment';
 
+
 const EventInformation = (props) => {
     const history = useHistory();
 
@@ -216,6 +217,20 @@ const EventInformation = (props) => {
                                                         <div className="editing-buttons">
                                                             <button className="button link-to-site" onClick={() => { setEditMode(true); localStorage.removeItem('event-info') }}>EDIT</button>
                                                             <button className="button link-to-site delete-button" onClick={(e) => { if (window.confirm('Are you sure you want to delete this event?')) { deleteEvent(e) } }}>DELETE</button>
+                                                        </div>
+                                                        <div className="share-buttons">
+                                                            <FacebookShareButton
+                                                                url={window.location.href}
+                                                                quote="Check out this event!"
+                                                                hashtag="#whoscomingwith">
+                                                                <FacebookIcon className="fb-icon" size={40} />
+                                                            </FacebookShareButton>
+                                                            <TwitterShareButton
+                                                                url={window.location.href}
+                                                                quote="Check out this event!"
+                                                                hashtag="#whoscomingwith">
+                                                                <TwitterIcon className="fb-icon" size={40} />
+                                                            </TwitterShareButton>
                                                         </div>
                                                     </div>
                                                     <div className="event-information-box-two">
