@@ -8,6 +8,7 @@ import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faHeart as faFullHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import Moment from 'moment';
 
 const EventInformation = (props) => {
     const history = useHistory();
@@ -73,8 +74,8 @@ const EventInformation = (props) => {
         // console.log('NEW COORDINATES: ', newCoordinates);
 
         const newInfo = {
-            date: newDate === '' ? eventInfo.date : newDate,
-            time: newTime === '' ? eventInfo.time : newTime,
+            date: newDate === '' ? eventInfo.date : new Moment(newDate).format('DD MMMM YYYY'),
+            time: newTime === '' ? eventInfo.time : newTime.includes('M') ? newTime : newTime + ' H.',
             title: newTitle === '' ? eventInfo.title : newTitle,
             description: newDescription === '' ? eventInfo.description : newDescription,
             location: newLocation === '' ? eventInfo.location : newLocation,
