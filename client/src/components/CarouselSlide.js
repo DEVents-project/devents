@@ -18,7 +18,7 @@ const CarouselSlide = ({ event }) => {
 
     return (
         <div className="slide-container" >
-            <div className="oneSlide" style={{ backgroundImage: `url("http://localhost:4000${event.imgUrl}")` }}>
+            <div className="oneSlide" style={{ backgroundImage: `url("${event.imgUrl}")` }}>
                 <div className="slide-text">
                     <h2 className="titleAdvert">{event.title}</h2>
                     <p className="textAdvert">{event.location}</p>
