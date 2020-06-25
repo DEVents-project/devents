@@ -15,10 +15,6 @@
   "bugs": {
     "url": "https://github.com/DEVents-project/devents/issues"
   },
-  "homepage": "https://github.com/DEVents-project/devents#readme",
-  "devDependencies": {
-    "nodemon": "^2.0.4"
-  },
   "dependencies": {
     "bcrypt": "^4.0.1",
     "connect-mongo": "^3.2.0",
