@@ -60,7 +60,7 @@ const EventInformation = (props) => {
             body: JSON.stringify(eventToDelete)
         };
 
-        const request = await fetch('http://localhost:4000/events', deletedEvent);
+        const request = await fetch('/events', deletedEvent);
         const response = await request.json();
         // console.log('EVent Deleted - Response: ', response);
         if (response.success) {
@@ -98,7 +98,7 @@ const EventInformation = (props) => {
             body: JSON.stringify(newInfo)
         };
 
-        const request = await fetch('http://localhost:4000/events', newEventInfo);
+        const request = await fetch('/events', newEventInfo);
         const response = await request.json();
         // console.log('EVent infoRmAtioN - Response: ', response);
         if (response.success) {
@@ -126,7 +126,7 @@ const EventInformation = (props) => {
             }
         };
 
-        const request = await fetch(`http://localhost:4000/users/${eventId}`, newFavoriteEvent);
+        const request = await fetch(`/users/${eventId}`, newFavoriteEvent);
         const response = await request.json();
         console.log('Event added to favorites - Response: ', response);
         if (response.success) {
@@ -175,7 +175,7 @@ const EventInformation = (props) => {
                                                             eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
                                                                 <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
                                                                 :
-                                                                <img className="event-information-image" src={`http://localhost:4000${eventInfo.imgUrl}`} alt="event-image" />
+                                                                <img className="event-information-image" src={`${eventInfo.imgUrl}`} alt="event-image" />
                                                         }
                                                     </div>
                                                     <div className="event-information-box-two">
@@ -213,7 +213,7 @@ const EventInformation = (props) => {
                                                             eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
                                                                 <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
                                                                 :
-                                                                <img className="event-information-image" src={eventInfo.imgUrl ? `http://localhost:4000${eventInfo.imgUrl}` : `http://localhost:4000${eventInfo.imgUrlUrl}`} alt="event-image" />
+                                                                <img className="event-information-image" src={eventInfo.imgUrl ? `${eventInfo.imgUrl}` : `${eventInfo.imgUrlUrl}`} alt="event-image" />
                                                         }
                                                         <div className="editing-buttons">
                                                             <button className="button link-to-site" onClick={() => { setEditMode(true); localStorage.removeItem('event-info') }}>EDIT</button>
@@ -283,7 +283,7 @@ const EventInformation = (props) => {
                                                     eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
                                                         <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
                                                         :
-                                                        <img className="event-information-image" src={eventInfo.imgUrl ? `http://localhost:4000${eventInfo.imgUrl}` : `http://localhost:4000${eventInfo.imgUrlUrl}`} alt="event-image" />
+                                                        <img className="event-information-image" src={eventInfo.imgUrl ? `${eventInfo.imgUrl}` : `${eventInfo.imgUrlUrl}`} alt="event-image" />
                                                 }
                                             </div>
                                             <div className="event-information-box-two">
@@ -322,7 +322,7 @@ const EventInformation = (props) => {
                                                     eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
                                                         <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
                                                         :
-                                                        <img className="event-information-image" src={`http://localhost:4000${eventInfo.imgUrl}`} alt="event-image" />
+                                                        <img className="event-information-image" src={`${eventInfo.imgUrl}`} alt="event-image" />
                                                 }
                                                 {
                                                     eventInfo.url ?

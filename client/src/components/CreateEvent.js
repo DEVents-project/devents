@@ -65,7 +65,7 @@ const CreateEvent = (props) => {
 
         try {
             // console.log('IMG BODY: ', imgBody);
-            const res = await axios.post('http://localhost:4000/events', imgBody, {
+            const res = await axios.post('/events', imgBody, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'x-auth': token

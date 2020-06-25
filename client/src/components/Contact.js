@@ -25,7 +25,7 @@ const Contact = () => {
             },
             body: JSON.stringify(data)
         };
-        fetch('http://localhost:4000/send-email', options)
+        fetch('/send-email', options)
             .then(res => res.json())
             .then(res1 => {
                 console.log(res1.status);

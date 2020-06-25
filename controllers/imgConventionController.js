@@ -3,7 +3,7 @@ const Image = require("../models/imgConventionSchema")
 const mongoose = require("mongoose")
 
 // Mongo URI
-const mongoURI = 'mongodb://127.0.0.1:27017/devents';
+const mongoURI = 'mongodb+srv://DEVents:DEVents2020@cluster0-xhusr.mongodb.net/devents';
 
 // Create mongo connection
 const conn = mongoose.createConnection(mongoURI);
