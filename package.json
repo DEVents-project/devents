@@ -4,8 +4,10 @@
   "description": "final project DCI",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "node app.js",
+    "dev": "nodemon server.js",
+    "build": "node build --output client",
+    "heroku-postbuild": "npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -44,5 +46,8 @@
     "passport": "^0.4.1",
     "passport-github": "^1.1.0",
     "passport-github2": "^0.1.12"
+  },
+  "engines": {
+    "node": "v12.16.3"
   }
 }

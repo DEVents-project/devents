@@ -8,6 +8,7 @@ import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faHeart as faFullHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from "react-share";
 import Moment from 'moment';
 
 
