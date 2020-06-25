@@ -1,5 +1,6 @@
 const GridFsStorage = require('multer-gridfs-storage');
-const mongoURI = 'mongodb+srv://DEVents:DEVents2020@cluster0-xhusr.mongodb.net/devents';
+const env = require("./config/config")
+const mongoURI = env.MONGO_PROD;
 const multer = require("multer")
 
 const storage = new GridFsStorage({
