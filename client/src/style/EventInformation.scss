@@ -6,6 +6,23 @@
     display: flex;
     flex-direction: column;
     font-family: Montserrat, sans-serif;
+    position: relative;
+
+    .add-to-favorite {
+        position: absolute;
+        right: 2rem;
+        cursor: pointer;
+
+        .full-star {
+            font-size: 1.5rem;
+            color: $mid-dark-blue;
+        }
+
+        .star {
+            font-size: 1.5rem;
+            color: $mid-light-blue;
+        }
+    }
 
     form {
         grid-area: 1/1/-1/-1;
@@ -100,8 +117,19 @@
         grid-template-columns: repeat(2, 1fr);
         padding: 2rem 2rem 4rem;
 
+        .add-to-favorite {
+            grid-area: 1/2/1/-1;
+            top: 0;
+            right: 0;
+
+            .star,
+            .full-star {
+                font-size: 2.5rem;
+            }
+        }
+
         .event-information-date {
-            grid-area: 1/1/2/-1;
+            grid-area: 1/1/2/2;
         }
 
         .event-information-time {

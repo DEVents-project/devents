@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
 import Context from './Context';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import '../style/Account.scss';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as faFullHeart } from '@fortawesome/free-solid-svg-icons';
+
 
 const Account = () => {
     const history = useHistory();
@@ -96,11 +99,9 @@ const Account = () => {
 
         const request = await fetch('http://localhost:4000/users', deletedUser);
         const response = await request.json();
-        console.log('User Deleted - Response: ', response);
+        // console.log('User Deleted - Response: ', response);
         if (response.success) {
-            localStorage.clear();
             setIsAccountDeleted(true);
-            setUserData(null);
             setLoggedIn(false);
         };
     };
@@ -108,7 +109,7 @@ const Account = () => {
     // by clicking on 'SEE MORE' it will be redirected to the event's info
     useEffect(() => {
         isEventClicked && history.push('/event');
-        isAccountDeleted && history.push('/');
+        isAccountDeleted && history.push('/deletedaccount');
     });
 
     // console.log('ACCOUNT_userData: ', userData);
@@ -117,7 +118,7 @@ const Account = () => {
         <div className="space-navbar account-container">
             <ParticlesBg color="#8d8d8d" num={50} type="cobweb" bg={true} />
             <div className="personal-account slide-from-left">
-                <h4>My information</h4>
+                <h4><span>My information</span></h4>
                 <div className="image-frame">
                     <img className="profile-image" src={userData && userData.avatar} alt="" />
                 </div>
@@ -150,10 +151,10 @@ const Account = () => {
                                         }
                                     </div>
                                     <button type='submit' className="button save-button" >Save</button>
-                                    <button className="button delete-button button-margin" onClick={(e) => {
-                                        if (window.confirm(`Dear ${userData.name}, \n\nplease note that the events you have created will remain on the website if you do not remove them before deleting your account. \n\nAre you sure you want to delete your account?`)) { deleteAccount(e) }
+                                    <NavLink to="deletedaccount" className="button delete-button button-margin" onClick={(e) => {
+                                        if (window.confirm(`Dear ${userData.name}, \n\nplease note that the events you have created will remain on the website if you do not remove them before deleting your account. \n\nAre you sure you want to delete your account?`)) { localStorage.clear(); deleteAccount(e) }
                                     }}>Delete Account
-                                         </button>
+                                         </NavLink>
                                 </form>
                             </div>
                         </Fragment>
@@ -169,17 +170,62 @@ const Account = () => {
 
             </div>
             <div className="personal-events slide-from-right">
-                <h4>My events</h4>
+                <h4><span>My own events</span></h4>
                 <div className="events-container">
                     {
                         userData &&
                             userData.events &&
                             userData.events.length ?
-                            userData.events.map(el => <EventCard setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                            userData.events.map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
                             :
                             <p className="no-events">You didn't create any event yet</p>
                     }
                 </div>
+                {
+                    userData &&
+                        userData.favoriteMeetups &&
+                        userData.favoriteMeetups.length ?
+                        <Fragment>
+                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Meetups</span> I'm following</h4>
+                            <div className="events-container">
+                                {
+                                    userData.favoriteMeetups.map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                                }
+                            </div>
+                        </Fragment>
+                        :
+                        null
+                }
+                {
+                    userData &&
+                        userData.favoriteWorkshops &&
+                        userData.favoriteWorkshops.length ?
+                        <Fragment>
+                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Workshops</span> I'm following</h4>
+                            <div className="events-container">
+                                {
+                                    userData.favoriteWorkshops.map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                                }
+                            </div>
+                        </Fragment>
+                        :
+                        null
+                }
+                {
+                    userData &&
+                        userData.favoriteConventions &&
+                        userData.favoriteConventions.length ?
+                        <Fragment>
+                            <h4><FontAwesomeIcon className="full-star jello-horizontal" icon={faFullHeart} /> <span>Conventions</span> I'm following</h4>
+                            <div className="events-container">
+                                {
+                                    userData.favoriteConventions.map((el, i) => <EventCard key={i} setIsEventClicked={setIsEventClicked} setEventInfo={setEventInfo} el={el} />)
+                                }
+                            </div>
+                        </Fragment>
+                        :
+                        null
+                }
             </div>
         </div>
     );

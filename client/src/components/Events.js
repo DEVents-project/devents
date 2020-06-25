@@ -50,7 +50,7 @@ const Events = () => {
                 <h2 className="underline" style={{ color: eventType === 'conventions' ? '#256eac' : null }} onClick={() => setEventType('conventions')}>Conventions</h2>
 
                 {
-                    meetups ?
+                    meetups && workshops && conventions ?
                         <select className="checkout" onClick={(e) => setSelectedCity(e.target.value)}>
                             <option value="disabled" selected={selectedCity === 'disabled' && true} disabled>Select city</option>
                             {
@@ -85,7 +85,10 @@ const Events = () => {
                                         }
                                     </Fragment>
                                     :
-                                    <p className="find-city">Please, select a city to find <span className="find-event-type">{eventType}</span>.</p>
+                                    <div className="find-city" >
+                                        <p className="slide-from-left">Please, select a city to find</p>
+                                        <p className="find-event-type slide-from-right">{eventType}</p>
+                                    </div>
                             }
                         </Fragment>
                         :
@@ -111,7 +114,7 @@ const Events = () => {
                     null
             }
 
-        </div>
+        </div >
     );
 }
 

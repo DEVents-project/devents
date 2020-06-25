@@ -67,7 +67,6 @@ const NavBarSignedIn = () => {
 
     useEffect(() => {
         !loggedIn && history.push('/logout');
-
     });
 
     return (
