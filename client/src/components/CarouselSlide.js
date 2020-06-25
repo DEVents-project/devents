@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import Context from './Context';
 import { useHistory } from 'react-router-dom';
 import '../style/CarouselSlide.scss';
+import imgDefault from '../assets/img/eventImgDefault.png'
 
 const CarouselSlide = ({ event }) => {
     const history = useHistory();
