@@ -120,11 +120,12 @@
         transform: rotate(-35deg);
         z-index: 2;
         padding-top: 4rem;
+        opacity: 0.8;
 
         @media screen and (min-width: 920px) {
             top: 25%;
             left: -30%;
-            width: 160%;
+            width: 150%;
             font-size: 2rem;
         }
     }
