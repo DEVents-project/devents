@@ -39,10 +39,13 @@ const Account = (props) => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-        let token = query.get("token")
+
+        let token = query.get("token");
         console.log(token);
+
         setToken(token);
-        getUserData();
+        setUserData(data.user);
+        // getUserData();
         setLoggedIn(true)
 
     }, []);
