@@ -75,6 +75,10 @@
             padding-bottom: 1rem;
         }
 
+        .link-to-website {
+            margin: 1rem 0;
+        }
+
         .editing-buttons {
             width: 100%;
             display: flex;
@@ -113,7 +117,7 @@
     .event-information-container {
         display: grid;
         grid-gap: 2rem;
-        grid-template-rows: repeat(5, auto);
+        grid-template-rows: repeat(6, auto);
         grid-template-columns: repeat(2, 1fr);
         padding: 2rem 2rem 4rem;
 
@@ -164,13 +168,17 @@
 
         .google-map {
             margin: 0;
-            grid-area: 5/1/-1/-1;
+            grid-area: 5/1/6/-1;
         }
 
         form {
+            .event-information-website {
+                grid-area: 6/1/7/-1;
+            }
+
             .save-button {
                 margin: 0;
-                grid-area: 6/2/-1/-1;
+                grid-area: 7/2/-1/-1;
             }
         }
     }
