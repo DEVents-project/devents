@@ -183,7 +183,7 @@ const EventInformation = (props) => {
                                                     </div>
                                                     <div className="google-map">
                                                         <label className="event-information-location">Location
-                                                <GoogleMapsAutocomplete setLocation={setNewLocation} setCoordinates={setNewCoordinates} setLat={setLat} setLng={setLng} />
+                                                <GoogleMapsAutocomplete placeholder={''} setLocation={setNewLocation} setCoordinates={setNewCoordinates} setLat={setLat} setLng={setLng} />
                                                         </label>
                                                         {
                                                             eventInfo.lat && eventInfo.lng && eventInfo.location !== 'Online event' ?

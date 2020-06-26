@@ -2,7 +2,7 @@ import React from 'react';
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import 'react-google-places-autocomplete/dist/index.min.css';
 
-const GoogleMapsAutocomplete = ({ setLocation, setCoordinates, setLat, setLng }) => {
+const GoogleMapsAutocomplete = ({ placeholder, setLocation, setCoordinates, setLat, setLng }) => {
 
     const getCoordinates = (address) => {
         geocodeByAddress(address)
@@ -25,7 +25,7 @@ const GoogleMapsAutocomplete = ({ setLocation, setCoordinates, setLat, setLng })
             <GooglePlacesAutocomplete
                 inputClassName={'location-container event-input map-address'}
                 onSelect={(input) => { console.log(input); getCoordinates(input.description); setLocation(input.description) }}
-                placeholder={'Is it online? Leave it empty'}
+                placeholder={placeholder}
             />
         </div>
     )
