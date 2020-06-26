@@ -13,7 +13,7 @@ const EventSchema = new Schema({
 
     time: { type: String, required: true },
 
-    location: { type: String, required: true },
+    location: { type: String, required: false },
 
     coordinates: { type: String, required: true },
 

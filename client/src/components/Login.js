@@ -60,34 +60,6 @@ const Login = () => {
     }
 
 
-    // const gitLogin = async (e) => {
-    //     e.preventDefault()
-    //     const options = {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-
-    //         }
-    //     }
-
-    //     const git = await fetch("http://localhost:4000/auth/github/redirect", options)
-    //     const res = await git.json()
-    //     console.log("res", res)
-
-    //     const header = git.headers.get('x-auth');
-
-    //     if (res.success) {
-    //         localStorage.setItem('token', header);
-    //         setToken(header);
-    //         setUserData(res.user)
-    //         setLoggedIn(true)
-    //     } else {
-    //         setErrorMsg(true)
-    //     }
-
-    // }
-
-
 
     useEffect(() => {
         loggedIn && history.push('/events')
