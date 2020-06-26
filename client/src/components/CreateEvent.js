@@ -116,7 +116,6 @@ const CreateEvent = (props) => {
                         className="event-input"
                         type="text"
                         value={title}
-                        placeholder="the event title"
                         required
                         onChange={(e) => setTitle(e.target.value)}
                     />
@@ -126,7 +125,6 @@ const CreateEvent = (props) => {
                         className="event-input"
                         type="text"
                         value={hostedBy}
-                        placeholder="the host name"
                         onChange={(e) => setHostedBy(e.target.value)}
                     />
                 </label>
@@ -159,14 +157,12 @@ const CreateEvent = (props) => {
                         className="event-input"
                         type="url"
                         value={url}
-                        placeholder="the event website"
                         onChange={(e) => setUrl(e.target.value)}
                     />
                 </label>
                 <label className="event-label img-label"> Image (png, jpeg)
                     <input
                         type="file"
-                        placeholder="only png or jpeg"
                         className="event-input img-file"
                         onChange={(e) => setImage(e.target.files[0])}
                     />
@@ -174,7 +170,6 @@ const CreateEvent = (props) => {
                 <label className="event-label">Description *
                     <textarea cols="40" rows="20"
                         className="event-textarea"
-                        placeholder="the event details"
                         required
                         onChange={(e) => setDescription(e.target.value)}
                     />
