@@ -76,7 +76,7 @@ const Login = () => {
                     <FontAwesomeIcon className="log-icons" icon={faEnvelope} />
                     <input className="login-input"
                         type="email"
-                        placeholder="your email"
+                        placeholder="Email"
                         name="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -87,7 +87,7 @@ const Login = () => {
                     <input
                         className="login-input"
                         type="password"
-                        placeholder="your password"
+                        placeholder="Password"
                         name="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}

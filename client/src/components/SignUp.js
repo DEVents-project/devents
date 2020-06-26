@@ -104,7 +104,6 @@ const SignUp = () => {
                         type="text"
                         required
                         onChange={(e) => setName(e.target.value)} />
-
                 </label>
                 <p className="signup-label">Choose your avatar</p>
                 {
@@ -194,7 +193,7 @@ const SignUp = () => {
                     type="submit"
                     className="button sign-btn">CREATE ACCOUNT</button>
             </form>
-        </div >
+        </div>
     )
 }
 export default SignUp;

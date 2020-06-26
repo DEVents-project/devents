@@ -149,8 +149,8 @@ const CreateEvent = (props) => {
                         />
                     </label>
                 </div>
-                <label className="event-label">Location *
-                    <GoogleMapsAutocomplete isRequired={true} setLocation={setLocation} setCoordinates={setCoordinates} setLat={setLat} setLng={setLng} />
+                <label className="event-label">Location
+                    <GoogleMapsAutocomplete placeholder={'Is it online? Leave it empty'} setLocation={setLocation} setCoordinates={setCoordinates} setLat={setLat} setLng={setLng} />
                 </label>
                 <label className="event-label">Website
                     <input
@@ -163,6 +163,7 @@ const CreateEvent = (props) => {
                 <label className="event-label img-label"> Image (png, jpeg)
                     <input
                         type="file"
+                        placeholder="Only .png or .jpeg"
                         className="event-input img-file"
                         onChange={(e) => setImage(e.target.files[0])}
                     />
