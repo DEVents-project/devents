@@ -53,7 +53,7 @@ const SignUp = () => {
             body: JSON.stringify(signUpData)
 
         }
-        const resp = await fetch('http://localhost:4000/users', userData);
+        const resp = await fetch('/users', userData);
         const header = resp.headers.get('x-auth');
         const data = await resp.json();
 

@@ -3,7 +3,7 @@ const dot = require("dotenv")
 dot.config()
 
 const config = {
-    env: env.NODE_ENV || "development"
+    env: env.NODE_ENV || "production"
 }
 const devConfig = {
     db: env.MONGO_LOCAL,

@@ -6,7 +6,7 @@ const Workshop = require("../models/workshopSchema")
 const Moment = require("moment")
 const fetch = require("node-fetch")
 
-mongoose.connect("mongodb://127.0.0.1:27017/devents", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://DEVents:DEVents2020@cluster0-xhusr.mongodb.net/devents", { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.connection.on("error", (err) => console.log(err))
 mongoose.connection.on("open", () => console.log("database connected"))
 

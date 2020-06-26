@@ -12,7 +12,7 @@ const EventCard = ({ el, setIsEventClicked }) => {
         <div className="event-card scale-in-center">
             {
                 el &&
-                <div className="event-image to-back" style={{ backgroundImage: `url('http://localhost:4000${el.imgUrl}')` }} alt="test-image" />
+                <div className="event-image to-back" style={{ backgroundImage: `url('${el.imgUrl}')` }} alt="test-image" />
             }
             <h3 className="event-title to-back">{el.title}</h3>
             <p className="event-date to-back" >Date <span style={{ color: '#256eac' }}>{el.date}</span></p>

@@ -3,9 +3,11 @@ const Event = require("../models/eventSchema");
 const Grid = require("gridfs-stream");
 const mongoose = require("mongoose")
 const User = require("../models/usersSchema")
+const env = require("../config/config")
+
 
 // Mongo URI
-const mongoURI = 'mongodb://127.0.0.1:27017/devents';
+const mongoURI = env.db;
 
 // Create mongo connection
 const conn = mongoose.createConnection(mongoURI);
