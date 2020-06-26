@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, HashRouter } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import '../style/App.scss';
 import NavBarSignedIn from "./NavBarSignedIn";
 import NavBarSignedOut from "./NavBarSignedOut";
@@ -158,7 +158,7 @@ const App = () => {
 
     const response = await fetch('/users', options);
     const data = await response.json();
-
+    console.log('RESPONSE TO GET USERDATA: ', data)
     setUserData(data.user);
   };
 
