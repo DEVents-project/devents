@@ -94,13 +94,11 @@ const SignUp = () => {
                         typeOfUser === 'developer' ?
                             <input className="signup-input"
                                 type="text"
-                                placeholder="your name"
                                 required
                                 onChange={(e) => setName(e.target.value)} />
                             :
                             <input className="signup-input"
                                 type="text"
-                                placeholder="the organization's name"
                                 required
                                 onChange={(e) => setName(e.target.value)} />
                     }
@@ -143,7 +141,6 @@ const SignUp = () => {
                                 className="signup-input"
                                 type="email"
                                 value={email}
-                                placeholder="your email"
                                 required
                                 onChange={(e) => setEmail(e.target.value)} />
                             :
@@ -151,7 +148,6 @@ const SignUp = () => {
                                 className="signup-input"
                                 type="email"
                                 value={email}
-                                placeholder="the organization email"
                                 required
                                 onChange={(e) => setEmail(e.target.value)} />
                     }
@@ -166,7 +162,6 @@ const SignUp = () => {
                                 className="signup-input"
                                 type="url"
                                 value={website}
-                                placeholder="the url of the website "
                                 onChange={(e) => setWebsite(e.target.value)} />
                         </label>
                 }
@@ -176,7 +171,6 @@ const SignUp = () => {
                         className="signup-input"
                         type="password"
                         value={password}
-                        placeholder="your password"
                         required
                         onChange={(e) => setPassword(e.target.value)} />
                 </label>

@@ -13,13 +13,13 @@ const EventSchema = new Schema({
 
     time: { type: String, required: true },
 
-    location: { type: String, required: true },
+    location: { type: String, required: false, default: 'Online event' },
 
-    coordinates: { type: String, required: true },
+    coordinates: { type: String, required: false },
 
-    lat: { type: Number, required: true },
+    lat: { type: Number, required: false },
 
-    lng: { type: Number, required: true },
+    lng: { type: Number, required: false },
 
     imgUrl: { type: String, required: true },
 

@@ -6,7 +6,7 @@ import ParticlesBg from 'particles-bg';
 import Map from './Map';
 import GoogleMapsAutocomplete from './GoogleMapsAutocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faHeart as faFullHeart } from '@fortawesome/free-solid-svg-icons';
+import { faDesktop, faMapMarkerAlt, faHeart as faFullHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from "react-share";
 import Moment from 'moment';
@@ -77,7 +77,7 @@ const EventInformation = (props) => {
 
         const newInfo = {
             date: newDate === '' ? eventInfo.date : new Moment(newDate).format('DD MMMM YYYY'),
-            time: newTime === '' ? eventInfo.time : newTime.includes('M') ? newTime : newTime + ' H.',
+            time: newTime === '' ? eventInfo.time : newTime,
             title: newTitle === '' ? eventInfo.title : newTitle,
             description: newDescription === '' ? eventInfo.description : newDescription,
             location: newLocation === '' ? eventInfo.location : newLocation,
@@ -136,7 +136,7 @@ const EventInformation = (props) => {
     };
 
 
-    // console.log('INFORMATION EVENT: ', eventInfo);
+    console.log('INFORMATION EVENT: ', eventInfo);
     // console.log('USER DATA: ', userData);
     // console.log('EVENT INFO AUTHOR-ID: ', eventInfo.authorId);
     // console.log('EVENT INFO AUTHOR-ID = USER DATA ID ? ', userData._id === eventInfo.authorId);
@@ -172,10 +172,8 @@ const EventInformation = (props) => {
                                                     </label>
                                                     <div className="event-information-box-one">
                                                         {
-                                                            eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
-                                                                <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
-                                                                :
-                                                                <img className="event-information-image" src={`${eventInfo.imgUrl}`} alt="event-image" />
+                                                            eventInfo.imgUrl &&
+                                                            <img className="event-information-image" src={`${eventInfo.imgUrl}`} alt="event-image" />
                                                         }
                                                     </div>
                                                     <div className="event-information-box-two">
@@ -185,10 +183,10 @@ const EventInformation = (props) => {
                                                     </div>
                                                     <div className="google-map">
                                                         <label className="event-information-location">Location
-                                                <GoogleMapsAutocomplete isRequired={false} setLocation={setNewLocation} setCoordinates={setNewCoordinates} setLat={setLat} setLng={setLng} />
+                                                <GoogleMapsAutocomplete placeholder={''} setLocation={setNewLocation} setCoordinates={setNewCoordinates} setLat={setLat} setLng={setLng} />
                                                         </label>
                                                         {
-                                                            eventInfo ?
+                                                            eventInfo.lat && eventInfo.lng && eventInfo.location !== 'Online event' ?
                                                                 <Map
                                                                     google={props.google}
                                                                     center={{ lat: eventInfo.lat, lng: eventInfo.lng }}
@@ -196,7 +194,8 @@ const EventInformation = (props) => {
                                                                     width='1000px'
                                                                     zoom={15}
                                                                 />
-                                                                : null
+                                                                :
+                                                                null
                                                         }
                                                     </div>
                                                     <button type="submit" className="button link-to-site save-button">SAVE</button>
@@ -210,10 +209,8 @@ const EventInformation = (props) => {
                                                     <h2 className="event-information-title">{eventInfo.title}</h2>
                                                     <div className="event-information-box-one">
                                                         {
-                                                            eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
-                                                                <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
-                                                                :
-                                                                <img className="event-information-image" src={eventInfo.imgUrl ? `${eventInfo.imgUrl}` : `${eventInfo.imgUrlUrl}`} alt="event-image" />
+                                                            eventInfo.imgUrl &&
+                                                            <img className="event-information-image" src={eventInfo.imgUrl ? `${eventInfo.imgUrl}` : `${eventInfo.imgUrlUrl}`} alt="event-image" />
                                                         }
                                                         <div className="editing-buttons">
                                                             <button className="button link-to-site" onClick={() => { setEditMode(true); localStorage.removeItem('event-info') }}>EDIT</button>
@@ -240,13 +237,14 @@ const EventInformation = (props) => {
                                                     </div>
                                                     <div className="google-map">
                                                         {
-                                                            eventInfo.location ?
-                                                                <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location}</p>
+                                                            eventInfo.location && eventInfo.location.includes('nline') ?
+                                                                <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faDesktop} /> Online event</p>
                                                                 :
-                                                                null
+                                                                <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location}</p>
+
                                                         }
                                                         {
-                                                            eventInfo ?
+                                                            eventInfo.lat && eventInfo.lng && eventInfo.location !== 'Online event' ?
                                                                 <Map
                                                                     google={props.google}
                                                                     center={{ lat: eventInfo.lat, lng: eventInfo.lng }}
@@ -254,7 +252,8 @@ const EventInformation = (props) => {
                                                                     width='1000px'
                                                                     zoom={15}
                                                                 />
-                                                                : null
+                                                                :
+                                                                null
                                                         }
                                                     </div>
                                                 </Fragment>
@@ -276,14 +275,12 @@ const EventInformation = (props) => {
                                                     </div>
                                             }
                                             <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
-                                            <p className="event-information-time">Time: <strong>{eventInfo.time.includes('M') ? eventInfo.time : eventInfo.time + ' H.'}</strong></p>
+                                            <p className="event-information-time">Time: <strong>{eventInfo.time}</strong></p>
                                             <h2 className="event-information-title">{eventInfo.title}</h2>
                                             <div className="event-information-box-one">
                                                 {
-                                                    eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
-                                                        <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
-                                                        :
-                                                        <img className="event-information-image" src={eventInfo.imgUrl ? `${eventInfo.imgUrl}` : `${eventInfo.imgUrlUrl}`} alt="event-image" />
+                                                    eventInfo.imgUrl &&
+                                                    <img className="event-information-image" src={eventInfo.imgUrl ? `${eventInfo.imgUrl}` : `${eventInfo.imgUrlUrl}`} alt="event-image" />
                                                 }
                                             </div>
                                             <div className="event-information-box-two">
@@ -292,13 +289,13 @@ const EventInformation = (props) => {
                                             </div>
                                             <div className="google-map">
                                                 {
-                                                    eventInfo.location ?
-                                                        <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location}</p>
+                                                    eventInfo.location && eventInfo.location.includes('nline') ?
+                                                        <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faDesktop} /> Online event</p>
                                                         :
-                                                        null
+                                                        <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location ? eventInfo.location : eventInfo.city}</p>
                                                 }
                                                 {
-                                                    eventInfo.coordinates ?
+                                                    eventInfo.lat && eventInfo.lng ?
                                                         <Map
                                                             google={props.google}
                                                             center={{ lat: eventInfo.lat, lng: eventInfo.lng }}
@@ -306,7 +303,8 @@ const EventInformation = (props) => {
                                                             width='1000px'
                                                             zoom={15}
                                                         />
-                                                        : null
+                                                        :
+                                                        null
                                                 }
                                             </div>
                                         </Fragment>
@@ -315,14 +313,12 @@ const EventInformation = (props) => {
 
                                         <Fragment>
                                             <p className="event-information-date">Date: <strong>{eventInfo.date.includes('valid') ? 'More information following the link' : eventInfo.date}</strong></p>
-                                            <p className="event-information-time">Time: <strong>{eventInfo.time.includes('valid') ? 'More information following the link' : eventInfo.time.includes('M') ? eventInfo.time : eventInfo.time + ' H.'}</strong></p>
+                                            <p className="event-information-time">Time: <strong>{eventInfo.time.includes('valid') ? 'More information following the link' : eventInfo.time}</strong></p>
                                             <h2 className="event-information-title">{eventInfo.title}</h2>
                                             <div className="event-information-box-one">
                                                 {
-                                                    eventInfo.imgUrl && eventInfo.imgUrl.includes('http') ?
-                                                        <img className="event-information-image" src={eventInfo.imgUrl} alt="event-image" />
-                                                        :
-                                                        <img className="event-information-image" src={`${eventInfo.imgUrl}`} alt="event-image" />
+                                                    eventInfo.imgUrl &&
+                                                    <img className="event-information-image" src={`${eventInfo.imgUrl}`} alt="event-image" />
                                                 }
                                                 {
                                                     eventInfo.url ?
@@ -336,13 +332,15 @@ const EventInformation = (props) => {
                                             </div>
                                             <div className="google-map">
                                                 {
-                                                    eventInfo.location ?
+                                                    eventInfo.location && eventInfo.location.length > 1 ?
                                                         <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.location}</p>
-                                                        :
-                                                        null
+                                                        : eventInfo.location && eventInfo.location.length < 1 ?
+                                                            <p className="map-address"><FontAwesomeIcon style={{ fontSize: '1.2rem' }} icon={faMapMarkerAlt} /> {eventInfo.city}</p>
+                                                            :
+                                                            null
                                                 }
                                                 {
-                                                    eventInfo.coordinates ?
+                                                    eventInfo.lat && eventInfo.lng && eventInfo.location !== 'Online event' ?
                                                         <Map
                                                             google={props.google}
                                                             center={{ lat: eventInfo.lat, lng: eventInfo.lng }}

@@ -63,7 +63,7 @@ exports.postEvent = async (req, res, next) => {
             hostedBy: req.body.hostedBy,
             date: req.body.date,
             time: req.body.time.includes('M') ? req.body.time : req.body.time + ' H.',
-            location: req.body.location,
+            location: req.body.location.length > 3 ? req.body.location : 'Online event',
             coordinates: req.body.coordinates,
             lat: req.body.lat,
             lng: req.body.lng,
