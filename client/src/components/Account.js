@@ -50,13 +50,16 @@ const Account = () => {
         e.preventDefault();
 
         // old data:
-        const { name, email, password, avatar, events } = userData;
+        const { name, email, password, avatar, events, favoriteMeetups, favoriteWorkshops, favoriteConventions } = userData;
 
         const newInfo = {
             name: newName === '' ? name : newName,
             email: newEmail === '' ? email : newEmail,
             avatar: newAvatar === '' ? avatar : newAvatar,
-            events: events
+            events: events,
+            favoriteMeetups: favoriteMeetups,
+            favoriteWorkshops: favoriteWorkshops,
+            favoriteConventions: favoriteConventions
         };
 
         const newInfoAndPassword = {
@@ -64,7 +67,10 @@ const Account = () => {
             email: newEmail === '' ? email : newEmail,
             password: newPassword,
             avatar: newAvatar === '' ? avatar : newAvatar,
-            events: events
+            events: events,
+            favoriteMeetups: favoriteMeetups,
+            favoriteWorkshops: favoriteWorkshops,
+            favoriteConventions: favoriteConventions
         };
         // console.log('NEW INFO: ', newInfo);
 
@@ -112,7 +118,7 @@ const Account = () => {
         isAccountDeleted && history.push('/deletedaccount');
     });
 
-    // console.log('ACCOUNT_userData: ', userData);
+    console.log('ACCOUNT_userData: ', userData);
 
     return (
         <div className="space-navbar account-container">
