@@ -35,7 +35,7 @@ server.use(express.urlencoded({ extended: false }));
 
 server.use(passport.initialize());
 server.use(passport.session());
-
+server.use(express.static("client/build"));
 
 server.use("/", indexRoute);
 server.use("/users", userRoute)

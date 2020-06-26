@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import '../style/App.scss';
 import NavBarSignedIn from "./NavBarSignedIn";
 import NavBarSignedOut from "./NavBarSignedOut";
@@ -158,7 +158,7 @@ const App = () => {
 
     const response = await fetch('http://localhost:4000/users', options);
     const data = await response.json();
-
+    console.log('RESPONSE TO GET USERDATA: ', data)
     setUserData(data.user);
   };
 
@@ -203,8 +203,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <Context.Provider value={{ unfilteredMeetups, lat, setLat, lng, setLng, allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
-        <BrowserRouter>
+      <Context.Provider value={{ fetchEvents, unfilteredMeetups, lat, setLat, lng, setLng, allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
+        <HashRouter>
           {
             loggedIn ?
               <NavBarSignedIn />
@@ -226,7 +226,7 @@ const App = () => {
             <Route path="/deletedaccount" component={DeletedAccount} />
           </Switch>
           <Footer />
-        </BrowserRouter>
+        </HashRouter>
       </Context.Provider>
     </div>
   );

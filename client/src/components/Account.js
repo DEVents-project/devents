@@ -11,7 +11,7 @@ import { faHeart as faFullHeart } from '@fortawesome/free-solid-svg-icons';
 const Account = () => {
     const history = useHistory();
 
-    const { setLoggedIn, getUserData, userData, setUserData, setEventInfo, token } = useContext(Context);
+    const { fetchEvents, setLoggedIn, getUserData, userData, setUserData, setEventInfo, token } = useContext(Context);
 
     const [isEventClicked, setIsEventClicked] = useState(false);
     // this state change fragment between info and inputs to be edited
@@ -42,6 +42,7 @@ const Account = () => {
 
     const [refresh, setRefresh] = useState(true);
     useEffect(() => {
+        fetchEvents();
         getUserData();
         setRefresh(false)
     }, [refresh]);
@@ -50,13 +51,16 @@ const Account = () => {
         e.preventDefault();
 
         // old data:
-        const { name, email, password, avatar, events } = userData;
+        const { name, email, password, avatar, events, favoriteMeetups, favoriteWorkshops, favoriteConventions } = userData;
 
         const newInfo = {
             name: newName === '' ? name : newName,
             email: newEmail === '' ? email : newEmail,
             avatar: newAvatar === '' ? avatar : newAvatar,
-            events: events
+            events: events,
+            favoriteMeetups: favoriteMeetups,
+            favoriteWorkshops: favoriteWorkshops,
+            favoriteConventions: favoriteConventions
         };
 
         const newInfoAndPassword = {
@@ -64,7 +68,10 @@ const Account = () => {
             email: newEmail === '' ? email : newEmail,
             password: newPassword,
             avatar: newAvatar === '' ? avatar : newAvatar,
-            events: events
+            events: events,
+            favoriteMeetups: favoriteMeetups,
+            favoriteWorkshops: favoriteWorkshops,
+            favoriteConventions: favoriteConventions
         };
         // console.log('NEW INFO: ', newInfo);
 
@@ -112,7 +119,7 @@ const Account = () => {
         isAccountDeleted && history.push('/deletedaccount');
     });
 
-    // console.log('ACCOUNT_userData: ', userData);
+    console.log('ACCOUNT_userData: ', userData);
 
     return (
         <div className="space-navbar account-container">
