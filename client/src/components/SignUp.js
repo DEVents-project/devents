@@ -131,7 +131,7 @@ const SignUp = () => {
                             }
                         </div>
                         :
-                        <div className="org-avatar-container">
+                        <div className="avatar-container space">
                             {
                                 orgAvatars.map((orgAvatar, i) => {
                                     return (

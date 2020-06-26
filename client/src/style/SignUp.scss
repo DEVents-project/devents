@@ -84,13 +84,8 @@ $border: .2rem;
             grid-gap: 0.4rem;
             grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
         }  
-        .org-avatar-container {
+        .space {
             width: 70%;
-            margin: 1rem .5rem;
-            display: grid;
-            grid-gap: 0.4rem;
-            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-            
         } 
         .org {
             width: 90px;
@@ -100,7 +95,6 @@ $border: .2rem;
         .avatar {
             width: 80px;
             height: 80px;
-            padding: 0 .4rem;
         }
         [type="radio"] {
             width: 0;
