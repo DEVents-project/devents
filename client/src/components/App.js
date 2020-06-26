@@ -71,15 +71,16 @@ const App = () => {
         url: meetup.website,
         date: meetup.date,
         time: meetup.time,
-        city: meetup.location.split(', ')[1],
+        city: meetup.location !== 'Online event' ? meetup.location.split(', ')[1] : 'Online event',
         coordinates: meetup.coordinates,
         imgUrl: meetup.imgUrl,
-        location: meetup.location,
+        location: meetup.location.length > 2 ? meetup.location : 'Online event',
         authorId: meetup.authorId,
         _id: meetup._id,
         type: 'meetup',
-        lat: parseFloat(meetup.coordinates.split(',')[0].slice(7, 14)),
-        lng: parseFloat(meetup.coordinates.split(',')[1].slice(6, 13))
+        hostedBy: meetup.hostedBy,
+        lat: meetup.coordinates.length > 2 ? parseFloat(meetup.coordinates.split(',')[0].slice(7, 14)) : null,
+        lng: meetup.coordinates.length > 2 ? parseFloat(meetup.coordinates.split(',')[1].slice(6, 13)) : null
       });
       allEvents.push({
         title: meetup.title,
@@ -87,15 +88,16 @@ const App = () => {
         url: meetup.website,
         date: meetup.date,
         time: meetup.time,
-        city: meetup.location.split(', ')[1],
+        city: meetup.location !== 'Online event' ? meetup.location.split(', ')[1] : 'Online event',
         coordinates: meetup.coordinates,
         imgUrl: meetup.imgUrl,
-        location: meetup.location,
+        location: meetup.location.length > 2 ? meetup.location : 'Online event',
         authorId: meetup.authorId,
         _id: meetup._id,
         type: 'meetup',
-        lat: parseFloat(meetup.coordinates.split(',')[0].slice(7, 14)),
-        lng: parseFloat(meetup.coordinates.split(',')[1].slice(6, 13))
+        hostedBy: meetup.hostedBy,
+        lat: meetup.coordinates.length > 2 ? parseFloat(meetup.coordinates.split(',')[0].slice(7, 14)) : null,
+        lng: meetup.coordinates.length > 2 ? parseFloat(meetup.coordinates.split(',')[1].slice(6, 13)) : null
       });
     });
 
@@ -143,7 +145,7 @@ const App = () => {
     setAllEventsTogether(filteredEvents);
   };
 
-  // console.log('ALL EVENTS FETCHED: ', allEventsTogether);
+  console.log('ALL EVENTS FETCHED: ', allEventsTogether);
 
   // FETCHING THE USER INFORMATION - USER SESSION:
   const getUserData = async () => {

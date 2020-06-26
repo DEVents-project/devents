@@ -134,13 +134,13 @@ const Account = () => {
                         <Fragment>
                             <div className="personal-info">
                                 <form onSubmit={handleSubmit} className="edit-form">
-                                    <label htmlFor="name" className="edit-label">
+                                    <label htmlFor="name" className="edit-label edit-label-user-info">
                                         <input type="text" placeholder={userData && userData.name} onChange={(e) => setNewName(e.target.value)} />
                                     </label>
-                                    <label htmlFor="email" className="edit-label">
+                                    <label htmlFor="email" className="edit-label edit-label-user-info">
                                         <input type="email" placeholder={userData && userData.email} onChange={(e) => setNewEmail(e.target.value)} />
                                     </label>
-                                    <label htmlFor="password" className="edit-label">Change password?
+                                    <label htmlFor="password" className="edit-label edit-label-user-info">Change password?
                                         <input type="password" placeholder='new password' onChange={(e) => setNewPassword(e.target.value)} />
                                     </label>
                                     <p className="select-avatar">Select your Avatar</p>

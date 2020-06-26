@@ -10,7 +10,7 @@ You won’t need to visit several websites to **be aware of the latest web devel
 
 ## Demo
 
-### [Follow this link to be redirected to DEVents](http://localhost:3000)
+### [Follow this link to be redirected to DEVents](https://devents-app.herokuapp.com/)
 
 ![Demo landing](https://media.giphy.com/media/ME4o4U9WAqdkjFBgRf/giphy.gif)
 
