@@ -131,7 +131,7 @@ const SignUp = () => {
                             }
                         </div>
                         :
-                        <div className="avatar-container space">
+                        <div className="avatar-container">
                             {
                                 orgAvatars.map((orgAvatar, i) => {
                                     return (
@@ -143,7 +143,7 @@ const SignUp = () => {
                                                 value={orgAvatars[i]}
                                                 required
                                                 onChange={(e) => setAvatar(e.currentTarget.value)} />
-                                            <label htmlFor={i}><img src={orgAvatar} className="avatar org" alt="Organization Avatar" /></label>
+                                            <label htmlFor={i}><img src={orgAvatar} className="avatar" alt="Organization Avatar" /></label>
                                         </div>
                                     )
                                 })
