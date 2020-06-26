@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import '../style/App.scss';
 import NavBarSignedIn from "./NavBarSignedIn";
 import NavBarSignedOut from "./NavBarSignedOut";
@@ -62,7 +62,7 @@ const App = () => {
 
     const allMeetups = [];
 
-    const request1 = await fetch('http://localhost:4000/events', options);
+    const request1 = await fetch('/events', options);
     const response1 = await request1.json();
     response1.events.map(meetup => {
       allMeetups.push({
@@ -111,7 +111,7 @@ const App = () => {
 
     const allWorkshops = [];
 
-    const request2 = await fetch('http://localhost:4000/workshops', options);
+    const request2 = await fetch('/workshops', options);
     const response2 = await request2.json();
     // console.log('WORKSHOPS - Response: ', response2);
     response2.events.map(workshop => { allWorkshops.push(workshop); allEvents.push(workshop) });
@@ -126,7 +126,7 @@ const App = () => {
 
     const allConventions = [];
 
-    const request3 = await fetch('http://localhost:4000/conventions', options);
+    const request3 = await fetch('/conventions', options);
     const response3 = await request3.json();
     // console.log('CONVENTIONS - Response: ', response3);
     response3.events.map(convention => { allConventions.push(convention); allEvents.push(convention) });
@@ -156,9 +156,9 @@ const App = () => {
       }
     };
 
-    const response = await fetch('http://localhost:4000/users', options);
+    const response = await fetch('/users', options);
     const data = await response.json();
-
+    console.log('RESPONSE TO GET USERDATA: ', data)
     setUserData(data.user);
   };
 
@@ -204,7 +204,7 @@ const App = () => {
   return (
     <div className="App">
       <Context.Provider value={{ unfilteredMeetups, lat, setLat, lng, setLng, allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
-        <BrowserRouter>
+        <HashRouter>
           {
             loggedIn ?
               <NavBarSignedIn />
@@ -226,7 +226,7 @@ const App = () => {
             <Route path="/deletedaccount" component={DeletedAccount} />
           </Switch>
           <Footer />
-        </BrowserRouter>
+        </HashRouter>
       </Context.Provider>
     </div>
   );

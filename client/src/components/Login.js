@@ -43,7 +43,7 @@ const Login = () => {
             },
             body: JSON.stringify(loginData)
         };
-        const resp = await fetch('http://localhost:4000/users/login', logged)
+        const resp = await fetch('/users/login', logged)
         const data = await resp.json()
         console.log(data.user);
 
@@ -98,7 +98,7 @@ const Login = () => {
             </form>
 
             <p className="github-log">Login with your<FontAwesomeIcon className="github-icon" icon={faGithubAlt} />GitHub account?
-                <a className="github-link" href="http://localhost:4000/auth/github">Click here</a></p>
+                <a className="github-link" href="/auth/github">Click here</a></p>
         </main>
     )
 }

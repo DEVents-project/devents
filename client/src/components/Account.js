@@ -50,13 +50,16 @@ const Account = () => {
         e.preventDefault();
 
         // old data:
-        const { name, email, password, avatar, events } = userData;
+        const { name, email, password, avatar, events, favoriteMeetups, favoriteWorkshops, favoriteConventions } = userData;
 
         const newInfo = {
             name: newName === '' ? name : newName,
             email: newEmail === '' ? email : newEmail,
             avatar: newAvatar === '' ? avatar : newAvatar,
-            events: events
+            events: events,
+            favoriteMeetups: favoriteMeetups,
+            favoriteWorkshops: favoriteWorkshops,
+            favoriteConventions: favoriteConventions
         };
 
         const newInfoAndPassword = {
@@ -64,7 +67,10 @@ const Account = () => {
             email: newEmail === '' ? email : newEmail,
             password: newPassword,
             avatar: newAvatar === '' ? avatar : newAvatar,
-            events: events
+            events: events,
+            favoriteMeetups: favoriteMeetups,
+            favoriteWorkshops: favoriteWorkshops,
+            favoriteConventions: favoriteConventions
         };
         // console.log('NEW INFO: ', newInfo);
 
@@ -77,7 +83,7 @@ const Account = () => {
             body: JSON.stringify(newPassword === '' ? newInfo : newInfoAndPassword)
         };
 
-        const response = await fetch('http://localhost:4000/users', newUserData);
+        const response = await fetch('/users', newUserData);
         const data = await response.json();
         // console.log("ACCOUNT response:", data);
         if (data.success) {
@@ -97,7 +103,7 @@ const Account = () => {
             },
         };
 
-        const request = await fetch('http://localhost:4000/users', deletedUser);
+        const request = await fetch('/users', deletedUser);
         const response = await request.json();
         // console.log('User Deleted - Response: ', response);
         if (response.success) {
@@ -112,7 +118,7 @@ const Account = () => {
         isAccountDeleted && history.push('/deletedaccount');
     });
 
-    // console.log('ACCOUNT_userData: ', userData);
+    console.log('ACCOUNT_userData: ', userData);
 
     return (
         <div className="space-navbar account-container">
