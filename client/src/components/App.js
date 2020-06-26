@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-import { BrowserRouter, Route, Switch, HashRouter } from 'react-router-dom';
-=======
 import { HashRouter, Route, Switch } from 'react-router-dom';
->>>>>>> passed-events
 import '../style/App.scss';
 import NavBarSignedIn from "./NavBarSignedIn";
 import NavBarSignedOut from "./NavBarSignedOut";
