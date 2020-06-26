@@ -25,6 +25,8 @@ const EventInformation = (props) => {
     const [newDescription, setNewDescription] = useState('');
     const [newLocation, setNewLocation] = useState('');
     const [newCoordinates, setNewCoordinates] = useState('');
+    const [newHostedBy, setNewHostedBy] = useState('');
+    const [newWebsite, setNewWebsite] = useState('');
 
     const [likedEvent, setLikedEvent] = useState(false);
 
@@ -83,6 +85,8 @@ const EventInformation = (props) => {
             location: newLocation === '' ? eventInfo.location : newLocation,
             coordinates: newCoordinates === '' ? eventInfo.coordinates : JSON.stringify(newCoordinates),
             _id: eventInfo._id,
+            hostedBy: newHostedBy === '' ? eventInfo.hostedBy : newHostedBy,
+            website: newWebsite === '' ? eventInfo.website : newWebsite,
             lat: JSON.stringify(newCoordinates) === '' ? lat : newCoordinates.lat,
             lng: JSON.stringify(newCoordinates) === '' ? lng : newCoordinates.lng
         };
@@ -167,6 +171,9 @@ const EventInformation = (props) => {
                                                     <label htmlFor="time" className="edit-label event-information-time">Time
                                             <input type="time" placeholder={eventInfo && eventInfo.time} onChange={(e) => setNewTime(e.target.value)} />
                                                     </label>
+                                                    <label htmlFor="host" className="edit-label event-information-host">Hosted by
+                                            <input type="text" placeholder={eventInfo && eventInfo.hostedBy} onChange={(e) => setNewHostedBy(e.target.value)} />
+                                                    </label>
                                                     <label htmlFor="title" className="edit-label event-information-title">Title
                                             <input type="text" placeholder={eventInfo && eventInfo.title} onChange={(e) => setNewTitle(e.target.value)} />
                                                     </label>
@@ -181,6 +188,9 @@ const EventInformation = (props) => {
                                                 <textarea type="text" placeholder={eventInfo && eventInfo.description} onChange={(e) => setNewDescription(e.target.value)} />
                                                         </label>
                                                     </div>
+                                                    <label htmlFor="website" className="edit-label event-information-website">Website
+                                                <input type="url" placeholder={eventInfo && eventInfo.website} onChange={(e) => setNewWebsite(e.target.value)} />
+                                                    </label>
                                                     <div className="google-map">
                                                         <label className="event-information-location">Location
                                                 <GoogleMapsAutocomplete placeholder={''} setLocation={setNewLocation} setCoordinates={setNewCoordinates} setLat={setLat} setLng={setLng} />
@@ -206,11 +216,22 @@ const EventInformation = (props) => {
                                                 <Fragment>
                                                     <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
                                                     <p className="event-information-time">Time: <strong>{eventInfo.time}</strong></p>
+                                                    {
+                                                        eventInfo.hostedBy ?
+                                                            <p className="event-information-host">Hosted by: <strong>{eventInfo.hostedBy}</strong></p>
+                                                            :
+                                                            null
+                                                    }
                                                     <h2 className="event-information-title">{eventInfo.title}</h2>
                                                     <div className="event-information-box-one">
                                                         {
                                                             eventInfo.imgUrl &&
                                                             <img className="event-information-image" src={eventInfo.imgUrl ? `${eventInfo.imgUrl}` : `${eventInfo.imgUrlUrl}`} alt="event-image" />
+                                                        }
+                                                        {
+                                                            eventInfo.website ?
+                                                                <a href={eventInfo.website} target='_blank' className="button link-to-site link-to-website" >GO TO WEBSITE</a>
+                                                                : null
                                                         }
                                                         <div className="editing-buttons">
                                                             <button className="button link-to-site" onClick={() => { setEditMode(true); localStorage.removeItem('event-info') }}>EDIT</button>
@@ -276,11 +297,24 @@ const EventInformation = (props) => {
                                             }
                                             <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
                                             <p className="event-information-time">Time: <strong>{eventInfo.time}</strong></p>
+                                            {
+                                                eventInfo.hostedBy ?
+                                                    <p className="event-information-host">Hosted by: <strong>{eventInfo.hostedBy}</strong></p>
+                                                    :
+                                                    null
+                                            }
                                             <h2 className="event-information-title">{eventInfo.title}</h2>
                                             <div className="event-information-box-one">
                                                 {
                                                     eventInfo.imgUrl &&
                                                     <img className="event-information-image" src={eventInfo.imgUrl ? `${eventInfo.imgUrl}` : `${eventInfo.imgUrlUrl}`} alt="event-image" />
+                                                }
+                                                {
+                                                    eventInfo.website ?
+                                                        <a href={eventInfo.website} target='_blank' className="button link-to-site" >GO TO WEBSITE</a>
+                                                        : eventInfo.url ?
+                                                            <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
+                                                            : null
                                                 }
                                             </div>
                                             <div className="event-information-box-two">
@@ -314,6 +348,12 @@ const EventInformation = (props) => {
                                         <Fragment>
                                             <p className="event-information-date">Date: <strong>{eventInfo.date.includes('valid') ? 'More information following the link' : eventInfo.date}</strong></p>
                                             <p className="event-information-time">Time: <strong>{eventInfo.time.includes('valid') ? 'More information following the link' : eventInfo.time}</strong></p>
+                                            {
+                                                eventInfo.hostedBy ?
+                                                    <p className="event-information-host">Hosted by: <strong>{eventInfo.hostedBy}</strong></p>
+                                                    :
+                                                    null
+                                            }
                                             <h2 className="event-information-title">{eventInfo.title}</h2>
                                             <div className="event-information-box-one">
                                                 {
@@ -321,9 +361,11 @@ const EventInformation = (props) => {
                                                     <img className="event-information-image" src={`${eventInfo.imgUrl}`} alt="event-image" />
                                                 }
                                                 {
-                                                    eventInfo.url ?
-                                                        <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
-                                                        : null
+                                                    eventInfo.website ?
+                                                        <a href={eventInfo.website} target='_blank' className="button link-to-site" >GO TO WEBSITE</a>
+                                                        : eventInfo.url ?
+                                                            <a href={eventInfo.url} target='_blank' className="button link-to-site" >GO TO EVENT</a>
+                                                            : null
                                                 }
                                             </div>
                                             <div className="event-information-box-two">

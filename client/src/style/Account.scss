@@ -55,6 +55,7 @@
 
             .select-avatar {
                 text-align: center;
+                margin: 1rem 0 0;
             }
 
             .container-avatars {
@@ -152,12 +153,15 @@
     display: flex;
     flex-direction: column;
 
+    .edit-label-user-info {
+        padding: 0.3rem;
+    }
+
     .edit-label {
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 0.3rem;
 
         input,
         textarea,
