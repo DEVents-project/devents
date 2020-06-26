@@ -78,6 +78,7 @@ const App = () => {
         authorId: meetup.authorId,
         _id: meetup._id,
         type: 'meetup',
+        hostedBy: meetup.hostedBy,
         lat: meetup.coordinates.length > 2 ? parseFloat(meetup.coordinates.split(',')[0].slice(7, 14)) : null,
         lng: meetup.coordinates.length > 2 ? parseFloat(meetup.coordinates.split(',')[1].slice(6, 13)) : null
       });
@@ -94,6 +95,7 @@ const App = () => {
         authorId: meetup.authorId,
         _id: meetup._id,
         type: 'meetup',
+        hostedBy: meetup.hostedBy,
         lat: meetup.coordinates.length > 2 ? parseFloat(meetup.coordinates.split(',')[0].slice(7, 14)) : null,
         lng: meetup.coordinates.length > 2 ? parseFloat(meetup.coordinates.split(',')[1].slice(6, 13)) : null
       });

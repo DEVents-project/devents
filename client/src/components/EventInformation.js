@@ -25,6 +25,7 @@ const EventInformation = (props) => {
     const [newDescription, setNewDescription] = useState('');
     const [newLocation, setNewLocation] = useState('');
     const [newCoordinates, setNewCoordinates] = useState('');
+    const [newHostedBy, setNewHostedBy] = useState('');
 
     const [likedEvent, setLikedEvent] = useState(false);
 
@@ -83,6 +84,7 @@ const EventInformation = (props) => {
             location: newLocation === '' ? eventInfo.location : newLocation,
             coordinates: newCoordinates === '' ? eventInfo.coordinates : JSON.stringify(newCoordinates),
             _id: eventInfo._id,
+            hostedBy: newHostedBy === '' ? eventInfo.hostedBy : newHostedBy,
             lat: JSON.stringify(newCoordinates) === '' ? lat : newCoordinates.lat,
             lng: JSON.stringify(newCoordinates) === '' ? lng : newCoordinates.lng
         };
@@ -167,6 +169,9 @@ const EventInformation = (props) => {
                                                     <label htmlFor="time" className="edit-label event-information-time">Time
                                             <input type="time" placeholder={eventInfo && eventInfo.time} onChange={(e) => setNewTime(e.target.value)} />
                                                     </label>
+                                                    <label htmlFor="host" className="edit-label event-information-host">Hosted by
+                                            <input type="text" placeholder={eventInfo && eventInfo.hostedBy} onChange={(e) => setNewHostedBy(e.target.value)} />
+                                                    </label>
                                                     <label htmlFor="title" className="edit-label event-information-title">Title
                                             <input type="text" placeholder={eventInfo && eventInfo.title} onChange={(e) => setNewTitle(e.target.value)} />
                                                     </label>
@@ -206,6 +211,12 @@ const EventInformation = (props) => {
                                                 <Fragment>
                                                     <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
                                                     <p className="event-information-time">Time: <strong>{eventInfo.time}</strong></p>
+                                                    {
+                                                        eventInfo.hostedBy ?
+                                                            <p className="event-information-host">Hosted by: <strong>{eventInfo.hostedBy}</strong></p>
+                                                            :
+                                                            null
+                                                    }
                                                     <h2 className="event-information-title">{eventInfo.title}</h2>
                                                     <div className="event-information-box-one">
                                                         {
@@ -276,6 +287,12 @@ const EventInformation = (props) => {
                                             }
                                             <p className="event-information-date">Date: <strong>{eventInfo.date}</strong></p>
                                             <p className="event-information-time">Time: <strong>{eventInfo.time}</strong></p>
+                                            {
+                                                eventInfo.hostedBy ?
+                                                    <p className="event-information-host">Hosted by: <strong>{eventInfo.hostedBy}</strong></p>
+                                                    :
+                                                    null
+                                            }
                                             <h2 className="event-information-title">{eventInfo.title}</h2>
                                             <div className="event-information-box-one">
                                                 {
@@ -314,6 +331,12 @@ const EventInformation = (props) => {
                                         <Fragment>
                                             <p className="event-information-date">Date: <strong>{eventInfo.date.includes('valid') ? 'More information following the link' : eventInfo.date}</strong></p>
                                             <p className="event-information-time">Time: <strong>{eventInfo.time.includes('valid') ? 'More information following the link' : eventInfo.time}</strong></p>
+                                            {
+                                                eventInfo.hostedBy ?
+                                                    <p className="event-information-host">Hosted by: <strong>{eventInfo.hostedBy}</strong></p>
+                                                    :
+                                                    null
+                                            }
                                             <h2 className="event-information-title">{eventInfo.title}</h2>
                                             <div className="event-information-box-one">
                                                 {
