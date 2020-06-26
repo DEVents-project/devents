@@ -151,8 +151,8 @@ const CreateEvent = (props) => {
                         />
                     </label>
                 </div>
-                <label className="event-label">Location *
-                    <GoogleMapsAutocomplete isRequired={true} setLocation={setLocation} setCoordinates={setCoordinates} setLat={setLat} setLng={setLng} />
+                <label className="event-label">Location
+                    <GoogleMapsAutocomplete setLocation={setLocation} setCoordinates={setCoordinates} setLat={setLat} setLng={setLng} />
                 </label>
                 <label className="event-label">Website
                     <input

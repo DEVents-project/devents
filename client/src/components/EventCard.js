@@ -19,7 +19,7 @@ const EventCard = ({ el, setIsEventClicked }) => {
                 <h3 className="event-title to-back">{el.title}</h3>
                 <p className="event-date to-back" >Date <span style={{ color: '#256eac' }}>{el.date}</span></p>
                 <p className="event-time to-back" >Time <span style={{ color: '#256eac' }}>{el.time}</span></p>
-                <p className="event-address to-back">{el.location}</p>
+                <p className="event-address to-back">{el.location && el.location.length > 3 ? el.location : 'Online event'}</p>
                 <button onClick={() => {
                     setEventInfo(el);
                     localStorage.setItem('event-info', JSON.stringify(el));
@@ -37,7 +37,7 @@ const EventCard = ({ el, setIsEventClicked }) => {
                 <h3 className="event-title to-back">{el.title}</h3>
                 <p className="event-date to-back" >Date <span style={{ color: '#256eac' }}>{el.date}</span></p>
                 <p className="event-time to-back" >Time <span style={{ color: '#256eac' }}>{el.time}</span></p>
-                <p className="event-address to-back">{el.location}</p>
+                <p className="event-address to-back">{el.location && el.location.length > 3 ? el.location : 'Online event'}</p>
                 <button onClick={() => {
                     setEventInfo(el);
                     localStorage.setItem('event-info', JSON.stringify(el));
