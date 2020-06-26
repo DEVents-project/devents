@@ -83,10 +83,24 @@ $border: .2rem;
             display: grid;
             grid-gap: 0.4rem;
             grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-        }   
+        }  
+        .org-avatar-container {
+            width: 70%;
+            margin: 1rem .5rem;
+            display: grid;
+            grid-gap: 0.4rem;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            
+        } 
+        .org {
+            width: 90px;
+            height: 90px;
+        }
+
         .avatar {
             width: 80px;
             height: 80px;
+            padding: 0 .4rem;
         }
         [type="radio"] {
             width: 0;
