@@ -4,8 +4,6 @@ import Context from './Context';
 
 import '../style/SignUp.scss';
 import ParticlesBg from 'particles-bg';
-import orgAvatar1 from "../assets/img/orgAvatar1.svg";
-import orgAvatar2 from "../assets/img/orgAvatar2.svg";
 import orgAvatar3 from "../assets/img/orgAvatar3.svg";
 import orgAvatar4 from "../assets/img/orgAvatar4.svg";
 
@@ -41,11 +39,9 @@ const SignUp = () => {
     ];
 
     const orgAvatars = [
-        orgAvatar1,
-        orgAvatar2,
         orgAvatar3,
         orgAvatar4
-    ]
+    ];
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -55,7 +51,8 @@ const SignUp = () => {
             email,
             avatar,
             password,
-            website
+            website,
+            typeOfUser
         }
 
         const userData = {

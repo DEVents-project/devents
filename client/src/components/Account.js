@@ -6,6 +6,8 @@ import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faFullHeart } from '@fortawesome/free-solid-svg-icons';
+import orgAvatar3 from "../assets/img/orgAvatar3.svg";
+import orgAvatar4 from "../assets/img/orgAvatar4.svg";
 
 
 const Account = () => {
@@ -34,6 +36,10 @@ const Account = () => {
         'https://joeschmoe.io/api/v1/julie',
     ];
 
+    const orgAvatars = [
+        orgAvatar3,
+        orgAvatar4
+    ];
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -144,18 +150,37 @@ const Account = () => {
                                         <input type="password" placeholder='new password' onChange={(e) => setNewPassword(e.target.value)} />
                                     </label>
                                     <p className="select-avatar">Select your Avatar</p>
-                                    <div className="container-avatars">
-                                        {
-                                            listOfAvatars.map((avatar, i) => {
-                                                return (
-                                                    <div key={i} className="avatar-box">
-                                                        <input type="radio" id={i} name='avatar' value={listOfAvatars[i]} onChange={(e) => setNewAvatar(e.target.value)} />
-                                                        <label htmlFor={i}> <img src={avatar} alt={avatar.slice(28)} style={{ height: '112px' }} /></label>
-                                                    </div>
-                                                )
-                                            })
-                                        }
-                                    </div>
+
+                                    {
+                                        userData.typeOfUser === 'developer' ?
+
+                                            <div className="container-avatars">
+                                                {
+                                                    listOfAvatars.map((avatar, i) => {
+                                                        return (
+                                                            <div key={i} className="avatar-box">
+                                                                <input type="radio" id={i} name='avatar' value={listOfAvatars[i]} onChange={(e) => setNewAvatar(e.target.value)} />
+                                                                <label htmlFor={i}> <img src={avatar} alt={avatar.slice(28)} style={{ height: '112px' }} /></label>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                            :
+                                            <div className="container-avatars">
+                                                {
+                                                    orgAvatars.map((avatar, i) => {
+                                                        return (
+                                                            <div key={i} className="avatar-box">
+                                                                <input type="radio" id={i} name='avatar' value={orgAvatars[i]} onChange={(e) => setNewAvatar(e.target.value)} />
+                                                                <label htmlFor={i}> <img src={avatar} alt={'organization' + i} style={{ height: '112px' }} /></label>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                    }
+
                                     <button type='submit' className="button save-button" >Save</button>
                                     <NavLink to="deletedaccount" className="button delete-button button-margin" onClick={(e) => {
                                         if (window.confirm(`Dear ${userData.name}, \n\nplease note that the events you have created will remain on the website if you do not remove them before deleting your account. \n\nAre you sure you want to delete your account?`)) { localStorage.clear(); deleteAccount(e) }

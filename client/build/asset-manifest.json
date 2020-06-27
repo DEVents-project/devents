@@ -1,27 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.6921e077.chunk.css",
-    "main.js": "/static/js/main.ba6e118e.chunk.js",
-    "main.js.map": "/static/js/main.ba6e118e.chunk.js.map",
+    "main.css": "/static/css/main.11e155a4.chunk.css",
+    "main.js": "/static/js/main.6fd87cf0.chunk.js",
+    "main.js.map": "/static/js/main.6fd87cf0.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.8c40394c.js",
     "runtime-main.js.map": "/static/js/runtime-main.8c40394c.js.map",
     "static/css/2.7dc3a98f.chunk.css": "/static/css/2.7dc3a98f.chunk.css",
-    "static/js/2.bb1b0f32.chunk.js": "/static/js/2.bb1b0f32.chunk.js",
-    "static/js/2.bb1b0f32.chunk.js.map": "/static/js/2.bb1b0f32.chunk.js.map",
+    "static/js/2.9c870691.chunk.js": "/static/js/2.9c870691.chunk.js",
+    "static/js/2.9c870691.chunk.js.map": "/static/js/2.9c870691.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.33e9ad7815dc83336bf5e79149e61653.js": "/precache-manifest.33e9ad7815dc83336bf5e79149e61653.js",
+    "precache-manifest.b3c683c3cc921506ea4ed9626cb0e777.js": "/precache-manifest.b3c683c3cc921506ea4ed9626cb0e777.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.7dc3a98f.chunk.css.map": "/static/css/2.7dc3a98f.chunk.css.map",
-    "static/css/main.6921e077.chunk.css.map": "/static/css/main.6921e077.chunk.css.map",
-    "static/js/2.bb1b0f32.chunk.js.LICENSE.txt": "/static/js/2.bb1b0f32.chunk.js.LICENSE.txt",
+    "static/css/main.11e155a4.chunk.css.map": "/static/css/main.11e155a4.chunk.css.map",
+    "static/js/2.9c870691.chunk.js.LICENSE.txt": "/static/js/2.9c870691.chunk.js.LICENSE.txt",
     "static/media/Faq.scss": "/static/media/Lincolnstencil.a04c9410.otf",
     "static/media/Hallosans.otf": "/static/media/Hallosans.54807e71.otf",
     "static/media/collaboration2.svg": "/static/media/collaboration2.acec5eca.svg",
     "static/media/createEvent.svg": "/static/media/createEvent.83512787.svg",
     "static/media/eventImgDefault.png": "/static/media/eventImgDefault.549ee370.png",
     "static/media/favicon.ico": "/static/media/favicon.b6a978d6.ico",
-    "static/media/orgAvatar1.svg": "/static/media/orgAvatar1.251c5508.svg",
-    "static/media/orgAvatar2.svg": "/static/media/orgAvatar2.d5adfc0a.svg",
     "static/media/orgAvatar3.svg": "/static/media/orgAvatar3.d08d6159.svg",
     "static/media/orgAvatar4.svg": "/static/media/orgAvatar4.452c4d2b.svg",
     "static/media/publish.svg": "/static/media/publish.9fb33ee1.svg",
@@ -30,8 +28,8 @@
   "entrypoints": [
     "static/js/runtime-main.8c40394c.js",
     "static/css/2.7dc3a98f.chunk.css",
-    "static/js/2.bb1b0f32.chunk.js",
-    "static/css/main.6921e077.chunk.css",
-    "static/js/main.ba6e118e.chunk.js"
+    "static/js/2.9c870691.chunk.js",
+    "static/css/main.11e155a4.chunk.css",
+    "static/js/main.6fd87cf0.chunk.js"
   ]
 }

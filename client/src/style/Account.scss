@@ -63,20 +63,20 @@
                 display: grid;
                 grid-gap: 0.5rem;
                 grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            }
 
-            [type="radio"] {
-                position: absolute;
-                opacity: 0;
-                width: 0;
-                height: 0;
+                [type="radio"] {
+                    position: absolute;
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
 
-                label {
-                    cursor: pointer;
-                }
+                    label {
+                        cursor: pointer;
+                    }
 
-                &:checked + label {
-                    outline: 3px solid $mid-light-blue;
+                    &:checked + label {
+                        outline: 3px solid $mid-light-blue;
+                    }
                 }
             }
         }
