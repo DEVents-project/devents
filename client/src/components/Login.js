@@ -97,8 +97,8 @@ const Login = () => {
                 <button className="button login-btn" type="submit">LOG IN</button>
             </form>
 
-            <p className="github-log">Login with your<FontAwesomeIcon className="github-icon" icon={faGithubAlt} />GitHub account?
-                <a className="github-link" href="/auth/github">Click here</a></p>
+            {/* <p className="github-log">Login with your<FontAwesomeIcon className="github-icon" icon={faGithubAlt} />GitHub account?
+                <a className="github-link" href="/auth/github">Click here</a></p> */}
         </main>
     )
 }
