@@ -1,14 +1,12 @@
-// variables 
-$light-color:#840404;
-$middle-color:#650404;
-$dark-color:#460505;
+// variables
+$light-color: #840404;
+$middle-color: #650404;
+$dark-color: #460505;
 $font-color: #ffffff;
-$border: .2rem;
+$border: 0.2rem;
 
 // blue colors
 @import "index";
-
-
 
 .signup-container {
     width: 100%;
@@ -18,8 +16,6 @@ $border: .2rem;
     display: flex;
     justify-content: center;
 
-
-    
     .signup-form {
         width: 90%;
         height: 100%;
@@ -29,18 +25,18 @@ $border: .2rem;
         align-items: center;
         justify-content: center;
         background-color: $mid-dark-blue;
-        box-shadow: -.8rem .5rem $mid-light-blue;
+        box-shadow: -0.8rem 0.5rem $mid-light-blue;
         border-radius: $border;
         color: $font-color;
 
         .h2-signup {
             margin: 1rem 0;
-            letter-spacing: .1rem;
+            letter-spacing: 0.1rem;
             text-align: center;
         }
         .h5-signup {
             width: 90%;
-            padding: .3rem 2rem;
+            padding: 0.3rem 2rem;
             color: $dark-blue;
         }
         .signup-select {
@@ -48,12 +44,12 @@ $border: .2rem;
             height: 2rem;
             border: none;
             border-radius: $border;
-            margin:.5rem 0;
-            padding:1ch;
+            margin: 0.5rem 0;
+            padding: 1ch;
 
             .signup-opt {
                 padding: 1ch;
-                margin-left:1ch;
+                margin-left: 1ch;
                 font-size: 1.1rem;
             }
         }
@@ -62,28 +58,43 @@ $border: .2rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: .3rem;
-            
+            padding: 0.3rem;
 
             .signup-input {
                 height: 2.5rem;
                 width: 100%;
                 padding: 1ch;
-                margin: .3rem 0;
+                margin: 0.3rem 0;
                 border-radius: $border;
                 border: none;
                 font-size: 1.1rem;
                 color: $dark-blue;
             }
-
         }
-        .avatar-container {  
+        .avatar-container {
             width: 80%;
-            margin: 1rem .5rem;
+            margin: 1rem 0.5rem;
             display: grid;
             grid-gap: 0.4rem;
             grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-        }  
+        }
+
+        .avatar-container-org {
+            width: 80%;
+            display: flex;
+
+            div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 1rem;
+
+                img {
+                    display: block;
+                }
+            }
+        }
+
         .avatar {
             width: 80px;
             height: 80px;
@@ -94,30 +105,28 @@ $border: .2rem;
             position: absolute;
             opacity: 0;
 
-            label{
+            label {
                 cursor: pointer;
-            }    
+            }
             &:checked + label {
                 outline: 3px solid $mid-light-blue;
             }
-        }    
+        }
         .sign-btn {
             width: 80%;
             height: 2.8rem;
             // margin: 1rem auto;
             font-size: 1.2rem;
         }
-        
     }
 }
 
-@media screen and (min-width: 650px){
+@media screen and (min-width: 650px) {
     .signup-form {
-        max-width:50%;
+        max-width: 50%;
 
         .sign-btn {
-            padding: .8rem 0;
+            padding: 0.8rem 0;
         }
-        
     }
 }
