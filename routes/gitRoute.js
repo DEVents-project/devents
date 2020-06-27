@@ -12,7 +12,7 @@ Router.get("/github/redirect", passport.authenticate("github"),
     (req, res) => {
         console.log(req.user, "user")
         // res.json({ user: req.user })
-        res.redirect(`http://localhost:3000/account?token=${req.user.tokens[0].token}`)
+        res.redirect(`http://localhost:4000/account?token=${req.user.tokens[0].token}`)
 
     })
 

@@ -44,8 +44,8 @@ const Account = (props) => {
         console.log(token);
 
         setToken(token);
-        setUserData(data.user);
-        // getUserData();
+        // setUserData(data.user);
+        getUserData();
         setLoggedIn(true)
 
     }, []);

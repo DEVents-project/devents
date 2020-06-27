@@ -19,7 +19,7 @@ passport.use(
     new GithubStrategy({
         clientID: keys.github.clientID,
         clientSecret: keys.github.clientSecret,
-        callbackURL: "http://localhost:4000/auth/github/redirect"
+        callbackURL: "/auth/github/redirect"
 
     }, (accessToken, refreshToken, profile, done) => {
 
