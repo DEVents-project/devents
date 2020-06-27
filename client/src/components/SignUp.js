@@ -4,6 +4,11 @@ import Context from './Context';
 
 import '../style/SignUp.scss';
 import ParticlesBg from 'particles-bg';
+import orgAvatar1 from "../assets/img/orgAvatar1.svg";
+import orgAvatar2 from "../assets/img/orgAvatar2.svg";
+import orgAvatar3 from "../assets/img/orgAvatar3.svg";
+import orgAvatar4 from "../assets/img/orgAvatar4.svg";
+
 
 
 const SignUp = () => {
@@ -17,6 +22,7 @@ const SignUp = () => {
     const [website, setWebsite] = useState('');
     const [typeOfUser, setTypeOfUser] = useState('developer');
     const [avatar, setAvatar] = useState('');
+
 
     // set a status for what happens after sign up 
     // const [isSignedUp, setIsSignedUp] = useState(false);
@@ -33,6 +39,13 @@ const SignUp = () => {
         'https://joeschmoe.io/api/v1/joe',
         'https://joeschmoe.io/api/v1/julie',
     ];
+
+    const orgAvatars = [
+        orgAvatar1,
+        orgAvatar2,
+        orgAvatar3,
+        orgAvatar4
+    ]
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -90,28 +103,15 @@ const SignUp = () => {
                             :
                             'Organization\'s name *'
                     }
-                    {
-                        typeOfUser === 'developer' ?
-                            <input className="signup-input"
-                                type="text"
-                                required
-                                onChange={(e) => setName(e.target.value)} />
-                            :
-                            <input className="signup-input"
-                                type="text"
-                                required
-                                onChange={(e) => setName(e.target.value)} />
-                    }
+                    <input className="signup-input"
+                        type="text"
+                        required
+                        onChange={(e) => setName(e.target.value)} />
                 </label>
+                <p className="signup-label">Choose your avatar</p>
                 {
                     typeOfUser === 'developer' ?
-                        <p className="signup-label">Choose your avatar</p>
-                        :
-                        null
-                }
 
-                {
-                    typeOfUser === 'developer' ?
                         <div className="avatar-container">
                             {
                                 avatars.map((avatar, i) => {
@@ -131,7 +131,24 @@ const SignUp = () => {
                             }
                         </div>
                         :
-                        null
+                        <div className="avatar-container">
+                            {
+                                orgAvatars.map((orgAvatar, i) => {
+                                    return (
+                                        <div key={i} >
+                                            <input
+                                                type="radio"
+                                                id={i}
+                                                name='avatar'
+                                                value={orgAvatars[i]}
+                                                required
+                                                onChange={(e) => setAvatar(e.currentTarget.value)} />
+                                            <label htmlFor={i}><img src={orgAvatar} className="avatar" alt="Organization Avatar" /></label>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                 }
 
                 <label className="signup-label">Email *
@@ -158,7 +175,7 @@ const SignUp = () => {
                         :
 
                         <label className="signup-label">Website
-                        <input
+                            <input
                                 className="signup-input"
                                 type="url"
                                 value={website}

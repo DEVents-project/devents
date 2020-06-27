@@ -46,7 +46,6 @@ const Contact = () => {
                                 className="contact-input"
                                 type="text"
                                 value={userName}
-                                placeholder="your name"
                                 required
                                 onChange={(e) => setUserName(e.target.value)} />
                         </label>
@@ -55,7 +54,6 @@ const Contact = () => {
                                 className="contact-input"
                                 type="email"
                                 value={userEmail}
-                                placeholder="your email"
                                 required
                                 onChange={(e) => setUserEmail(e.target.value)} />
                         </label>
@@ -64,7 +62,6 @@ const Contact = () => {
                                 className="contact-textarea"
                                 type="text"
                                 value={userMessage}
-                                placeholder="your message"
                                 required
                                 onChange={(e) => setUserMessage(e.target.value)} />
                         </label>
