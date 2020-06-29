@@ -42,9 +42,7 @@ const Account = (props) => {
 
         let token = query.get("token");
         console.log(token);
-
         setToken(token);
-        // setUserData(data.user);
         getUserData();
         setLoggedIn(true)
 
