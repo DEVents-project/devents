@@ -59,13 +59,30 @@
             .select-avatar {
                 text-align: center;
                 margin: 1rem 0 0;
+                // text-align: left;
             }
 
             .avatars-dev {
                 margin: 1rem 0;
-                display: grid;
-                grid-gap: 0.5rem;
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+
+
+                  .avatar-box {
+                    width: 50%;
+                    display: flex;
+                    justify-content: center;
+                    margin: 0.5rem 0;
+
+                    img {
+                        display: inline-block;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
             }
 
             .avatars-org {
