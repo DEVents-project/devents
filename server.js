@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const nodemailer = require("nodemailer");
 const passport = require("passport");
-const passportSetup = require("./config/passportSetup");
 const cookieSession = require("cookie-session");
 const env = require("./config/config")
 

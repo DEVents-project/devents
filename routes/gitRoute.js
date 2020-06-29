@@ -1,3 +1,4 @@
+const passportSetup = require("../config/passportSetup")
 const Router = require("express").Router();
 const passport = require("passport");
 const User = require("../models/usersSchema")
