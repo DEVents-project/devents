@@ -113,7 +113,9 @@ const SignUp = () => {
                             {
                                 avatars.map((avatar, i) => {
                                     return (
+
                                         <div key={i} >
+
                                             <input
                                                 type="radio"
                                                 id={i}
@@ -121,7 +123,8 @@ const SignUp = () => {
                                                 value={avatars[i]}
                                                 required
                                                 onChange={(e) => setAvatar(e.currentTarget.value)} />
-                                            <img src={avatar} className="avatar" alt={avatar.slice(28)} />
+                                            <label htmlFor={i}><img src={avatar} className="avatar" alt={avatar.slice(28)} /></label>
+
                                         </div>
                                     )
                                 })
