@@ -145,7 +145,7 @@ const App = () => {
     setAllEventsTogether(filteredEvents);
   };
 
-  console.log('ALL EVENTS FETCHED: ', allEventsTogether);
+  // console.log('ALL EVENTS FETCHED: ', allEventsTogether);
 
   // FETCHING THE USER INFORMATION - USER SESSION:
   const getUserData = async () => {

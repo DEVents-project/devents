@@ -44,6 +44,11 @@
             }
         }
 
+        .online-event-checkbox {
+            margin: 1rem 0;
+            display: flex;
+        }
+
         textarea {
             min-height: 200px;
         }
@@ -168,12 +173,18 @@
 
         .google-map {
             margin: 0;
-            grid-area: 5/1/6/-1;
+            grid-area: 6/1/7/-1;
         }
 
         form {
             .event-information-website {
-                grid-area: 6/1/7/-1;
+                grid-area: 5/1/6/-1;
+            }
+
+            .online-event-checkbox {
+                margin: 0;
+                display: flex;
+                align-items: center;
             }
 
             .save-button {
@@ -188,4 +199,28 @@
     .event-information-container {
         padding: 2rem 10rem 4rem;
     }
+}
+
+input[type="checkbox"] {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: white;
+    border-radius: 5px;
+    border: 2px solid $mid-blue;
+    padding: 0.4rem;
+    position: relative;
+    left: 1rem;
+    top: -0.2rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+input[type="checkbox"]:checked {
+    background-color: $mid-blue;
+}
+
+input[type="checkbox"]:before {
+    background-color: $mid-blue;
 }
