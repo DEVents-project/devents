@@ -75,19 +75,15 @@ $border: 0.2rem;
             width: 80%;
             margin: 0 auto;
             display: flex;
-            flex-wrap: wrap;
+            // flex-wrap: wrap;
             justify-content: center;
             
-            // display: grid;
-            // grid-gap: 0.4rem;
-            // grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
 
             div {
                 width: 33%;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-
             }            
         }
 
@@ -145,6 +141,7 @@ $border: 0.2rem;
 
         .avatar-container {   
             margin: 0 auto;
+            
         }
          
     }
