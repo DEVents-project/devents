@@ -21,9 +21,10 @@ exports.getUsers = async (req, res, next) => {
 exports.getUser = async (req, res, next) => {
     const { token } = req.header
     const { _id } = req.user
-    // console.log('token:', token);
+    console.log('token:', token);
     try {
         const user = await User.findById(_id).populate('events').populate('favoriteMeetups').populate('favoriteWorkshops').populate('favoriteConventions').exec();
+        console.log(user)
         res.json({ success: true, user: user })
     } catch (err) {
         next(err)

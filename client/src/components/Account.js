@@ -48,6 +48,7 @@ const Account = (props) => {
 
         let token = query.get("token");
         console.log(token);
+        localStorage.setItem("token", token)
         setToken(token);
         getUserData();
         setLoggedIn(true)
