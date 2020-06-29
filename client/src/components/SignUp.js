@@ -121,7 +121,7 @@ const SignUp = () => {
                                                 value={avatars[i]}
                                                 required
                                                 onChange={(e) => setAvatar(e.currentTarget.value)} />
-                                            <label htmlFor={i}><img src={avatar} className="avatar" alt={avatar.slice(28)} /></label>
+                                            <img src={avatar} className="avatar" alt={avatar.slice(28)} />
                                         </div>
                                     )
                                 })
