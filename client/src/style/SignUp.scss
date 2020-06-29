@@ -75,7 +75,7 @@ $border: 0.2rem;
             width: 80%;
             margin: 0 auto;
             display: flex;
-            // flex-wrap: wrap;
+            flex-wrap: wrap;
             justify-content: center;
             
 
@@ -141,6 +141,11 @@ $border: 0.2rem;
 
         .avatar-container {   
             margin: 0 auto;
+            flex-wrap: nowrap;
+            div {
+                width: 100%;
+                flex-wrap: nowrap;
+            }
             
         }
          
