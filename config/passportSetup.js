@@ -36,9 +36,12 @@ passport.use(
                 new User({
                     ghID: profile.id,
                     name: profile.displayName,
-                    email: profile._json.email
+                    email: profile._json.email,
+                    // avatar: profile._json.avatar_url
+                    avatar: profile.photos[0].value
 
                 }).save().then((newUser) => {
+                    console.log(profile)
 
                     console.log("new user creates:" + newUser)
                     let token = newUser.generateAuthToken();
