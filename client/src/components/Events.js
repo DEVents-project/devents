@@ -20,8 +20,8 @@ const Events = () => {
     const [selectedCity, setSelectedCity] = useState('');
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-        setEventType('meetups');
+        window.scrollTo(0, 0)
+        setEventType('meetups')
     }, [])
 
     const loadMore = () => {
@@ -29,7 +29,7 @@ const Events = () => {
     };
 
     useEffect(() => {
-        setSelectedCity('Berlin');
+        setSelectedCity('disabled')
     }, [eventType]);
 
     // by clicking on 'SEE MORE' it will be redirected to the event's info

@@ -160,7 +160,7 @@ const App = () => {
 
     const response = await fetch('/users', options);
     const data = await response.json();
-    console.log('RESPONSE TO GET USERDATA: ', data)
+    // console.log('RESPONSE TO GET USERDATA: ', data)
     setUserData(data.user);
   };
 

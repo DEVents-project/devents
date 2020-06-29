@@ -31,7 +31,7 @@ const EventInformation = (props) => {
     const [likedEvent, setLikedEvent] = useState(false);
 
     const [isOnlineEvent, setIsOnlineEvent] = useState(false);
-    console.log('IS ONLINE EVENT? ', isOnlineEvent);
+    // console.log('IS ONLINE EVENT? ', isOnlineEvent);
 
     useEffect(() => {
 
@@ -95,7 +95,7 @@ const EventInformation = (props) => {
         };
 
         // console.log('NEW INFO: ', newInfo);
-        console.log('NEW LOCATION: ', newLocation);
+        // console.log('NEW LOCATION: ', newLocation);
 
         const newEventInfo = {
             method: "PUT",
@@ -137,7 +137,7 @@ const EventInformation = (props) => {
 
         const request = await fetch(`/users/${eventId}`, newFavoriteEvent);
         const response = await request.json();
-        console.log('Event added to favorites - Response: ', response);
+        // console.log('Event added to favorites - Response: ', response);
         if (response.success) {
             setUserData(response.user)
             setLikedEvent(response.star);
@@ -145,7 +145,7 @@ const EventInformation = (props) => {
     };
 
 
-    console.log('INFORMATION EVENT: ', eventInfo);
+    // console.log('INFORMATION EVENT: ', eventInfo);
     // console.log('USER DATA: ', userData);
     // console.log('EVENT INFO AUTHOR-ID: ', eventInfo.authorId);
     // console.log('EVENT INFO AUTHOR-ID = USER DATA ID ? ', userData._id === eventInfo.authorId);
