@@ -46,6 +46,7 @@ $border: 0.2rem;
             border-radius: $border;
             margin: 0.5rem 0;
             padding: 1ch;
+            cursor: pointer;
 
             .signup-opt {
                 padding: 1ch;
@@ -73,10 +74,18 @@ $border: 0.2rem;
         }
         .avatar-container {
             width: 80%;
-            margin: 1rem 0.5rem;
-            display: grid;
-            grid-gap: 0.4rem;
-            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            cursor: pointer;
+
+            div {
+                width: 33%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
         }
 
         .avatar-container-org {
@@ -84,6 +93,7 @@ $border: 0.2rem;
             display: flex;
 
             div {
+                margin: 0.5rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -98,7 +108,9 @@ $border: 0.2rem;
         .avatar {
             width: 80px;
             height: 80px;
+            cursor: pointer;
         }
+
         [type="radio"] {
             width: 0;
             height: 0;
@@ -127,6 +139,33 @@ $border: 0.2rem;
 
         .sign-btn {
             padding: 0.8rem 0;
+        }
+
+        .avatar-container {
+            margin: 0 auto;
+            flex-wrap: nowrap;
+
+            div {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .signup-container {
+        .signup-form {
+            max-width: 50%;
+
+            .avatar-container {
+                margin: 0 auto;
+                flex-wrap: nowrap;
+
+                div {
+                    width: calc(80% / 6);
+                    margin: 0.5rem;
+                }
+            }
         }
     }
 }

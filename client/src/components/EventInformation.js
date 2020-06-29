@@ -30,6 +30,9 @@ const EventInformation = (props) => {
 
     const [likedEvent, setLikedEvent] = useState(false);
 
+    const [isOnlineEvent, setIsOnlineEvent] = useState(false);
+    console.log('IS ONLINE EVENT? ', isOnlineEvent);
+
     useEffect(() => {
 
         window.scrollTo(0, 0);
@@ -82,7 +85,7 @@ const EventInformation = (props) => {
             time: newTime === '' ? eventInfo.time : newTime,
             title: newTitle === '' ? eventInfo.title : newTitle,
             description: newDescription === '' ? eventInfo.description : newDescription,
-            location: newLocation === '' ? eventInfo.location : newLocation,
+            location: isOnlineEvent ? 'Online event' : newLocation === '' && isOnlineEvent ? 'Online event' : newLocation === '' && !isOnlineEvent ? eventInfo.location : newLocation && isOnlineEvent ? newLocation : newLocation,
             coordinates: newCoordinates === '' ? eventInfo.coordinates : JSON.stringify(newCoordinates),
             _id: eventInfo._id,
             hostedBy: newHostedBy === '' ? eventInfo.hostedBy : newHostedBy,
@@ -92,6 +95,7 @@ const EventInformation = (props) => {
         };
 
         // console.log('NEW INFO: ', newInfo);
+        console.log('NEW LOCATION: ', newLocation);
 
         const newEventInfo = {
             method: "PUT",
@@ -109,6 +113,7 @@ const EventInformation = (props) => {
             setEventInfo(response.event);
             localStorage.setItem('event-info', JSON.stringify(response.event));
             setEditMode(false);
+            setIsOnlineEvent(false)
         };
     };
 
@@ -190,6 +195,9 @@ const EventInformation = (props) => {
                                                     </div>
                                                     <label htmlFor="website" className="edit-label event-information-website">Website
                                                 <input type="url" placeholder={eventInfo && eventInfo.website} onChange={(e) => setNewWebsite(e.target.value)} />
+                                                    </label>
+                                                    <label for="online-event-checkbox" className="online-event-checkbox"><strong>Change it to online event?  </strong>
+                                                        <input type="checkbox" id="online-event-checkbox" name="online-event-checkbox" value={'Online event'} onChange={() => setIsOnlineEvent(!isOnlineEvent)} />
                                                     </label>
                                                     <div className="google-map">
                                                         <label className="event-information-location">Location
