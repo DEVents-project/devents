@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
 import Context from './Context';
-import { useHistory, NavLink } from 'react-router-dom';
+import { useHistory, NavLink, useLocation } from 'react-router-dom';
 import '../style/Account.scss';
 import EventCard from './EventCard';
 import ParticlesBg from 'particles-bg';
@@ -10,10 +10,12 @@ import orgAvatar3 from "../assets/img/orgAvatar3.svg";
 import orgAvatar4 from "../assets/img/orgAvatar4.svg";
 
 
-const Account = () => {
+const Account = (props) => {
     const history = useHistory();
+    let query = new URLSearchParams(useLocation().search)
 
-    const { setLoggedIn, getUserData, userData, setUserData, setEventInfo, token } = useContext(Context);
+
+    const { setLoggedIn, getUserData, userData, setUserData, setEventInfo, token, setToken } = useContext(Context);
 
     const [isEventClicked, setIsEventClicked] = useState(false);
     // this state change fragment between info and inputs to be edited
@@ -43,7 +45,13 @@ const Account = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
+
+        let token = query.get("token");
+        console.log(token);
+        setToken(token);
         getUserData();
+        setLoggedIn(true)
+
     }, []);
 
     const [refresh, setRefresh] = useState(true);
