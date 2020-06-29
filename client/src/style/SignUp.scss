@@ -46,6 +46,7 @@ $border: 0.2rem;
             border-radius: $border;
             margin: 0.5rem 0;
             padding: 1ch;
+            cursor: pointer;
 
             .signup-opt {
                 padding: 1ch;
@@ -77,16 +78,15 @@ $border: 0.2rem;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            
+            cursor: pointer;
 
             div {
                 width: 33%;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-            }            
+            }
         }
-
 
         .avatar-container-org {
             width: 80%;
@@ -108,7 +108,9 @@ $border: 0.2rem;
         .avatar {
             width: 80px;
             height: 80px;
+            cursor: pointer;
         }
+
         [type="radio"] {
             width: 0;
             height: 0;
@@ -139,15 +141,31 @@ $border: 0.2rem;
             padding: 0.8rem 0;
         }
 
-        .avatar-container {   
+        .avatar-container {
             margin: 0 auto;
             flex-wrap: nowrap;
+
             div {
                 width: 100%;
-                flex-wrap: nowrap;
             }
-            
         }
-         
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .signup-container {
+        .signup-form {
+            max-width: 50%;
+
+            .avatar-container {
+                margin: 0 auto;
+                flex-wrap: nowrap;
+
+                div {
+                    width: calc(80% / 6);
+                    margin: 0.5rem;
+                }
+            }
+        }
     }
 }
