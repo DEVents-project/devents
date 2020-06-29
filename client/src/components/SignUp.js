@@ -67,7 +67,7 @@ const SignUp = () => {
         const header = resp.headers.get('x-auth');
         const data = await resp.json();
 
-        console.log("res:", data);
+        // console.log("res:", data);
 
         if (data.success) {
             localStorage.setItem('token', header);

@@ -28,7 +28,7 @@ const Contact = () => {
         fetch('/send-email', options)
             .then(res => res.json())
             .then(res1 => {
-                console.log(res1.status);
+                // console.log(res1.status);
                 res1.status === true ? setForm(3) : alert('Sorry, there was an issue by sending your message. Please try again later.');
             });
     };

@@ -45,7 +45,7 @@ const Login = () => {
         };
         const resp = await fetch('/users/login', logged)
         const data = await resp.json()
-        console.log(data.user);
+        // console.log(data.user);
 
         const header = resp.headers.get('x-auth');
 

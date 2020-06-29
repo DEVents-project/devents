@@ -91,7 +91,7 @@ const Account = () => {
 
         const response = await fetch('/users', newUserData);
         const data = await response.json();
-        console.log("ACCOUNT response:", data);
+        // console.log("ACCOUNT response:", data);
         if (data.success) {
             setUserData(data.user);
             setEditInfo(false);
@@ -124,7 +124,7 @@ const Account = () => {
         isAccountDeleted && history.push('/deletedaccount');
     });
 
-    console.log('ACCOUNT_userData: ', userData);
+    // console.log('ACCOUNT_userData: ', userData);
 
     return (
         <div className="space-navbar account-container">

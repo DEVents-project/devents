@@ -13,8 +13,8 @@ const GoogleMapsAutocomplete = ({ placeholder, setLocation, setCoordinates, setL
                 setCoordinates(data)
                 return (data)
             }).then(res => {
-                console.log('RES:LAT', res.lat);
-                console.log('RES:LNG', res.lng);
+                // console.log('RES:LAT', res.lat);
+                // console.log('RES:LNG', res.lng);
                 setLat(res.lat);
                 setLng(res.lng)
             })
@@ -24,7 +24,7 @@ const GoogleMapsAutocomplete = ({ placeholder, setLocation, setCoordinates, setL
         <div>
             <GooglePlacesAutocomplete
                 inputClassName={'location-container event-input map-address'}
-                onSelect={(input) => { console.log(input); getCoordinates(input.description); setLocation(input.description) }}
+                onSelect={(input) => { getCoordinates(input.description); setLocation(input.description) }}
                 placeholder={placeholder}
             />
         </div>
