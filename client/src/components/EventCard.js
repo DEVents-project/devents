@@ -8,7 +8,25 @@ const EventCard = ({ el, setIsEventClicked }) => {
 
     // console.log('THIS IS THE EVENT INFO: ', el);
 
-    if (new Date(el.date).getTime() > new Date().getTime()) {
+    if (new Date(el.date).getTime() < new Date().getTime()) {
+        return (
+            <div className="event-card scale-in-center passed-event">
+                {
+                    el &&
+                    <div className="event-image to-back" style={{ backgroundImage: `url('${el.imgUrl}')` }} alt="test-image" />
+                }
+                <h3 className="event-title to-back">{el.title}</h3>
+                <p className="event-date to-back" >Date <span style={{ color: '#256eac' }}>{el.date}</span></p>
+                <p className="event-time to-back" >Time <span style={{ color: '#256eac' }}>{el.time}</span></p>
+                <p className="event-address to-back">{el.location && el.location.length > 3 ? el.location : 'Online event'}</p>
+                <button onClick={() => {
+                    setEventInfo(el);
+                    localStorage.setItem('event-info', JSON.stringify(el));
+                    setIsEventClicked(true);
+                }} className="button see-more passed-button">See more</button>
+            </div>
+        )
+    } else {
 
         return (
             <div className="event-card scale-in-center">
@@ -25,24 +43,6 @@ const EventCard = ({ el, setIsEventClicked }) => {
                     localStorage.setItem('event-info', JSON.stringify(el));
                     setIsEventClicked(true);
                 }} className="button see-more">See more</button>
-            </div>
-        )
-    } else {
-        return (
-            <div className="event-card scale-in-center passed-event">
-                {
-                    el &&
-                    <div className="event-image to-back" style={{ backgroundImage: `url('${el.imgUrl}')` }} alt="test-image" />
-                }
-                <h3 className="event-title to-back">{el.title}</h3>
-                <p className="event-date to-back" >Date <span style={{ color: '#256eac' }}>{el.date}</span></p>
-                <p className="event-time to-back" >Time <span style={{ color: '#256eac' }}>{el.time}</span></p>
-                <p className="event-address to-back">{el.location && el.location.length > 3 ? el.location : 'Online event'}</p>
-                <button onClick={() => {
-                    setEventInfo(el);
-                    localStorage.setItem('event-info', JSON.stringify(el));
-                    setIsEventClicked(true);
-                }} className="button see-more passed-button">See more</button>
             </div>
         )
     }

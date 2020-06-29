@@ -10,6 +10,8 @@ mongoose.connect("mongodb+srv://DEVents:DEVents2020@cluster0-xhusr.mongodb.net/d
 mongoose.connection.on("error", (err) => console.log(err))
 mongoose.connection.on("open", () => console.log("database connected"))
 
+// Moment.locale('de')
+
 
 const deleteEvents = async () => {
 
@@ -26,6 +28,8 @@ const deleteEvents = async () => {
 
 deleteEvents()
 
+// console.log(Moment.locale("de"))
+
 const fetchImgConventions = async () => {
     const options = {
         method: 'GET',
@@ -36,11 +40,12 @@ const fetchImgConventions = async () => {
 
     const allImgConventions = [];
 
-    const request = await fetch("http://localhost:4000/imgconvention", options);
+    const request = await fetch("http://devents-app.herokuapp.com/imgconvention", options);
     const response = await request.json();
     response.conventionImages.map(img => {
         allImgConventions.push(`/imgconvention/${img.imgUrl}`)
     })
+
 
     const eventbriteBerlin = "https://www.eventbrite.de/d/germany--berlin/science-and-tech--conferences/developer/?page=1";
 

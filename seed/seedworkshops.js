@@ -35,7 +35,7 @@ const fetchImgWorkshops = async () => {
 
     const allImgWorkshops = [];
 
-    const request = await fetch("http://localhost:4000/imgworkshop", options);
+    const request = await fetch("http://devents-app.herokuapp.com/imgworkshop", options);
     const response = await request.json();
     response.workshopImages.map(img => {
         allImgWorkshops.push(`/imgworkshop/${img.imgUrl}`)
@@ -70,7 +70,7 @@ const fetchImgWorkshops = async () => {
                     eventData.title = eventPageDom.querySelector("h1").textContent;
 
                     const dateOfEvent = new Moment(date).format('DD MMMM YYYY');
-                    const timeOfEvent = new Moment(date).format('LT');
+                    const timeOfEvent = new Moment(date).format('H HH');
 
                     eventData.date = dateOfEvent;
                     eventData.time = timeOfEvent;
