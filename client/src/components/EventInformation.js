@@ -113,6 +113,7 @@ const EventInformation = (props) => {
             setEventInfo(response.event);
             localStorage.setItem('event-info', JSON.stringify(response.event));
             setEditMode(false);
+            setIsOnlineEvent(false)
         };
     };
 
