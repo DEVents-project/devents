@@ -44,6 +44,8 @@ const App = () => {
   const [lat, setLat] = useState('');
   const [lng, setLng] = useState('');
 
+  const [selectedCity, setSelectedCity] = useState('');
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -110,6 +112,7 @@ const App = () => {
     filteredMeetups.map(event => citiesWithMeetups.push(event.city));
     setMeetupsCities([...new Set(citiesWithMeetups)].sort());
     setMeetups(filteredMeetups);
+    setSelectedCity(meetupsCities[0]);
 
     const allWorkshops = [];
 
@@ -202,10 +205,13 @@ const App = () => {
   }, [userData]);
 
   // console.log('EVENT INFO: ', eventInfo);
+  // console.log('refreshing App.js ', meetups, workshops, conventions);
+  // console.log('MeetupsCities in App.js ', meetupsCities);
+  // console.log('Selected city in App.js ', selectedCity);
 
   return (
     <div className="App">
-      <Context.Provider value={{ unfilteredMeetups, lat, setLat, lng, setLng, allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
+      <Context.Provider value={{ selectedCity, setSelectedCity, unfilteredMeetups, lat, setLat, lng, setLng, allEventsTogether, meetupsCities, workshopsCities, conventionsCities, getUserData, fetchEvents, loggedIn, setLoggedIn, token, setToken, userData, setUserData, eventInfo, setEventInfo, meetups, setMeetups, workshops, conventions }}>
         <HashRouter>
           {
             loggedIn ?

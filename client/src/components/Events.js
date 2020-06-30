@@ -11,17 +11,20 @@ import ScrollToTop from "react-scroll-to-top"
 const Events = () => {
     const history = useHistory();
 
-    const { meetups, meetupsCities, workshops, workshopsCities, conventions, conventionsCities } = useContext(Context);
+    const { selectedCity, setSelectedCity, meetups, meetupsCities, workshops, workshopsCities, conventions, conventionsCities } = useContext(Context);
 
     // number of events that will show after clicking on 'SEE MORE':
     const [isVisible, setIsVisible] = useState(9);
     const [isEventClicked, setIsEventClicked] = useState(false);
     const [eventType, setEventType] = useState('');
-    const [selectedCity, setSelectedCity] = useState('');
 
     useEffect(() => {
-        window.scrollTo(0, 0)
-        setEventType('meetups')
+        window.scrollTo(0, 0);
+        setEventType('meetups');
+
+        if (selectedCity === 'undefined') {
+            setSelectedCity(meetupsCities[0]);
+        }
     }, [])
 
     const loadMore = () => {
@@ -29,7 +32,13 @@ const Events = () => {
     };
 
     useEffect(() => {
-        setSelectedCity('disabled')
+        if (eventType === 'meetups') {
+            setSelectedCity(meetupsCities[0])
+        } else if (eventType === 'workshops') {
+            setSelectedCity(workshopsCities[0])
+        } else if (eventType === 'conventions') {
+            setSelectedCity(conventionsCities[0])
+        }
     }, [eventType]);
 
     // by clicking on 'SEE MORE' it will be redirected to the event's info
@@ -39,6 +48,7 @@ const Events = () => {
 
     // console.log('SELECTED CITY: ', selectedCity);
     // console.log('WORKSHOPS: ', workshops);
+    // console.log('refreshing Events.js ', eventType, selectedCity);
 
     return (
         <div className="events-container space-navbar">
@@ -52,14 +62,14 @@ const Events = () => {
                 {
                     meetups && workshops && conventions ?
                         <select className="checkout" onChange={(e) => setSelectedCity(e.target.value)}>
-                            <option value="disabled" selected={selectedCity === 'disabled' && true} disabled>Select city</option>
+                            {/* <option value="disabled" selected={selectedCity === 'disabled' && true} disabled>Select city</option> */}
                             {
                                 eventType === 'meetups' ?
-                                    meetupsCities.map((city, i) => <option key={i} value={city}>{city}</option>)
+                                    meetupsCities.map((city, i) => <option key={i} value={city} selected={selectedCity === city && true}>{city}</option>)
                                     : eventType === 'workshops' ?
-                                        workshopsCities.map((city, i) => <option key={i} value={city}>{city}</option>)
+                                        workshopsCities.map((city, i) => <option key={i} value={city} selected={selectedCity === city && true}>{city}</option>)
                                         :
-                                        conventionsCities.map((city, i) => <option key={i} value={city}>{city}</option>)
+                                        conventionsCities.map((city, i) => <option key={i} value={city} selected={selectedCity === city && true}>{city}</option>)
 
                             }
                         </select>
@@ -69,26 +79,16 @@ const Events = () => {
             </div>
             <div className="pool-event">
                 {
-                    meetups && workshops && conventions ?
+                    meetups && workshops && conventions && selectedCity ?
                         <Fragment>
                             {
-                                selectedCity !== 'disabled' ?
-                                    <Fragment>
-                                        {
-                                            eventType === 'meetups' ?
-                                                meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} el={el} setIsEventClicked={setIsEventClicked} />)
-                                                : eventType === 'workshops' ?
-                                                    workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} el={el} setIsEventClicked={setIsEventClicked} />)
-                                                    : eventType === 'conventions' ?
-                                                        conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} el={el} setIsEventClicked={setIsEventClicked} />)
-                                                        : null
-                                        }
-                                    </Fragment>
-                                    :
-                                    <div className="find-city" >
-                                        <p className="slide-from-left">Please, select a city to find</p>
-                                        <p className="find-event-type slide-from-right">{eventType}</p>
-                                    </div>
+                                eventType === 'meetups' ?
+                                    meetups.filter(meetup => meetup.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} el={el} setIsEventClicked={setIsEventClicked} />)
+                                    : eventType === 'workshops' ?
+                                        workshops.filter(workshop => workshop.city === selectedCity).filter(workshop => workshop.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} el={el} setIsEventClicked={setIsEventClicked} />)
+                                        :
+                                        conventions.filter(convention => convention.city === selectedCity).slice(0, isVisible).map((el, i) => <EventCard key={i} el={el} setIsEventClicked={setIsEventClicked} />)
+
                             }
                         </Fragment>
                         :
@@ -114,7 +114,7 @@ const Events = () => {
                     null
             }
 
-        </div >
+        </div>
     );
 }
 
