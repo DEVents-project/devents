@@ -1,7 +1,7 @@
 const GridFsStorage = require('multer-gridfs-storage');
-const env = require("../config/config")
+const env = require("../config/config");
 const mongoURI = env.db;
-const multer = require("multer")
+const multer = require("multer");
 
 const storage = new GridFsStorage({
     url: mongoURI,
@@ -13,10 +13,10 @@ const storage = new GridFsStorage({
                 bucketName: "uploads"
             };
             resolve(fileInfo);
-        })
+        });
     }
-})
+});
 
-const upload = multer({ storage })
+const upload = multer({ storage });
 
 module.exports = upload;

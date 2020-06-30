@@ -1,7 +1,7 @@
 const Route = require("express").Router();
 const { getImage } = require("../controllers/eventController");
 
-Route.get("/:filename", getImage)
+Route.get("/:filename", getImage);
 
 
-module.exports = Route
+module.exports = Route;

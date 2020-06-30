@@ -1,9 +1,9 @@
 const createError = require("http-errors");
 const Event = require("../models/eventSchema");
 const Grid = require("gridfs-stream");
-const mongoose = require("mongoose")
-const User = require("../models/usersSchema")
-const env = require("../config/config")
+const mongoose = require("mongoose");
+const User = require("../models/usersSchema");
+const env = require("../config/config");
 
 
 // Mongo URI
@@ -19,7 +19,7 @@ conn.once('open', () => {
     //Init stream
     gfs = Grid(conn.db, mongoose.mongo);
     gfs.collection("uploads");
-})
+});
 
 
 exports.getEvents = async (req, res, next) => {
@@ -47,15 +47,15 @@ exports.getEvent = async (req, res, next) => {
 
 exports.getImage = async (req, res) => {
     gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-        res.contentType("image/png")
+        res.contentType("image/png");
         const readStream = gfs.createReadStream(file.filename);
-        console.log(file, "file")
-        readStream.pipe(res)
-    })
+        console.log(file, "file");
+        readStream.pipe(res);
+    });
 };
 
 exports.postEvent = async (req, res, next) => {
-    console.log(req.user._id)
+    // console.log(req.user._id)
 
     try {
         const newEvent = new Event({
@@ -73,11 +73,11 @@ exports.postEvent = async (req, res, next) => {
             authorId: req.user._id
         });
         await newEvent.save();
-        let userData = await User.findById(req.user._id)
+        let userData = await User.findById(req.user._id);
         // console.log(userData)
         // console.log('NEW Event: ', newEvent)
-        userData.events.push(newEvent._id)
-        userData.save()
+        userData.events.push(newEvent._id);
+        userData.save();
 
         res.json({ success: true, event: newEvent, user: userData });
     }
@@ -91,11 +91,11 @@ exports.putEvent = async (req, res, next) => {
     const event = req.body;
 
     try {
-        console.log('EVENT ID: ', _id);
-        console.log('EVENT BODY: ', event);
+        // console.log('EVENT ID: ', _id);
+        // console.log('EVENT BODY: ', event);
         const updateEvent = await Event.findByIdAndUpdate(_id, event, { new: true });
         if (!event) throw createError(404);
-        console.log('UPDATE EVENT: ', updateEvent);
+        // console.log('UPDATE EVENT: ', updateEvent);
         res.json({ success: true, event: updateEvent });
     }
     catch (err) {
@@ -108,10 +108,10 @@ exports.deleteEvent = async (req, res, next) => {
 
     try {
         const event = await Event.findByIdAndDelete(_id);
-        console.log('EVENT DELETED: ', event);
+        // console.log('EVENT DELETED: ', event);
         if (!event) throw createError(404);
         const events = await Event.find({});
-        console.log('ALL EVENTS: ', events);
+        // console.log('ALL EVENTS: ', events);
         res.json({ success: true, event: events });
     }
     catch (err) {

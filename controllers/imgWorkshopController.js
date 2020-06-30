@@ -1,7 +1,7 @@
 const Grid = require("gridfs-stream");
-const Image = require("../models/imgWorkshopSchema")
-const mongoose = require("mongoose")
-const env = require("../config/config")
+const Image = require("../models/imgWorkshopSchema");
+const mongoose = require("mongoose");
+const env = require("../config/config");
 
 // Mongo URI
 const mongoURI = env.db;
@@ -22,23 +22,23 @@ exports.postWorkshopImage = async (req, res) => {
 
     let addImage = new Image(
         { imgUrl: `${req.file.filename}` }
-    )
+    );
     await addImage.save();
 
-    res.json({ addImage })
+    res.json({ addImage });
 
 };
 
 exports.getImage = async (req, res) => {
     gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-        res.contentType("image/png")
+        res.contentType("image/png");
         const readStream = gfs.createReadStream(file.filename);
-        console.log(file, "file")
-        readStream.pipe(res)
+        // console.log(file, "file")
+        readStream.pipe(res);
     })
 };
 
 exports.getWorkshopImgInfo = async (req, res) => {
     let workshopImages = await Image.find();
-    res.json({ workshopImages })
+    res.json({ workshopImages });
 };

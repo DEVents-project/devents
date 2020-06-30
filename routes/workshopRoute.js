@@ -1,6 +1,6 @@
 const Route = require("express").Router();
-const { getWorkshops } = require("../controllers/workshopController")
+const { getWorkshops } = require("../controllers/workshopController");
 
-Route.get("/", getWorkshops)
+Route.get("/", getWorkshops);
 
-module.exports = Route
+module.exports = Route;

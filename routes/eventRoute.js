@@ -1,7 +1,7 @@
 const Route = require("express").Router();
 const { getEvent, getEvents, postEvent, putEvent, deleteEvent, getImage } = require("../controllers/eventController");
 const upload = require("../middleware/gridFsStorage");
-const auth = require("../middleware/authenticator")
+const auth = require("../middleware/authenticator");
 
 Route.get("/", getEvents);
 Route.get("/:id", getEvent);

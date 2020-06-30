@@ -1,14 +1,16 @@
 const got = require("got");
-const jsdom = require("jsdom")
+const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const mongoose = require("mongoose")
-const Convention = require("../models/conventionSchema")
-const Moment = require("moment")
-const fetch = require("node-fetch")
+const mongoose = require("mongoose");
+const Convention = require("../models/conventionSchema");
+const Moment = require("moment");
+const fetch = require("node-fetch");
 
-mongoose.connect("mongodb+srv://DEVents:DEVents2020@cluster0-xhusr.mongodb.net/devents", { useNewUrlParser: true, useUnifiedTopology: true })
-mongoose.connection.on("error", (err) => console.log(err))
-mongoose.connection.on("open", () => console.log("database connected"))
+mongoose.connect("mongodb+srv://DEVents:DEVents2020@cluster0-xhusr.mongodb.net/devents", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.on("error", (err) => console.log(err));
+mongoose.connection.on("open", () => console.log("database connected"));
+
+// Moment.locale('de')
 
 
 const deleteEvents = async () => {
@@ -22,9 +24,11 @@ const deleteEvents = async () => {
         console.log(err)
     }
 
-}
+};
 
-deleteEvents()
+deleteEvents();
+
+// console.log(Moment.locale("de"))
 
 const fetchImgConventions = async () => {
     const options = {
@@ -36,27 +40,28 @@ const fetchImgConventions = async () => {
 
     const allImgConventions = [];
 
-    const request = await fetch("http://localhost:4000/imgconvention", options);
+    const request = await fetch("http://devents-app.herokuapp.com/imgconvention", options);
     const response = await request.json();
     response.conventionImages.map(img => {
         allImgConventions.push(`/imgconvention/${img.imgUrl}`)
-    })
+    });
+
 
     const eventbriteBerlin = "https://www.eventbrite.de/d/germany--berlin/science-and-tech--conferences/developer/?page=1";
 
     got(eventbriteBerlin).then(res => {
         const eventsPageDom = new JSDOM(res.body.toString()).window.document;
         const eventsParentElement = eventsPageDom.querySelector(".search-main-content__events-list");
-        const eventsElements = eventsParentElement.querySelectorAll("li")
+        const eventsElements = eventsParentElement.querySelectorAll("li");
         eventsElements.forEach(event => {
-            const eventUrl = event.querySelector("div").querySelector("a").getAttribute("href")
+            const eventUrl = event.querySelector("div").querySelector("a").getAttribute("href");
             const eventAddress = event.querySelector(".card-text--truncated__one").textContent;
 
             got(eventUrl).then(data => {
                 const eventPageDom = new JSDOM(data.body.toString()).window.document;
                 let eventData = {};
                 const eventDate = eventPageDom.querySelector(".js-date-time-first-line").textContent;
-                const slicedDate = `${eventDate.slice(5, 26)} `
+                const slicedDate = `${eventDate.slice(5, 26)} `;
 
                 const date = new Moment(slicedDate);
 
@@ -71,25 +76,25 @@ const fetchImgConventions = async () => {
 
                     eventData.location = eventAddress;
                     eventData.city = "Berlin";
-                    let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent
-                    eventData.description = description.trim()
+                    let description = eventPageDom.querySelector("[data-automation='listing-event-description']").textContent;
+                    eventData.description = description.trim();
 
                     eventData.url = eventUrl;
                     // let randomImg = Math.floor(Math.random() * allImgConventions.length)
                     eventData.imgUrl = allImgConventions[0];
-                    allImgConventions.shift()
-                    const dataForSave = new Convention(eventData)
+                    allImgConventions.shift();
+                    const dataForSave = new Convention(eventData);
 
                     dataForSave.save().then(() => {
-                        console.log(eventData.title, "saved")
+                        console.log(eventData.title, "saved");
                     }).catch(err => {
-                        console.log(err, eventData.title, "saved")
+                        console.log(err, eventData.title, "saved");
                     });
-                }
-            })
-        })
+                };
+            });
+        });
 
-    })
+    });
 
     const eventbriteHamburg = "https://www.eventbrite.de/d/germany--hamburg/science-and-tech--conferences/developer/?page=1";
 
@@ -195,9 +200,9 @@ const fetchImgConventions = async () => {
     })
 
 
-}
+};
 
-fetchImgConventions()
+fetchImgConventions();
 
 
 
