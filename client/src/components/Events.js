@@ -62,7 +62,7 @@ const Events = () => {
                 {
                     meetups && workshops && conventions ?
                         <select className="checkout" onChange={(e) => setSelectedCity(e.target.value)}>
-                            {/* <option value="disabled" selected={selectedCity === 'disabled' && true} disabled>Select city</option> */}
+                            <option value="disabled" disabled>Select location</option>
                             {
                                 eventType === 'meetups' ?
                                     meetupsCities.map((city, i) => <option key={i} value={city} selected={selectedCity === city && true}>{city}</option>)
