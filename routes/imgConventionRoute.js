@@ -1,13 +1,13 @@
 const Route = require("express").Router();
 const upload = require("../middleware/gridFsStorage");
-const { postConventionImage, getConventionImgInfo, getImage } = require("../controllers/imgConventionController")
+const { postConventionImage, getConventionImgInfo, getImage } = require("../controllers/imgConventionController");
 
-Route.post("/", upload.single("file"), postConventionImage)
+Route.post("/", upload.single("file"), postConventionImage);
 
-Route.get("/", getConventionImgInfo)
+Route.get("/", getConventionImgInfo);
 
-Route.get("/:filename", getImage)
+Route.get("/:filename", getImage);
 
 
-module.exports = Route
+module.exports = Route;
 

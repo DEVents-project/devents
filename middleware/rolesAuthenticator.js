@@ -3,9 +3,9 @@ const createError = require("http-errors");
 const isAdmin = (req, res, next) => {
     const { role } = req.user;
 
-    if (role !== "Admin") next(createError(403))
+    if (role !== "Admin") next(createError(403));
 
-    next()
+    next();
 }
 
 module.exports = isAdmin;

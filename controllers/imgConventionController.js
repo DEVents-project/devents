@@ -1,7 +1,7 @@
 const Grid = require("gridfs-stream");
-const Image = require("../models/imgConventionSchema")
-const mongoose = require("mongoose")
-const env = require("../config/config")
+const Image = require("../models/imgConventionSchema");
+const mongoose = require("mongoose");
+const env = require("../config/config");
 
 
 // Mongo URI
@@ -17,33 +17,33 @@ conn.once('open', () => {
     //Init stream
     gfs = Grid(conn.db, mongoose.mongo);
     gfs.collection("uploads");
-})
+});
 
 
 exports.getImage = async (req, res) => {
 
     // console.log(req.params.filename)
     gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-        res.contentType("image/png")
+        res.contentType("image/png");
         const readStream = gfs.createReadStream(file.filename);
-        console.log(file, "file")
-        readStream.pipe(res)
-    })
+        // console.log(file, "file")
+        readStream.pipe(res);
+    });
 };
 
 exports.postConventionImage = async (req, res) => {
 
     let addImage = new Image(
         { imgUrl: `${req.file.filename}` }
-    )
+    );
 
     await addImage.save();
 
-    res.json({ addImage })
+    res.json({ addImage });
 
-}
+};
 
 exports.getConventionImgInfo = async (req, res) => {
     let conventionImages = await Image.find();
-    res.json({ conventionImages })
-}
+    res.json({ conventionImages });
+};

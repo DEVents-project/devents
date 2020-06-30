@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const nodemailer = require("nodemailer");
 const passport = require("passport");
-const env = require("./config/config")
+const env = require("./config/config");
 
 
 
@@ -33,20 +33,17 @@ server.use(logger("dev"));
 server.use(cors);
 server.use(express.urlencoded({ extended: false }));
 
-server.use(passport.initialize());
-server.use(passport.session());
-
-server.use(express.static("client/build"))
+server.use(express.static("client/build"));
 
 server.use("/", indexRoute);
-server.use("/users", userRoute)
+server.use("/users", userRoute);
 server.use("/events", eventRoute);
 server.use("/workshops", workshopRoute);
 server.use("/conventions", conventionRoute);
 server.use("/meetups", meetupsRoute);
 server.use("/image", imgRoute);
 server.use("/imgconvention", imgConventionRoute)
-server.use("/imgworkshop", imgWorkshopRoute)
+server.use("/imgworkshop", imgWorkshopRoute);
 
 
 server.post('/send-email', async (req, res) => {

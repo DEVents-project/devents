@@ -1,14 +1,14 @@
 const got = require("got");
-const jsdom = require("jsdom")
+const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const mongoose = require("mongoose")
-const Workshop = require("../models/workshopSchema")
-const Moment = require("moment")
-const fetch = require("node-fetch")
+const mongoose = require("mongoose");
+const Workshop = require("../models/workshopSchema");
+const Moment = require("moment");
+const fetch = require("node-fetch");
 
-mongoose.connect("mongodb+srv://DEVents:DEVents2020@cluster0-xhusr.mongodb.net/devents", { useNewUrlParser: true, useUnifiedTopology: true })
-mongoose.connection.on("error", (err) => console.log(err))
-mongoose.connection.on("open", () => console.log("database connected"))
+mongoose.connect("mongodb+srv://DEVents:DEVents2020@cluster0-xhusr.mongodb.net/devents", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.on("error", (err) => console.log(err));
+mongoose.connection.on("open", () => console.log("database connected"));
 
 const deleteEvents = async () => {
 
@@ -21,9 +21,9 @@ const deleteEvents = async () => {
         console.log(err)
     }
 
-}
+};
 
-deleteEvents()
+deleteEvents();
 
 const fetchImgWorkshops = async () => {
     const options = {
@@ -39,7 +39,7 @@ const fetchImgWorkshops = async () => {
     const response = await request.json();
     response.workshopImages.map(img => {
         allImgWorkshops.push(`/imgworkshop/${img.imgUrl}`)
-    })
+    });
 
 
     //German link const meetupEventBerlin = "https://www.meetup.com/de-DE/find/?allMeetups=false&keywords=developer&radius=16&userFreeform=Berlin%2C+Deutschland&mcId=c1007698&mcName=Berlin%2C+DE&sort=default"
