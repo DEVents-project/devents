@@ -235,3 +235,10 @@
         }
     }
 }
+
+input[type="date"],
+input[type="time"] {
+    display: block;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+}
